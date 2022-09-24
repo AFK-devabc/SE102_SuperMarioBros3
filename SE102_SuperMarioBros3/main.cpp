@@ -30,12 +30,7 @@ WARNING: This one file example has a hell LOT of *sinful* programming practices
 #include <d3d10.h>
 #include <d3dx10.h>
 
-#include <signal.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <time.h>
-#include <stdlib.h>
+#include "debug.h"
 
 #define WINDOW_CLASS_NAME L"SampleWindow"
 #define WINDOW_TITLE L"00 - Intro"
@@ -91,31 +86,6 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-// DEBUG SUPPORT FUNCTIONS //////////////
-#define _W(x)  __W(x)
-#define __W(x)  L##x
-
-#define VA_PRINTS(s) {				\
-		va_list argp;				\
-		va_start(argp, fmt);		\
-		vswprintf_s(s, fmt, argp);	\
-		va_end(argp);				\
-}		
-
-void DebugOut(const wchar_t* fmt, ...)
-{
-	wchar_t s[4096];
-	VA_PRINTS(s);
-	OutputDebugString(s);
-}
-
-void DebugOutTitle(const wchar_t* fmt, ...)
-{
-	wchar_t s[1024];
-	VA_PRINTS(s);
-	SetWindowText(hWnd, s);
-}
-//////////////////////////////////////////
 
 void InitDirectX(HWND hWnd)
 {
