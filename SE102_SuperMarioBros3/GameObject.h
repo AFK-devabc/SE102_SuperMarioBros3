@@ -12,7 +12,7 @@ protected:
 	float y;
 
 	// This should be a pointer to an object containing all graphic/sound/audio assets for rendering this object. 
-	// For now, just a pointer to a single texture
+	// For now, just a pointer to a single texture	
 	LPTEXTURE texture;
 public:
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }
