@@ -16,7 +16,7 @@ void CGame::Init(HWND hWnd)
 
 	backBufferWidth = r.right + 1;
 	backBufferHeight = r.bottom + 1;
-
+	DebugOut(L"								\n		%d		\n					", backBufferWidth);
 	// Create & clear the DXGI_SWAP_CHAIN_DESC structure
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
 	ZeroMemory(&swapChainDesc, sizeof(swapChainDesc));

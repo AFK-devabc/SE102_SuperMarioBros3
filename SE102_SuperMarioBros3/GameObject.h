@@ -1,5 +1,4 @@
 #pragma once
-
 #include <Windows.h>
 #include <d3dx10.h>
 
@@ -30,9 +29,17 @@ typedef CGameObject* LPGAMEOBJECT;
 
 class CBrick : public CGameObject
 {
+private :
+	float vx;
+	float vy;
+
 public:
-	CBrick(float x, float y, LPTEXTURE texture) : CGameObject(x, y, texture) {}
-	void Update(DWORD dt) {};
+	CBrick(float x, float y, float vx, float vy, LPTEXTURE texture) : CGameObject(x, y, texture) {
+		this->vx = vx;
+		this->vy = vx;
+	};
+	void Update(DWORD dt);
+
 };
 
 class CMario : public CGameObject

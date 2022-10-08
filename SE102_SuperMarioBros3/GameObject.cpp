@@ -46,3 +46,54 @@ void CMario::Update(DWORD dt)
 		}
 	}
 }
+
+#define BrickSize 8
+
+void CBrick::Update(DWORD dt)
+{
+	//Moving x_axis
+	x += vx * dt;
+	y += vy * dt;
+
+
+	int BackBufferWidth = CGame::GetInstance()->GetBackBufferWidth();
+	if (x <= 0 || x >= (BackBufferWidth - BrickSize))
+	{
+
+		vx = -vx;
+
+		if (x <= 0)
+		{
+			x = 0;
+		}
+		else if (x >= BackBufferWidth - BrickSize)
+		{
+			x = (float)(BackBufferWidth - BrickSize);
+		}
+
+	}
+
+	//Moving Y_axis
+
+
+	int BackBufferHeight = CGame::GetInstance()->GetBackBufferHeight();
+
+	//DebugOut(L"%f	%f		%d\n", x, y);
+
+	if (y <= 0 || y >= BackBufferHeight + BrickSize)
+	{
+
+		vy = -vy;
+
+		if (y <= 0)
+		{
+			y = 0;
+		}
+		else if (y >= BackBufferHeight  +BrickSize)
+		{
+			y = (float)(BackBufferHeight + BrickSize);
+		}
+	}
+
+};
+

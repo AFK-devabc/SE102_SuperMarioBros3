@@ -53,7 +53,7 @@ LPTEXTURE texMario = NULL;
 LPTEXTURE texBrick = NULL;
 LPTEXTURE texMisc = NULL;
 
-//vector<LPGAMEOBJECT> objects;  
+vector<LPGAMEOBJECT> gameObjects;  
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -81,20 +81,21 @@ void LoadResources()
 	// Load a sprite sheet as a texture to try drawing a portion of a texture. See function Render 
 	//texMisc = game->LoadTexture(MISC_TEXTURE_PATH);
 
-	mario = new CMario(MARIO_START_X, MARIO_START_Y, MARIO_START_VX, MARIO_START_VY, texMario);
-	brick = new CBrick(BRICK_X, BRICK_Y, texBrick);
+	//mario = new CMario(MARIO_START_X, MARIO_START_Y, MARIO_START_VX, MARIO_START_VY, texMario);
 
+	//gameObjects.push_back(mario);
+	
+	for (int i = 0; i < 10; i++)
+	{
+		float brick_startx = rand() % SCREEN_WIDTH;
+		float brick_starty = rand() % SCREEN_HEIGHT /2;
+		float brick_speedx = (rand() % 2 + 1) * 1.0 / (10.0 * (rand() % 10 + 1));
+		float brick_speedy = (rand() % 2 + 1) * 1.0 / (10.0 * (rand() % 10 + 1));
+		DebugOut(L"%f	%f		%f		%f\n", brick_startx, brick_starty, brick_speedx, brick_speedy);
+		brick = new CBrick(brick_startx, brick_starty, brick_speedx, brick_speedx, texBrick);
+		gameObjects.push_back(brick);
+	}
 
-	// objects.push_back(mario);
-	// for(i)		 
-	//		objects.push_back(new CGameObject(BRICK_X+i*BRICK_WIDTH,....);
-	//
-
-	//
-	// int x = BRICK_X;
-	// for(i)
-	//		... new CGameObject(x,.... 
-	//		x+=BRICK_WIDTH;
 }
 
 /*
@@ -103,11 +104,10 @@ void LoadResources()
 */
 void Update(DWORD dt)
 {
-
-
-	mario->Update(dt);
-
-	DebugOutTitle(L"01 - skeleton %0.1f, %0.1f");
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		gameObjects[i]->Update(dt);
+	}
 }
 
 /*
@@ -136,6 +136,12 @@ void Render()
 		//brick->Render();
 		//mario->Render();
 
+		for (int i = 0; i < gameObjects.size(); i++)
+		{
+			gameObjects[i]->Render();
+		}
+
+		
 		// Uncomment this line to see how to draw a porttion of a texture  
 		//g->Draw(10, 10, texMisc, 300, 117, 317, 134);
 
