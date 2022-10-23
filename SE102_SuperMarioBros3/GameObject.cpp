@@ -16,7 +16,6 @@ CGameObject::CGameObject(float x, float y, LPTEXTURE tex)
 
 void CGameObject::Render()
 {
-	CGame::GetInstance()->Draw(x, y, texture);
 }
 
 CGameObject::~CGameObject()
@@ -45,6 +44,12 @@ void CMario::Update(DWORD dt)
 			x = (float)(BackBufferWidth - MARIO_WIDTH);
 		}
 	}
+}
+
+void CMario::Render()
+{
+	CAnimations* ani = CAnimations::GetInstance();
+	ani->Get(500)->Render(x, y);
 }
 
 #define BrickSize 8

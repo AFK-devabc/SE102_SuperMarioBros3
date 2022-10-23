@@ -3,6 +3,7 @@
 #include <d3dx10.h>
 
 #include "Texture.h"
+#include "Animations.h"
 
 class CGameObject
 {
@@ -39,7 +40,7 @@ public:
 		this->vy = vx;
 	};
 	void Update(DWORD dt);
-
+	void Render() {};
 };
 
 class CMario : public CGameObject
@@ -53,4 +54,6 @@ public:
 		this->vy = vy;
 	};
 	void Update(DWORD dt);
+
+	void Render();
 };

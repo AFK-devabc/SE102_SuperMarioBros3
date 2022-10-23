@@ -22,14 +22,30 @@
 #include "Game.h"
 #include "GameObject.h"
 
+#include "CTextures.h"
+
+#include "Sprite.h"
+#include "Sprites.h"
+
+#include "Animation.h"
+#include "Animations.h"
+
 #define WINDOW_CLASS_NAME L"Game Window"
 #define MAIN_WINDOW_TITLE L"01 - Skeleton"
 #define WINDOW_ICON_PATH L"brick.ico"
 
 #define TEXTURE_PATH_BRICK L"brick.png"
-#define TEXTURE_PATH_MARIO L"mario_full.png"
 
-#define TEXTURE_PATH_MISC L"misc.png"
+#define TEXTURES_DIR L"textures"
+#define TEXTURE_PATH_MARIO TEXTURES_DIR "\\mario.png"
+#define TEXTURE_PATH_MISC TEXTURES_DIR "\\misc_transparent.png"
+#define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\enemies.png"
+
+
+#define ID_TEX_MARIO 0
+#define ID_TEX_ENEMY 10
+#define ID_TEX_MISC 20
+
 
 #define BACKGROUND_COLOR D3DXCOLOR(0.5f, 0.5f, 0.5f, 0.0f)
 #define SCREEN_WIDTH 320
@@ -37,6 +53,8 @@
 
 
 using namespace std;
+
+
 
 CMario* mario;
 #define MARIO_START_X 10.0f
@@ -48,10 +66,6 @@ CMario* mario;
 CBrick* brick;
 #define BRICK_X 10.0f
 #define BRICK_Y 120.0f
-
-LPTEXTURE texMario = NULL;
-LPTEXTURE texBrick = NULL;
-LPTEXTURE texMisc = NULL;
 
 vector<LPGAMEOBJECT> gameObjects;  
 
@@ -74,27 +88,60 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 void LoadResources()
 {
 	CGame* game = CGame::GetInstance();
-	texBrick = game->LoadTexture(TEXTURE_PATH_BRICK);
-	texMario = game->LoadTexture(TEXTURE_PATH_MARIO);
-	texMisc = game->LoadTexture(TEXTURE_PATH_MISC);
+	CTextures* textures = CTextures::GetInstance();
 
-	// Load a sprite sheet as a texture to try drawing a portion of a texture. See function Render 
-	//texMisc = game->LoadTexture(MISC_TEXTURE_PATH);
+	textures->Add(ID_TEX_MARIO, TEXTURE_PATH_MARIO);
+	//textures->Add(ID_ENEMY_TEXTURE, TEXTURE_PATH_ENEMIES, D3DCOLOR_XRGB(156, 219, 239));
+	textures->Add(ID_TEX_MISC, TEXTURE_PATH_MISC);
 
-	//mario = new CMario(MARIO_START_X, MARIO_START_Y, MARIO_START_VX, MARIO_START_VY, texMario);
 
-	//gameObjects.push_back(mario);
-	
-	for (int i = 0; i < 10; i++)
-	{
-		float brick_startx = rand() % SCREEN_WIDTH;
-		float brick_starty = rand() % SCREEN_HEIGHT /2;
-		float brick_speedx = (rand() % 2 + 1) * 1.0 / (10.0 * (rand() % 10 + 1));
-		float brick_speedy = (rand() % 2 + 1) * 1.0 / (10.0 * (rand() % 10 + 1));
-		DebugOut(L"%f	%f		%f		%f\n", brick_startx, brick_starty, brick_speedx, brick_speedy);
-		brick = new CBrick(brick_startx, brick_starty, brick_speedx, brick_speedx, texBrick);
-		gameObjects.push_back(brick);
-	}
+	CSprites* sprites = CSprites::GetInstance();
+
+	LPTEXTURE texMario = textures->Get(ID_TEX_MARIO);
+
+	// readline => id, left, top, right 
+
+	sprites->Add(10001, 246, 154, 259, 181, texMario);
+	sprites->Add(10002, 275, 154, 290, 181, texMario);
+	sprites->Add(10003, 304, 154, 321, 181, texMario);
+
+	sprites->Add(10011, 186, 154, 200, 181, texMario);
+	sprites->Add(10012, 155, 154, 171, 181, texMario);
+	sprites->Add(10013, 125, 154, 141, 181, texMario);
+
+	CAnimations* animations = CAnimations::GetInstance();
+	LPANIMATION ani;
+
+	ani = new CAnimation(100);
+	ani->Add(10001);
+	ani->Add(10002);
+	ani->Add(10003);
+	animations->Add(500, ani);
+
+
+
+	ani = new CAnimation(100);
+	ani->Add(10011);
+	ani->Add(10012);
+	ani->Add(10013);
+	animations->Add(501, ani);
+
+
+
+	LPTEXTURE texMisc = textures->Get(ID_TEX_MISC);
+	sprites->Add(20001, 300, 117, 317, 133, texMisc);
+	sprites->Add(20002, 318, 117, 335, 133, texMisc);
+	sprites->Add(20003, 336, 117, 353, 133, texMisc);
+	sprites->Add(20004, 354, 117, 371, 133, texMisc);
+
+	ani = new CAnimation(100);
+	ani->Add(20001, 1000);
+	ani->Add(20002);
+	ani->Add(20003);
+	ani->Add(20004);
+	animations->Add(510, ani);
+
+	mario = new CMario(0, 0, 0, 0, NULL);
 
 }
 
@@ -104,10 +151,7 @@ void LoadResources()
 */
 void Update(DWORD dt)
 {
-	for (int i = 0; i < gameObjects.size(); i++)
-	{
-		gameObjects[i]->Update(dt);
-	}
+	mario->Update(dt);
 }
 
 /*
@@ -134,19 +178,7 @@ void Render()
 		pD3DDevice->OMSetBlendState(g->GetAlphaBlending(), NewBlendFactor, 0xffffffff);
 
 		//brick->Render();
-		//mario->Render();
-
-		for (int i = 0; i < gameObjects.size(); i++)
-		{
-			gameObjects[i]->Render();
-		}
-
-		
-		// Uncomment this line to see how to draw a porttion of a texture  
-		//g->Draw(10, 10, texMisc, 300, 117, 317, 134);
-
-		g->Draw(10, 10, texMario, 215, 120, 234, 137);
-
+		mario->Render();
 
 		spriteHandler->End();
 		pSwapChain->Present(0, 0);
