@@ -7,10 +7,9 @@
 /*
 	Initialize game object
 */
-CGameObject::CGameObject(float x, float y, LPTEXTURE tex)
+CGameObject::CGameObject(D3DXVECTOR2 position, LPTEXTURE tex)
 {
-	this->x = x;
-	this->y = y;
+	this->position = position;
 	this->texture = tex;
 }
 
@@ -28,28 +27,12 @@ CGameObject::~CGameObject()
 
 void CMario::Update(DWORD dt)
 {
-	x += vx * dt;
-
-	int BackBufferWidth = CGame::GetInstance()->GetBackBufferWidth();
-	if (x <= 0 || x >= BackBufferWidth - MARIO_WIDTH) {
-
-		vx = -vx;
-
-		if (x <= 0)
-		{
-			x = 0;
-		}
-		else if (x >= BackBufferWidth - MARIO_WIDTH)
-		{
-			x = (float)(BackBufferWidth - MARIO_WIDTH);
-		}
-	}
 }
 
 void CMario::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get(500)->Render(x, y);
+	ani->Get(500)->Render(position.x, position.y);
 }
 
 #define BrickSize 8
@@ -57,48 +40,8 @@ void CMario::Render()
 void CBrick::Update(DWORD dt)
 {
 	//Moving x_axis
-	x += vx * dt;
-	y += vy * dt;
-
+	position += velocity * dt;
 
 	int BackBufferWidth = CGame::GetInstance()->GetBackBufferWidth();
-	if (x <= 0 || x >= (BackBufferWidth - BrickSize))
-	{
-
-		vx = -vx;
-
-		if (x <= 0)
-		{
-			x = 0;
-		}
-		else if (x >= BackBufferWidth - BrickSize)
-		{
-			x = (float)(BackBufferWidth - BrickSize);
-		}
-
-	}
-
-	//Moving Y_axis
-
-
-	int BackBufferHeight = CGame::GetInstance()->GetBackBufferHeight();
-
-	//DebugOut(L"%f	%f		%d\n", x, y);
-
-	if (y <= 0 || y >= BackBufferHeight + BrickSize)
-	{
-
-		vy = -vy;
-
-		if (y <= 0)
-		{
-			y = 0;
-		}
-		else if (y >= BackBufferHeight  +BrickSize)
-		{
-			y = (float)(BackBufferHeight + BrickSize);
-		}
-	}
-
 };
 

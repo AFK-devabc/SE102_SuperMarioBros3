@@ -8,18 +8,17 @@
 class CGameObject
 {
 protected:
-	float x;
-	float y;
+
+	D3DXVECTOR2 position;
 
 	// This should be a pointer to an object containing all graphic/sound/audio assets for rendering this object. 
 	// For now, just a pointer to a single texture	
 	LPTEXTURE texture;
 public:
-	void SetPosition(float x, float y) { this->x = x, this->y = y; }
-	float GetX() { return x; }
-	float GetY() { return y; }
+	void SetPosition(D3DXVECTOR2 position) { this->position = position; }
+	D3DXVECTOR2 GetPosition() { return position; }
 
-	CGameObject(float x = 0.0f, float y = 0.0f, LPTEXTURE texture = NULL);
+	CGameObject(D3DXVECTOR2 position = D3DXVECTOR2(0,0), LPTEXTURE texture = NULL);
 
 	virtual void Update(DWORD dt) = 0;
 	virtual void Render();
@@ -31,13 +30,12 @@ typedef CGameObject* LPGAMEOBJECT;
 class CBrick : public CGameObject
 {
 private :
-	float vx;
-	float vy;
+
+	D3DXVECTOR2 velocity;
 
 public:
-	CBrick(float x, float y, float vx, float vy, LPTEXTURE texture) : CGameObject(x, y, texture) {
-		this->vx = vx;
-		this->vy = vx;
+	CBrick(D3DXVECTOR2 position , D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(velocity, texture) {
+		this->velocity = velocity;
 	};
 	void Update(DWORD dt);
 	void Render() {};
@@ -45,13 +43,10 @@ public:
 
 class CMario : public CGameObject
 {
-	float vx;
-	float vy;
+	D3DXVECTOR2 velocity;
 public:
-	CMario(float x, float y, float vx, float vy, LPTEXTURE texture) :CGameObject(x, y, texture)
-	{
-		this->vx = vx;
-		this->vy = vy;
+	CMario(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(position, texture) {
+		this->velocity = velocity;
 	};
 	void Update(DWORD dt);
 

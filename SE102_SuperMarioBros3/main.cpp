@@ -141,7 +141,7 @@ void LoadResources()
 	ani->Add(20004);
 	animations->Add(510, ani);
 
-	mario = new CMario(0, 0, 0, 0, NULL);
+	mario = new CMario( D3DXVECTOR2(10, 10),  D3DXVECTOR2(0, 0),NULL);
 
 }
 
