@@ -126,6 +126,8 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 
 	DebugOut((wchar_t*)L"[INFO] InitDirectX has been successful\n");
 
+	InitKeyboard();
+
 	return;
 }
 
@@ -357,9 +359,9 @@ void CGame::ProcessKeyboard()
 		int KeyCode = keyEvents[i].dwOfs;
 		int KeyState = keyEvents[i].dwData;
 		if ((KeyState & 0x80) > 0)
-			DebugOut(L" key down %f",KeyCode);
+			DebugOut(L" key down %d",KeyCode);
 		else
-			DebugOut(L" key up %f", KeyCode);
+			DebugOut(L" key up %d", KeyCode);
 	}
 }
 

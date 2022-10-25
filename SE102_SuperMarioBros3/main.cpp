@@ -152,6 +152,7 @@ void LoadResources()
 void Update(DWORD dt)
 {
 	mario->Update(dt);
+	CGame::GetInstance()->ProcessKeyboard();
 }
 
 /*
