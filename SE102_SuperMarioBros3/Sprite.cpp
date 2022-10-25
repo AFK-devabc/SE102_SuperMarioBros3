@@ -1,8 +1,9 @@
 #include "Sprite.h"
+#include <string.h>
 
-CSprite::CSprite(int id, int left, int top, int right, int bottom, LPTEXTURE tex)
+
+CSprite::CSprite( int left, int top, int right, int bottom, LPTEXTURE tex)
 {
-	this->id = id;
 	this->left = left;
 	this->top = top;
 	this->right = right;
