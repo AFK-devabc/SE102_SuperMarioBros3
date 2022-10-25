@@ -3,18 +3,13 @@
 #include <d3d10.h>
 #include <d3dx10.h>
 
-#define DIRECTINPUT_VERSION 0x0800
-#include <dinput.h>
-
 #include "Texture.h"
+#include "Keyboard.h"
 
 #define MAX_FRAME_RATE 60
 
 
 #define MAX_FRAME_RATE 100
-#define KEYBOARD_BUFFER_SIZE 1024
-#define KEYBOARD_STATE_SIZE 256
-
 
 /*
 	Our simple game framework
@@ -34,32 +29,20 @@ class CGame
 
 	ID3DX10Sprite* spriteObject = NULL;				// Sprite handling object 
 
-	LPDIRECTINPUT8       di;		// The DirectInput object         
-	LPDIRECTINPUTDEVICE8 didv;		// The keyboard device 
-
-	BYTE  keyStates[KEYBOARD_STATE_SIZE];			// DirectInput keyboard state buffer 
-	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];		// Buffered keyboard data
-
-
 	HINSTANCE hInstance;
 
+	CKeyBoard* keyboard;
 
 
 public:
 	// Init DirectX, Sprite Handler
 	void Init(HWND hWnd, HINSTANCE hInstance);
-
-
-	void InitKeyboard( );
-	int IsKeyDown(int KeyCode);
-	void ProcessKeyboard();
-
 	//
+	void	Update();
 	// Draw a portion or ALL the texture at position (x,y) on the screen
 	// rect : if NULL, the whole texture will be drawn
 	//        if NOT NULL, only draw that portion of the texture 
 	void Draw(float x, float y, LPTEXTURE tex, RECT* rect = NULL);
-
 	void Draw(float x, float y, LPTEXTURE tex, int l, int t, int r, int b)
 	{
 		RECT rect;
