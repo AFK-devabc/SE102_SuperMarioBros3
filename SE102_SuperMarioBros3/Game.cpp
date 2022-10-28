@@ -13,7 +13,7 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 
 	this->hWnd = hWnd;
 	this->hInstance = hInstance;
-	keyboard->GetInstance()->InitKeyboard(hWnd, hInstance);
+	keyboard->GetInstance()->InitKeyboard(hWnd, this->hInstance);
 
 	// retrieve client area width & height so that we can create backbuffer height & width accordingly 
 	RECT r;

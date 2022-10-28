@@ -21,9 +21,6 @@ class CKeyBoard
 	BYTE  keyStates[256];									// DirectInput keyboard state buffer 
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];		// Buffered keyboard data
 
-	DWORD dwElements= KEYBOARD_BUFFER_SIZE;
-
-
 public:
 	CKeyBoard();
 	//define keyboard

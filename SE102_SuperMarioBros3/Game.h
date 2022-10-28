@@ -18,6 +18,7 @@ class CGame
 {
 	static CGame* __instance;
 	HWND hWnd;									// Window handle
+	HINSTANCE hInstance;
 
 	int backBufferWidth = 0;					// Backbuffer width & height, will be set during Direct3D initialization
 	int backBufferHeight = 0;
@@ -29,10 +30,7 @@ class CGame
 
 	ID3DX10Sprite* spriteObject = NULL;				// Sprite handling object 
 
-	HINSTANCE hInstance;
-
 	CKeyBoard* keyboard;
-
 
 public:
 	// Init DirectX, Sprite Handler

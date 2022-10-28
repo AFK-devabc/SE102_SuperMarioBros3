@@ -14,9 +14,8 @@ void CKeyBoard::InitKeyboard(HWND hWnd,HINSTANCE hInstance)
 		(
 			hInstance,
 			DIRECTINPUT_VERSION,
-			IID_IDirectInput, (VOID**)&di, NULL
+			IID_IDirectInput8, (VOID**)&di, NULL
 		);
-
 	if (hr != DI_OK)
 	{
 		DebugOut(L"[ERROR] DirectInput8Create failed!\n");
@@ -89,7 +88,7 @@ void CKeyBoard::ProcessKeyboard()
 	{
 		DebugOut(L"[ERROR] DINPUT::Get KeyboardData failed. Error: %d\n", hr);
 	}
-	DebugOut(L"[INFO] Get KeyBoardData Successful!");
+	//DebugOut(L"[INFO] Get KeyBoardData Successful!");
 }
 
 CKeyBoard* CKeyBoard::GetInstance()
