@@ -6,11 +6,7 @@
 #include "Texture.h"
 #include "Keyboard.h"
 
-#define MAX_FRAME_RATE 60
-
-
-#define MAX_FRAME_RATE 100
-
+#include "DefineInfo.h"
 /*
 	Our simple game framework
 */
@@ -50,14 +46,13 @@ public:
 		rect.bottom = b;
 		this->Draw(x, y, tex, &rect);
 	}
-
-	LPTEXTURE LoadTexture(LPCWSTR texturePath);
-
 	ID3D10Device* GetDirect3DDevice() { return this->pD3DDevice; }
 	IDXGISwapChain* GetSwapChain() { return this->pSwapChain; }
 	ID3D10RenderTargetView* GetRenderTargetView() { return this->pRenderTargetView; }
 	ID3DX10Sprite* GetSpriteHandler() { return this->spriteObject; }
 	ID3D10BlendState* GetAlphaBlending() { return pBlendStateAlpha; };
+
+	LPTEXTURE LoadTexture(LPCWSTR texturePath);
 
 	int GetBackBufferWidth() { return backBufferWidth; }
 	int GetBackBufferHeight() { return backBufferHeight; }

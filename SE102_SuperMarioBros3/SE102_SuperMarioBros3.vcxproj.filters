@@ -19,6 +19,9 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{9bbc2ab1-5c5a-4aad-b4f9-894a89d032c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PhysicsDevices">
+      <UniqueIdentifier>{20004793-59d0-42b7-a95c-c0e4b15b6448}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -51,14 +54,17 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="MovableObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CPlayer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MovableObject.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Keyboard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>PhysicsDevices</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>PhysicsDevices</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,14 +98,20 @@
     <ClInclude Include="GameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="MovableObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CPlayer.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableObject.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Keyboard.h">
-      <Filter>Header Files</Filter>
+      <Filter>PhysicsDevices</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>PhysicsDevices</Filter>
+    </ClInclude>
+    <ClInclude Include="DefineInfo.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

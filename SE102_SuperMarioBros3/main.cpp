@@ -30,26 +30,7 @@
 #include "Animation.h"
 #include "Animations.h"
 
-#define WINDOW_CLASS_NAME L"Game Window"
-#define MAIN_WINDOW_TITLE L"01 - Skeleton"
-#define WINDOW_ICON_PATH L"brick.ico"
-
-#define TEXTURE_PATH_BRICK L"brick.png"
-
-#define TEXTURES_DIR L"textures"
-#define TEXTURE_PATH_MARIO TEXTURES_DIR "\\mario.png"
-#define TEXTURE_PATH_MISC TEXTURES_DIR "\\misc_transparent.png"
-#define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\enemies.png"
-
-
-#define ID_TEX_MARIO "0"
-#define ID_TEX_ENEMY "10"
-#define ID_TEX_MISC "20"
-
-
-#define BACKGROUND_COLOR D3DXCOLOR(0.5f, 0.5f, 0.5f, 0.0f)
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 240
+#include "DefineInfo.h"
 
 
 using namespace std;
@@ -57,15 +38,9 @@ using namespace std;
 
 
 CMario* mario;
-#define MARIO_START_X 10.0f
-#define MARIO_START_Y 100.0f
-#define MARIO_START_VX 0.1f
-#define MARIO_START_VY 0.1f
 
 
 CBrick* brick;
-#define BRICK_X 10.0f
-#define BRICK_Y 120.0f
 
 vector<LPGAMEOBJECT> gameObjects;  
 
@@ -279,11 +254,11 @@ int WINAPI WinMain(
 )
 {
 	HWND hWnd = CreateGameWindow(hInstance, nCmdShow, SCREEN_WIDTH, SCREEN_HEIGHT);
+	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 
 	CGame* game = CGame::GetInstance();
 	game->Init(hWnd, hInstance);
 
-	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 
 
 	LoadResources();

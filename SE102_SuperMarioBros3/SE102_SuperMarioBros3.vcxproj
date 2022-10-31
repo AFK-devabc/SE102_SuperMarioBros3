@@ -138,6 +138,7 @@
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovableObject.cpp" />
@@ -151,8 +152,10 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CTextures.h" />
     <ClInclude Include="debug.h" />
+    <ClInclude Include="DefineInfo.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Sprite.h" />
