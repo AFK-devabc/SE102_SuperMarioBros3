@@ -66,6 +66,9 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>PhysicsDevices</Filter>
     </ClCompile>
+    <ClCompile Include="KeyEventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="DefineInfo.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyEventHandler.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

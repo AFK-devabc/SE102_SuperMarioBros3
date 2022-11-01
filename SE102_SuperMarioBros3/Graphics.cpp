@@ -270,27 +270,27 @@ void CGraphics::EndRender()
 
 }
 
-void CGraphics::Render()
-{
-	// clear the background 
-	pD3DDevice->ClearRenderTargetView(pRenderTargetView, BACKGROUND_COLOR);
-
-	spriteObject->Begin(D3DX10_SPRITE_SORT_TEXTURE);
-
-	// Use Alpha blending for transparent sprites
-	FLOAT NewBlendFactor[4] = { 0,0,0,0 };
-	pD3DDevice->OMSetBlendState(pBlendStateAlpha, NewBlendFactor, 0xffffffff);
-
-	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get("500")->Render(D3DXVECTOR2(0,0));
-
-
-
-	spriteObject->End();
-	pSwapChain->Present(0, 0);
-
-
-}
+//void CGraphics::Render()
+//{
+//	// clear the background 
+//	pD3DDevice->ClearRenderTargetView(pRenderTargetView, BACKGROUND_COLOR);
+//
+//	spriteObject->Begin(D3DX10_SPRITE_SORT_TEXTURE);
+//
+//	// Use Alpha blending for transparent sprites
+//	FLOAT NewBlendFactor[4] = { 0,0,0,0 };
+//	pD3DDevice->OMSetBlendState(pBlendStateAlpha, NewBlendFactor, 0xffffffff);
+//
+//	CAnimations* ani = CAnimations::GetInstance();
+//	ani->Get("500")->Render(D3DXVECTOR2(0,0));
+//
+//
+//
+//	spriteObject->End();
+//	pSwapChain->Present(0, 0);
+//
+//
+//}
 
 CGraphics* CGraphics::GetInstance()
 {

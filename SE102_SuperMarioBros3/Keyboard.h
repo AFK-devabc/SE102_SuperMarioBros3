@@ -20,13 +20,17 @@ class CKeyBoard
 
 	BYTE  keyStates[256];									// DirectInput keyboard state buffer 
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];		// Buffered keyboard data
+	DWORD dwElements;
 
 public:
 	CKeyBoard();
 	//define keyboard
 	void InitKeyboard(HWND hWnd, HINSTANCE hInstance);
-	//return keyboard states through KeyData and dwElements
 	void ProcessKeyboard();
+
+	//return keyboard states through KeyData and dwElements
+	int GetKeyboardData(DIDEVICEOBJECTDATA KeyData[KEYBOARD_BUFFER_SIZE], DWORD  &dwElements);
+
 
 	static CKeyBoard* GetInstance();
 

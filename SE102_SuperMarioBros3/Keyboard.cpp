@@ -59,7 +59,8 @@ void CKeyBoard::ProcessKeyboard()
 {
 
 	HRESULT hr;
-	DWORD dwElements = KEYBOARD_BUFFER_SIZE;
+	dwElements = KEYBOARD_BUFFER_SIZE;
+
 	// Collect all key states first
 	hr = didv->GetDeviceState(sizeof(keyStates), keyStates);
 	if (FAILED(hr))
@@ -88,7 +89,26 @@ void CKeyBoard::ProcessKeyboard()
 	{
 		DebugOut(L"[ERROR] DINPUT::Get KeyboardData failed. Error: %d\n", hr);
 	}
+
+	//for (DWORD i = 0; i < dwElements; i++)
+	//{
+	//	int KeyCode = keyEvents[i].dwOfs;
+	//	int KeyState = keyEvents[i].dwData;
+	//	if ((KeyState & 0x80) > 0)
+	//		DebugOut(L"\nOnkeydown");
+	//	else
+	//		DebugOut(L"\nup");
+	//}
+
 	//DebugOut(L"[INFO] Get KeyBoardData Successful!");
+}
+
+int CKeyBoard::GetKeyboardData(DIDEVICEOBJECTDATA KeyData[KEYBOARD_BUFFER_SIZE], DWORD &dwElements)
+{
+
+	KeyData = this->keyEvents;
+	dwElements = this->dwElements;
+	return 0;
 }
 
 CKeyBoard* CKeyBoard::GetInstance()

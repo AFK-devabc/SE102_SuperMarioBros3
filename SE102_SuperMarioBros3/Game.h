@@ -25,6 +25,10 @@ class CGame
 
 	vector<LPGAMEOBJECT> LPGameObject;
 
+	DIDEVICEOBJECTDATA KeyData[KEYBOARD_BUFFER_SIZE];
+	DWORD dwElements;
+
+
 public:
 	// Init DirectX, Sprite Handler, keyboard device
 	void Init(HWND hWnd, HINSTANCE hInstance);
