@@ -2,40 +2,32 @@
 #include <string.h>
 
 
-CSprite::CSprite( int left, int top, int right, int bottom, LPTEXTURE tex)
+
+CSprite::CSprite(RECT spriteRect, LPTEXTURE tex)
 {
-	this->left = left;
-	this->top = top;
-	this->right = right;
-	this->bottom = bottom;
-	this->texture = tex;
+	this->spriteRect = spriteRect;
 
 	// Set the sprite’s shader resource view
 	sprite.pTexture = tex->getShaderResourceView();
 
-	sprite.TexCoord.x = this->left / (float)tex->getWidth();
-	sprite.TexCoord.y = this->top / (float)tex->getHeight();
+	sprite.TexCoord.x =	this->spriteRect.left / (float)tex->getSize().x;
+	sprite.TexCoord.y = this->spriteRect.top / (float)tex->getSize().y;
 
-	int spriteWidth = (this->right - this->left + 1);
-	int spriteHeight = (this->bottom - this->top + 1);
+	int spriteWidth = (this->spriteRect.right - this->spriteRect.left + 1);
+	int spriteHeight = (this->spriteRect.bottom - this->spriteRect.top + 1);
 
-	sprite.TexSize.x = spriteWidth / (float)tex->getWidth();
-	sprite.TexSize.y = spriteHeight / (float)tex->getHeight();
+	sprite.TexSize.x = spriteWidth / (float)tex->getSize().x;
+	sprite.TexSize.y = spriteHeight / (float)tex->getSize().y;
 
 	sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	sprite.TextureIndex = 0;
 
 	D3DXMatrixScaling(&this->matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, 1.0f);
+
 }
 
-void CSprite::Draw(float x, float y)
+void CSprite::Draw(D3DXVECTOR2* position)
 {
-	//CGraphics* graphic = CGraphics::GetInstance();
-
-	//D3DXMATRIX matTranslation;
-	//D3DXMatrixTranslation(&matTranslation, x, (graphic->GetBackBufferHeight() - y), 0.1f);
-	//this->sprite.matWorld = (this->matScaling * matTranslation);
-
-	//graphic->GetSpriteHandler()->DrawSpritesImmediate(&sprite, 1, 0, 0);
+	CGraphics::GetInstance()->DrawSprite(position, &sprite, &matScaling);
 }
 

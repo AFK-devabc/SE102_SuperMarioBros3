@@ -32,7 +32,7 @@ void CMario::Update(DWORD dt)
 void CMario::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get("500")->Render(position.x, position.y);
+	ani->Get("500")->Render(position);
 }
 
 #define BrickSize 8

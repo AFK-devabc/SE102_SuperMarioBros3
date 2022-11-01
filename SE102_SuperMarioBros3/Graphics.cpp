@@ -1,7 +1,5 @@
 #include "Graphics.h"
 CGraphics* CGraphics::__instance = NULL;
-
-
 void CGraphics::InitGraphic(HWND hWnd, HINSTANCE hInstance)
 {
 	// retrieve client area width & height so that we can create backbuffer height & width accordingly 
@@ -240,6 +238,16 @@ void CGraphics::Draw(float x, float y, LPTEXTURE tex, RECT* rect)
 }
 
 
+void CGraphics::DrawSprite(D3DXVECTOR2* position, D3DX10_SPRITE* sprite, D3DXMATRIX* matScaling)
+{
+
+	D3DXMATRIX matTranslation;
+	D3DXMatrixTranslation(&matTranslation, position->x, (backBufferWidth - position->y), 0.1f);
+	sprite->matWorld = ( (*matScaling) * matTranslation);
+
+	spriteObject->DrawSpritesImmediate(sprite, 1, 0, 0);
+
+}
 
 void CGraphics::BeginRender()
 {

@@ -121,10 +121,7 @@ void LoadResources()
 
 }
 
-/*
-	Update world status for this frame
-	dt: time period between beginning of last frame and beginning of this frame
-*/
+
 void Update(DWORD dt)
 {
 	mario->Update(dt);
