@@ -30,12 +30,12 @@ CSprite::CSprite( int left, int top, int right, int bottom, LPTEXTURE tex)
 
 void CSprite::Draw(float x, float y)
 {
-	CGame* g = CGame::GetInstance();
+	//CGraphics* graphic = CGraphics::GetInstance();
 
-	D3DXMATRIX matTranslation;
-	D3DXMatrixTranslation(&matTranslation, x, (g->GetBackBufferHeight() - y), 0.1f);
-	this->sprite.matWorld = (this->matScaling * matTranslation);
+	//D3DXMATRIX matTranslation;
+	//D3DXMatrixTranslation(&matTranslation, x, (graphic->GetBackBufferHeight() - y), 0.1f);
+	//this->sprite.matWorld = (this->matScaling * matTranslation);
 
-	g->GetSpriteHandler()->DrawSpritesImmediate(&sprite, 1, 0, 0);
+	//graphic->GetSpriteHandler()->DrawSpritesImmediate(&sprite, 1, 0, 0);
 }
 

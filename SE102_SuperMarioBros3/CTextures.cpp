@@ -1,7 +1,7 @@
 #include <Windows.h>
 
 #include "debug.h"
-#include "Game.h"
+#include "Graphics.h"
 #include "CTextures.h"
 
 CTextures* CTextures::__instance = NULL;
@@ -21,7 +21,7 @@ CTextures* CTextures::GetInstance()
 
 void CTextures::Add(string id, LPCWSTR filePath)
 {
-	textures[id] = CGame::GetInstance()->LoadTexture(filePath);
+	textures[id] = CGraphics::GetInstance()->LoadTexture(filePath);
 }
 
 LPTEXTURE CTextures::Get(string i)

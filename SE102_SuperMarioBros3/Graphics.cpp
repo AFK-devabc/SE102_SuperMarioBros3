@@ -2,7 +2,7 @@
 CGraphics* CGraphics::__instance = NULL;
 
 
-void CGraphics::Init(HWND hWnd, HINSTANCE hInstance) 
+void CGraphics::InitGraphic(HWND hWnd, HINSTANCE hInstance)
 {
 	// retrieve client area width & height so that we can create backbuffer height & width accordingly 
 	RECT r;
@@ -116,7 +116,6 @@ void CGraphics::Init(HWND hWnd, HINSTANCE hInstance)
 	DebugOut((wchar_t*)L"[INFO] InitDirectX has been successful\n");
 
 }
-
 
 LPTEXTURE CGraphics::LoadTexture(LPCWSTR texturePath)
 {
@@ -238,6 +237,28 @@ void CGraphics::Draw(float x, float y, LPTEXTURE tex, RECT* rect)
 	sprite.matWorld = (matScaling * matTranslation);
 
 	spriteObject->DrawSpritesImmediate(&sprite, 1, 0, 0);
+}
+
+
+
+void CGraphics::BeginRender()
+{
+	// clear the background 
+	pD3DDevice->ClearRenderTargetView(pRenderTargetView, BACKGROUND_COLOR);
+
+	spriteObject->Begin(D3DX10_SPRITE_SORT_TEXTURE);
+
+	// Use Alpha blending for transparent sprites
+	FLOAT NewBlendFactor[4] = { 0,0,0,0 };
+	pD3DDevice->OMSetBlendState(pBlendStateAlpha, NewBlendFactor, 0xffffffff);
+
+}
+
+void CGraphics::EndRender()
+{
+	spriteObject->End();
+	pSwapChain->Present(0, 0);
+
 }
 
 CGraphics* CGraphics::GetInstance()

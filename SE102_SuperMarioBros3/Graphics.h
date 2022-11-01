@@ -4,6 +4,8 @@
 #include <d3dx10.h>
 
 #include "debug.h"
+#include "DefineInfo.h"
+
 class CGraphics
 {
 private:
@@ -22,7 +24,7 @@ private:
 	ID3DX10Sprite* spriteObject = NULL;				// Sprite handling object 
 
 public:
-	void Init(HWND hWnd, HINSTANCE hInstance);
+	void InitGraphic(HWND hWnd, HINSTANCE hInstance);
 
 	LPTEXTURE LoadTexture(LPCWSTR texturePath);
 
@@ -36,6 +38,9 @@ public:
 		rect.bottom = b;
 		this->Draw(x, y, tex, &rect);
 	}
+
+	void BeginRender();
+	void EndRender();
 
 
 

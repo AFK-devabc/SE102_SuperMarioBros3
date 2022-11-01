@@ -39,9 +39,5 @@ void CMario::Render()
 
 void CBrick::Update(DWORD dt)
 {
-	//Moving x_axis
-	position += velocity * dt;
-
-	int BackBufferWidth = CGame::GetInstance()->GetBackBufferWidth();
 };
 

@@ -31,6 +31,7 @@
 #include "Animations.h"
 
 #include "DefineInfo.h"
+#include "Graphics.h"
 
 
 using namespace std;
@@ -135,30 +136,10 @@ void Update(DWORD dt)
 */
 void Render()
 {
-	CGame* g = CGame::GetInstance();
-
-	ID3D10Device* pD3DDevice = g->GetDirect3DDevice();
-	IDXGISwapChain* pSwapChain = g->GetSwapChain();
-	ID3D10RenderTargetView* pRenderTargetView = g->GetRenderTargetView();
-	ID3DX10Sprite* spriteHandler = g->GetSpriteHandler();
-
-	if (pD3DDevice != NULL)
-	{
-		// clear the background 
-		pD3DDevice->ClearRenderTargetView(pRenderTargetView, BACKGROUND_COLOR);
-
-		spriteHandler->Begin(D3DX10_SPRITE_SORT_TEXTURE);
-
-		// Use Alpha blending for transparent sprites
-		FLOAT NewBlendFactor[4] = { 0,0,0,0 };
-		pD3DDevice->OMSetBlendState(g->GetAlphaBlending(), NewBlendFactor, 0xffffffff);
-
-		//brick->Render();
+	CGraphics::GetInstance()->BeginRender();
 		mario->Render();
+		CGraphics::GetInstance()->EndRender();
 
-		spriteHandler->End();
-		pSwapChain->Present(0, 0);
-	}
 }
 
 HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int ScreenHeight)
@@ -210,8 +191,21 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int Sc
 	return hWnd;
 }
 
-int Run()
+int WINAPI WinMain(
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPSTR lpCmdLine,
+	_In_ int nCmdShow
+)
 {
+	HWND hWnd = CreateGameWindow(hInstance, nCmdShow, SCREEN_WIDTH, SCREEN_HEIGHT);
+	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+
+	CGame* game = CGame::GetInstance();
+	game->Init(hWnd, hInstance);
+
+	LoadResources();
+
 	MSG msg;
 	int done = 0;
 	ULONGLONG frameStart = GetTickCount64();
@@ -242,28 +236,5 @@ int Run()
 		else
 			Sleep((DWORD)(tickPerFrame - dt));
 	}
-
-	return 1;
-}
-
-int WINAPI WinMain(
-	_In_ HINSTANCE hInstance,
-	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPSTR lpCmdLine,
-	_In_ int nCmdShow
-)
-{
-	HWND hWnd = CreateGameWindow(hInstance, nCmdShow, SCREEN_WIDTH, SCREEN_HEIGHT);
-	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
-
-	CGame* game = CGame::GetInstance();
-	game->Init(hWnd, hInstance);
-
-
-
-	LoadResources();
-
-	Run();
-
 	return 0;
 }
