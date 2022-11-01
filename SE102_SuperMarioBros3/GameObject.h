@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include <d3dx10.h>
 
-#include "Texture.h"
 #include "Animations.h"
 
 class CGameObject
@@ -27,19 +26,6 @@ public:
 };
 typedef CGameObject* LPGAMEOBJECT;
 
-class CBrick : public CGameObject
-{
-private :
-
-	D3DXVECTOR2 velocity;
-
-public:
-	CBrick(D3DXVECTOR2 position , D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(velocity, texture) {
-		this->velocity = velocity;
-	};
-	void Update(DWORD dt);
-	void Render() {};
-};
 
 class CMario : public CGameObject
 {

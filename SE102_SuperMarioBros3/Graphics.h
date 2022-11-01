@@ -34,7 +34,7 @@ public:
 	void BeginRender();
 	void EndRender();
 
-
+	void Render();
 
 	static CGraphics* GetInstance();
 };

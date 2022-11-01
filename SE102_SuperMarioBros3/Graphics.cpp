@@ -1,4 +1,5 @@
 #include "Graphics.h"
+#include "Animations.h"
 CGraphics* CGraphics::__instance = NULL;
 void CGraphics::InitGraphic(HWND hWnd, HINSTANCE hInstance)
 {
@@ -196,19 +197,19 @@ void CGraphics::Draw(float x, float y, LPTEXTURE tex, RECT* rect)
 		sprite.TexSize.x = 1.0f;
 		sprite.TexSize.y = 1.0f;
 
-		spriteWidth = tex->getWidth();
-		spriteHeight = tex->getHeight();
+		spriteWidth = tex->getSize().x;
+		spriteHeight = tex->getSize().y;
 	}
 	else
 	{
-		sprite.TexCoord.x = rect->left / (float)tex->getWidth();
-		sprite.TexCoord.y = rect->top / (float)tex->getHeight();
+		sprite.TexCoord.x = rect->left / (float)tex->getSize().x;
+		sprite.TexCoord.y = rect->top / (float)tex->getSize().y;
 
 		spriteWidth = (rect->right - rect->left + 1);
 		spriteHeight = (rect->bottom - rect->top + 1);
 
-		sprite.TexSize.x = spriteWidth / (float)tex->getWidth();
-		sprite.TexSize.y = spriteHeight / (float)tex->getHeight();
+		sprite.TexSize.x = spriteWidth / (float)tex->getSize().x;
+		sprite.TexSize.y = spriteHeight / (float)tex->getSize().y;
 	}
 
 	// Set the texture index. Single textures will use 0
@@ -242,7 +243,7 @@ void CGraphics::DrawSprite(D3DXVECTOR2* position, D3DX10_SPRITE* sprite, D3DXMAT
 {
 
 	D3DXMATRIX matTranslation;
-	D3DXMatrixTranslation(&matTranslation, position->x, (backBufferWidth - position->y), 0.1f);
+	D3DXMatrixTranslation(&matTranslation, position->x, (backBufferHeight - position->y), 0.1f);
 	sprite->matWorld = ( (*matScaling) * matTranslation);
 
 	spriteObject->DrawSpritesImmediate(sprite, 1, 0, 0);
@@ -266,6 +267,28 @@ void CGraphics::EndRender()
 {
 	spriteObject->End();
 	pSwapChain->Present(0, 0);
+
+}
+
+void CGraphics::Render()
+{
+	// clear the background 
+	pD3DDevice->ClearRenderTargetView(pRenderTargetView, BACKGROUND_COLOR);
+
+	spriteObject->Begin(D3DX10_SPRITE_SORT_TEXTURE);
+
+	// Use Alpha blending for transparent sprites
+	FLOAT NewBlendFactor[4] = { 0,0,0,0 };
+	pD3DDevice->OMSetBlendState(pBlendStateAlpha, NewBlendFactor, 0xffffffff);
+
+	CAnimations* ani = CAnimations::GetInstance();
+	ani->Get("500")->Render(D3DXVECTOR2(0,0));
+
+
+
+	spriteObject->End();
+	pSwapChain->Present(0, 0);
+
 
 }
 

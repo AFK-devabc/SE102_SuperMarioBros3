@@ -35,9 +35,4 @@ void CMario::Render()
 	ani->Get("500")->Render(position);
 }
 
-#define BrickSize 8
-
-void CBrick::Update(DWORD dt)
-{
-};
 
