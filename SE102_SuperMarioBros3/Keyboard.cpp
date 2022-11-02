@@ -75,11 +75,14 @@ void CKeyBoard::ProcessKeyboard()
 			}
 			else {
 				DebugOut(L"[INFO] Keyboard re-acquired failed!\n");
+				dwElements = 0;
+
 			}
 		}
 		else
 		{
 			DebugOut(L"[ERROR] DINPUT::GetDeviceState failed. Error: %d\n", hr);
+			dwElements = 0;
 		}
 	}
 
@@ -94,33 +97,22 @@ void CKeyBoard::ProcessKeyboard()
 	//DebugOut(L"[INFO] Get KeyBoardData Successful!");
 }
 
-int CKeyBoard::GetKeyboardData(DIDEVICEOBJECTDATA* KeyData[KEYBOARD_BUFFER_SIZE], DWORD &dwElements)
+int CKeyBoard::GetKeyboardEvents(DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE], DWORD &dwElements)
 {
-	//for (DWORD i = 0; i < this->dwElements; i++)
-	//{
-	//	int KeyCode = keyEvents[i].dwOfs;
-	//	int KeyState = keyEvents[i].dwData;
-	//	if ((KeyState & 0x80) > 0)
-	//		DebugOut(L"\nOnkeydown: %d", KeyCode);
-	//	else
-	//		DebugOut(L"\nup: %d", KeyCode);
-	//}
-
-
-	*KeyData = this->keyEvents;
+	for (DWORD i = 0; i < this->dwElements; i++)
+	{
+		keyEvents[i] = this->keyEvents[i];
+	}
 	dwElements = this->dwElements;
 
-	//for (DWORD i = 0; i < dwElements; i++)
-	//{
-	//	int KeyCode = KeyData[i]->dwOfs;
-	//	int KeyState = KeyData[i]->dwData;
-	//	if ((KeyState & 0x80) > 0)
-	//		DebugOut(L"\n				Onkeydown : %d", KeyCode);
-	//	else
-	//		DebugOut(L"\n				up: %d", KeyCode);
-	//}
 	return 0;
 }
+
+int CKeyBoard::IsKeyDown(int KeyCode)
+{
+	return (keyStates[KeyCode] & 0x80) > 0;
+}
+
 
 CKeyBoard* CKeyBoard::GetInstance()
 {

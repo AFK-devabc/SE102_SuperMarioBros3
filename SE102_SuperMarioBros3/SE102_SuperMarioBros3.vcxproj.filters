@@ -66,9 +66,6 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>PhysicsDevices</Filter>
     </ClCompile>
-    <ClCompile Include="KeyEventHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">

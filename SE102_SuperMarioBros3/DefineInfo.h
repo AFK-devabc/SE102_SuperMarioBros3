@@ -14,6 +14,11 @@
 #define MAX_FRAME_RATE 100
 #pragma endregion
 
+#pragma region DirectInput
+#define KEYBOARD_BUFFER_SIZE 1024
+#pragma endregion
+
+
 
 
 #define TEXTURE_PATH_BRICK L"brick.png"

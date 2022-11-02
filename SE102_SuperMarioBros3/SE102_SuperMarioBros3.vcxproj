@@ -140,7 +140,6 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
-    <ClCompile Include="KeyEventHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovableObject.cpp" />
     <ClCompile Include="Sprite.cpp" />

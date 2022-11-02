@@ -29,6 +29,7 @@ public:
 		this->_tex->GetDesc(&desc);
 		this->size.x= desc.Width;
 		this->size.y = desc.Height;
+		
 	}
 
 	ID3D10ShaderResourceView* getShaderResourceView() { return this->_rsview; }
