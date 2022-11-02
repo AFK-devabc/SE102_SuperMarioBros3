@@ -80,25 +80,27 @@ void CGame::LoadResource()
 void CGame::Update(DWORD dt)
 {
 	keyboard->ProcessKeyboard();
+	DIDEVICEOBJECTDATA* KeyData[KEYBOARD_BUFFER_SIZE];
+	DWORD dwElements;
+
 
 
 	keyboard->GetKeyboardData(KeyData, dwElements);
 
 	for (DWORD i = 0; i < dwElements; i++)
 	{
-		int KeyCode = KeyData[i].dwOfs;
-		int KeyState = KeyData[i].dwData;
+		int KeyCode = KeyData[i]->dwOfs;
+		int KeyState = KeyData[i]->dwData;
 		if ((KeyState & 0x80) > 0)
-			DebugOut(L"\nOnkeydown");
+			DebugOut(L"\nOnkeydown : %d", KeyCode);
 		else
-			DebugOut(L"\nup");
+			DebugOut(L"\nup: %d", KeyCode);
 	}
 
 }
 
 void CGame::Render()
 {
-
 	graphic->BeginRender();
 	for (int i = 0;i < LPGameObject.size(); i++)
 	{

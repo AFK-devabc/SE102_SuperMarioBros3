@@ -29,7 +29,7 @@ public:
 	void ProcessKeyboard();
 
 	//return keyboard states through KeyData and dwElements
-	int GetKeyboardData(DIDEVICEOBJECTDATA KeyData[KEYBOARD_BUFFER_SIZE], DWORD  &dwElements);
+	int GetKeyboardData(DIDEVICEOBJECTDATA* KeyData[KEYBOARD_BUFFER_SIZE], DWORD  &dwElements);
 
 
 	static CKeyBoard* GetInstance();
