@@ -76,13 +76,14 @@ void CKeyBoard::ProcessKeyboard()
 			else {
 				DebugOut(L"[INFO] Keyboard re-acquired failed!\n");
 				dwElements = 0;
-
+				return;
 			}
 		}
 		else
 		{
 			DebugOut(L"[ERROR] DINPUT::GetDeviceState failed. Error: %d\n", hr);
 			dwElements = 0;
+			return;
 		}
 	}
 
@@ -91,6 +92,8 @@ void CKeyBoard::ProcessKeyboard()
 	if (FAILED(hr))
 	{
 		DebugOut(L"[ERROR] DINPUT::Get KeyboardData failed. Error: %d\n", hr);
+		dwElements = 0;
+		return;
 	}
 
 

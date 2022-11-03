@@ -22,17 +22,4 @@ CGameObject::~CGameObject()
 	if (texture != NULL) delete texture;
 }
 
-#define MARIO_VX 0.1f
-#define MARIO_WIDTH 14
-
-void CMario::Update(DWORD dt)
-{
-}
-
-void CMario::Render()
-{
-	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get("500")->Render(position);
-}
-
 

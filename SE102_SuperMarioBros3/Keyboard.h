@@ -27,10 +27,8 @@ public:
 	void ProcessKeyboard();
 
 	//return keyboard states through KeyData and dwElements
-	int GetKeyboardEvents(DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE], DWORD  &dwElements);
-
+	int GetKeyboardEvents(DIDEVICEOBJECTDATA keyEvents[], DWORD  &dwElements);
 	int IsKeyDown(int KeyCode);
-
 
 	static CKeyBoard* GetInstance();
 

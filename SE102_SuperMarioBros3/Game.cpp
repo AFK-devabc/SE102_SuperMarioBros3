@@ -1,6 +1,6 @@
 #include "debug.h"
 #include "Game.h"
-
+#include "CPlayer.h"
 
 CGame* CGame::__instance = NULL;
 
@@ -73,13 +73,24 @@ void CGame::LoadResource()
 	ani->Add("20004");
 	animations->Add("510", ani);
 
-  	CMario* mario = new CMario(D3DXVECTOR2(10, 10), D3DXVECTOR2(0, 0), NULL);
+
+	CPlayer* mario = new CPlayer(D3DXVECTOR2(10, 10), D3DXVECTOR2(0, 0), NULL);
+
+	CPlayer* mario2 = new CPlayer(D3DXVECTOR2(20, 10), D3DXVECTOR2(0, 0), NULL);
+
+	LPGameObject.push_back(mario2);
+
 	LPGameObject.push_back(mario);
 }
 
 void CGame::Update(DWORD dt)
 {
 	keyboard->ProcessKeyboard();
+	for (int i = 0;i < LPGameObject.size(); i++)
+	{
+		LPGameObject[i]->Update(dt);
+	}
+
 }
 
 void CGame::Render()

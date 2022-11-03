@@ -25,16 +25,3 @@ public:
 	~CGameObject();
 };
 typedef CGameObject* LPGAMEOBJECT;
-
-
-class CMario : public CGameObject
-{
-	D3DXVECTOR2 velocity;
-public:
-	CMario(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(position, texture) {
-		this->velocity = velocity;
-	};
-	void Update(DWORD dt);
-
-	void Render();
-};

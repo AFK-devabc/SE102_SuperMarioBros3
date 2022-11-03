@@ -11,17 +11,16 @@
 */
 class CKeyEventHandler
 {
-protected:
-	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];
-	DWORD dwElements;
-
 public:
-	virtual void KeyState(BYTE* state) = 0;
+	virtual void KeyState() = 0;
 	virtual void OnKeyDown(int KeyCode) = 0;
 	virtual void OnKeyUp(int KeyCode) = 0;
 
 	void ProcessKeyboardEvents()
 	{
+		DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];
+		DWORD dwElements;
+
 		CKeyBoard::GetInstance()->GetKeyboardEvents(keyEvents, dwElements);
 
 		for (DWORD i = 0; i < dwElements; i++)
