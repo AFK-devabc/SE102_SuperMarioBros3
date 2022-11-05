@@ -60,9 +60,6 @@
     <ClCompile Include="CPlayer.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="MovableObject.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>PhysicsDevices</Filter>
     </ClCompile>
@@ -85,6 +82,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Platform.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,9 +122,6 @@
     <ClInclude Include="CPlayer.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="MovableObject.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>PhysicsDevices</Filter>
     </ClInclude>
@@ -147,6 +144,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Platform.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

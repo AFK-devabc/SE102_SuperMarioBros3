@@ -24,11 +24,11 @@ void CPlatform::Render()
 	//
 }
 
-//void CPlatform::GetBoundingBox(float& l, float& t, float& r, float& b)
-//{
-//	float cellWidth_div_2 = this->cellWidth / 2;
-//	l = position.x - cellWidth_div_2;
-//	t = position.y - this->cellHeight / 2;
-//	r = l + this->cellWidth * this->length - cellWidth_div_2;
-//	b = t + this->cellHeight;
-//}
+void CPlatform::GetBoundingBox(float& l, float& t, float& r, float& b)
+{
+	float cellWidth_div_2 = this->cellWidth / 2;
+	l = position.x - cellWidth_div_2;
+	t = position.y - this->cellHeight / 2;
+	r = l + this->cellWidth * this->length - cellWidth_div_2;
+	b = t + this->cellHeight;
+}

@@ -1,8 +1,8 @@
 #pragma once
-#include "MovableObject.h"
+#include "GameObject.h"
 #include "KeyEventHandler.h"
 class CPlayer :
-    public CMovableObject, 
+    public CGameObject,
     public  CKeyEventHandler
 {
 private:
@@ -10,13 +10,25 @@ private:
 	float Ax;
 	bool isSitting = false;
 public :
-	CPlayer(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CMovableObject(position, velocity, texture) {
+	CPlayer(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(position, texture) {
 		maxVx = 1;
 		Ax = 0;
 	};
+	void GetBoundingBox(float& l, float& t, float& r, float& b);
 
-	void Update(DWORD dt);
+
+	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL) ;
 	void Render();
+
+	void OnNoCollision(DWORD dt);
+	void OnCollisionWith(LPCOLLISIONEVENT e);
+
+	int IsCollidable()
+	{
+		return 1;
+	}
+
+	int IsBlocking() { return true; }
 
 	void SetState(int state, int islookright = 0);
 	// keyboard handler

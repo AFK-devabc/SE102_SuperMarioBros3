@@ -1,10 +1,22 @@
 #include "CPlayer.h"
 
-void CPlayer::Update(DWORD dt)
+void CPlayer::GetBoundingBox(float& l, float& t, float& r, float& b)
+{
+	l = position.x - 16 / 2;
+	t = position.y - 16 / 2;
+	r = l + 16;
+	b = t + 16;
+
+}
+
+void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 {
 
 	velocity.x += Ax * dt;
 	velocity.y += MARIO_GRAVITY * dt;
+
+	CCollision::GetInstance()->Process(this, dt, coObjects);
+
 
 	if (abs(velocity.x) > abs(maxVx))
 		velocity.x = maxVx;
@@ -21,6 +33,25 @@ void CPlayer::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
 	ani->Get("12000")->Render(position);
+}
+
+void CPlayer::OnNoCollision(DWORD dt)
+{
+	//position += velocity * dt;
+}
+
+void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
+{
+	if (e->ny != 0 && e->obj->IsBlocking())
+	{
+		velocity.y = 0;
+	}
+
+	if (e->nx != 0 && e->obj->IsBlocking())
+	{
+		velocity.x = 0;
+	}
+
 }
 
 void CPlayer::KeyState(BYTE* state)

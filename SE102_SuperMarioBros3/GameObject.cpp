@@ -10,6 +10,7 @@
 CGameObject::CGameObject(D3DXVECTOR2 position, LPTEXTURE tex)
 {
 	this->position = position;
+	this->velocity = D3DXVECTOR2(0, 0);
 	this->texture = tex;
 }
 
