@@ -2,7 +2,7 @@
 
 #include "debug.h"
 #include "Graphics.h"
-#include "CTextures.h"
+#include "Textures.h"
 
 CTextures* CTextures::__instance = NULL;
 
@@ -24,9 +24,9 @@ void CTextures::Add(string id, LPCWSTR filePath)
 	textures[id] = CGraphics::GetInstance()->LoadTexture(filePath);
 }
 
-LPTEXTURE CTextures::Get(string i)
+LPTEXTURE CTextures::Get(string id)
 {
-	return textures[i];
+	return textures[id];
 }
 
 

@@ -3,7 +3,7 @@
 #include <d3d10.h>
 #include <d3dx10.h>
 
-#include "CTextures.h"
+#include "Textures.h"
 #include "Animations.h"
 #include "Sprites.h"
 #include "Keyboard.h"
@@ -24,6 +24,7 @@ class CGame
 	CGraphics* graphic;
 
 	vector<LPGAMEOBJECT> LPGameObject;
+	vector<LPKEYEVENTHANDLER> LPKeyHandler;
 
 public:
 	// Init DirectX, Sprite Handler, keyboard device

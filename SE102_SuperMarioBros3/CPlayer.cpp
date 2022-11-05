@@ -2,8 +2,6 @@
 
 void CPlayer::Update(DWORD dt)
 {
-	ProcessKeyboardEvents();
-	KeyState();
 
 	velocity.x += Ax * dt;
 	velocity.y += MARIO_GRAVITY * dt;
@@ -22,23 +20,22 @@ void CPlayer::Update(DWORD dt)
 void CPlayer::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get("500")->Render(position);
+	ani->Get("12000")->Render(position);
 }
 
-void CPlayer::KeyState()
+void CPlayer::KeyState(BYTE* state)
 {
-	CKeyBoard* keyboard =  CKeyBoard::GetInstance();
-
-	if (keyboard->IsKeyDown(DIK_RIGHT))
+	this->keyStates = state;
+	if (IsKeyDown(DIK_RIGHT))
 	{
-		if (keyboard->IsKeyDown(DIK_A))
+		if (IsKeyDown(DIK_A))
 			SetState(MARIO_STATE_RUNNING, 1);
 		else
 			SetState(MARIO_STATE_WALKING,1);
 	}
-	else if (keyboard->IsKeyDown(DIK_LEFT))
+	else if (IsKeyDown(DIK_LEFT))
 	{
-		if (keyboard->IsKeyDown(DIK_A))
+		if (IsKeyDown(DIK_A))
 			SetState(MARIO_STATE_RUNNING,-1);
 		else
 			SetState(MARIO_STATE_WALKING,-1);
@@ -47,7 +44,7 @@ void CPlayer::KeyState()
 		SetState(MARIO_STATE_IDLE);
 
 	// Sitting state has higher priority 
-	if (keyboard->IsKeyDown(DIK_DOWN))
+	if (IsKeyDown(DIK_DOWN))
 	{
 		SetState(MARIO_STATE_SIT);
 	}

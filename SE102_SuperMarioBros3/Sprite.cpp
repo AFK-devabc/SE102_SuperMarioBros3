@@ -2,23 +2,23 @@
 #include <string.h>
 #include "Game.h"
 
-
-
-CSprite::CSprite(RECT spriteRect, LPTEXTURE tex)
+CSprite::CSprite(int left, int top, int width, int height, LPTEXTURE tex)
 {
-	this->spriteRect = spriteRect;
-
+	this->left = left;
+	this->top = top;
+	this->width = width;
+	this->height = height;
 	// Set the sprite’s shader resource view
 	sprite.pTexture = tex->getShaderResourceView();
 
-	sprite.TexCoord.x =	this->spriteRect.left / (float)tex->getSize().x;
-	sprite.TexCoord.y = this->spriteRect.top / (float)tex->getSize().y;
+	sprite.TexCoord.x = left / (float)tex->getWidth();
+	sprite.TexCoord.y = top / (float)tex->getHeight();
 
-	int spriteWidth = (this->spriteRect.right - this->spriteRect.left + 1);
-	int spriteHeight = (this->spriteRect.bottom - this->spriteRect.top + 1);
+	int spriteWidth = width;
+	int spriteHeight = height;
 
-	sprite.TexSize.x = spriteWidth / (float)tex->getSize().x;
-	sprite.TexSize.y = spriteHeight / (float)tex->getSize().y;
+	sprite.TexSize.x = spriteWidth / (float)tex->getWidth();
+	sprite.TexSize.y = spriteHeight / (float)tex->getHeight();
 
 	sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	sprite.TextureIndex = 0;

@@ -20,7 +20,7 @@ public :
 
 	void SetState(int state, int islookright = 0);
 	// keyboard handler
-	void KeyState();
+	void KeyState(BYTE* state);
 	void OnKeyDown(int KeyCode);
 	void OnKeyUp(int KeyCode);
 

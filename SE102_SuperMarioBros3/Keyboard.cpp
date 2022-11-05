@@ -55,9 +55,8 @@ void CKeyBoard::InitKeyboard(HWND hWnd,HINSTANCE hInstance)
 	DebugOut(L"[INFO] Keyboard has been initialized successfully\n");
 }
 
-void CKeyBoard::ProcessKeyboard()
+void CKeyBoard::ProcessKeyboard(vector<LPKEYEVENTHANDLER> LPKeyHandler)
 {
-
 	HRESULT hr;
 	dwElements = KEYBOARD_BUFFER_SIZE;
 
@@ -86,6 +85,10 @@ void CKeyBoard::ProcessKeyboard()
 			return;
 		}
 	}
+	for (int i = 0;i < LPKeyHandler.size(); i++)
+	{
+		LPKeyHandler[i]->KeyState((BYTE*)&keyStates);
+	}
 
 	// Collect all buffered events
 	hr = didv->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), keyEvents, &dwElements, 0);
@@ -94,6 +97,28 @@ void CKeyBoard::ProcessKeyboard()
 		DebugOut(L"[ERROR] DINPUT::Get KeyboardData failed. Error: %d\n", hr);
 		dwElements = 0;
 		return;
+	}
+
+	for (int i = 0;i < LPKeyHandler.size(); i++)
+	{
+		LPKeyHandler[i]->KeyState((BYTE*)&keyStates);
+	}
+
+
+	for (DWORD i = 0; i < dwElements; i++)
+	{
+		int KeyCode = keyEvents[i].dwOfs;
+		int KeyState = keyEvents[i].dwData;
+		if ((KeyState & 0x80) > 0)
+			for (int i = 0;i < LPKeyHandler.size(); i++)
+			{
+				LPKeyHandler[i]->OnKeyDown(KeyCode);
+			}
+		else
+			for (int i = 0;i < LPKeyHandler.size(); i++)
+			{
+				LPKeyHandler[i]->OnKeyUp(KeyCode);
+			}
 	}
 
 
@@ -115,7 +140,6 @@ int CKeyBoard::IsKeyDown(int KeyCode)
 {
 	return (keyStates[KeyCode] & 0x80) > 0;
 }
-
 
 CKeyBoard* CKeyBoard::GetInstance()
 {

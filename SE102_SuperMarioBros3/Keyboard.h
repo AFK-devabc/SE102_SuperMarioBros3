@@ -9,6 +9,8 @@
 #include <dinput.h>
 #include "debug.h"
 #include "DefineInfo.h"
+#include <vector>
+#include "KeyEventHandler.h"
 class CKeyBoard
 {
 	static CKeyBoard* _Instance;
@@ -24,7 +26,7 @@ public:
 	CKeyBoard();
 	//define keyboard
 	void InitKeyboard(HWND hWnd, HINSTANCE hInstance);
-	void ProcessKeyboard();
+	void ProcessKeyboard(vector<LPKEYEVENTHANDLER> LPKeyHandler);
 
 	//return keyboard states through KeyData and dwElements
 	int GetKeyboardEvents(DIDEVICEOBJECTDATA keyEvents[], DWORD  &dwElements);

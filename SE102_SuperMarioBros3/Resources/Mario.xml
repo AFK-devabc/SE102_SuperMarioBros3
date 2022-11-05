@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root name="Mario_Animaion" >
+	<Textures texID="Mario" texturePath="textures/mario_transparent.png">
+		<Animations  aniID="10000" frameTime ="100">
+			<Sprites spriteID = "Small_Mario_IDLE_0" x="245" y="0" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="11000" frameTime ="50">
+			<Sprites spriteID = "Small_Mario_Walk_0" x="245" y="0" w="16" h="16"/>
+			<Sprites spriteID = "Small_Mario_Walk_1" x="305" y="0" w="16" h="16"/>
+			<!--<Sprites spriteID = "Small_Mario_Walk_2" x="275" y="0" w="16" h="16"/>-->
+		</Animations>
+			<Animations  aniID="12000" frameTime ="50">
+			<Sprites spriteID = "Small_Mario_Run_0" x="275" y="0" w="16" h="16"/>
+			<Sprites spriteID = "Small_Mario_Run_1" x="335" y="0" w="16" h="16"/>
+			<!--<Sprites spriteID = "Small_Mario_Walk_2" x="275" y="0" w="16" h="16"/>-->
+		</Animations>
+
+	</Textures>
+</Root>

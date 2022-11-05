@@ -11,13 +11,14 @@ class CTexture
 protected:
 	ID3D10Texture2D* _tex;
 	ID3D10ShaderResourceView* _rsview;
-	D3DXVECTOR2 size;
+	int width;
+	int height;
 public:
 	CTexture()
 	{
 		_tex = NULL;
 		_rsview = NULL;
-		size = D3DXVECTOR2(-1, -1);
+		width = height = -1;
 	}
 
 	CTexture(ID3D10Texture2D* tex, ID3D10ShaderResourceView* rsview)
@@ -27,14 +28,16 @@ public:
 
 		D3D10_TEXTURE2D_DESC desc;
 		this->_tex->GetDesc(&desc);
-		this->size.x= desc.Width;
-		this->size.y = desc.Height;
-		
+		width= desc.Width;
+		height = desc.Height;
 	}
+
+
 
 	ID3D10ShaderResourceView* getShaderResourceView() { return this->_rsview; }
 
-	D3DXVECTOR2 getSize() { return size; }
+	int getWidth() { return this->width; }
+	int getHeight() { return this->height; }
 
 	~CTexture()
 	{

@@ -2,6 +2,8 @@
 
 #include "Animation.h"
 #include "Sprite.h"
+#include "debug.h"
+
 
 class CAnimations
 {

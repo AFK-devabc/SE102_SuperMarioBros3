@@ -22,6 +22,9 @@
     <Filter Include="PhysicsDevices">
       <UniqueIdentifier>{20004793-59d0-42b7-a95c-c0e4b15b6448}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TinyXML">
+      <UniqueIdentifier>{2a351fc8-89f1-4495-ac2d-7831ed0cc8f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -42,7 +45,7 @@
     <ClCompile Include="Animations.cpp">
       <Filter>Animations</Filter>
     </ClCompile>
-    <ClCompile Include="CTextures.cpp">
+    <ClCompile Include="Textures.cpp">
       <Filter>Animations</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
@@ -66,6 +69,21 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>PhysicsDevices</Filter>
     </ClCompile>
+    <ClCompile Include="TinyXML\tinystr.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxml.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="ImportFromXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -83,7 +101,7 @@
     <ClInclude Include="Animations.h">
       <Filter>Animations</Filter>
     </ClInclude>
-    <ClInclude Include="CTextures.h">
+    <ClInclude Include="Textures.h">
       <Filter>Animations</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
@@ -114,6 +132,15 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="KeyEventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXML\tinystr.h">
+      <Filter>TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXML\tinyxml.h">
+      <Filter>TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="ImportFromXML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

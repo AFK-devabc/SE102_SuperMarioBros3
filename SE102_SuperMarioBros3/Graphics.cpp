@@ -197,19 +197,19 @@ void CGraphics::Draw(float x, float y, LPTEXTURE tex, RECT* rect)
 		sprite.TexSize.x = 1.0f;
 		sprite.TexSize.y = 1.0f;
 
-		spriteWidth = tex->getSize().x;
-		spriteHeight = tex->getSize().y;
+		spriteWidth = tex->getWidth();
+		spriteHeight = tex->getHeight();
 	}
 	else
 	{
-		sprite.TexCoord.x = rect->left / (float)tex->getSize().x;
-		sprite.TexCoord.y = rect->top / (float)tex->getSize().y;
+		sprite.TexCoord.x = rect->left / (float)tex->getWidth();
+		sprite.TexCoord.y = rect->top / (float)tex->getHeight();
 
 		spriteWidth = (rect->right - rect->left + 1);
 		spriteHeight = (rect->bottom - rect->top + 1);
 
-		sprite.TexSize.x = spriteWidth / (float)tex->getSize().x;
-		sprite.TexSize.y = spriteHeight / (float)tex->getSize().y;
+		sprite.TexSize.x = spriteWidth / (float)tex->getWidth();
+		sprite.TexSize.y = spriteHeight / (float)tex->getHeight();
 	}
 
 	// Set the texture index. Single textures will use 0

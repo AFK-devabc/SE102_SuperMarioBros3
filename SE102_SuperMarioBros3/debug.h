@@ -11,6 +11,9 @@
 #include <stdarg.h>
 #include <time.h>
 #include <stdlib.h>
+#include <string>
+
+using namespace std;
 
 #define _W(x)  __W(x)
 #define __W(x)  L##x
@@ -38,3 +41,5 @@ void DebugOutTitle(const wchar_t* fmt, ...);
 // Set target window for DebugOutTitle
 //
 void SetDebugWindow(HWND hwnd);
+
+LPCWSTR ToLPCWSTR(string st);
