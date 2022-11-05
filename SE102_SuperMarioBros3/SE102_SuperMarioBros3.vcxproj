@@ -135,6 +135,7 @@
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="ImportFromXML.cpp" />
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Animations.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="ImportFromXML.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="DefineInfo.h" />

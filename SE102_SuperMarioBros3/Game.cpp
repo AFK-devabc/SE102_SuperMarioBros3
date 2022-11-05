@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "CPlayer.h"
 #include "ImportFromXML.h"
+#include "Platform.h"
 
 CGame* CGame::__instance = NULL;
 
@@ -23,8 +24,12 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 void CGame::LoadResource()
 {
 	LoadAniData_FromXML("Resources/Mario.xml");
+	LoadAniData_FromXML("Resources/Misc.xml");
 
 	CPlayer* mario = new CPlayer(D3DXVECTOR2(10, 10), D3DXVECTOR2(0, 0), NULL);
+	CPlatform* cloud = new CPlatform(10, GROUND_Y - 74.0f, 10, 16, 16, "CloudBegin", "CloudMidder", "CloudEnd");
+	
+	LPGameObject.push_back(cloud);
 	LPGameObject.push_back(mario);
 	LPKeyHandler.push_back(mario);
 }
