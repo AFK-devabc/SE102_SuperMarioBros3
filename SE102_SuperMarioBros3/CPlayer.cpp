@@ -14,19 +14,24 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 
 	velocity.x += Ax * dt;
 	velocity.y += MARIO_GRAVITY * dt;
+	isOnPlatform = false;
+
+	if (abs(velocity.x) > abs(maxVx))
+		velocity.x = maxVx;
+
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 
 
-	if (abs(velocity.x) > abs(maxVx))
-		velocity.x = maxVx;
-	position += velocity * dt;
+	//if (abs(velocity.x) > abs(maxVx))
+	//	velocity.x = maxVx;
+	//position += velocity * dt;
 
-	if (position.y > GROUND_Y)
-	{
-		velocity.y = 0; 
-		position.y = GROUND_Y;
-	}
+	//if (position.y > GROUND_Y)
+	//{
+	//	velocity.y = 0; 
+	//	position.y = GROUND_Y;
+	//}
 }
 
 void CPlayer::Render()
@@ -37,7 +42,7 @@ void CPlayer::Render()
 
 void CPlayer::OnNoCollision(DWORD dt)
 {
-	//position += velocity * dt;
+	position += velocity * dt;
 }
 
 void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
@@ -45,6 +50,7 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 	if (e->ny != 0 && e->obj->IsBlocking())
 	{
 		velocity.y = 0;
+		if (e->ny < 0) isOnPlatform = true;
 	}
 
 	if (e->nx != 0 && e->obj->IsBlocking())
@@ -128,7 +134,7 @@ void CPlayer::SetState(int state, int islookright)
 		break;
 	case MARIO_STATE_JUMP:
 		if (isSitting) break;
-		if (position.y == GROUND_Y)
+		if (isOnPlatform)
 		{
 			if (abs(this->velocity.x) == MARIO_RUNNING_SPEED)
 				velocity.y = -MARIO_JUMP_RUN_SPEED_Y;
@@ -143,7 +149,7 @@ void CPlayer::SetState(int state, int islookright)
 		break;
 
 	case MARIO_STATE_SIT:
-		if (position.y == GROUND_Y)
+		if (isOnPlatform)
 		{
 			state = MARIO_STATE_IDLE;
 			isSitting = true;

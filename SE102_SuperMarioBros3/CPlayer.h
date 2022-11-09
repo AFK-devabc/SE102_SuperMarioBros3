@@ -9,13 +9,14 @@ private:
 	float maxVx;
 	float Ax;
 	bool isSitting = false;
+	BOOLEAN isOnPlatform;
+	
 public :
 	CPlayer(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(position, texture) {
 		maxVx = 1;
 		Ax = 0;
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
-
 
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL) ;
 	void Render();
@@ -28,7 +29,7 @@ public :
 		return 1;
 	}
 
-	int IsBlocking() { return true; }
+	int IsBlocking() { return false; }
 
 	void SetState(int state, int islookright = 0);
 	// keyboard handler

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root name="Enemies_Animation" >
+	<Textures texID="Enemies" texturePath="textures/enemies.png">
+		<Animations  aniID="20000" frameTime ="100">
+			<Sprites spriteID = "Goomba_walk_0" x="5" y="14" w="16" h="16"/>
+			<Sprites spriteID = "Goomba_walk_1" x="25" y="14" w="16" h="16"/>
+		</Animations>
+	</Textures>
+</Root>

@@ -17,17 +17,6 @@
 #define KEYBOARD_BUFFER_SIZE 1024
 #pragma endregion
 
-#define TEXTURE_PATH_BRICK L"brick.png"
-
-#define TEXTURES_DIR L"textures"
-#define TEXTURE_PATH_MARIO TEXTURES_DIR "\\mario.png"
-#define TEXTURE_PATH_MISC TEXTURES_DIR "\\misc_transparent.png"
-#define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\enemies.png"
-
-#define ID_TEX_MARIO "0"
-#define ID_TEX_ENEMY "10"
-#define ID_TEX_MISC "20"
-
 #pragma region Mario
 #define GROUND_Y 160.0f
 
@@ -52,3 +41,6 @@
 
 #pragma endregion
 
+#pragma region Goomba
+#define Goomba_Walking_Speed 0.2f
+#pragma endregion
