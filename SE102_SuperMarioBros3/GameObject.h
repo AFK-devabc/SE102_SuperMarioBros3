@@ -4,6 +4,7 @@
 
 #include "Animations.h"
 #include "Collision.h"
+#include "Camera.h"
 
 class CGameObject
 {

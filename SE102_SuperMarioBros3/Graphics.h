@@ -34,6 +34,11 @@ public:
 	void BeginRender();
 	void EndRender();
 
+	D3DXVECTOR2 GetBackBuffer()
+	{
+		return D3DXVECTOR2(backBufferWidth, backBufferHeight);
+	}
+
 	//void Render();
 
 	static CGraphics* GetInstance();

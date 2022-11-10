@@ -29,6 +29,7 @@ CSprite::CSprite(int left, int top, int width, int height, LPTEXTURE tex)
 
 void CSprite::Draw(D3DXVECTOR2* position)
 {
-	CGraphics::GetInstance()->DrawSprite(position, &sprite, &matScaling);
+	D3DXVECTOR2 worldToCam = CCamera::GetInstance()->WorldToCam(*position);
+	CGraphics::GetInstance()->DrawSprite(&worldToCam, &sprite, &matScaling);
 }
 

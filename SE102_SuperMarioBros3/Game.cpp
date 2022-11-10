@@ -20,8 +20,12 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 	this->hInstance = hInstance;
 	keyboard = CKeyBoard::GetInstance();
 	graphic = CGraphics::GetInstance();
+	camera = CCamera::GetInstance();
 	keyboard->InitKeyboard(hWnd, this->hInstance);
 	graphic->InitGraphic(hWnd, this->hInstance);
+
+	camera->SetBackBuffer(graphic->GetBackBuffer());
+
 }
 
 void CGame::LoadResource()
@@ -30,7 +34,7 @@ void CGame::LoadResource()
 	LoadAniData_FromXML("Resources/Misc.xml");
 	LoadAniData_FromXML("Resources/Enemies.xml");
 
-	CPlayer* mario = new CPlayer(D3DXVECTOR2(10, 10), D3DXVECTOR2(0, 0), NULL);
+	 player = new CPlayer(D3DXVECTOR2(10, 10), D3DXVECTOR2(0, 0), NULL);
 	CPlatform* cloud = new CPlatform(10, GROUND_Y, 16, 16, 20, "CloudBegin", "CloudMidder", "CloudEnd");
 	CGoomba* goomba = new CGoomba(D3DXVECTOR2(50, 50), D3DXVECTOR2(Goomba_Walking_Speed, MARIO_GRAVITY), NULL);
 	CPlatform* cloud1 = new CPlatform(10, GROUND_Y-16, 16, 16, 1, "CloudBegin", "CloudMidder", "CloudEnd");
@@ -50,9 +54,11 @@ void CGame::LoadResource()
 	 LPGameObject.push_back(goomba);
 
 	LPGameObject.push_back(cloud);
-	LPGameObject.push_back(mario);
+	LPGameObject.push_back(player);
 	LPGameObject.push_back(cloud1);
 	LPGameObject.push_back(cloud2);
+
+	CPlayer* mario = dynamic_cast<CPlayer*>(player);
 
 	LPKeyHandler.push_back(mario);
 }
@@ -71,15 +77,10 @@ void CGame::Update(DWORD dt)
 	}
 
 	for (int i = 0;i < LPGameObject.size(); i++)
-	{
-		if (LPGameObject[i]->IsDeleted())
-		{
-			
-		}
-		LPGameObject[i]->Update(dt, &LPGameObject);
+	{		LPGameObject[i]->Update(dt, &LPGameObject);
 	}
 
-
+	camera->SetCamFollow(player->GetPosition());
 }
 bool IsGameObjectDeleted(const LPGAMEOBJECT& o) { return o == NULL; }
 

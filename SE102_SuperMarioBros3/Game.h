@@ -8,9 +8,11 @@
 #include "Sprites.h"
 #include "Keyboard.h"
 #include "Graphics.h"
+#include "Camera.h"
 
 #include "DefineInfo.h"
 #include "GameObject.h"
+
 /*
 	Our simple game framework
 */
@@ -22,10 +24,12 @@ class CGame
 
 	CKeyBoard* keyboard;
 	CGraphics* graphic;
+	CCamera* camera;
 
 	vector<LPGAMEOBJECT> LPGameObject;
 	vector<LPKEYEVENTHANDLER> LPKeyHandler;
 
+	CGameObject* player;
 public:
 	// Init DirectX, Sprite Handler, keyboard device
 	void Init(HWND hWnd, HINSTANCE hInstance);
