@@ -17,6 +17,8 @@
 #define KEYBOARD_BUFFER_SIZE 1024
 #pragma endregion
 
+#define GAME_OBJECT_STATE_DIE		-9999
+
 #pragma region Mario
 #define GROUND_Y 160.0f
 
@@ -30,6 +32,10 @@
 #define MARIO_JUMP_RUN_SPEED_Y	0.6f
 
 #define MARIO_GRAVITY			0.002f
+#define MARIO_JUMP_DEFLECT_SPEED  0.4f
+
+#define MARIO_UNTOUCHABLE_TIME 2500
+
 //states
 #define MARIO_STATE_IDLE			10000
 #define MARIO_STATE_WALKING			11000
@@ -39,8 +45,11 @@
 #define MARIO_STATE_SIT				15000
 #define MARIO_STATE_SIT_RELEASE		16000
 
+
 #pragma endregion
 
 #pragma region Goomba
-#define Goomba_Walking_Speed 0.2f
+#define Goomba_Walking_Speed 0.05f
+#define GOOMBA_DIE_TIMEOUT 500
+
 #pragma endregion

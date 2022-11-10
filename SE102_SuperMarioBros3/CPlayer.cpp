@@ -1,4 +1,5 @@
 #include "CPlayer.h"
+#include "Goomba.h"
 
 void CPlayer::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
@@ -19,19 +20,12 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 	if (abs(velocity.x) > abs(maxVx))
 		velocity.x = maxVx;
 
-
+	if (GetTickCount64() - untouchable_start > MARIO_UNTOUCHABLE_TIME)
+	{
+		untouchable_start = 0;
+		untouchable = 0;
+	}
 	CCollision::GetInstance()->Process(this, dt, coObjects);
-
-
-	//if (abs(velocity.x) > abs(maxVx))
-	//	velocity.x = maxVx;
-	//position += velocity * dt;
-
-	//if (position.y > GROUND_Y)
-	//{
-	//	velocity.y = 0; 
-	//	position.y = GROUND_Y;
-	//}
 }
 
 void CPlayer::Render()
@@ -56,6 +50,44 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 	if (e->nx != 0 && e->obj->IsBlocking())
 	{
 		velocity.x = 0;
+	}
+
+	if (dynamic_cast<CGoomba*>(e->obj))
+		OnCollisionWithGoomba(e);
+
+}
+
+void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
+{
+	CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
+
+	// jump on top >> kill Goomba and deflect a bit 
+	if (e->ny < 0)
+	{
+		if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
+		{
+			goomba->SetState(GAME_OBJECT_STATE_DIE);
+			velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
+		}
+	}
+	else // hit by Goomba
+	{
+		if (untouchable == 0)
+		{
+			if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
+			{
+				//if (level > MARIO_LEVEL_SMALL)
+				//{
+				//	level = MARIO_LEVEL_SMALL;
+					StartUntouchable();
+				//}
+				//else
+				//{
+					DebugOut(L">>> Mario DIE >>> \n");
+					SetState(GAME_OBJECT_STATE_DIE);
+				//}
+			}
+		}
 	}
 
 }
@@ -115,6 +147,8 @@ void CPlayer::OnKeyUp(int KeyCode)
 
 void CPlayer::SetState(int state, int islookright)
 {
+	if (this->state == GAME_OBJECT_STATE_DIE) return;
+
 	if (islookright > 0)
 		isLookingRight = true;
 	else if (islookright < 0)
@@ -168,6 +202,15 @@ void CPlayer::SetState(int state, int islookright)
 		Ax = 0.0f;
 		velocity.x = 0.0f;
 		break;
+	case GAME_OBJECT_STATE_DIE:
+		velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
+		velocity.x = 0;
+		Ax = 0;
+		break;
+
 	}
+
+	this->state = state;
+
 
 }

@@ -6,6 +6,9 @@ class CGoomba :
 {
 protected:
 	BOOLEAN isOnPlatform;
+
+	ULONGLONG die_start;
+
 public:
 	CGoomba(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(position, texture) {
 		this->velocity = velocity;
@@ -18,13 +21,8 @@ public:
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
-	int IsCollidable()
-	{
-		return 1;
-	}
-
-	int IsBlocking() { return true; }
-
+	virtual int IsCollidable() { return 1; };
+	virtual int IsBlocking() { return 0; }
 	void SetState(int state, int islookright = 0);
 };
 

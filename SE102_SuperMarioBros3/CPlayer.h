@@ -5,11 +5,16 @@ class CPlayer :
     public CGameObject,
     public  CKeyEventHandler
 {
-private:
+protected:
 	float maxVx;
 	float Ax;
 	bool isSitting = false;
 	BOOLEAN isOnPlatform;
+
+	int untouchable;
+	ULONGLONG untouchable_start;
+
+
 	
 public :
 	CPlayer(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(position, texture) {
@@ -23,15 +28,19 @@ public :
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
+	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 
 	int IsCollidable()
 	{
-		return 1;
+		return (state != GAME_OBJECT_STATE_DIE);
 	}
 
-	int IsBlocking() { return false; }
+	int IsBlocking() { return (state != GAME_OBJECT_STATE_DIE && untouchable == 0); }
 
 	void SetState(int state, int islookright = 0);
+
+	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
+
 	// keyboard handler
 	void KeyState(BYTE* state);
 	void OnKeyDown(int KeyCode);
