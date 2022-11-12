@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root name="Scene 1_1" >
+	<ResourceFile Type="Assets" name="MarioAssets" filePath="Resources/Mario.xml"/>
+	<ResourceFile Type="Assets" name="MicsAssets" filePath="Resources/Misc.xml"/>
+	<ResourceFile Type="Assets" name="EnemyAssets" filePath="Resources/Enemies.xml"/>
+	<ResourceFile Type="GameObjects" name="Scene_1_1_GameObjects" filePath="Resources/Scene_1_1_GameObjects.xml"/>
+</Root>

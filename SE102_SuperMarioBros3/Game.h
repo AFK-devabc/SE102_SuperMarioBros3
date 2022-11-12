@@ -12,6 +12,7 @@
 
 #include "DefineInfo.h"
 #include "GameObject.h"
+#include "Scene.h"
 
 /*
 	Our simple game framework
@@ -25,11 +26,9 @@ class CGame
 	CKeyBoard* keyboard;
 	CGraphics* graphic;
 	CCamera* camera;
+	CScene* scene11;
 
-	vector<LPGAMEOBJECT> LPGameObject;
 	vector<LPKEYEVENTHANDLER> LPKeyHandler;
-
-	CGameObject* player;
 public:
 	// Init DirectX, Sprite Handler, keyboard device
 	void Init(HWND hWnd, HINSTANCE hInstance);
@@ -39,7 +38,6 @@ public:
 	void Update(DWORD dt);
 	// Render gameobject sprite
 	void Render();
-
 
 	static CGame* GetInstance();
 

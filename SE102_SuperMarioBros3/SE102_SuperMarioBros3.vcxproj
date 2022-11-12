@@ -139,6 +139,7 @@
     <ClCompile Include="Goomba.cpp" />
     <ClCompile Include="ImportFromXML.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -163,6 +164,8 @@
     <ClInclude Include="Goomba.h" />
     <ClInclude Include="ImportFromXML.h" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="DefineInfo.h" />

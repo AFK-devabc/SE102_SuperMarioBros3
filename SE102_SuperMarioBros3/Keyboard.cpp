@@ -112,11 +112,14 @@ void CKeyBoard::ProcessKeyboard(vector<LPKEYEVENTHANDLER> LPKeyHandler)
 		if ((KeyState & 0x80) > 0)
 			for (int i = 0;i < LPKeyHandler.size(); i++)
 			{
+				DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
 				LPKeyHandler[i]->OnKeyDown(KeyCode);
 			}
 		else
 			for (int i = 0;i < LPKeyHandler.size(); i++)
 			{
+				DebugOut(L"[INFO] KeyUp: %d\n", KeyCode);
+
 				LPKeyHandler[i]->OnKeyUp(KeyCode);
 			}
 	}

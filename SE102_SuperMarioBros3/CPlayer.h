@@ -17,7 +17,7 @@ protected:
 
 	
 public :
-	CPlayer(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(position, texture) {
+	CPlayer(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
 		maxVx = 1;
 		Ax = 0;
 	};

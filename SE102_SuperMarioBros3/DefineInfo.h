@@ -49,7 +49,8 @@
 #pragma endregion
 
 #pragma region Goomba
-#define Goomba_Walking_Speed 0.05f
-#define GOOMBA_DIE_TIMEOUT 500
+#define Goomba_Walking_Speed		0.05f
+#define GOOMBA_DIE_TIMEOUT			500
+#define GOOMBA_STATE_IDLE			20000
 
 #pragma endregion

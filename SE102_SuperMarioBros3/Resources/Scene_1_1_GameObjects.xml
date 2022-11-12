@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root name="Scene 1_1" >
+	<GameObject objType="10000" name="Mario" x="10" y ="10"/>
+	<GameObject objType="20000" name="goomba" x="50" y ="50"/>
+	<GameObject objType="90000" name="platform" x="50" y ="50" w="16" h="16" num="20"/>
+</Root>

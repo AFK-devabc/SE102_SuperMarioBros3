@@ -132,7 +132,6 @@ void CPlayer::OnKeyDown(int KeyCode)
 
 void CPlayer::OnKeyUp(int KeyCode)
 {
-	DebugOut(L"[INFO] KeyUp: %d\n", KeyCode);
 	switch (KeyCode)
 	{
 	case DIK_S:
