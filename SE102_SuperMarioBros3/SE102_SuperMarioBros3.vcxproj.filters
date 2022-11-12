@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Animations">
       <UniqueIdentifier>{30f22645-d0e1-44fc-8dfe-ff83009b5ada}</UniqueIdentifier>
     </Filter>
@@ -22,8 +18,15 @@
     <Filter Include="TinyXML">
       <UniqueIdentifier>{2a351fc8-89f1-4495-ac2d-7831ed0cc8f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\PhysicsDevices">
+    <Filter Include="SceneManager">
+      <UniqueIdentifier>{f37875af-8194-4553-873e-c64c6c460815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsDevices">
       <UniqueIdentifier>{20004793-59d0-42b7-a95c-c0e4b15b6448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,10 +64,10 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Keyboard.cpp">
-      <Filter>Header Files\PhysicsDevices</Filter>
+      <Filter>PhysicsDevices</Filter>
     </ClCompile>
     <ClCompile Include="Graphics.cpp">
-      <Filter>Header Files\PhysicsDevices</Filter>
+      <Filter>PhysicsDevices</Filter>
     </ClCompile>
     <ClCompile Include="TinyXML\tinystr.cpp">
       <Filter>TinyXML</Filter>
@@ -90,11 +93,14 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Goomba.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes.cpp">
+      <Filter>SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,13 +138,13 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Keyboard.h">
-      <Filter>Header Files\PhysicsDevices</Filter>
+      <Filter>PhysicsDevices</Filter>
     </ClInclude>
     <ClInclude Include="Graphics.h">
-      <Filter>Header Files\PhysicsDevices</Filter>
+      <Filter>PhysicsDevices</Filter>
     </ClInclude>
     <ClInclude Include="DefineInfo.h">
-      <Filter>Resource Files</Filter>
+      <Filter>SceneManager\Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="KeyEventHandler.h">
       <Filter>Header Files</Filter>
@@ -161,14 +167,17 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Goomba.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes.h">
+      <Filter>SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>SceneManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

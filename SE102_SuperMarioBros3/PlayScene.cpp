@@ -1,6 +1,6 @@
 #include "PlayScene.h"
 
-CPlayScene::CPlayScene(int id, const char* filePath) :
+CPlayScene::CPlayScene(string id, string filePath) :
 	CScene(id, filePath)
 {
 	player = NULL;
@@ -93,7 +93,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 			for (TiXmlElement* gameObjectNode = Root->FirstChildElement(); gameObjectNode != nullptr; gameObjectNode = gameObjectNode->NextSiblingElement())
 			{
 				LPGAMEOBJECT gameObject;
-				int gameObjectType = 0, x=0, y=0;
+				int gameObjectType = 0, x = 0, y = 0;
 				gameObjectNode->QueryIntAttribute("objType", &gameObjectType);
 
 				gameObjectNode->QueryIntAttribute("x", &x);
@@ -104,22 +104,43 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				switch (gameObjectType)
 				{
 				case MARIO_STATE_IDLE:
-					if (player != NULL)
-					{
-						DebugOut(L"[Error] Player was already loaded");
-						return;
-					}
-					player = new CPlayer(position);
-					LPKeyHandler.push_back(player);
-					gameObject = player;
+				{if (player != NULL)
+				{
+					DebugOut(L"[Error] Player was already loaded");
+					return;
+				}
+				player = new CPlayer(position);
+				LPKeyHandler.push_back(player);
+				gameObject = player;
+				break;}
+				case GOOMBA_STATE_IDLE:
+				{	gameObject = new CGoomba(position, D3DXVECTOR2(Goomba_Walking_Speed, MARIO_GRAVITY), NULL);
+				break;
+				}
+
+				case Cloud_Platform_GameObjects:
+				{
+					int w = 0, h = 0, num = 0;
+					gameObjectNode->QueryIntAttribute("w", &w);
+					gameObjectNode->QueryIntAttribute("h", &h);
+					gameObjectNode->QueryIntAttribute("num", &num);
+
+					string spriteBegin = gameObjectNode->Attribute("spriteBegin");
+					string spriteMidder = gameObjectNode->Attribute("spriteMidder");
+					string spriteEnd = gameObjectNode->Attribute("spriteEnd");
+
+					gameObject = new CPlatform(x, y, w, h, num, spriteBegin, spriteMidder, spriteEnd);
 					break;
+				}
 				default:
+				{
 					gameObject = NULL;
 					break;
 				}
+				}
 
-				if(gameObject!= NULL)
-				LPGameObject.push_back(gameObject);
+				if (gameObject != NULL)
+					LPGameObject.push_back(gameObject);
 			}
 		}
 	}
@@ -129,13 +150,13 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 		return;
 	}
 	DebugOut(L"[INFO] Done loading GameObjects from \"%s\"\n", ToLPCWSTR(filePath));
-
 }
 
 void CPlayScene::Load()
 {
-	DebugOut(L"[INFO] Start loading scene from : \"%s\"\n",ToLPCWSTR(sceneFilePath));
-	TiXmlDocument doc(sceneFilePath);
+	DebugOut(L"[INFO] Start loading scene from : \"%s\"\n", ToLPCWSTR(sceneFilePath));
+
+	TiXmlDocument doc(sceneFilePath.c_str());
 	if (doc.LoadFile())
 	{
 		TiXmlElement* Root = doc.RootElement();
@@ -150,7 +171,7 @@ void CPlayScene::Load()
 					LoadAssets(filePath);
 					continue;
 				}
-				if (strcmp(resourceType, "GameObjects" ) == 0)
+				if (strcmp(resourceType, "GameObjects") == 0)
 				{
 					LoadGameObjects(filePath);
 					continue;
@@ -163,7 +184,7 @@ void CPlayScene::Load()
 		DebugOut(L"[ERROR] Failed to load scene from file \"%s\"\n", ToLPCWSTR(sceneFilePath));
 		return;
 	}
-	DebugOut(L"[INFO] Done loading scene  \"%s\"\n",ToLPCWSTR(sceneFilePath));
+	DebugOut(L"[INFO] Done loading scene  \"%s\"\n", ToLPCWSTR(sceneFilePath));
 }
 
 void CPlayScene::Update(DWORD dt)

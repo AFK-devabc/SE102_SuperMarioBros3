@@ -2,14 +2,12 @@
 #include "Game.h"
 #include "ImportFromXML.h"
 
-#include "PlayScene.h"
 
 #include "Platform.h"
 #include "Goomba.h"
 #include "CPlayer.h"
 
 CGame* CGame::__instance = NULL;
-
 /*
 	Initialize DirectX, create a Direct3D device for rendering within the window, initial Sprite library for
 	rendering 2D images
@@ -22,15 +20,15 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 	keyboard = CKeyBoard::GetInstance();
 	graphic = CGraphics::GetInstance();
 	camera = CCamera::GetInstance();
+	 scenes = CScenes::GetInstance();
+
 	keyboard->InitKeyboard(hWnd, this->hInstance);
 	graphic->InitGraphic(hWnd, this->hInstance);
 
-	scene11 = new CPlayScene(1, "Resources/Scene_1_1.xml");
-	scene11->Load();
-
-	scene11->GetKeyEventHandler(LPKeyHandler);
-
 	camera->SetBackBuffer(graphic->GetBackBuffer());
+
+	scenes->InitScenes();
+	scenes->SwitchScene();
 
 }
 
@@ -41,9 +39,8 @@ void CGame::LoadResource()
 void CGame::Update(DWORD dt)
 {
 
-	keyboard->ProcessKeyboard(LPKeyHandler);
-
-	scene11->Update(dt);
+	keyboard->ProcessKeyboard();
+	scenes->GetCurrentScene()->Update(dt);
 
 	//camera->SetCamFollow(player->GetPosition());
 }
@@ -52,7 +49,9 @@ bool IsGameObjectDeleted(const LPGAMEOBJECT& o) { return o == NULL; }
 void CGame::Render()
 {
 	graphic->BeginRender();
-	scene11->Render();
+
+	scenes->GetCurrentScene()->Render();
+
 	graphic->EndRender();
 
 }

@@ -1,5 +1,8 @@
 #pragma once
 // GameDefine info go here
+
+#define Cloud_Platform_GameObjects 90000
+
 #pragma region WindowInfo
 #define WINDOW_CLASS_NAME L"Game Window"
 #define MAIN_WINDOW_TITLE L"01 - Skeleton"
@@ -44,8 +47,6 @@
 #define MARIO_STATE_RELEASE_JUMP    14000
 #define MARIO_STATE_SIT				15000
 #define MARIO_STATE_SIT_RELEASE		16000
-
-
 #pragma endregion
 
 #pragma region Goomba

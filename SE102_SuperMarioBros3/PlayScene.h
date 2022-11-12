@@ -26,7 +26,7 @@ protected:
 	void LoadAssets(const char* filePath);
 	void LoadGameObjects(const char* filePath);
 public:
-	CPlayScene(int id, const char* filePath);
+	CPlayScene(string id, string filePath);
 
 	virtual void Load();
 	virtual void Update(DWORD dt);

@@ -55,7 +55,7 @@ void CKeyBoard::InitKeyboard(HWND hWnd,HINSTANCE hInstance)
 	DebugOut(L"[INFO] Keyboard has been initialized successfully\n");
 }
 
-void CKeyBoard::ProcessKeyboard(vector<LPKEYEVENTHANDLER> LPKeyHandler)
+void CKeyBoard::ProcessKeyboard()
 {
 	HRESULT hr;
 	dwElements = KEYBOARD_BUFFER_SIZE;

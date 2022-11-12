@@ -22,17 +22,24 @@ class CKeyBoard
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];		// Buffered keyboard data
 	DWORD dwElements;
 
+	vector<LPKEYEVENTHANDLER> LPKeyHandler;
+
 public:
 	CKeyBoard();
 	//define keyboard
 	void InitKeyboard(HWND hWnd, HINSTANCE hInstance);
-	void ProcessKeyboard(vector<LPKEYEVENTHANDLER> LPKeyHandler);
+	void ProcessKeyboard();
 
 	//return keyboard states through KeyData and dwElements
 	int GetKeyboardEvents(DIDEVICEOBJECTDATA keyEvents[], DWORD  &dwElements);
 	int IsKeyDown(int KeyCode);
 
 	static CKeyBoard* GetInstance();
-
+	void SetKeyHandler(vector<LPKEYEVENTHANDLER> LPKeyHandler) {
+		for (int i = 0;i < LPKeyHandler.size(); i++)
+		{
+			this->LPKeyHandler.push_back(LPKeyHandler[i]);
+		}
+	}
 	~CKeyBoard();
 };
