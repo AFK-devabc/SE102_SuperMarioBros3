@@ -1,12 +1,45 @@
 #include "CPlayer.h"
 #include "Goomba.h"
 
+unsigned int CPlayer::GetAniID()
+{
+	unsigned int aniID = 0;
+
+	if (!isOnPlatform)
+	{
+		aniID = MARIO_STATE_JUMP;
+	}
+	else
+		if (isSitting)
+		{
+			aniID = MARIO_STATE_SIT;
+		}
+		else
+			if (velocity.x == 0)
+			{
+				aniID = MARIO_STATE_IDLE;
+			}
+			else if (velocity.x > 0)
+			{
+				if (velocity.x * Ax < 0)
+					aniID = MARIO_STATE_BRAKE;
+				else if (abs(Ax) == MARIO_ACCEL_RUN_X)
+					aniID = MARIO_STATE_RUNNING;
+				else if (abs(Ax) == MARIO_ACCEL_WALK_X)
+					aniID = MARIO_STATE_WALKING;
+					
+			}
+
+
+	return aniID + marioType;
+}
+
 void CPlayer::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
 	l = position.x - 16 / 2;
-	t = position.y - 16 / 2;
+	t = position.y - 26 / 2;
 	r = l + 16;
-	b = t + 16;
+	b = t + 26;
 
 }
 
@@ -30,8 +63,9 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 
 void CPlayer::Render()
 {
+	string aniId = to_string(this->GetAniID());
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get("12000")->Render(position);
+	ani->Get(aniId)->Render(position);
 }
 
 void CPlayer::OnNoCollision(DWORD dt)
@@ -95,16 +129,16 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 void CPlayer::KeyState(BYTE* state)
 {
 	this->keyStates = state;
-	if (IsKeyDown(DIK_RIGHT))
+	if (IsKeyDown(DIK_D))
 	{
-		if (IsKeyDown(DIK_A))
+		if (IsKeyDown(DIK_J))
 			SetState(MARIO_STATE_RUNNING, 1);
 		else
 			SetState(MARIO_STATE_WALKING,1);
 	}
-	else if (IsKeyDown(DIK_LEFT))
+	else if (IsKeyDown(DIK_A))
 	{
-		if (IsKeyDown(DIK_A))
+		if (IsKeyDown(DIK_J))
 			SetState(MARIO_STATE_RUNNING,-1);
 		else
 			SetState(MARIO_STATE_WALKING,-1);
@@ -113,7 +147,7 @@ void CPlayer::KeyState(BYTE* state)
 		SetState(MARIO_STATE_IDLE);
 
 	// Sitting state has higher priority 
-	if (IsKeyDown(DIK_DOWN))
+	if (IsKeyDown(DIK_S))
 	{
 		SetState(MARIO_STATE_SIT);
 	}
@@ -124,7 +158,7 @@ void CPlayer::OnKeyDown(int KeyCode)
 {
 	switch (KeyCode)
 	{
-	case DIK_S:
+	case DIK_K:
 		SetState(MARIO_STATE_JUMP);
 		break;
 	}
@@ -134,10 +168,10 @@ void CPlayer::OnKeyUp(int KeyCode)
 {
 	switch (KeyCode)
 	{
-	case DIK_S:
+	case DIK_K:
 		SetState(MARIO_STATE_RELEASE_JUMP);
 		break;
-	case DIK_DOWN:
+	case DIK_S:
 		SetState(MARIO_STATE_SIT_RELEASE);
 		break;
 	}

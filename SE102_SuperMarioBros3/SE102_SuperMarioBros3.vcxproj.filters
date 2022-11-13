@@ -24,7 +24,7 @@
     <Filter Include="PhysicsDevices">
       <UniqueIdentifier>{20004793-59d0-42b7-a95c-c0e4b15b6448}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneManager\Resource Files">
+    <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
@@ -144,7 +144,7 @@
       <Filter>PhysicsDevices</Filter>
     </ClInclude>
     <ClInclude Include="DefineInfo.h">
-      <Filter>SceneManager\Resource Files</Filter>
+      <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="KeyEventHandler.h">
       <Filter>Header Files</Filter>

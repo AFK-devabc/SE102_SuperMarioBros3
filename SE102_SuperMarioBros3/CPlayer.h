@@ -14,7 +14,8 @@ protected:
 	int untouchable;
 	ULONGLONG untouchable_start;
 
-
+	unsigned int GetAniID();
+	unsigned int marioType = SMALL_MARIO;
 	
 public :
 	CPlayer(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
@@ -46,5 +47,6 @@ public :
 	void OnKeyDown(int KeyCode);
 	void OnKeyUp(int KeyCode);
 
+	
 };
 
