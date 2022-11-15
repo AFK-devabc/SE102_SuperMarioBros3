@@ -8,6 +8,7 @@
 #include "CPlayer.h"
 #include "Goomba.h"
 #include "Platform.h"
+#include "Brick.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"

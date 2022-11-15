@@ -3,6 +3,9 @@
 #include "Animation.h"
 #include "Sprite.h"
 #include "debug.h"
+#include <string>
+
+using namespace std;
 
 
 class CAnimations

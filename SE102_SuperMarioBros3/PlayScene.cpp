@@ -104,20 +104,31 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				switch (gameObjectType)
 				{
 				case MARIO_STATE_IDLE:
-				{if (player != NULL)
+				{
+					if (player != NULL)
 				{
 					DebugOut(L"[Error] Player was already loaded");
 					return;
 				}
 				player = new CPlayer(position);
+				CCamera::GetInstance()->SetCamFollow(player->GetPPosition());
+
 				LPKeyHandler.push_back(player);
 				gameObject = player;
-				break;}
-				case GOOMBA_STATE_IDLE:
-				{	gameObject = new CGoomba(position, D3DXVECTOR2(Goomba_Walking_Speed, MARIO_GRAVITY), NULL);
 				break;
 				}
-
+				case GOOMBA_STATE_IDLE:
+				{	
+					gameObject = new CGoomba(position, D3DXVECTOR2(Goomba_Walking_Speed, MARIO_GRAVITY), NULL);
+				break;
+				}
+				case Yellow_Brick_IDLE:
+				{
+					int behavior = 0;
+					gameObjectNode->QueryIntAttribute("behavior", &behavior);
+					gameObject = new CBrick(position, behavior);
+					break;
+				}
 				case Cloud_Platform_GameObjects:
 				{
 					int w = 0, h = 0, num = 0;

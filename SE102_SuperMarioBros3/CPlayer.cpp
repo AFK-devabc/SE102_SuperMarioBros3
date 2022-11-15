@@ -1,5 +1,6 @@
 #include "CPlayer.h"
 #include "Goomba.h"
+#include "Brick.h"
 
 unsigned int CPlayer::GetAniID()
 {
@@ -8,7 +9,7 @@ unsigned int CPlayer::GetAniID()
 	if (!isOnPlatform)
 	{
 			aniID = MARIO_STATE_JUMP;
-			if (velocity.x != 0)
+			if (abs( velocity.x) >  MARIO_WALKING_SPEED)
 				aniID = MARIO_STATE_Run_Jump;
 	}
 	else
@@ -116,6 +117,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 
 	if (dynamic_cast<CGoomba*>(e->obj))
 		OnCollisionWithGoomba(e);
+	if (dynamic_cast<CBrick*>(e->obj))
+		OnCollisionWithBrick(e);
 
 }
 
@@ -152,6 +155,18 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 		}
 	}
 
+}
+
+void CPlayer::OnCollisionWithBrick(LPCOLLISIONEVENT e)
+{
+	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
+	if (e->ny > 0)
+		brick->Hit(1);
+	else if (e->ny < 0 && brick->GetBehavior() == Music_Note_IDLE)
+	{
+		velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
+		brick->Hit(2);
+	}
 }
 
 void CPlayer::Hit()
@@ -293,6 +308,4 @@ void CPlayer::SetState(int state, int islookright)
 	}
 
 	this->state = state;
-
-
 }

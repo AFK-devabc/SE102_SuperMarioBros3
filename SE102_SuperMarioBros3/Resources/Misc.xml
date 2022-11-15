@@ -2,11 +2,28 @@
 
 <Root name="MICS" >
 	<Textures texID="Mics" texturePath="textures/misc_transparent.png">
-		<Animations  aniID="none" frameTime ="100">
-			<Sprites spriteID = "CloudBegin" x="390" y="117" w="16" h="16"/>
-			<Sprites spriteID = "CloudMidder" x="408" y="117" w="16" h="16"/>
-			<Sprites spriteID = "CloudEnd" x="426" y="117" w="16" h="16"/>
+		<Animations  aniID="none" frameTime ="9999">
+			<Sprites spriteID = "CloudBegin"	x="390" y="117" w="16" h="16"/>
+			<Sprites spriteID = "CloudMidder"	x="408" y="117" w="16" h="16"/>
+			<Sprites spriteID = "CloudEnd"		x="426" y="117" w="16" h="16"/>
 		</Animations>
+		<Animations  aniID="10000" frameTime ="200">
+			<Sprites spriteID = "Brick_0" x="300" y="135" w="16" h="16"/>
+			<Sprites spriteID = "Brick_1" x="318" y="135" w="16" h="16"/>
+			<Sprites spriteID = "Brick_2" x="336" y="135" w="16" h="16"/>
+			<Sprites spriteID = "Brick_3" x="354" y="135" w="16" h="16"/>
+			<Sprites spriteID = "Brick_4" x="372" y="135" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="10010" frameTime ="200">
+			<Sprites spriteID = "Question_Mark_0" x="300" y="117" w="16" h="16"/>
+			<Sprites spriteID = "Question_Mark_1" x="318" y="117" w="16" h="16"/>
+			<Sprites spriteID = "Question_Mark_2" x="336" y="117" w="16" h="16"/>
+			<Sprites spriteID = "Question_Mark_3" x="354" y="117" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="10020" frameTime ="9999">
+			<Sprites spriteID = "Music_Note_0" x="300" y="154" w="16" h="16"/>
+		</Animations>
+
 	</Textures>
 	<Textures texID="BBox" texturePath="textures/bbox.png">
 	</Textures>

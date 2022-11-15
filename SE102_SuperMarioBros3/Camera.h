@@ -1,5 +1,6 @@
 #pragma once
 #include <D3DX10.h>
+#include "debug.h"
 class CCamera
 {
 private:
@@ -8,15 +9,22 @@ private:
 protected:
 	D3DXVECTOR2 position;
 	D3DXVECTOR2 backBuffer;
+	D3DXVECTOR2* followObjects;
 public:
 
 
 	D3DXVECTOR2 GetPosition() { return position; }
 	void SetPosition(D3DXVECTOR2 position) { this->position = position; }
 
-	void SetCamFollow(D3DXVECTOR2 position)
+	void SetCamFollow(D3DXVECTOR2* position)
 	{
-		this->position.x = position.x - backBuffer.x / 2;
+		followObjects = position;
+	}
+
+	void Update(DWORD dt)
+	{
+		DebugOut(L"%d,	%d", followObjects->x, followObjects->y);
+		this->position.x = followObjects->x - backBuffer.x / 2;
 		this->position.y = 0;
 	}
 

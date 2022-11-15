@@ -5,7 +5,7 @@
 
 #include "Sprites.h"
 #include "AnimationFrame.h"
-
+#include <string>
 
 using namespace std;
 

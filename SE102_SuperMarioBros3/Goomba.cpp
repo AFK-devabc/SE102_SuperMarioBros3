@@ -34,7 +34,7 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 void CGoomba::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get("20000")->Render(position);
+	ani->Get(to_string( GOOMBA_STATE_IDLE))->Render(position);
 }
 
 void CGoomba::OnNoCollision(DWORD dt)

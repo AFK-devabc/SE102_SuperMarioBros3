@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Texture.h"
-#include <string.h>
+#include <string>
+
+using namespace std;
 
 class CSprite
 {

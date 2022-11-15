@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Sprite.h"
+#include <string>
+
+using namespace std;
 
 /*
 	Sprite animation

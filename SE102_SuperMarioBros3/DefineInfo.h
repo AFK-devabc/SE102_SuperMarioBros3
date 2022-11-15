@@ -58,6 +58,7 @@
 #define MARIO_STATE_RELEASE_JUMP    4100
 #define MARIO_STATE_SIT				5000
 #define MARIO_STATE_SIT_RELEASE		5100
+
 #pragma endregion
 
 #pragma region Goomba
@@ -66,3 +67,11 @@
 #define GOOMBA_STATE_IDLE			20000
 
 #pragma endregion
+
+#pragma region Brick
+#define Yellow_Brick_IDLE			10000
+#define Question_Mark_IDLE			10010
+#define Music_Note_IDLE				10020
+
+#pragma endregion
+

@@ -1,11 +1,12 @@
 #pragma once
 #include <Windows.h>
 #include <unordered_map>
-
 #include <d3dx10.h>
 
 #include "Texture.h"
 #include "Sprite.h"
+
+#include <string>
 
 using namespace std;
 

@@ -4,6 +4,8 @@
 
 #include "Texture.h"
 
+#include <string>
+
 using namespace std;
 
 /*

@@ -2,6 +2,9 @@
 
 #include <d3d10.h>
 #include <d3dx10.h>
+#include <string>
+
+using namespace std;
 
 //
 // Warpper class to simplify texture manipulation. See also CGame::LoadTexture

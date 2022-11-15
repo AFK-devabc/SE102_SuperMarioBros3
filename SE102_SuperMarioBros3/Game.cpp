@@ -42,9 +42,8 @@ void CGame::Update(DWORD dt)
 	keyboard->ProcessKeyboard();
 	scenes->GetCurrentScene()->Update(dt);
 
-	//camera->SetCamFollow(player->GetPosition());
+	camera->Update(dt);
 }
-bool IsGameObjectDeleted(const LPGAMEOBJECT& o) { return o == NULL; }
 
 void CGame::Render()
 {

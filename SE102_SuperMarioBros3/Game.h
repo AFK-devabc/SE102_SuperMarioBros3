@@ -3,16 +3,12 @@
 #include <d3d10.h>
 #include <d3dx10.h>
 
-#include "Textures.h"
-#include "Animations.h"
-#include "Sprites.h"
 #include "Keyboard.h"
 #include "Graphics.h"
 #include "Camera.h"
+#include "Scenes.h"
 
 #include "DefineInfo.h"
-#include "GameObject.h"
-#include "Scenes.h"
 
 /*
 	Our simple game framework

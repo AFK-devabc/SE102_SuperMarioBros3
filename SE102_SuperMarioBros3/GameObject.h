@@ -3,6 +3,8 @@
 #include <d3dx10.h>
 
 #include "Animations.h"
+#include "Sprites.h"
+#include "Textures.h"
 #include "Collision.h"
 #include "Camera.h"
 
@@ -26,6 +28,8 @@ public:
 
 	void SetPosition(D3DXVECTOR2 position) { this->position = position; }
 	D3DXVECTOR2 GetPosition() { return position; }
+	D3DXVECTOR2* GetPPosition() { return &position; }
+
 	void SetVelocity(D3DXVECTOR2 velocity) { this->velocity = velocity; }
 	D3DXVECTOR2 GetVelocity() { return velocity; }
 	void SetPosition(float x, float y) { this->position.x = x, this->position.y = y; }
