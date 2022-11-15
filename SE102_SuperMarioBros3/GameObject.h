@@ -39,6 +39,8 @@ public:
 	bool IsDeleted() { return isDeleted; }
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom) = 0;
 
+	void RenderBoundingBox();
+
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL) {};
 	virtual void Render();
 	virtual void SetState(int state) { this->state = state; }

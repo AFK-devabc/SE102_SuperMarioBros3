@@ -7,19 +7,20 @@ unsigned int CPlayer::GetAniID()
 
 	if (!isOnPlatform)
 	{
-		aniID = MARIO_STATE_JUMP;
+			aniID = MARIO_STATE_JUMP;
 	}
 	else
 		if (isSitting)
 		{
-			aniID = MARIO_STATE_SIT;
+			if (marioType != SMALL_MARIO)
+				aniID = MARIO_STATE_SIT;
 		}
 		else
 			if (velocity.x == 0)
 			{
 				aniID = MARIO_STATE_IDLE;
 			}
-			else if (velocity.x > 0)
+			else if (velocity.x != 0)
 			{
 				if (velocity.x * Ax < 0)
 					aniID = MARIO_STATE_BRAKE;
@@ -65,7 +66,9 @@ void CPlayer::Render()
 {
 	string aniId = to_string(this->GetAniID());
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get(aniId)->Render(position);
+	ani->Get(aniId)->Render(position, !isLookingRight);
+
+	RenderBoundingBox();
 }
 
 void CPlayer::OnNoCollision(DWORD dt)
@@ -131,6 +134,7 @@ void CPlayer::KeyState(BYTE* state)
 	this->keyStates = state;
 	if (IsKeyDown(DIK_D))
 	{
+		isLookingRight = true;
 		if (IsKeyDown(DIK_J))
 			SetState(MARIO_STATE_RUNNING, 1);
 		else
@@ -138,6 +142,7 @@ void CPlayer::KeyState(BYTE* state)
 	}
 	else if (IsKeyDown(DIK_A))
 	{
+		isLookingRight = false;
 		if (IsKeyDown(DIK_J))
 			SetState(MARIO_STATE_RUNNING,-1);
 		else

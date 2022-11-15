@@ -10,7 +10,7 @@ void CAnimation::Add(string spriteId, DWORD time)
 	frames.push_back(frame);
 }
 
-void CAnimation::Render(D3DXVECTOR2 position)
+void CAnimation::Render(D3DXVECTOR2 position,bool flipX )
 {
 	ULONGLONG now = GetTickCount64();
 	if (currentFrame == -1)
@@ -31,6 +31,6 @@ void CAnimation::Render(D3DXVECTOR2 position)
 
 	}
 
-	frames[currentFrame]->GetSprite()->Draw(&position);
+	frames[currentFrame]->GetSprite()->Draw(&position, flipX);
 }
 

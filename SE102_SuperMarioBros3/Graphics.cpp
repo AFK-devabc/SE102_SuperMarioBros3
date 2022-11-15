@@ -121,10 +121,35 @@ LPTEXTURE CGraphics::LoadTexture(LPCWSTR texturePath)
 	ID3D10Resource* pD3D10Resource = NULL;
 	ID3D10Texture2D* tex = NULL;
 
+	// Retrieve image information first 
+	D3DX10_IMAGE_INFO imageInfo;
+	HRESULT hr = D3DX10GetImageInfoFromFile(texturePath, NULL, &imageInfo, NULL);
+	if (FAILED(hr))
+	{
+		DebugOut((wchar_t*)L"[ERROR] D3DX10GetImageInfoFromFile failed for  file: %s with error: %d\n", texturePath, hr);
+		return NULL;
+	}
+
+	D3DX10_IMAGE_LOAD_INFO info;
+	ZeroMemory(&info, sizeof(D3DX10_IMAGE_LOAD_INFO));
+	info.Width = imageInfo.Width;
+	info.Height = imageInfo.Height;
+	info.Depth = imageInfo.Depth;
+	info.FirstMipLevel = 0;
+	info.MipLevels = 1;
+	info.Usage = D3D10_USAGE_DEFAULT;
+	info.BindFlags = D3DX10_DEFAULT;
+	info.CpuAccessFlags = D3DX10_DEFAULT;
+	info.MiscFlags = D3DX10_DEFAULT;
+	info.Format = imageInfo.Format;
+	info.Filter = D3DX10_FILTER_NONE;
+	info.MipFilter = D3DX10_DEFAULT;
+	info.pSrcInfo = &imageInfo;
+
 	// Loads the texture into a temporary ID3D10Resource object
-	HRESULT hr = D3DX10CreateTextureFromFile(pD3DDevice,
+	hr = D3DX10CreateTextureFromFile(pD3DDevice,
 		texturePath,
-		NULL, //&info,
+		&info,
 		NULL,
 		&pD3D10Resource,
 		NULL);
@@ -216,7 +241,7 @@ void CGraphics::Draw(float x, float y, LPTEXTURE tex, RECT* rect)
 	sprite.TextureIndex = 0;
 
 	// The color to apply to this sprite, full color applies white.
-	sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.25f);
 
 	//
 	// Build the rendering matrix based on sprite location 
@@ -239,13 +264,26 @@ void CGraphics::Draw(float x, float y, LPTEXTURE tex, RECT* rect)
 }
 
 
-void CGraphics::DrawSprite(D3DXVECTOR2* position, D3DX10_SPRITE* sprite, D3DXMATRIX* matScaling)
+void CGraphics::DrawSprite(D3DXVECTOR2* position, D3DX10_SPRITE* sprite, D3DXMATRIX* matScaling, bool flipx)
 {
 
 	D3DXMATRIX matTranslation;
-	D3DXMatrixTranslation(&matTranslation, position->x, (backBufferHeight - position->y), 0.1f);
-	sprite->matWorld = ( (*matScaling) * matTranslation);
 
+	if (flipx)
+	{
+		D3DXMATRIX FlipTranslation;
+		D3DXMatrixScaling(&FlipTranslation, -1.0f, -1.0f, 1.0f);
+		D3DXMatrixTranslation(&matTranslation, -position->x, -(backBufferHeight - position->y), 0.1f);
+		sprite->matWorld = ((*matScaling) * matTranslation * FlipTranslation);
+
+	}
+	else
+	{
+		D3DXMatrixTranslation(&matTranslation, position->x, (backBufferHeight - position->y), 0.1f);
+		sprite->matWorld = ((*matScaling) * matTranslation);
+	}
+
+	
 	spriteObject->DrawSpritesImmediate(sprite, 1, 0, 0);
 
 }

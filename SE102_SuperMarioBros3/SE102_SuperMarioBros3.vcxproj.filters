@@ -146,9 +146,6 @@
     <ClInclude Include="DefineInfo.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="KeyEventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TinyXML\tinystr.h">
       <Filter>TinyXML</Filter>
     </ClInclude>
@@ -178,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="PlayScene.h">
       <Filter>SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyEventHandler.h">
+      <Filter>PhysicsDevices</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

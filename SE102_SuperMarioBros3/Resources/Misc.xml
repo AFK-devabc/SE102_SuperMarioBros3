@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Root name="Mario_Animaion" >
+<Root name="MICS" >
 	<Textures texID="Mics" texturePath="textures/misc_transparent.png">
 		<Animations  aniID="none" frameTime ="100">
 			<Sprites spriteID = "CloudBegin" x="390" y="117" w="16" h="16"/>
@@ -8,4 +8,7 @@
 			<Sprites spriteID = "CloudEnd" x="426" y="117" w="16" h="16"/>
 		</Animations>
 	</Textures>
+	<Textures texID="BBox" texturePath="textures/bbox.png">
+	</Textures>
+
 </Root>
