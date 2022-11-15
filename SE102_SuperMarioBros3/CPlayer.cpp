@@ -8,6 +8,8 @@ unsigned int CPlayer::GetAniID()
 	if (!isOnPlatform)
 	{
 			aniID = MARIO_STATE_JUMP;
+			if (velocity.x != 0)
+				aniID = MARIO_STATE_Run_Jump;
 	}
 	else
 		if (isSitting)
@@ -37,11 +39,34 @@ unsigned int CPlayer::GetAniID()
 
 void CPlayer::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
-	l = position.x - 16 / 2;
-	t = position.y - 26 / 2;
-	r = l + 16;
-	b = t + 26;
-
+	switch (marioType)
+	{
+	case CAT_MARIO:
+	case BIG_MARIO:
+		if (isSitting)
+		{
+			l = position.x - Small_Mario_Width / 2;
+			t = position.y - Small_Mario_Height / 2;
+			r = l + Small_Mario_Width;
+			b = t + Small_Mario_Height;
+		}
+		else
+		{
+			l = position.x - Small_Mario_Width / 2;
+			t = position.y - Big_Mario_Height / 2;
+			r = l + Small_Mario_Width;
+			b = t + Big_Mario_Height;
+		}
+		break;
+	case SMALL_MARIO:
+		l = position.x - Small_Mario_Width / 2;
+		t = position.y - Small_Mario_Height / 2;
+		r = l + Small_Mario_Width;
+		b = t + Small_Mario_Height;
+		break;
+	default:
+		break;
+	}
 }
 
 void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
@@ -129,6 +154,10 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 
 }
 
+void CPlayer::Hit()
+{
+}
+
 void CPlayer::KeyState(BYTE* state)
 {
 	this->keyStates = state;
@@ -166,6 +195,20 @@ void CPlayer::OnKeyDown(int KeyCode)
 	case DIK_K:
 		SetState(MARIO_STATE_JUMP);
 		break;
+	case DIK_1:
+		marioType = SMALL_MARIO;
+
+		break;
+	case DIK_2:
+		marioType = BIG_MARIO;
+		position = position + D3DXVECTOR2(0, (-Big_Mario_Height + Small_Mario_Height)/2);
+
+		break;
+	case DIK_3:
+		marioType = CAT_MARIO;
+		position = position + D3DXVECTOR2(0, (-Big_Mario_Height + Small_Mario_Height) / 2);
+
+		break;
 	}
 }
 
@@ -178,6 +221,7 @@ void CPlayer::OnKeyUp(int KeyCode)
 		break;
 	case DIK_S:
 		SetState(MARIO_STATE_SIT_RELEASE);
+		position = position + D3DXVECTOR2(0, (-Big_Mario_Height + Small_Mario_Height) / 2);
 		break;
 	}
 

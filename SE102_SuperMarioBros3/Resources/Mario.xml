@@ -3,7 +3,7 @@
 <Root name="Mario_Animaion" >
 	<!--SmallMario-->
 	<Textures texID="Mario" texturePath="textures/mario_transparent.png">
-		<Animations  aniID="100000" frameTime ="100">
+		<Animations  aniID="100000" frameTime ="9999">
 			<Sprites spriteID = "Small_Mario_IDLE_0" x="245" y="0" w="16" h="16"/>
 		</Animations>
 		<Animations  aniID="101000" frameTime ="50">
@@ -16,16 +16,21 @@
 			<Sprites spriteID = "Small_Mario_Run_1" x="335" y="0" w="16" h="16"/>
 			<!--<Sprites spriteID = "Small_Mario_Walk_2" x="275" y="0" w="16" h="16"/>-->
 		</Animations>
-		<Animations  aniID="103000" frameTime ="50">
+		<Animations  aniID="103000" frameTime ="9999">
 			<Sprites spriteID = "Small_Mario_Brake_0" x="425" y="0" w="16" h="16"/>
 		</Animations>
 
-		<Animations  aniID="104000" frameTime ="50">
+		<Animations  aniID="104000" frameTime ="9999">
 			<Sprites spriteID = "Small_Mario_Jump_0" x="395" y="80" w="16" h="16"/>
 		</Animations>
 
+		<Animations  aniID="104200" frameTime ="9999">
+			<Sprites spriteID = "Small_Mario_Run_Jump_0" x="365" y="40" w="16" h="16"/>
+		</Animations>
+
+
 		<!--BigMario-->
-		<Animations  aniID="111000" frameTime ="100">
+		<Animations  aniID="110000" frameTime ="9999">
 			<Sprites spriteID = "Big_Mario_IDLE_0" x="245" y="154" w="16" h="28"/>
 		</Animations>
 
@@ -44,15 +49,21 @@
 			<Sprites spriteID = "Big_Mario_Brake_0" x="425" y="154" w="16" h="28"/>
 		</Animations>
 
-		<Animations  aniID="114000" frameTime ="50">
+		<Animations  aniID="114000" frameTime ="9999">
 			<Sprites spriteID = "Big_Mario_Jump_0" x="395" y="274" w="16" h="28"/>
 		</Animations>
+		<Animations  aniID="114200" frameTime ="9999">
+			<Sprites spriteID = "Big_Mario_Run_Jump_0" x="394" y="195" w="20" h="28"/>
+		</Animations>
 
+		<Animations  aniID="115000" frameTime ="9999">
+			<Sprites spriteID = "Big_Mario_Sit_0" x="425" y="239" w="16" h="18"/>
+		</Animations>
 
 
 		<!--TailMario-->
 
-		<Animations  aniID="120000" frameTime ="50">
+		<Animations  aniID="120000" frameTime ="9999">
 			<Sprites spriteID = "Tail_Mario_IDLE_0" x="243" y="634" w="22" h="28"/>
 		</Animations>
 
@@ -69,12 +80,22 @@
 			<Sprites spriteID = "Tail_Mario_Run_0" x="391" y="634" w="24" h="28"/>
 
 		</Animations>
-		<Animations  aniID="123000" frameTime ="50">
+		<Animations  aniID="123000" frameTime ="9999">
 			<Sprites spriteID = "Tail_Mario_Brake_0" x="423" y="634" w="22" h="28"/>
 		</Animations>
 
-		<Animations  aniID="124000" frameTime ="50">
+		<Animations  aniID="124000" frameTime ="9999">
 			<Sprites spriteID = "Tail_Mario_Jump_0" x="392" y="755" w="24" h="28"/>
+		</Animations>
+		<Animations  aniID="124200" frameTime ="9999">
+			<Sprites spriteID = "Tail_Mario_Run_Jump_0" x="360" y="754" w="24" h="28"/>
+		</Animations>
+
+
+
+
+		<Animations  aniID="125000" frameTime ="9999">
+			<Sprites spriteID = "Tail_Mario_Sit_0" x="422" y="718" w="22" h="20"/>
 		</Animations>
 
 	</Textures>

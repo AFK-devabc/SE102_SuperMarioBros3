@@ -42,6 +42,8 @@ public :
 
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 
+	void Hit();
+
 	// keyboard handler
 	void KeyState(BYTE* state);
 	void OnKeyDown(int KeyCode);
