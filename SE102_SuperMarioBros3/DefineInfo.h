@@ -1,7 +1,6 @@
 #pragma once
 // GameDefine info go here
 
-#define Cloud_Platform_GameObjects 90000
 
 #pragma region WindowInfo
 #define WINDOW_CLASS_NAME		L"Game Window"
@@ -64,14 +63,9 @@
 #pragma region Goomba
 #define Goomba_Walking_Speed		0.05f
 #define GOOMBA_DIE_TIMEOUT			500
-#define GOOMBA_STATE_IDLE			20000
 
 #pragma endregion
 
 #pragma region Brick
-#define Yellow_Brick_IDLE			10000
-#define Question_Mark_IDLE			10010
-#define Music_Note_IDLE				10020
-
 #pragma endregion
 

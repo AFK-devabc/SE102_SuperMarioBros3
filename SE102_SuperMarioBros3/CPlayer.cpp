@@ -1,6 +1,7 @@
 #include "CPlayer.h"
 #include "Goomba.h"
 #include "Brick.h"
+#include "GameObjectType.h"
 
 unsigned int CPlayer::GetAniID()
 {
@@ -162,7 +163,7 @@ void CPlayer::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
 	if (e->ny > 0)
 		brick->Hit(1);
-	else if (e->ny < 0 && brick->GetBehavior() == Music_Note_IDLE)
+	else if (e->ny < 0 && brick->GetBehavior() == OBJECT_TYPE_MUSIC_NOTE)
 	{
 		velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
 		brick->Hit(2);

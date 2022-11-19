@@ -1,4 +1,5 @@
 #include "PlayScene.h"
+#include "GameObjectType.h"
 
 CPlayScene::CPlayScene(string id, string filePath) :
 	CScene(id, filePath)
@@ -103,7 +104,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 
 				switch (gameObjectType)
 				{
-				case MARIO_STATE_IDLE:
+				case OBJECT_TYPE_MARIO:
 				{
 					if (player != NULL)
 				{
@@ -117,19 +118,19 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				gameObject = player;
 				break;
 				}
-				case GOOMBA_STATE_IDLE:
+				case OBJECT_TYPE_GOOMBA:
 				{	
 					gameObject = new CGoomba(position, D3DXVECTOR2(Goomba_Walking_Speed, MARIO_GRAVITY), NULL);
 				break;
 				}
-				case Yellow_Brick_IDLE:
+				case OBJECT_TYPE_BRICK:
 				{
 					int behavior = 0;
 					gameObjectNode->QueryIntAttribute("behavior", &behavior);
 					gameObject = new CBrick(position, behavior);
 					break;
 				}
-				case Cloud_Platform_GameObjects:
+				case OBJECT_TYPE_CLOUD_PLATFORM:
 				{
 					int w = 0, h = 0, num = 0;
 					gameObjectNode->QueryIntAttribute("w", &w);

@@ -1,5 +1,6 @@
 #include "Goomba.h"
 #include "DefineInfo.h"
+#include "GameObjectType.h"
 
 void CGoomba::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
@@ -34,7 +35,7 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 void CGoomba::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get(to_string( GOOMBA_STATE_IDLE))->Render(position);
+	ani->Get(to_string( OBJECT_TYPE_GOOMBA))->Render(position);
 }
 
 void CGoomba::OnNoCollision(DWORD dt)

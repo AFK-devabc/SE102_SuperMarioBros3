@@ -1,6 +1,8 @@
 #include "Brick.h"
 #include "Animations.h"
 #include "DefineInfo.h"
+#include "GameObjectType.h"
+	
 
 void CBrick::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
@@ -46,14 +48,14 @@ void CBrick::Render()
 {
 	switch ( behavior)
 	{
-	case Question_Mark_IDLE:
-		CAnimations::GetInstance()->Get(to_string(Question_Mark_IDLE))->Render(position);
+	case OBJECT_TYPE_QUESTION_MARK:
+		CAnimations::GetInstance()->Get(to_string(OBJECT_TYPE_QUESTION_MARK))->Render(position);
 		break;
-	case Yellow_Brick_IDLE:
-		CAnimations::GetInstance()->Get(to_string(Yellow_Brick_IDLE))->Render(position);
+	case OBJECT_TYPE_BRICK:
+		CAnimations::GetInstance()->Get(to_string(OBJECT_TYPE_BRICK))->Render(position);
 		break;
-	case Music_Note_IDLE:
-		CAnimations::GetInstance()->Get(to_string(Music_Note_IDLE))->Render(position);
+	case OBJECT_TYPE_MUSIC_NOTE:
+		CAnimations::GetInstance()->Get(to_string(OBJECT_TYPE_MUSIC_NOTE))->Render(position);
 		break;
 
 	default:
@@ -72,7 +74,7 @@ void CBrick::Hit(int type)
 	{
 		hitted = type;
 		velocity = D3DXVECTOR2(0, -MARIO_JUMP_DEFLECT_SPEED);
-		if (behavior == Music_Note_IDLE && type == 2)
+		if (behavior == OBJECT_TYPE_MUSIC_NOTE && type == 2)
 				velocity = D3DXVECTOR2(0, MARIO_JUMP_DEFLECT_SPEED);
 	}
 }
