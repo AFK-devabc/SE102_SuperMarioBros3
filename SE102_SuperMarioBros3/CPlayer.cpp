@@ -1,7 +1,11 @@
 #include "CPlayer.h"
 #include "Goomba.h"
 #include "Brick.h"
+#include "MushRoom.h"
 #include "GameObjectType.h"
+#include "Scenes.h"
+#include "PlayScene.h"
+
 
 unsigned int CPlayer::GetAniID()
 {
@@ -120,6 +124,9 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithGoomba(e);
 	if (dynamic_cast<CBrick*>(e->obj))
 		OnCollisionWithBrick(e);
+	if (dynamic_cast<CMushRoom*>(e->obj))
+		OnCollisionWithMushroom(e);
+
 
 }
 
@@ -161,13 +168,30 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 void CPlayer::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
 	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
-	if (e->ny > 0)
+	if (e->ny > 0) {
 		brick->Hit(1);
+		switch (brick->GetItemContain())
+		{
+		case OBJECT_TYPE_MUSHROOM: {
+			LPGAMEOBJECT mushroom = new CMushRoom(brick->GetPosition() );
+			CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
+			playscene->AddGameObject(mushroom);
+			break;
+		}
+		default:
+			break;
+		}
+	}
 	else if (e->ny < 0 && brick->GetBehavior() == OBJECT_TYPE_MUSIC_NOTE)
 	{
 		velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
 		brick->Hit(2);
 	}
+}
+
+void CPlayer::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
 }
 
 void CPlayer::Hit()

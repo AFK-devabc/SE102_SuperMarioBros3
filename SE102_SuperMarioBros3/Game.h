@@ -35,6 +35,8 @@ public:
 	// Render gameobject sprite
 	void Render();
 
+
+
 	static CGame* GetInstance();
 
 	~CGame();

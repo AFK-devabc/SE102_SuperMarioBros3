@@ -73,8 +73,8 @@ void CBrick::Hit(int type)
 	if (!hitted)
 	{
 		hitted = type;
-		velocity = D3DXVECTOR2(0, -MARIO_JUMP_DEFLECT_SPEED);
+		velocity = D3DXVECTOR2(0, -BRICK_DEFLECT_SPEED);
 		if (behavior == OBJECT_TYPE_MUSIC_NOTE && type == 2)
-				velocity = D3DXVECTOR2(0, MARIO_JUMP_DEFLECT_SPEED);
+				velocity = D3DXVECTOR2(0, BRICK_DEFLECT_SPEED);
 	}
 }

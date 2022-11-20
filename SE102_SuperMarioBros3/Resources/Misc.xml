@@ -23,6 +23,9 @@
 		<Animations  aniID="10020" frameTime ="9999">
 			<Sprites spriteID = "Music_Note_0" x="300" y="154" w="16" h="16"/>
 		</Animations>
+		<Animations  aniID="10030" frameTime ="9999">
+			<Sprites spriteID = "MushRoom_0" x="300" y="189" w="16" h="16"/>
+		</Animations>
 
 	</Textures>
 	<Textures texID="BBox" texturePath="textures/bbox.png">

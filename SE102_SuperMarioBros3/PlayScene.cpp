@@ -125,9 +125,12 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				}
 				case OBJECT_TYPE_BRICK:
 				{
-					int behavior = 0;
+					int behavior = 0, itemContain = 0;
+
 					gameObjectNode->QueryIntAttribute("behavior", &behavior);
-					gameObject = new CBrick(position, behavior);
+					gameObjectNode->QueryIntAttribute("itemContain", &itemContain);
+
+					gameObject = new CBrick(position, behavior,itemContain);
 					break;
 				}
 				case OBJECT_TYPE_CLOUD_PLATFORM:
@@ -142,6 +145,12 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					string spriteEnd = gameObjectNode->Attribute("spriteEnd");
 
 					gameObject = new CPlatform(x, y, w, h, num, spriteBegin, spriteMidder, spriteEnd);
+					break;
+				}
+
+				case OBJECT_TYPE_MUSHROOM:
+				{
+					gameObject = new CMushRoom(position, NULL);
 					break;
 				}
 				default:
@@ -222,15 +231,6 @@ void CPlayScene::Render()
 /*
 *	Clear all LPGameObject from this scene
 */
-void CPlayScene::Clear()
-{
-	vector<LPGAMEOBJECT>::iterator it;
-	for (it = LPGameObject.begin(); it != LPGameObject.end(); it++)
-	{
-		delete (*it);
-	}
-	LPGameObject.clear();
-}
 
 /*
 	Unload scene
@@ -269,4 +269,9 @@ void CPlayScene::PurgeDeletedObjects()
 	LPGameObject.erase(
 		std::remove_if(LPGameObject.begin(), LPGameObject.end(), CPlayScene::IsGameObjectDeleted),
 		LPGameObject.end());
+}
+
+void CPlayScene::AddGameObject(LPGAMEOBJECT gameObject)
+{
+	LPGameObject.insert(LPGameObject.begin(), gameObject);
 }

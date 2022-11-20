@@ -9,6 +9,7 @@
 #include "Goomba.h"
 #include "Platform.h"
 #include "Brick.h"
+#include "MushRoom.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"
@@ -38,6 +39,8 @@ public:
 
 	void Clear();
 	void PurgeDeletedObjects();
+
+	void AddGameObject(LPGAMEOBJECT gameObject);
 
 	static bool IsGameObjectDeleted(const LPGAMEOBJECT& o);
 };

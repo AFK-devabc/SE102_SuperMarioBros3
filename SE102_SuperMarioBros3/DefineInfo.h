@@ -67,5 +67,13 @@
 #pragma endregion
 
 #pragma region Brick
+#define BRICK_DEFLECT_SPEED	0.2f
+
+#pragma endregion
+
+#pragma region MushRoom
+
+#define MUSHROOM_STATE_INSIDE		10021
+#define MUSHROOM_STATE_OUTSIDE		10022
 #pragma endregion
 
