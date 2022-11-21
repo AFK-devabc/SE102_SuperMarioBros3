@@ -1,6 +1,7 @@
 #pragma once
 #include "Collision.h"
 #include "GameObject.h"
+#include "DefineInfo.h"
 class CGoomba :
     public CGameObject
 {
@@ -10,8 +11,8 @@ protected:
 	ULONGLONG die_start;
 
 public:
-	CGoomba(D3DXVECTOR2 position, D3DXVECTOR2 velocity, LPTEXTURE texture) : CGameObject(position, texture) {
-		this->velocity = velocity;
+	CGoomba(D3DXVECTOR2 position, LPTEXTURE texture) : CGameObject(position, texture) {
+		this->velocity = D3DXVECTOR2(Goomba_Walking_Speed,0);
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 

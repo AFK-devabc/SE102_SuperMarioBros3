@@ -63,6 +63,8 @@
 #pragma region Goomba
 #define Goomba_Walking_Speed		0.05f
 #define GOOMBA_DIE_TIMEOUT			1000
+#define GOOMBA_STATE_WALKING		20000
+#define GOOMBA_STATE_HITTED			21000
 
 #pragma endregion
 
@@ -80,9 +82,11 @@
 
 #pragma endregion
 
-#pragma region Goomba
+#pragma region Koopa
+#define KOOPA_STATE_WALKING			30000
+#define KOOPA_STATE_ROLLING			31000
+#define KOOPA_STATE_INSIDE_SHELL	32000
+#define KOOPA_STATE_ESCAPE_SHELL	33000
 
-#define GOOMBA_STATE_WALKING		20000
-#define GOOMBA_STATE_HITTED			21000
 #pragma endregion
 

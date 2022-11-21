@@ -3,6 +3,7 @@
 #include "Brick.h"
 #include "MushRoom.h"
 #include "RedLeaf.h"
+#include "Koopa.h"
 
 #include "GameObjectType.h"
 #include "Scenes.h"
@@ -136,6 +137,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithMushroom(e);
 	if (dynamic_cast<CRedLeaf*>(e->obj))
 		OnCollisionWithRedLeaf(e);
+	if (dynamic_cast<CKoopa*>(e->obj))
+		OnCollisionWithKoopa(e);
 
 
 }
@@ -158,6 +161,48 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 		if (untouchable == 0)
 		{
 			if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
+				Hit();
+		}
+	}
+
+}
+
+void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
+{
+	CKoopa* koopa = dynamic_cast<CKoopa*>(e->obj);
+	if (koopa->GetState() == KOOPA_STATE_INSIDE_SHELL)
+	{
+		int isGoingRight = 0;
+		if (position.x > koopa->GetPPosition()->x)
+			isGoingRight = 1;
+		koopa->SetState(KOOPA_STATE_ROLLING);
+		
+		return;
+	}
+
+	// jump on top >> kill Goomba and deflect a bit 
+	if (e->ny < 0)
+	{
+		if (koopa->GetState() != GAME_OBJECT_STATE_DIE)
+		{
+			velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
+
+			switch (koopa->GetState())
+			{
+			case KOOPA_STATE_WALKING:
+				koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
+			case KOOPA_STATE_ROLLING:
+				koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
+			default:
+				break;
+			}
+		}
+	}
+	else // hit by Goomba
+	{
+		 if (untouchable == 0 )
+		{
+			if (koopa->GetState() != GAME_OBJECT_STATE_DIE && koopa->GetState() != KOOPA_STATE_INSIDE_SHELL)
 				Hit();
 		}
 	}

@@ -43,13 +43,15 @@ void CPlayScene::LoadAssets(const char* filePath)
 						for (TiXmlElement* spriteNode = aniNode->FirstChildElement(); spriteNode != nullptr; spriteNode = spriteNode->NextSiblingElement())
 						{
 							string spriteID = spriteNode->Attribute("spriteID");
-
-							int left = 0, top = 0, width = 0, height = 0;
-							spriteNode->QueryIntAttribute("x", &left);
-							spriteNode->QueryIntAttribute("y", &top);
-							spriteNode->QueryIntAttribute("w", &width);
-							spriteNode->QueryIntAttribute("h", &height);
-							sprites->Add(spriteID, left, top, width, height, texture);
+							if (sprites->Get(spriteID) == NULL)
+							{
+								int left = 0, top = 0, width = 0, height = 0;
+								spriteNode->QueryIntAttribute("x", &left);
+								spriteNode->QueryIntAttribute("y", &top);
+								spriteNode->QueryIntAttribute("w", &width);
+								spriteNode->QueryIntAttribute("h", &height);
+								sprites->Add(spriteID, left, top, width, height, texture);
+							}
 							ani->Add(spriteID);
 						}
 						animations->Add(aniID, ani);
@@ -120,9 +122,15 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				}
 				case OBJECT_TYPE_GOOMBA:
 				{	
-					gameObject = new CGoomba(position, D3DXVECTOR2(Goomba_Walking_Speed, MARIO_GRAVITY), NULL);
+					gameObject = new CGoomba(position, NULL);
 				break;
 				}
+				case OBJECT_TYPE_KOOPA:
+				{
+					gameObject = new CKoopa(position, NULL);
+					break;
+				}
+
 				case OBJECT_TYPE_BRICK:
 				{
 					int behavior = 0, itemContain = 0;
