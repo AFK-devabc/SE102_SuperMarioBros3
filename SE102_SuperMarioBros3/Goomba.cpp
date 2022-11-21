@@ -18,24 +18,34 @@ void CGoomba::GetBoundingBox(float& l, float& t, float& r, float& b)
 
 void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	isOnPlatform = false;
-	velocity.y += MARIO_GRAVITY * dt;
 
-	if ((state == GAME_OBJECT_STATE_DIE) && (GetTickCount64() - die_start > GOOMBA_DIE_TIMEOUT))
+	if ((state == GAME_OBJECT_STATE_DIE) )
 	{
-		isDeleted = true;
-		return;
+		if(GetTickCount64() - die_start > GOOMBA_DIE_TIMEOUT)
+				isDeleted = true;
+	}
+	else
+	{
+		velocity.y += MARIO_GRAVITY * dt;
+		isOnPlatform = false;
+		CCollision::GetInstance()->Process(this, dt, coObjects);
+
 	}
 
 
-	CCollision::GetInstance()->Process(this, dt, coObjects);
 
 }
 
 void CGoomba::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get(to_string( OBJECT_TYPE_GOOMBA))->Render(position);
+
+	if (state == GAME_OBJECT_STATE_DIE)
+	{
+		ani->Get(to_string(GOOMBA_STATE_HITTED))->Render(position);
+		return;
+	}
+	ani->Get(to_string( GOOMBA_STATE_WALKING))->Render(position);
 }
 
 void CGoomba::OnNoCollision(DWORD dt)
@@ -61,5 +71,6 @@ void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 void CGoomba::SetState(int state, int islookright)
 {
 	this->state = state;
-
+	die_start = GetTickCount64();
+	this->position.y = position.y + 16 / 2;
 }

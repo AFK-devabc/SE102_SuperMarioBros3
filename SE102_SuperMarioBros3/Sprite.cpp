@@ -6,16 +6,16 @@ CSprite::CSprite(int left, int top, int width, int height, LPTEXTURE tex)
 {
 	this->left = left;
 	this->top = top;
-	this->width = width;
-	this->height = height;
+	this->width = width +1;
+	this->height = height +1;
 	// Set the sprite’s shader resource view
 	sprite.pTexture = tex->getShaderResourceView();
 
 	sprite.TexCoord.x = left / (float)tex->getWidth();
 	sprite.TexCoord.y = top / (float)tex->getHeight();
 
-	int spriteWidth = width;
-	int spriteHeight = height;
+	int spriteWidth = width +1;
+	int spriteHeight = height +1;
 
 	sprite.TexSize.x = spriteWidth / (float)tex->getWidth();
 	sprite.TexSize.y = spriteHeight / (float)tex->getHeight();

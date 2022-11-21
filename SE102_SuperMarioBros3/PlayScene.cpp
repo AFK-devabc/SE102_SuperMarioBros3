@@ -147,12 +147,6 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObject = new CPlatform(x, y, w, h, num, spriteBegin, spriteMidder, spriteEnd);
 					break;
 				}
-
-				case OBJECT_TYPE_MUSHROOM:
-				{
-					gameObject = new CMushRoom(position, NULL);
-					break;
-				}
 				default:
 				{
 					gameObject = NULL;
@@ -214,6 +208,14 @@ void CPlayScene::Update(DWORD dt)
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
 	if (player == NULL) return;
 
+	if (isPausing)
+	{
+		if (GetTickCount64() > startPauseTime + pauseTime)
+		{
+			isPausing = 0;
+			player->EndChangingForm();
+		}return;
+	}
 	for (int i = 0; i < LPGameObject.size(); i++)
 	{
 		LPGameObject[i]->Update(dt, &LPGameObject);

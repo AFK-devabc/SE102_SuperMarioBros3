@@ -41,7 +41,7 @@
 #define MARIO_GRAVITY				0.002f
 #define MARIO_JUMP_DEFLECT_SPEED	0.4f
 
-#define MARIO_UNTOUCHABLE_TIME 2500
+#define MARIO_UNTOUCHABLE_TIME		2000
 
 //states
 #define SMALL_MARIO					100000
@@ -62,7 +62,7 @@
 
 #pragma region Goomba
 #define Goomba_Walking_Speed		0.05f
-#define GOOMBA_DIE_TIMEOUT			500
+#define GOOMBA_DIE_TIMEOUT			1000
 
 #pragma endregion
 
@@ -71,9 +71,18 @@
 
 #pragma endregion
 
-#pragma region MushRoom
+#pragma region MISC
 
 #define MUSHROOM_STATE_INSIDE		10021
 #define MUSHROOM_STATE_OUTSIDE		10022
+#define REDLEAF_STATE_DROPPING		10041
+#define REDLEAF_STATE_IDLE			10040
+
+#pragma endregion
+
+#pragma region Goomba
+
+#define GOOMBA_STATE_WALKING		20000
+#define GOOMBA_STATE_HITTED			21000
 #pragma endregion
 

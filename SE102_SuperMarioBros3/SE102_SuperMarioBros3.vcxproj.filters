@@ -18,15 +18,15 @@
     <Filter Include="TinyXML">
       <UniqueIdentifier>{2a351fc8-89f1-4495-ac2d-7831ed0cc8f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneManager">
-      <UniqueIdentifier>{f37875af-8194-4553-873e-c64c6c460815}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PhysicsDevices">
       <UniqueIdentifier>{20004793-59d0-42b7-a95c-c0e4b15b6448}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{f37875af-8194-4553-873e-c64c6c460815}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,10 +94,10 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Scenes.cpp">
-      <Filter>SceneManager</Filter>
+      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="PlayScene.cpp">
-      <Filter>SceneManager</Filter>
+      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Brick.cpp">
       <Filter>GameObject</Filter>
@@ -108,8 +108,8 @@
     <ClCompile Include="MushRoom.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="RedLeaf.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,13 +177,13 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>SceneManager</Filter>
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scenes.h">
-      <Filter>SceneManager</Filter>
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="PlayScene.h">
-      <Filter>SceneManager</Filter>
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="KeyEventHandler.h">
       <Filter>PhysicsDevices</Filter>
@@ -198,6 +198,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="MushRoom.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="RedLeaf.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

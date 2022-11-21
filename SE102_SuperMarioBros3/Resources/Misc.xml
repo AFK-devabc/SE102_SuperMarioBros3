@@ -4,8 +4,8 @@
 	<Textures texID="Mics" texturePath="textures/misc_transparent.png">
 		<Animations  aniID="none" frameTime ="9999">
 			<Sprites spriteID = "CloudBegin"	x="390" y="117" w="16" h="16"/>
-			<Sprites spriteID = "CloudMidder"	x="408" y="117" w="16" h="16"/>
-			<Sprites spriteID = "CloudEnd"		x="426" y="117" w="16" h="16"/>
+			<Sprites spriteID = "CloudMidder"	x="409" y="117" w="16" h="16"/>
+			<Sprites spriteID = "CloudEnd"		x="427" y="117" w="16" h="16"/>
 		</Animations>
 		<Animations  aniID="10000" frameTime ="200">
 			<Sprites spriteID = "Brick_0" x="300" y="135" w="16" h="16"/>
@@ -25,6 +25,9 @@
 		</Animations>
 		<Animations  aniID="10030" frameTime ="9999">
 			<Sprites spriteID = "MushRoom_0" x="300" y="189" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="10040" frameTime ="9999">
+			<Sprites spriteID = "RedLeaf_0" x="300" y="208" w="16" h="14"/>
 		</Animations>
 
 	</Textures>

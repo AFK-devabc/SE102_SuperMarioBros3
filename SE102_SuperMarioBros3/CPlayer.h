@@ -14,9 +14,10 @@ protected:
 	int untouchable;
 	ULONGLONG untouchable_start;
 
-	unsigned int GetAniID();
-	unsigned int marioType = SMALL_MARIO;
+	 int GetAniID();
+	 int marioType = SMALL_MARIO;
 	
+	int isChangingform = 0;
 public :
 	CPlayer(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
 		maxVx = 1;
@@ -32,6 +33,7 @@ public :
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 	void OnCollisionWithMushroom(LPCOLLISIONEVENT e);
+	void OnCollisionWithRedLeaf(LPCOLLISIONEVENT e);
 
 	int IsCollidable()
 	{
@@ -43,7 +45,7 @@ public :
 	void SetState(int state, int islookright = 0);
 
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
-
+	void EndChangingForm() { isChangingform = 0; }
 	void Hit();
 
 	// keyboard handler
@@ -51,6 +53,7 @@ public :
 	void OnKeyDown(int KeyCode);
 	void OnKeyUp(int KeyCode);
 
-	
+	void SetMarioType( int type);
+
 };
 

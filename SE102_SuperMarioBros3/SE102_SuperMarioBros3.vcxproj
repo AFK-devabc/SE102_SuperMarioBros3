@@ -142,7 +142,7 @@
     <ClCompile Include="MushRoom.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayScene.cpp" />
-    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="RedLeaf.cpp" />
     <ClCompile Include="Scenes.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="debug.cpp" />
@@ -173,6 +173,7 @@
     <ClInclude Include="MushRoom.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="RedLeaf.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scenes.h" />
     <ClInclude Include="Textures.h" />

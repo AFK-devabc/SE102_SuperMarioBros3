@@ -23,7 +23,7 @@ public:
 
 	void Update(DWORD dt)
 	{
-		DebugOut(L"%d,	%d", followObjects->x, followObjects->y);
+		//DebugOut(L"%f,	%f", followObjects->x, followObjects->y);
 		this->position.x = followObjects->x - backBuffer.x / 2;
 		this->position.y = 0;
 	}

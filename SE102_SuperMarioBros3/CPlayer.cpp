@@ -2,14 +2,21 @@
 #include "Goomba.h"
 #include "Brick.h"
 #include "MushRoom.h"
+#include "RedLeaf.h"
+
 #include "GameObjectType.h"
 #include "Scenes.h"
 #include "PlayScene.h"
 
 
-unsigned int CPlayer::GetAniID()
+ int CPlayer::GetAniID()
 {
 	unsigned int aniID = 0;
+
+	if (isChangingform)
+	{
+		return isChangingform;
+	}
 
 	if (!isOnPlatform)
 	{
@@ -97,6 +104,7 @@ void CPlayer::Render()
 {
 	string aniId = to_string(this->GetAniID());
 	CAnimations* ani = CAnimations::GetInstance();
+
 	ani->Get(aniId)->Render(position, !isLookingRight);
 
 	RenderBoundingBox();
@@ -126,6 +134,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithBrick(e);
 	if (dynamic_cast<CMushRoom*>(e->obj))
 		OnCollisionWithMushroom(e);
+	if (dynamic_cast<CRedLeaf*>(e->obj))
+		OnCollisionWithRedLeaf(e);
 
 
 }
@@ -148,18 +158,7 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 		if (untouchable == 0)
 		{
 			if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
-			{
-				//if (level > MARIO_LEVEL_SMALL)
-				//{
-				//	level = MARIO_LEVEL_SMALL;
-					StartUntouchable();
-				//}
-				//else
-				//{
-					DebugOut(L">>> Mario DIE >>> \n");
-					SetState(GAME_OBJECT_STATE_DIE);
-				//}
-			}
+				Hit();
 		}
 	}
 
@@ -173,9 +172,19 @@ void CPlayer::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 		switch (brick->GetItemContain())
 		{
 		case OBJECT_TYPE_MUSHROOM: {
-			LPGAMEOBJECT mushroom = new CMushRoom(brick->GetPosition() );
-			CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
-			playscene->AddGameObject(mushroom);
+			if (marioType != BIG_MARIO)
+			{
+				LPGAMEOBJECT mushroom = new CMushRoom(brick->GetPosition());
+				CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
+				playscene->AddGameObject(mushroom);
+			}
+			else
+			{
+				LPGAMEOBJECT redLeaf = new CRedLeaf(brick->GetPosition());
+				CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
+				playscene->AddGameObject(redLeaf);
+
+			}
 			break;
 		}
 		default:
@@ -192,15 +201,45 @@ void CPlayer::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 void CPlayer::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 {
 	e->obj->Delete();
+	if (marioType == SMALL_MARIO)
+	{
+		SetMarioType(BIG_MARIO);
+	}
+}
+
+void CPlayer::OnCollisionWithRedLeaf(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
+
+	SetMarioType(CAT_MARIO);
+
 }
 
 void CPlayer::Hit()
 {
+
+	if (marioType == 100000)
+	{
+
+		SetState(GAME_OBJECT_STATE_DIE);
+		return;
+	}
+	else
+	{
+		SetMarioType(marioType - 10000);
+
+		StartUntouchable();
+	}
+	DebugOut(L"\n<<<Mario Hitted>>>");
 }
 
 void CPlayer::KeyState(BYTE* state)
 {
 	this->keyStates = state;
+
+	if (isChangingform)
+		return;
+
 	if (IsKeyDown(DIK_D))
 	{
 		isLookingRight = true;
@@ -236,18 +275,13 @@ void CPlayer::OnKeyDown(int KeyCode)
 		SetState(MARIO_STATE_JUMP);
 		break;
 	case DIK_1:
-		marioType = SMALL_MARIO;
-
+		SetMarioType(SMALL_MARIO);
 		break;
 	case DIK_2:
-		marioType = BIG_MARIO;
-		position = position + D3DXVECTOR2(0, (-Big_Mario_Height + Small_Mario_Height)/2);
-
+		SetMarioType(BIG_MARIO);
 		break;
 	case DIK_3:
-		marioType = CAT_MARIO;
-		position = position + D3DXVECTOR2(0, (-Big_Mario_Height + Small_Mario_Height) / 2);
-
+		SetMarioType(CAT_MARIO);
 		break;
 	}
 }
@@ -270,6 +304,9 @@ void CPlayer::OnKeyUp(int KeyCode)
 void CPlayer::SetState(int state, int islookright)
 {
 	if (this->state == GAME_OBJECT_STATE_DIE) return;
+	
+	this->state = state;
+
 
 	if (islookright > 0)
 		isLookingRight = true;
@@ -329,8 +366,25 @@ void CPlayer::SetState(int state, int islookright)
 		velocity.x = 0;
 		Ax = 0;
 		break;
-
+	
 	}
 
-	this->state = state;
+}
+
+void CPlayer::SetMarioType( int type)
+{
+	isChangingform = -(type) - marioType;
+	CScenes::GetInstance()->GetCurrentScene()->SetPause(1000);
+
+	switch (type)
+	{
+	case BIG_MARIO:
+	case CAT_MARIO:
+		position = position + D3DXVECTOR2(0, (-Big_Mario_Height + Small_Mario_Height) / 2);
+		break;
+	default:
+		break;
+	}
+	marioType = type;
+
 }
