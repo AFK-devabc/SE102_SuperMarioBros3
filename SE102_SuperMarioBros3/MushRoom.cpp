@@ -63,10 +63,4 @@ void CMushRoom::OnCollisionWith(LPCOLLISIONEVENT e)
 }
 
 
-void CMushRoom::SetState(int state, int islookright)
-{
-}
 
-void CMushRoom::Hit(int type)
-{
-}

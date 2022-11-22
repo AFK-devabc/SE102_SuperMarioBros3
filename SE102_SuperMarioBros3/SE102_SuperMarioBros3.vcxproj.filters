@@ -28,6 +28,15 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{f37875af-8194-4553-873e-c64c6c460815}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Enemies">
+      <UniqueIdentifier>{83a83ad8-b364-47ee-ba11-6b6bdd319100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items">
+      <UniqueIdentifier>{ff8339a9-4651-483c-b25a-4ae7eb30bae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Ground">
+      <UniqueIdentifier>{4788aacc-60cc-4017-b9c8-f853f5805e8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -81,17 +90,11 @@
     <ClCompile Include="TinyXML\tinyxmlparser.cpp">
       <Filter>TinyXML</Filter>
     </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Goomba.cpp">
-      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Scenes.cpp">
       <Filter>Scene</Filter>
@@ -99,17 +102,29 @@
     <ClCompile Include="PlayScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>GameObject</Filter>
+    <ClCompile Include="Goomba.cpp">
+      <Filter>GameObject\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Koopa.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="MushRoom.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Items</Filter>
     </ClCompile>
     <ClCompile Include="RedLeaf.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>GameObject\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>GameObject\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="RedKoopa.cpp">
+      <Filter>GameObject\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>GameObject\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,17 +179,11 @@
     <ClInclude Include="ImportFromXML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Platform.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Goomba.h">
-      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Scene</Filter>
@@ -188,20 +197,32 @@
     <ClInclude Include="KeyEventHandler.h">
       <Filter>PhysicsDevices</Filter>
     </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectType.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="Goomba.h">
+      <Filter>GameObject\Enemies</Filter>
+    </ClInclude>
     <ClInclude Include="Koopa.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="MushRoom.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Items</Filter>
     </ClInclude>
     <ClInclude Include="RedLeaf.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>GameObject\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>GameObject\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="RedKoopa.h">
+      <Filter>GameObject\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>GameObject\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

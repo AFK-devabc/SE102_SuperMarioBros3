@@ -57,6 +57,7 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 	if (e->nx != 0 && e->obj->IsBlocking())
 	{
 		velocity.x = -velocity.x;
+		isLookingRight = !isLookingRight;
 	}
 }
 

@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="MushRoom.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="RedKoopa.cpp" />
     <ClCompile Include="RedLeaf.cpp" />
     <ClCompile Include="Scenes.cpp" />
     <ClCompile Include="Textures.cpp" />
@@ -162,6 +164,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="Animations.h" />
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collision.h" />
@@ -173,6 +176,7 @@
     <ClInclude Include="MushRoom.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="RedKoopa.h" />
     <ClInclude Include="RedLeaf.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scenes.h" />

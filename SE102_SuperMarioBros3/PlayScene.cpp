@@ -130,6 +130,14 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObject = new CKoopa(position, NULL);
 					break;
 				}
+				case OBJECT_TYPE_RED_KOOPA:
+				{
+					LPGAMEOBJECT block = new CBlock(position, NULL);
+
+					gameObject = new CRedKoopa(position, block,NULL);
+					LPGameObject.push_back(block);
+					break;
+				}
 
 				case OBJECT_TYPE_BRICK:
 				{
