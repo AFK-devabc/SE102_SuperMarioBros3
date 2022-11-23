@@ -16,7 +16,7 @@ public :
     void SetEdgeDetectObject(LPGAMEOBJECT edgeDetect) { this->edgeDetect = edgeDetect; }
 
     virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
-
+    virtual void Render();
   
 };
 

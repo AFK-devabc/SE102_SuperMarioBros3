@@ -1,6 +1,7 @@
 #include "Koopa.h"
 #include "DefineInfo.h"
 #include "GameObjectType.h"
+#include "Goomba.h"
 
 void CKoopa::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
@@ -9,7 +10,7 @@ void CKoopa::GetBoundingBox(float& l, float& t, float& r, float& b)
 	t = position.y - 16 / 2;
 	r = l + 16;
 	b = t + 16;
-	if (state == KOOPA_STATE_WALKING)
+	if (state == KOOPA_STATE_WALKING || state == KOOPA_STATE_WING)
 	{
 		t = position.y - 26 / 2;
 		b = t + 26 ;
@@ -59,6 +60,37 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 		velocity.x = -velocity.x;
 		isLookingRight = !isLookingRight;
 	}
+
+	if (this->GetState() == KOOPA_STATE_ROLLING &&(e->nx !=0))
+	{
+		if (dynamic_cast<CGoomba*>(e->obj))
+			OnCollisionWithGoomba(e);
+		if (dynamic_cast<CKoopa*>(e->obj))
+			OnCollisionWithKoopa(e);
+
+
+	}
+}
+
+void CKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
+{
+	CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
+	goomba->SetSpeed(goomba->GetVelocity().x, -MARIO_JUMP_DEFLECT_SPEED);
+	goomba->SetState(GAME_OBJECT_STATE_DIE);
+}
+
+void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
+{
+	CKoopa* koopa = dynamic_cast<CKoopa*>(e->obj);
+	if (koopa->GetState() == KOOPA_STATE_INSIDE_SHELL)
+	{
+		koopa->SetState(KOOPA_STATE_ROLLING);
+	}
+	else if(koopa->GetState() != KOOPA_STATE_ROLLING)
+	{
+		koopa->SetSpeed(koopa->GetVelocity().x, -MARIO_JUMP_DEFLECT_SPEED);
+		koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
+	}
 }
 
 void CKoopa::SetState(int state, int isGoingRight)
@@ -67,6 +99,10 @@ void CKoopa::SetState(int state, int isGoingRight)
 	this->position.y += -1.0f;
 	switch (state)
 	{
+	case KOOPA_STATE_WALKING:
+		this->velocity.x = Goomba_Walking_Speed * (isGoingRight ? 1 : -1);
+		break;
+
 	case KOOPA_STATE_ROLLING:
 		this->velocity.x = 0.2f * (isGoingRight ? 1 : -1);
 		break;
@@ -76,4 +112,18 @@ void CKoopa::SetState(int state, int isGoingRight)
 	default:
 		break;
 	}
+}
+
+void CKoopa::Attacked()
+{
+	if (state == KOOPA_STATE_INSIDE_SHELL)
+	{
+		this->SetState(KOOPA_STATE_ROLLING);
+	}
+	else if (state != KOOPA_STATE_ROLLING)
+	{
+		this->SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
+		this->SetState(KOOPA_STATE_INSIDE_SHELL);
+	}
+
 }

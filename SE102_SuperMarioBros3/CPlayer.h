@@ -12,16 +12,21 @@ protected:
 	BOOLEAN isOnPlatform;
 
 	int untouchable;
-	ULONGLONG untouchable_start;
+	DWORD untouchable_start;
 
 	 int GetAniID();
 	 int marioType = SMALL_MARIO;
 	
 	int isChangingform = 0;
+	int isAttacking = 0;
+	DWORD attack_start;
 public :
 	CPlayer(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
 		maxVx = 1;
 		Ax = 0;
+		DWORD attack_start = 0;
+		DWORD untouchable_start = 0;
+
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 
@@ -48,8 +53,7 @@ public :
 
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 	void EndChangingForm() { isChangingform = 0; }
-	void Hit();
-
+	virtual void Attacked();
 	// keyboard handler
 	void KeyState(BYTE* state);
 	void OnKeyDown(int KeyCode);

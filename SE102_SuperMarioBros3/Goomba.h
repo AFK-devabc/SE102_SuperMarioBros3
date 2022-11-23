@@ -25,5 +25,8 @@ public:
 	virtual int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return 0; }
 	void SetState(int state, int islookright = 0);
+
+	virtual void Attacked();
+
 };
 

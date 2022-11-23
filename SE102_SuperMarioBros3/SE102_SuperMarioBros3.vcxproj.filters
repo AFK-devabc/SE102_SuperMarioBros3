@@ -126,6 +126,9 @@
     <ClCompile Include="Block.cpp">
       <Filter>GameObject\Items</Filter>
     </ClCompile>
+    <ClCompile Include="MarioTail.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -223,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>GameObject\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioTail.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

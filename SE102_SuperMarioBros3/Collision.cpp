@@ -353,3 +353,42 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 }
+
+bool CCollision::SweptAABBIsColliding(float sl,			// objSrc left 
+	float st,			// objSrc top
+	float sr,			// objSrc right 
+	float sb,			// objSrc bottom
+	float l,			// objDest left
+	float t,
+	float r,
+	float b)
+{
+	return !(sr <= l || sl >= r || st >= b || sb <= t);
+}
+
+void CCollision::ProcessIsColliding(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+{
+	float sl, st, sr, sb;		// objSrc object bbox
+	float l, t, r, b;		// objDest object bbox
+
+	objSrc->GetBoundingBox(sl, st, sr, sb);
+
+	for (UINT i = 0; i < coObjects->size(); i++)
+	{
+		coObjects->at(i)->GetBoundingBox(l, t, r, b);
+
+		if (SweptAABBIsColliding(sl,			// objSrc left 
+			st,			// objSrc top
+			sr,			// objSrc right 
+			sb,			// objSrc bottom
+			l,			// objDest left
+			t,
+			r,
+			b))
+			objSrc->IsCollidingWith(coObjects->at(i));
+	
+
+	}
+
+
+}

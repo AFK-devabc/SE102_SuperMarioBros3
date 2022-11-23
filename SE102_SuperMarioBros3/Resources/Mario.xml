@@ -105,11 +105,14 @@
 			<Sprites spriteID = "Tail_Mario_Run_Jump_0" x="360" y="754" w="24" h="28"/>
 		</Animations>
 
-
-
-
 		<Animations  aniID="125000" frameTime ="9999">
 			<Sprites spriteID = "Tail_Mario_Sit_0" x="422" y="718" w="22" h="20"/>
+		</Animations>
+
+		<Animations  aniID="126000" frameTime ="100">
+			<Sprites spriteID = "Tail_Mario_Flying_2" x="361" y="754" w="24" h="27"/>
+			<Sprites spriteID = "Tail_Mario_Flying_0" x="331" y="714" w="24" h="27"/>
+			<Sprites spriteID = "Tail_Mario_Flying_1" x="361" y="714" w="24" h="27"/>
 		</Animations>
 
 	</Textures>

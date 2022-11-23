@@ -25,3 +25,11 @@ void CRedKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			edgeDetect->SetPosition(this->position.x + (isLookingRight ? 16.0f : -16.0f), edgeDetect->GetPosition().y);
 	}
 }
+
+void CRedKoopa::Render()
+{
+	CAnimations* ani = CAnimations::GetInstance();
+	ani->Get(to_string(state +1) )->Render(position);
+	RenderBoundingBox();
+
+}

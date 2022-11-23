@@ -20,6 +20,8 @@
 #pragma endregion
 
 #define GAME_OBJECT_STATE_DIE	-9999
+#define GAME_OBJECT_STATE_HITTED	-8888
+
 
 #pragma region Mario
 #define GROUND_Y 160.0f
@@ -42,6 +44,7 @@
 #define MARIO_JUMP_DEFLECT_SPEED	0.4f
 
 #define MARIO_UNTOUCHABLE_TIME		2000
+#define MARIO_DAMATE_TIME_START		100
 
 //states
 #define SMALL_MARIO					100000
@@ -64,7 +67,7 @@
 #define Goomba_Walking_Speed		0.05f
 #define GOOMBA_DIE_TIMEOUT			1000
 #define GOOMBA_STATE_WALKING		20000
-#define GOOMBA_STATE_HITTED			21000
+#define GOOMBA_STATE_DYING			21000
 
 #pragma endregion
 
@@ -87,6 +90,7 @@
 #define KOOPA_STATE_ROLLING			31000
 #define KOOPA_STATE_INSIDE_SHELL	32000
 #define KOOPA_STATE_ESCAPE_SHELL	33000
+#define KOOPA_STATE_WING			34000
 
 #pragma endregion
 

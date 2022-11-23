@@ -4,6 +4,7 @@
 #include "MushRoom.h"
 #include "RedLeaf.h"
 #include "Koopa.h"
+#include "MarioTail.h"
 
 #include "GameObjectType.h"
 #include "Scenes.h"
@@ -98,6 +99,14 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 		untouchable_start = 0;
 		untouchable = 0;
 	}
+	if (GetTickCount64() - attack_start > MARIO_DAMATE_TIME_START && isAttacking)
+	{
+		LPGAMEOBJECT marioTail = new CMarioTail(this->GetPosition()  + D3DXVECTOR2(isLookingRight? 16.0f: -16.0f,0));
+		CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
+		playscene->AddGameObject(marioTail);
+		isAttacking = 0;
+
+	}
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
 
@@ -161,7 +170,7 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 		if (untouchable == 0)
 		{
 			if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
-				Hit();
+				Attacked();
 		}
 	}
 
@@ -189,10 +198,15 @@ void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 
 			switch (koopa->GetState())
 			{
+			case KOOPA_STATE_WING:
+				koopa->SetState(KOOPA_STATE_WALKING);
+				break;
 			case KOOPA_STATE_WALKING:
 				koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
+				break;
 			case KOOPA_STATE_ROLLING:
 				koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
+				break;
 			default:
 				break;
 			}
@@ -203,7 +217,7 @@ void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 		 if (untouchable == 0 )
 		{
 			if (koopa->GetState() != GAME_OBJECT_STATE_DIE && koopa->GetState() != KOOPA_STATE_INSIDE_SHELL)
-				Hit();
+				Attacked();
 		}
 	}
 
@@ -260,9 +274,9 @@ void CPlayer::OnCollisionWithRedLeaf(LPCOLLISIONEVENT e)
 
 }
 
-void CPlayer::Hit()
-{
 
+void CPlayer::Attacked()
+{
 	if (marioType == 100000)
 	{
 
@@ -276,6 +290,7 @@ void CPlayer::Hit()
 		StartUntouchable();
 	}
 	DebugOut(L"\n<<<Mario Hitted>>>");
+
 }
 
 void CPlayer::KeyState(BYTE* state)
@@ -319,6 +334,14 @@ void CPlayer::OnKeyDown(int KeyCode)
 	case DIK_K:
 		SetState(MARIO_STATE_JUMP);
 		break;
+	case DIK_J:
+		if (marioType == CAT_MARIO)
+		{
+			isAttacking = true;
+			attack_start = GetTickCount64();
+		}
+		break;
+
 	case DIK_1:
 		SetMarioType(SMALL_MARIO);
 		break;

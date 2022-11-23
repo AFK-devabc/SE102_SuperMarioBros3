@@ -13,23 +13,46 @@
 		<Animations  aniID="30000" frameTime ="100">
 			<Sprites spriteID = "Koopa_Walking_0" x="31" y="119" w="16" h="26"/>
 			<Sprites spriteID = "Koopa_Walking_1" x="50" y="119" w="16" h="26"/>
-
 		</Animations>
-
-		<Animations  aniID="32000" frameTime ="9999">
-			<Sprites spriteID = "Koopa_Rolling_0" x="32" y="149" w="16" h="16"/>
-		</Animations>
-
-		<Animations  aniID="33000" frameTime ="100">
-			<Sprites spriteID = "Koopa_Rolling_0" x="32" y="149" w="16" h="16"/>
-			<Sprites spriteID = "Koopa_Leg_Out_0" x="74" y="127" w="16" h="16"/>
-
-		</Animations>
-
 		<Animations  aniID="31000" frameTime ="100">
 			<Sprites spriteID = "Koopa_Rolling_0" x="32" y="149" w="16" h="16"/>
 			<Sprites spriteID = "Koopa_Rolling_1" x="53" y="148" w="16" h="16"/>
 			<Sprites spriteID = "Koopa_Rolling_2" x="74" y="148" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="32000" frameTime ="9999">
+			<Sprites spriteID = "Koopa_Rolling_0" x="32" y="149" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="33000" frameTime ="100">
+			<Sprites spriteID = "Koopa_Rolling_0" x="32" y="149" w="16" h="16"/>
+			<Sprites spriteID = "Koopa_Leg_Out_0" x="74" y="127" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="34000" frameTime ="200">
+			<Sprites spriteID = "Koopa_Wing_0" x="105" y="129" w="16" h="27"/>
+			<Sprites spriteID = "Koopa_Wing_1" x="126" y="129" w="16" h="27"/>
+			<Sprites spriteID = "Koopa_Wing_2" x="147" y="129" w="16" h="27"/>
+		</Animations>
+
+		<Animations  aniID="30001" frameTime ="100">
+			<Sprites spriteID = "Red_Koopa_Walking_0" x="28" y="67" w="16" h="26"/>
+			<Sprites spriteID = "Red_Koopa_Walking_1" x="47" y="67" w="16" h="26"/>
+		</Animations>
+		<Animations  aniID="31001" frameTime ="100">
+			<Sprites spriteID = "Red_Koopa_Rolling_0" x="29" y="97" w="16" h="16"/>
+			<Sprites spriteID = "Red_Koopa_Rolling_1" x="50" y="96" w="16" h="16"/>
+			<Sprites spriteID = "Red_Koopa_Rolling_2" x="71" y="96" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="32001" frameTime ="9999">
+			<Sprites spriteID = "Red_Koopa_Rolling_0" x="29" y="97" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="33001" frameTime ="100">
+			<Sprites spriteID = "Red_Koopa_Rolling_0" x="29" y="97" w="16" h="16"/>
+			<Sprites spriteID = "Red_Koopa_Leg_Out_0" x="71" y="75" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="34001" frameTime ="200">
+			<Sprites spriteID = "Koopa_Wing_0" x="105" y="93" w="16" h="27"/>
+			<Sprites spriteID = "Koopa_Wing_1" x="126" y="93" w="16" h="27"/>
+			<Sprites spriteID = "Koopa_Wing_2" x="147" y="93" w="16" h="27"/>
+
 		</Animations>
 
 	</Textures>

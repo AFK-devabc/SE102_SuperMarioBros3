@@ -57,11 +57,12 @@ public:
 
 	// When collision with an object has been detected (triggered by CCollision::Process)
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e) {};
+	virtual void IsCollidingWith(LPGAMEOBJECT e) {};
 
 	// Is this object blocking other object? If YES, collision framework will automatically push the other object
 	virtual int IsBlocking() { return 1; }
 
-
+	virtual void Attacked() {};
 	~CGameObject();
 };
 

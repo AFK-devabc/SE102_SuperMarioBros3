@@ -12,7 +12,7 @@ protected :
 public:
 	CKoopa(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
 		velocity = D3DXVECTOR2(Goomba_Walking_Speed, 0);
-		state = KOOPA_STATE_WALKING;
+		state = KOOPA_STATE_WING;
 	};
 	virtual void GetBoundingBox(float& l, float& t, float& r, float& b);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
@@ -20,9 +20,14 @@ public:
 
 	virtual void OnNoCollision(DWORD dt);
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
 
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
+	virtual int IsBlocking() { return (state == KOOPA_STATE_INSIDE_SHELL || state == KOOPA_STATE_ROLLING); }
 	virtual void SetState(int state, int isGoingRight = 0);
+
+	virtual void Attacked();
+
 };
 

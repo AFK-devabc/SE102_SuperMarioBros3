@@ -83,6 +83,19 @@ public:
 
 	void Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 
+
+	bool SweptAABBIsColliding(float ml,			// objSrc left 
+		float mt,			// objSrc top
+		float mr,			// objSrc right 
+		float mb,			// objSrc bottom
+		float sl,			// objDest left
+		float st,
+		float sr,
+		float sb
+	);
+
+	void ProcessIsColliding(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* coObjects);
+
 	static CCollision* GetInstance();
 };
 
