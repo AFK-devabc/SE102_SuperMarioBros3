@@ -34,7 +34,10 @@
     <Filter Include="GameObject\Items">
       <UniqueIdentifier>{ff8339a9-4651-483c-b25a-4ae7eb30bae0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Ground">
+    <Filter Include="GameObject\Effects">
+      <UniqueIdentifier>{5f4b1504-4bea-4919-9567-c20518337c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Blocking">
       <UniqueIdentifier>{4788aacc-60cc-4017-b9c8-f853f5805e8d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -115,19 +118,25 @@
       <Filter>GameObject\Items</Filter>
     </ClCompile>
     <ClCompile Include="Brick.cpp">
-      <Filter>GameObject\Ground</Filter>
+      <Filter>GameObject\Blocking</Filter>
     </ClCompile>
     <ClCompile Include="Platform.cpp">
-      <Filter>GameObject\Ground</Filter>
+      <Filter>GameObject\Blocking</Filter>
     </ClCompile>
     <ClCompile Include="RedKoopa.cpp">
       <Filter>GameObject\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Block.cpp">
-      <Filter>GameObject\Items</Filter>
-    </ClCompile>
     <ClCompile Include="MarioTail.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickBroken.cpp">
+      <Filter>GameObject\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="HardCollision.cpp">
+      <Filter>GameObject\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>GameObject\Blocking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,19 +225,28 @@
       <Filter>GameObject\Items</Filter>
     </ClInclude>
     <ClInclude Include="Brick.h">
-      <Filter>GameObject\Ground</Filter>
+      <Filter>GameObject\Blocking</Filter>
     </ClInclude>
     <ClInclude Include="Platform.h">
-      <Filter>GameObject\Ground</Filter>
+      <Filter>GameObject\Blocking</Filter>
     </ClInclude>
     <ClInclude Include="RedKoopa.h">
       <Filter>GameObject\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h">
-      <Filter>GameObject\Items</Filter>
-    </ClInclude>
     <ClInclude Include="MarioTail.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEffect.h">
+      <Filter>GameObject\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="HardCollision.h">
+      <Filter>GameObject\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickBroken.h">
+      <Filter>GameObject\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>GameObject\Blocking</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

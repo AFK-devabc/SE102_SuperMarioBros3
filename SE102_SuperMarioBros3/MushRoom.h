@@ -8,7 +8,7 @@ class CMushRoom :
 public:
 	int startY;
 public:
-	CMushRoom(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
+	CMushRoom(D3DXVECTOR2 position) : CGameObject(position) {
 		velocity = D3DXVECTOR2(0, -0.02f);
 		state = MUSHROOM_STATE_INSIDE;
 		startY = position.y;
@@ -21,7 +21,6 @@ public:
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
 
 };
 

@@ -122,19 +122,19 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				}
 				case OBJECT_TYPE_GOOMBA:
 				{	
-					gameObject = new CGoomba(position, NULL);
+					gameObject = new CGoomba(position);
 				break;
 				}
 				case OBJECT_TYPE_KOOPA:
 				{
-					gameObject = new CKoopa(position, NULL);
+					gameObject = new CKoopa(position);
 					break;
 				}
 				case OBJECT_TYPE_RED_KOOPA:
 				{
-					LPGAMEOBJECT block = new CBlock(position, NULL);
+					LPGAMEOBJECT block = new CBlock(position);
 
-					gameObject = new CRedKoopa(position, block,NULL);
+					gameObject = new CRedKoopa(position, block);
 					LPGameObject.push_back(block);
 					break;
 				}
@@ -292,4 +292,9 @@ void CPlayScene::PurgeDeletedObjects()
 void CPlayScene::AddGameObject(LPGAMEOBJECT gameObject)
 {
 	LPGameObject.insert(LPGameObject.begin(), gameObject);
+}
+
+void CPlayScene::AddGameEffect(LPGAMEOBJECT gameObject)
+{
+	LPGameObject.push_back(gameObject);
 }

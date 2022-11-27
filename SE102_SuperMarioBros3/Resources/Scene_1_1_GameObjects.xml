@@ -2,10 +2,10 @@
 
 <Root name="Scene 1_1" >
 	<GameObject objType="0000" name="Mario" x="10" y ="10"/>
-	<GameObject objType="20000" name="Goomba" x="50" y ="50"/>
-	<GameObject objType="30000" name="Koopa" x="80" y ="50"/>
+	<!--<GameObject objType="20000" name="Goomba" x="50" y ="50"/>-->
+	<!--<GameObject objType="30000" name="Koopa" x="80" y ="50"/>-->
 	<GameObject objType="30001" name="RedKoopa" x="300" y ="50"/>
-	<GameObject objType="30001" name="RedKoopa" x="96" y ="50"/>
+	<GameObject objType="30001" name="RedKoopa" x="50" y ="50"/>
 
 
 	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="150"/>

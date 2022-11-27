@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "GameObjectType.h"
 class CBrick :
     public CGameObject
 {
@@ -9,8 +10,9 @@ private:
 	int behavior;
 	int hitted = 0;
 	int itemContain = 0;
+	int isDeleteNextFrame = 0;
 public:
-	CBrick(D3DXVECTOR2 position, int behavior, int itemContain = 0, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
+	CBrick(D3DXVECTOR2 position, int behavior, int itemContain = 0) : CGameObject(position) {
 		this->behavior = behavior;
 		initialposition = position;
 		velocity = D3DXVECTOR2(0, 0);
@@ -24,5 +26,12 @@ public:
 	void SetState(int state, int islookright = 0);
 	int GetItemContain() { return itemContain; }
 	void Hit(int type = 1);
+	int isHitted() { return hitted; }
+
+	virtual int IsCollidable() { return 1; };
+	virtual int IsBlocking() { return 1; }
+
+	void DropItems();
+
 };
 

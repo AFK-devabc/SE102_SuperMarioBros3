@@ -18,13 +18,12 @@ protected:
 
 	// This should be a pointer to an object containing all graphic/sound/audio assets for rendering this object. 
 	// For now, just a pointer to a single texture	
-	LPTEXTURE texture;
 	int state;
 
 	bool isDeleted;
 
 public:
-	CGameObject(D3DXVECTOR2 position = D3DXVECTOR2(0, 0), LPTEXTURE texture = NULL);
+	CGameObject(D3DXVECTOR2 position = D3DXVECTOR2(0, 0));
 
 	void SetPosition(D3DXVECTOR2 position) { this->position = position; }
 	D3DXVECTOR2 GetPosition() { return position; }
@@ -60,9 +59,8 @@ public:
 	virtual void IsCollidingWith(LPGAMEOBJECT e) {};
 
 	// Is this object blocking other object? If YES, collision framework will automatically push the other object
-	virtual int IsBlocking() { return 1; }
+	virtual int IsBlocking() { return 0; }
 
-	virtual void Attacked() {};
 	~CGameObject();
 };
 

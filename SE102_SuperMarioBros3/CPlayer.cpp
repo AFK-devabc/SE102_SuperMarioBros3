@@ -140,13 +140,13 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 
 	if (dynamic_cast<CGoomba*>(e->obj))
 		OnCollisionWithGoomba(e);
-	if (dynamic_cast<CBrick*>(e->obj))
+	else if (dynamic_cast<CBrick*>(e->obj))
 		OnCollisionWithBrick(e);
-	if (dynamic_cast<CMushRoom*>(e->obj))
+	else if (dynamic_cast<CMushRoom*>(e->obj))
 		OnCollisionWithMushroom(e);
-	if (dynamic_cast<CRedLeaf*>(e->obj))
+	else if (dynamic_cast<CRedLeaf*>(e->obj))
 		OnCollisionWithRedLeaf(e);
-	if (dynamic_cast<CKoopa*>(e->obj))
+	else if (dynamic_cast<CKoopa*>(e->obj))
 		OnCollisionWithKoopa(e);
 
 
@@ -211,14 +211,12 @@ void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 				break;
 			}
 		}
+		
 	}
-	else // hit by Goomba
+	else if (untouchable == 0 && e->nx !=0)// hit by Goomba
 	{
-		 if (untouchable == 0 )
-		{
-			if (koopa->GetState() != GAME_OBJECT_STATE_DIE && koopa->GetState() != KOOPA_STATE_INSIDE_SHELL)
-				Attacked();
-		}
+		if (koopa->GetState() != GAME_OBJECT_STATE_DIE && koopa->GetState() != KOOPA_STATE_INSIDE_SHELL)
+			Attacked();
 	}
 
 }
@@ -226,29 +224,9 @@ void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 void CPlayer::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
 	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
-	if (e->ny > 0) {
+	if (e->ny > 0) 
+	{
 		brick->Hit(1);
-		switch (brick->GetItemContain())
-		{
-		case OBJECT_TYPE_MUSHROOM: {
-			if (marioType != BIG_MARIO)
-			{
-				LPGAMEOBJECT mushroom = new CMushRoom(brick->GetPosition());
-				CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
-				playscene->AddGameObject(mushroom);
-			}
-			else
-			{
-				LPGAMEOBJECT redLeaf = new CRedLeaf(brick->GetPosition());
-				CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
-				playscene->AddGameObject(redLeaf);
-
-			}
-			break;
-		}
-		default:
-			break;
-		}
 	}
 	else if (e->ny < 0 && brick->GetBehavior() == OBJECT_TYPE_MUSIC_NOTE)
 	{

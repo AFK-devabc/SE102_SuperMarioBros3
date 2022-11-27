@@ -11,7 +11,7 @@ protected:
 	ULONGLONG die_start;
 
 public:
-	CGoomba(D3DXVECTOR2 position, LPTEXTURE texture) : CGameObject(position, texture) {
+	CGoomba(D3DXVECTOR2 position) : CGameObject(position) {
 		this->velocity = D3DXVECTOR2(Goomba_Walking_Speed,0);
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
@@ -26,7 +26,6 @@ public:
 	virtual int IsBlocking() { return 0; }
 	void SetState(int state, int islookright = 0);
 
-	virtual void Attacked();
 
 };
 

@@ -6,6 +6,7 @@
 			<Sprites spriteID = "CloudBegin"	x="390" y="117" w="16" h="16"/>
 			<Sprites spriteID = "CloudMidder"	x="409" y="117" w="16" h="16"/>
 			<Sprites spriteID = "CloudEnd"		x="427" y="117" w="16" h="16"/>
+		
 		</Animations>
 		<Animations  aniID="10000" frameTime ="200">
 			<Sprites spriteID = "Brick_0" x="300" y="135" w="16" h="16"/>
@@ -20,6 +21,10 @@
 			<Sprites spriteID = "Question_Mark_2" x="336" y="117" w="16" h="16"/>
 			<Sprites spriteID = "Question_Mark_3" x="354" y="117" w="16" h="16"/>
 		</Animations>
+		<Animations  aniID="10050" frameTime ="200">
+			<Sprites spriteID = "Question_Mark_Empty_0" x="372" y="117" w="16" h="16"/>
+		</Animations>
+
 		<Animations  aniID="10020" frameTime ="9999">
 			<Sprites spriteID = "Music_Note_0" x="300" y="154" w="16" h="16"/>
 		</Animations>
@@ -28,6 +33,15 @@
 		</Animations>
 		<Animations  aniID="10040" frameTime ="9999">
 			<Sprites spriteID = "RedLeaf_0" x="300" y="208" w="16" h="14"/>
+		</Animations>
+		<Animations  aniID="9900" frameTime ="9999">
+			<Sprites spriteID = "Brick_Effects_0" x="484" y="120" w="7" h="7"/>
+		</Animations>
+		<Animations  aniID="9901" frameTime ="70">
+			<Sprites spriteID = "Attack_Effects_0" x="587" y="45" w="11" h="11"/>
+			<Sprites spriteID = "Attack_Effects_1" x="602" y="45" w="11" h="11"/>
+			<Sprites spriteID = "Attack_Effects_2" x="623" y="48" w="4" h="4"/>
+
 		</Animations>
 
 	</Textures>

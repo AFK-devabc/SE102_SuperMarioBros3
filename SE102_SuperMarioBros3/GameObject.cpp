@@ -7,11 +7,11 @@
 /*
 	Initialize game object
 */
-CGameObject::CGameObject(D3DXVECTOR2 position, LPTEXTURE tex)
+CGameObject::CGameObject(D3DXVECTOR2 position)
 {
 	this->position = position;
 	this->velocity = D3DXVECTOR2(0, 0);
-	this->texture = tex;
+	this->isDeleted = false;
 }
 
 void CGameObject::RenderBoundingBox()
@@ -41,7 +41,6 @@ void CGameObject::Render()
 
 CGameObject::~CGameObject()
 {
-	if (texture != NULL) delete texture;
 }
 
 

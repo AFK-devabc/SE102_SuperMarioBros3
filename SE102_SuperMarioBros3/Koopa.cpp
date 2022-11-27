@@ -2,6 +2,7 @@
 #include "DefineInfo.h"
 #include "GameObjectType.h"
 #include "Goomba.h"
+#include "Brick.h"
 
 void CKoopa::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
@@ -53,6 +54,17 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 		velocity.y = 0;
 		if (e->ny < 0) isOnPlatform = true;
 
+		if (dynamic_cast<CBrick*>(e->obj) )
+		{
+			CBrick* brick = dynamic_cast<CBrick*>(e->obj); 
+			if (brick->isHitted())
+			{
+				SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
+				SetState(KOOPA_STATE_INSIDE_SHELL);
+			}
+		}
+
+
 	}
 
 	if (e->nx != 0 && e->obj->IsBlocking())
@@ -65,7 +77,7 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 	{
 		if (dynamic_cast<CGoomba*>(e->obj))
 			OnCollisionWithGoomba(e);
-		if (dynamic_cast<CKoopa*>(e->obj))
+		else if (dynamic_cast<CKoopa*>(e->obj))
 			OnCollisionWithKoopa(e);
 
 
@@ -88,7 +100,7 @@ void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 	}
 	else if(koopa->GetState() != KOOPA_STATE_ROLLING)
 	{
-		koopa->SetSpeed(koopa->GetVelocity().x, -MARIO_JUMP_DEFLECT_SPEED);
+		koopa->SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
 		koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
 	}
 }
@@ -114,16 +126,3 @@ void CKoopa::SetState(int state, int isGoingRight)
 	}
 }
 
-void CKoopa::Attacked()
-{
-	if (state == KOOPA_STATE_INSIDE_SHELL)
-	{
-		this->SetState(KOOPA_STATE_ROLLING);
-	}
-	else if (state != KOOPA_STATE_ROLLING)
-	{
-		this->SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
-		this->SetState(KOOPA_STATE_INSIDE_SHELL);
-	}
-
-}

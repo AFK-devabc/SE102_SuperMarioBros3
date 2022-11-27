@@ -6,7 +6,7 @@ class CMarioTail :
 private: 
 	DWORD startTime;
 public:
-	CMarioTail(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
+	CMarioTail(D3DXVECTOR2 position) : CGameObject(position) {
 		startTime = GetTickCount64();
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
@@ -14,7 +14,10 @@ public:
 	void Render();
 
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
+
 	virtual void IsCollidingWith(LPGAMEOBJECT e);
+	void OnCollisionWithGoomba(LPGAMEOBJECT e);
+	void OnCollisionWithKoopa(LPGAMEOBJECT e);
+	void OnCollisionWithBrick(LPGAMEOBJECT e);
 };
 

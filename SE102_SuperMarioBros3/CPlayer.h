@@ -21,7 +21,7 @@ protected:
 	int isAttacking = 0;
 	DWORD attack_start;
 public :
-	CPlayer(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
+	CPlayer(D3DXVECTOR2 position) : CGameObject(position) {
 		maxVx = 1;
 		Ax = 0;
 		DWORD attack_start = 0;
@@ -37,7 +37,6 @@ public :
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
-
 	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 	void OnCollisionWithMushroom(LPCOLLISIONEVENT e);
 	void OnCollisionWithRedLeaf(LPCOLLISIONEVENT e);
@@ -60,6 +59,7 @@ public :
 	void OnKeyUp(int KeyCode);
 
 	void SetMarioType( int type);
+	int GetMarioType() { return marioType; }
 
 };
 

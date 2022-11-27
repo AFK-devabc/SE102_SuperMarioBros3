@@ -78,13 +78,6 @@ void CGoomba::SetState(int state, int islookright)
 {
 	this->state = state;
 	if(state != GOOMBA_STATE_WALKING)
-	die_start = GetTickCount64();
+		die_start = GetTickCount64();
 	this->position.y = position.y + 16 / 2;
-}
-
-void CGoomba::Attacked()
-{
-	this->SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
-	this->SetState(GAME_OBJECT_STATE_DIE);
-
 }

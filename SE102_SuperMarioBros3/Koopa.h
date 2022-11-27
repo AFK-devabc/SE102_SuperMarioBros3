@@ -10,7 +10,7 @@ protected :
 	ULONGLONG die_start;
 
 public:
-	CKoopa(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
+	CKoopa(D3DXVECTOR2 position) : CGameObject(position) {
 		velocity = D3DXVECTOR2(Goomba_Walking_Speed, 0);
 		state = KOOPA_STATE_WING;
 	};
@@ -24,10 +24,9 @@ public:
 	virtual void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
 
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return (state == KOOPA_STATE_INSIDE_SHELL || state == KOOPA_STATE_ROLLING); }
+	virtual int IsBlocking() { return 0; }
 	virtual void SetState(int state, int isGoingRight = 0);
 
-	virtual void Attacked();
 
 };
 

@@ -4,7 +4,7 @@ class CBlock :
     public CGameObject
 {
 public:
-		CBlock(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
+		CBlock(D3DXVECTOR2 position) : CGameObject(position) {
 			velocity = D3DXVECTOR2(0, 0);
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);

@@ -10,7 +10,7 @@ private:
 	int startX;
 	float ax = 0.001f;
 public:
-	CRedLeaf(D3DXVECTOR2 position, LPTEXTURE texture = NULL) : CGameObject(position, texture) {
+	CRedLeaf(D3DXVECTOR2 position) : CGameObject(position) {
 		velocity = D3DXVECTOR2(0,-0.1f);
 		state = MUSHROOM_STATE_INSIDE;
 		startY = position.y;
@@ -22,7 +22,6 @@ public:
 	void Render();
 
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
 
 	void Hit(int type = 1);
 

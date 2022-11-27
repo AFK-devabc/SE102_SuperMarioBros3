@@ -24,10 +24,12 @@ class CPlatform :
 
 		void GetBoundingBox(float& l, float& t, float& r, float& b);
 
-
 		void Render();
 		void Update(DWORD dt) {}
-		//void GetBoundingBox(float& l, float& t, float& r, float& b);
+
+		virtual int IsCollidable() { return 1; };
+		virtual int IsBlocking() { return 1; }
+
 	};
 
 	typedef CPlatform* LPPLATFORM;
