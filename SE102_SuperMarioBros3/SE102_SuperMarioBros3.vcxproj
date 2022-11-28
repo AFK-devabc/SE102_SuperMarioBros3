@@ -137,6 +137,7 @@
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="BrickBroken.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CColorBox.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="Goomba.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Brick.h" />
     <ClInclude Include="BrickBroken.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CColorBox.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="GameEffect.h" />

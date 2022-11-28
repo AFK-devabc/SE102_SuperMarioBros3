@@ -25,7 +25,6 @@ class CPlatform :
 		void GetBoundingBox(float& l, float& t, float& r, float& b);
 
 		void Render();
-		void Update(DWORD dt) {}
 
 		virtual int IsCollidable() { return 1; };
 		virtual int IsBlocking() { return 1; }

@@ -2,7 +2,6 @@
 #include "GameObject.h"
 
 #include "debug.h"
-
 #define BLOCK_PUSH_FACTOR 0.4f
 
 CCollision* CCollision::__instance = NULL;
@@ -318,16 +317,42 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 		else
 			if (colX != NULL)
 			{
-				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
-				y += dy;
-				objSrc->OnCollisionWith(colX);
+				if (colX->obj->IsBlocking() != 2)
+				{
+					x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+					y += dy;
+					objSrc->OnCollisionWith(colX);
+				}
+				else // both colX & colY are NULL 
+				{
+					x += dx;
+					y += dy;
+				}
+
 			}
 			else
 				if (colY != NULL)
 				{
-					x += dx;
-					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-					objSrc->OnCollisionWith(colY);
+					if (colY->obj->IsBlocking() != 2)
+					{
+						x += dx;
+						y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+						objSrc->OnCollisionWith(colY);
+					}
+					else {
+						if (colY->ny < 0)
+						{
+							x += dx;
+							y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+							objSrc->OnCollisionWith(colY);
+						}
+						else // both colX & colY are NULL 
+						{
+							x += dx;
+							y += dy;
+						}
+					}
+					
 				}
 				else // both colX & colY are NULL 
 				{

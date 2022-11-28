@@ -163,6 +163,15 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObject = new CPlatform(x, y, w, h, num, spriteBegin, spriteMidder, spriteEnd);
 					break;
 				}
+				case OBJECT_TYPE_COLORBOX:
+				{
+					int w = 0, h = 0;
+					gameObjectNode->QueryIntAttribute("w", &w);
+					gameObjectNode->QueryIntAttribute("h", &h);
+					gameObject = new CColorBox(x, y, w, h);
+					break;
+				}
+
 				default:
 				{
 					gameObject = NULL;

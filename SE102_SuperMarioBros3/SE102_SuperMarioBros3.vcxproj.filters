@@ -138,6 +138,9 @@
     <ClCompile Include="Block.cpp">
       <Filter>GameObject\Blocking</Filter>
     </ClCompile>
+    <ClCompile Include="CColorBox.cpp">
+      <Filter>GameObject\Blocking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -246,6 +249,9 @@
       <Filter>GameObject\Effects</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
+      <Filter>GameObject\Blocking</Filter>
+    </ClInclude>
+    <ClInclude Include="CColorBox.h">
       <Filter>GameObject\Blocking</Filter>
     </ClInclude>
   </ItemGroup>

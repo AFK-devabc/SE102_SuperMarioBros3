@@ -63,8 +63,8 @@ void CBrick::Render()
 	case OBJECT_TYPE_MUSIC_NOTE:
 		CAnimations::GetInstance()->Get(to_string(OBJECT_TYPE_MUSIC_NOTE))->Render(position);
 		break;
-	case OBJECT_TYPE_QUESTION_MARK_Empty:
-		CAnimations::GetInstance()->Get(to_string(OBJECT_TYPE_QUESTION_MARK_Empty))->Render(position);
+	case OBJECT_TYPE_QUESTION_MARK_EMPTY:
+		CAnimations::GetInstance()->Get(to_string(OBJECT_TYPE_QUESTION_MARK_EMPTY))->Render(position);
 		break;
 
 	default:
@@ -111,7 +111,7 @@ void CBrick::Hit(int type)
 		{
 			velocity = D3DXVECTOR2(0, -BRICK_DEFLECT_SPEED);
 			DropItems();
-			this->behavior = OBJECT_TYPE_QUESTION_MARK_Empty;
+			this->behavior = OBJECT_TYPE_QUESTION_MARK_EMPTY;
 			break;
 
 		}

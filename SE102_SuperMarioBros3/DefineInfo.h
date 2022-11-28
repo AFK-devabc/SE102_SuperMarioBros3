@@ -13,6 +13,7 @@
 
 #pragma region GameFpsRate
 #define MAX_FRAME_RATE			100
+#define BLOCK_PUSH_FACTOR 0.4f
 #pragma endregion
 
 #pragma region DirectInput

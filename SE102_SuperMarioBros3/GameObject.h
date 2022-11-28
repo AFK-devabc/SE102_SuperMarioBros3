@@ -59,6 +59,7 @@ public:
 	virtual void IsCollidingWith(LPGAMEOBJECT e) {};
 
 	// Is this object blocking other object? If YES, collision framework will automatically push the other object
+	// Is this object block all side or only top side ? 1 = All side, 2 = top side only
 	virtual int IsBlocking() { return 0; }
 
 	~CGameObject();

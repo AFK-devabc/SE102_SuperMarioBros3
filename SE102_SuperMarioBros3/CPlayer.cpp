@@ -9,6 +9,7 @@
 #include "GameObjectType.h"
 #include "Scenes.h"
 #include "PlayScene.h"
+#include "CColorBox.h"
 
 
  int CPlayer::GetAniID()
@@ -127,7 +128,7 @@ void CPlayer::OnNoCollision(DWORD dt)
 
 void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 {
-	if (e->ny != 0 && e->obj->IsBlocking())
+	if (e->ny != 0 && e->obj->IsBlocking() )
 	{
 		velocity.y = 0;
 		if (e->ny < 0) isOnPlatform = true;
@@ -148,6 +149,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithRedLeaf(e);
 	else if (dynamic_cast<CKoopa*>(e->obj))
 		OnCollisionWithKoopa(e);
+	//else if (dynamic_cast<CColorBox*>(e->obj))
+	//	OnCollisionWithColorBox(e);
 
 
 }
@@ -251,6 +254,18 @@ void CPlayer::OnCollisionWithRedLeaf(LPCOLLISIONEVENT e)
 	SetMarioType(CAT_MARIO);
 
 }
+
+//void CPlayer::OnCollisionWithColorBox(LPCOLLISIONEVENT e)
+//{
+//	if (e->ny < 0) 
+//	{
+//		position.x += velocity.x;
+//		//position.y += e->t * velocity.y + e->ny * BLOCK_PUSH_FACTOR;
+//		velocity.y = 0;
+//		isOnPlatform = true;
+//
+//	}
+//}
 
 
 void CPlayer::Attacked()

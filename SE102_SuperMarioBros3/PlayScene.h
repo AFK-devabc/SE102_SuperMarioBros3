@@ -13,6 +13,7 @@
 #include "Koopa.h"
 #include "RedKoopa.h"
 #include "Block.h"
+#include "CColorBox.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"
