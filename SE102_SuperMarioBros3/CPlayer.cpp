@@ -109,6 +109,13 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 
 	}
 	CCollision::GetInstance()->Process(this, dt, coObjects);
+
+	//if (position.y >= 185)
+	//{
+	//	isOnPlatform = true;
+	//	position.y = 185;
+	//	velocity.y = 0;
+	//}
 }
 
 void CPlayer::Render()

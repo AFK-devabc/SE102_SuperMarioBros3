@@ -2,24 +2,27 @@
 
 <Root name="Scene 1_1" >
 	<GameObject objType="0000" name="Mario" x="10" y ="10"/>
-	<!--<GameObject objType="20000" name="Goomba" x="50" y ="50"/>-->
-	<!--<GameObject objType="30000" name="Koopa" x="80" y ="50"/>-->
-	<!--<GameObject objType="30001" name="RedKoopa" x="300" y ="50"/>
+	<!--<GameObject objType="20000" name="Goomba" x="50" y ="50"/>
+	<GameObject objType="30000" name="Koopa" x="80" y ="50"/>
+	<GameObject objType="30001" name="RedKoopa" x="300" y ="50"/>
 	<GameObject objType="30001" name="RedKoopa" x="50" y ="50"/>-->
 
 
 	<GameObject objType="10060" name="ColorBox" x="100" y ="160" w="100" h="20"/>
 
 	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="150"/>
-	<!--<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="100" y ="150"/>
+	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="166"/>
+	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="172"/>
+
+	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="100" y ="150"/>
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="116" y ="150"/>
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="132" y ="150"/>
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="148" y ="150"/>
-	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="164" y ="150"/>-->
+	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="164" y ="150"/>
 
 	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="200" y ="150"/>
 	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="200" y ="184"/>
 	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="0" y ="184"/>
 
-	<GameObject objType="90000" name="platform" x="0" y ="200" w="14" h="16" num="50" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
+	<!--<GameObject objType="90000" name="platform" x="0" y ="200" w="14" h="16" num="50" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>-->
 </Root>
