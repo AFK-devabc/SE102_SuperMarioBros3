@@ -40,7 +40,7 @@ public :
 	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 	void OnCollisionWithMushroom(LPCOLLISIONEVENT e);
 	void OnCollisionWithRedLeaf(LPCOLLISIONEVENT e);
-	//void OnCollisionWithColorBox(LPCOLLISIONEVENT e);
+	void OnCollisionWithPortal(LPCOLLISIONEVENT e);
 
 	int IsCollidable()
 	{

@@ -22,5 +22,15 @@ public:
 	void Add(string id, LPCWSTR filePath);
 	LPTEXTURE Get(string i);
 	static CTextures* GetInstance();
+	
+	void Clear()
+	{
+		for (auto x : textures)
+		{
+			LPTEXTURE ani = x.second;
+			delete ani;
+		}
+		textures.clear();
+	}
 
 };

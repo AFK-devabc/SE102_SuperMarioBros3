@@ -43,6 +43,8 @@ void CGame::Update(DWORD dt)
 	scenes->GetCurrentScene()->Update(dt);
 
 	camera->Update(dt);
+	scenes->SwitchScene();
+
 }
 
 void CGame::Render()

@@ -147,6 +147,7 @@
     <ClCompile Include="MushRoom.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="RedKoopa.cpp" />
     <ClCompile Include="RedLeaf.cpp" />
     <ClCompile Include="Scenes.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="MushRoom.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="RedKoopa.h" />
     <ClInclude Include="RedLeaf.h" />
     <ClInclude Include="Scene.h" />
@@ -210,6 +212,8 @@
     <Xml Include="Resources\Scenes.xml" />
     <Xml Include="Resources\Scene_1_1.xml" />
     <Xml Include="Resources\Scene_1_1_GameObjects.xml" />
+    <Xml Include="Resources\Scene_1_2.xml" />
+    <Xml Include="Resources\Scene_1_2_GameObjects.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

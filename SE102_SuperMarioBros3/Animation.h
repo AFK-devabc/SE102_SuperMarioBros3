@@ -19,6 +19,10 @@ public:
 	CAnimation(int defaultTime) { this->defaultTime = defaultTime; lastFrameTime = -1; currentFrame = -1; }
 	void Add(string spriteId, DWORD time = 0);
 	void Render(D3DXVECTOR2 position, bool flipX = false);
+	~CAnimation()
+	{
+		frames.clear();
+	}
 };
 
 typedef CAnimation* LPANIMATION;

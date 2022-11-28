@@ -10,6 +10,17 @@ CSprites* CSprites::GetInstance()
 	return __instance;
 }
 
+void CSprites::Clear()
+{
+	for (auto x : sprites)
+	{
+		LPSPRITE s = x.second;
+		delete s;
+	}
+
+	sprites.clear();
+}
+
 void CSprites::Add(string id, int left, int top, int width, int height, LPTEXTURE tex)
 {
 	LPSPRITE s = new CSprite(left,top, width, height, tex);

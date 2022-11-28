@@ -14,6 +14,7 @@
 #include "RedKoopa.h"
 #include "Block.h"
 #include "CColorBox.h"
+#include "Portal.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"
@@ -41,7 +42,6 @@ public:
 
 	LPGAMEOBJECT GetPlayer() { return player; }
 
-	void Clear();
 	void PurgeDeletedObjects();
 
 	void AddGameObject(LPGAMEOBJECT gameObject);

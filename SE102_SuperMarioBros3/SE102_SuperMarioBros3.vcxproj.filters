@@ -141,6 +141,9 @@
     <ClCompile Include="CColorBox.cpp">
       <Filter>GameObject\Blocking</Filter>
     </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -254,6 +257,9 @@
     <ClInclude Include="CColorBox.h">
       <Filter>GameObject\Blocking</Filter>
     </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\Enemies.xml">
@@ -272,6 +278,12 @@
       <Filter>Resource Files</Filter>
     </Xml>
     <Xml Include="Resources\Scenes.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene_1_2.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene_1_2_GameObjects.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>

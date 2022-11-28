@@ -5,7 +5,7 @@ CPlayScene::CPlayScene(string id, string filePath) :
 	CScene(id, filePath)
 {
 	player = NULL;
-	LPKeyHandler.clear();
+
 }
 
 void CPlayScene::LoadAssets(const char* filePath)
@@ -171,6 +171,13 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObject = new CColorBox(x, y, w, h);
 					break;
 				}
+				case OBJECT_TYPE_PORTAL:
+				{
+					string nextScene = gameObjectNode->Attribute("nextScene");
+
+					gameObject = new CPortal(x, y,nextScene);
+					break;
+				}
 
 				default:
 				{
@@ -195,7 +202,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 void CPlayScene::Load()
 {
 	DebugOut(L"[INFO] Start loading scene from : \"%s\"\n", ToLPCWSTR(sceneFilePath));
-
+	LPKeyHandler.clear();
 	TiXmlDocument doc(sceneFilePath.c_str());
 	if (doc.LoadFile())
 	{

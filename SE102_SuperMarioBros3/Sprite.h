@@ -12,7 +12,6 @@ class CSprite
 	int width;
 	int height;
 
-	LPTEXTURE texture;
 	D3DX10_SPRITE sprite;
 	D3DXMATRIX matScaling;
 public:
