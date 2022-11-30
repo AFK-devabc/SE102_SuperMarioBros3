@@ -1,6 +1,5 @@
 #include "debug.h"
 #include "Game.h"
-#include "ImportFromXML.h"
 
 
 #include "Platform.h"

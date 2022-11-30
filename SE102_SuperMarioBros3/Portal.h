@@ -25,7 +25,7 @@ public:
 		return nextScene;
 	}
 
-	virtual int IsCollidable() { return 1; };
+	//virtual int IsCollidable() { return 1; };
 
 };
 

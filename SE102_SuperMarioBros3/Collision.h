@@ -5,6 +5,9 @@
 
 using namespace std;
 
+struct  cell;
+typedef cell* LPCELL;
+
 class CGameObject;
 typedef CGameObject* LPGAMEOBJECT;
 

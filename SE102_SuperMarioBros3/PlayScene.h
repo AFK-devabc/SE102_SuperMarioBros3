@@ -21,6 +21,8 @@
 #include "Textures.h"
 #include "Sprites.h"
 
+#include "Grid.h"
+
 class CPlayScene : 
 	public CScene
 {
@@ -29,7 +31,7 @@ protected:
 	 CPlayer* player;
 
 	vector<LPGAMEOBJECT> LPGameObject;
-
+	CGrid* grid;
 	void LoadAssets(const char* filePath);
 	void LoadGameObjects(const char* filePath);
 public:

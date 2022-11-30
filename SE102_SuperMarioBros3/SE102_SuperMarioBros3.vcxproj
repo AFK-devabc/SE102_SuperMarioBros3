@@ -141,6 +141,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="HardCollision.cpp" />
     <ClCompile Include="Koopa.cpp" />
     <ClCompile Include="MarioTail.cpp" />
@@ -179,8 +180,8 @@
     <ClInclude Include="GameEffect.h" />
     <ClInclude Include="GameObjectType.h" />
     <ClInclude Include="Goomba.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="HardCollision.h" />
-    <ClInclude Include="ImportFromXML.h" />
     <ClInclude Include="Koopa.h" />
     <ClInclude Include="MarioTail.h" />
     <ClInclude Include="MushRoom.h" />

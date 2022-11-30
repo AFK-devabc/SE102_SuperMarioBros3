@@ -11,6 +11,8 @@
 class CGameObject
 {
 protected:
+	LPCELL ownerCell = nullptr;
+	int cellVectorIndex = -1;
 
 	D3DXVECTOR2 position;
 	D3DXVECTOR2 velocity;
@@ -43,10 +45,14 @@ public:
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom) = 0;
 
 	void RenderBoundingBox();
-
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL) {};
 	virtual void Render();
 	virtual void SetState(int state) { this->state = state; }
+	
+	void SetOwnerCell(LPCELL cell) { this->ownerCell = cell; }
+	void SetCellVectorIndex(int index) { this->cellVectorIndex = index; }
+	LPCELL GetOwnerCell() { return ownerCell; }
+	int GetCellVectorIndex() { return cellVectorIndex; }
 	//
 	// Collision ON or OFF ? This can change depending on object's state. For example: die
 	//
