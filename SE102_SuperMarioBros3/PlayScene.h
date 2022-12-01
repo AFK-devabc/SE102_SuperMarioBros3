@@ -30,7 +30,6 @@ protected:
 	// A play scene has to have player, right? 
 	 CPlayer* player;
 
-	vector<LPGAMEOBJECT> LPGameObject;
 	CGrid* grid;
 	void LoadAssets(const char* filePath);
 	void LoadGameObjects(const char* filePath);

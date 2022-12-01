@@ -9,12 +9,13 @@ struct  cell
 class CGrid
 {
 private:
-	vector<LPCELL> lpCells;
+	vector<cell> lpCells;
     int cellSize;
     int mapWidth;
     int mapHeight;
     int numXCells;
     int numYCells;
+    int startX, startY, endX, endY;
 public:
     CGrid(int width, int height, int cellSize);
     ~CGrid();
@@ -28,6 +29,11 @@ public:
     /// Gets cell based on window coordinates
     LPCELL GetCell(D3DXVECTOR2 pos);
 
+    void SetCellUpdate( D3DXVECTOR2 start, D3DXVECTOR2 end);
+
+    void Update(DWORD dt);
+    void PurgeDeletedObjects();
+    void Render();
 
     void RemoveGameObjectFromCell(LPGAMEOBJECT gameObject);
 };

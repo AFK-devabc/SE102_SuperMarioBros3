@@ -19,7 +19,7 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 	keyboard = CKeyBoard::GetInstance();
 	graphic = CGraphics::GetInstance();
 	camera = CCamera::GetInstance();
-	 scenes = CScenes::GetInstance();
+	scenes = CScenes::GetInstance();
 
 	keyboard->InitKeyboard(hWnd, this->hInstance);
 	graphic->InitGraphic(hWnd, this->hInstance);

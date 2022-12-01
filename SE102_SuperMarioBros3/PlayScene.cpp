@@ -5,7 +5,6 @@ CPlayScene::CPlayScene(string id, string filePath) :
 	CScene(id, filePath)
 {
 	player = NULL;
-
 }
 
 void CPlayScene::LoadAssets(const char* filePath)
@@ -135,7 +134,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					LPGAMEOBJECT block = new CBlock(position);
 
 					gameObject = new CRedKoopa(position, block);
-					LPGameObject.push_back(block);
+					grid->AddGameObject(block);
 					break;
 				}
 
@@ -146,7 +145,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObjectNode->QueryIntAttribute("behavior", &behavior);
 					gameObjectNode->QueryIntAttribute("itemContain", &itemContain);
 
-					gameObject = new CBrick(position, behavior,itemContain);
+					gameObject = new CBrick(position, behavior, itemContain);
 					break;
 				}
 				case OBJECT_TYPE_CLOUD_PLATFORM:
@@ -175,7 +174,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				{
 					string nextScene = gameObjectNode->Attribute("nextScene");
 
-					gameObject = new CPortal(x, y,nextScene);
+					gameObject = new CPortal(x, y, nextScene);
 					break;
 				}
 
@@ -187,7 +186,9 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				}
 
 				if (gameObject != NULL)
-					LPGameObject.push_back(gameObject);
+					grid->AddGameObject(gameObject);
+
+				gameObject->GetOwnerCell();
 			}
 		}
 	}
@@ -212,17 +213,24 @@ void CPlayScene::Load()
 			for (TiXmlElement* resourcePathNode = Root->FirstChildElement(); resourcePathNode != nullptr; resourcePathNode = resourcePathNode->NextSiblingElement())
 			{
 				const char* resourceType = resourcePathNode->Attribute("Type");
-				const char* filePath = resourcePathNode->Attribute("filePath");
 				if (strcmp(resourceType, "Assets") == 0)
 				{
+					const char* filePath = resourcePathNode->Attribute("filePath");
 					LoadAssets(filePath);
-					continue;
 				}
-				if (strcmp(resourceType, "GameObjects") == 0)
+				else if (strcmp(resourceType, "GameObjects") == 0)
 				{
+					const char* filePath = resourcePathNode->Attribute("filePath");
 					LoadGameObjects(filePath);
-					continue;
 				}
+				else if(strcmp(resourceType, "Grid") == 0)
+				{
+					int w = 0, h = 0, cs = 0;
+					resourcePathNode->QueryIntAttribute("width", &w);
+					resourcePathNode->QueryIntAttribute("height", &h);
+					resourcePathNode->QueryIntAttribute("CellSize", &cs);
+					grid = new CGrid(w, h, cs);
+					}
 			}
 		}
 	}
@@ -246,20 +254,20 @@ void CPlayScene::Update(DWORD dt)
 		{
 			isPausing = 0;
 			player->EndChangingForm();
-		}return;
+		}
+		return;
 	}
-	for (int i = 0; i < LPGameObject.size(); i++)
-	{
-		LPGameObject[i]->Update(dt, &LPGameObject);
-	}
+	CCamera* camera = CCamera::GetInstance();
 
+	grid->SetCellUpdate(camera->GetPosition(), D3DXVECTOR2(303, 202));
+
+	grid->Update(dt);
 	PurgeDeletedObjects();
 }
 
 void CPlayScene::Render()
 {
-	for (int i = 0; i < LPGameObject.size(); i++)
-		LPGameObject[i]->Render();
+	grid->Render();
 }
 
 /*
@@ -274,43 +282,46 @@ void CPlayScene::Render()
 */
 void CPlayScene::Unload()
 {
-	for (int i = 0; i < LPGameObject.size(); i++)
-		delete LPGameObject[i];
+	//for (int i = 0; i < LPGameObject.size(); i++)
+	//	delete LPGameObject[i];
 
-	LPGameObject.clear();
-	player = NULL;
+	//LPGameObject.clear();
+	//player = NULL;
 
-	DebugOut(L"[INFO] Scene %d unloaded! \n", id);
+	//DebugOut(L"[INFO] Scene %d unloaded! \n", id);
 }
 
 bool CPlayScene::IsGameObjectDeleted(const LPGAMEOBJECT& o) { return o == NULL; }
 
 void CPlayScene::PurgeDeletedObjects()
 {
-	vector<LPGAMEOBJECT>::iterator it;
-	for (it = LPGameObject.begin(); it != LPGameObject.end(); it++)
-	{
-		LPGAMEOBJECT o = *it;
-		if (o->IsDeleted())
-		{
-			delete o;
-			*it = NULL;
-		}
-	}
+	grid->PurgeDeletedObjects();
+	//vector<LPGAMEOBJECT>::iterator it;
+	//for (it = LPGameObject.begin(); it != LPGameObject.end(); it++)
+	//{
+	//	LPGAMEOBJECT o = *it;
+	//	if (o->IsDeleted())
+	//	{
+	//		delete o;
+	//		*it = NULL;
+	//	}
+	//}
 
-	// NOTE: remove_if will swap all deleted items to the end of the vector
-	// then simply trim the vector, this is much more efficient than deleting individual items
-	LPGameObject.erase(
-		std::remove_if(LPGameObject.begin(), LPGameObject.end(), CPlayScene::IsGameObjectDeleted),
-		LPGameObject.end());
+	//// NOTE: remove_if will swap all deleted items to the end of the vector
+	//// then simply trim the vector, this is much more efficient than deleting individual items
+	//LPGameObject.erase(
+	//	std::remove_if(LPGameObject.begin(), LPGameObject.end(), CPlayScene::IsGameObjectDeleted),
+	//	LPGameObject.end());
 }
 
 void CPlayScene::AddGameObject(LPGAMEOBJECT gameObject)
 {
-	LPGameObject.insert(LPGameObject.begin(), gameObject);
+	grid->AddGameObject(gameObject);
+	//LPGameObject.insert(LPGameObject.begin(), gameObject);
 }
 
 void CPlayScene::AddGameEffect(LPGAMEOBJECT gameObject)
 {
-	LPGameObject.push_back(gameObject);
+	grid->AddGameObject(gameObject);
+	//LPGameObject.push_back(gameObject);
 }
