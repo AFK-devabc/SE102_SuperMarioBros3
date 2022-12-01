@@ -11,8 +11,9 @@
 	<GameObject objType="10060" name="ColorBox" x="100" y ="160" w="100" h="20"/>
 
 	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="150"/>
-	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="166"/>
-	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="172"/>
+	<!--<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="166"/>
+	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="172"/>-->
+	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="184"/>-->
 
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="100" y ="150"/>
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="116" y ="150"/>

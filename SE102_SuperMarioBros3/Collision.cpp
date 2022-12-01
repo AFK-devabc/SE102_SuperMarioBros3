@@ -413,8 +413,6 @@ void CCollision::ProcessIsColliding(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAME
 
 	for (UINT i = 0; i < coObjects->size(); i++)
 	{
-		if (coObjects->at(i)->IsCollidable()!=0)
-		{
 			coObjects->at(i)->GetBoundingBox(l, t, r, b);
 
 			if (SweptAABBIsColliding(sl,			// objSrc left 
@@ -426,8 +424,6 @@ void CCollision::ProcessIsColliding(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAME
 				r,
 				b))
 				objSrc->IsCollidingWith(coObjects->at(i));
-		}
-
 	}
 
 

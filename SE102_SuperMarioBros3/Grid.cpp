@@ -89,9 +89,9 @@ void CGrid::Update(DWORD dt)
         for (int j = startY; j < endY;j++)
         {
             cell cell = lpCells[i + numXCells * j];
-            for (int k = 0; k < cell.lpGameObjects.size(); k++)
+            for (int k = 0; k < cell.lpGameObjects.size(); k++)  //Updating gameobject
             {
-                //Updating gameobject
+              
                 LPGAMEOBJECT gameObject = cell.lpGameObjects[k];
 
 
@@ -99,52 +99,74 @@ void CGrid::Update(DWORD dt)
                 cellLPGameObject.clear();
                 //Get object in objectCell
                 cellLPGameObject.insert(cellLPGameObject.end(), cell.lpGameObjects.begin(), cell.lpGameObjects.end());
-                int flag = 0;
+                int flag = 1;
                 if (i > 0 && i > startX)
                 {
-                    flag = 1;
+                    flag = 0;
                     //Get object in objectCell left
-                    cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i -1 + numXCells * j].lpGameObjects.begin(), lpCells[i -1 + numXCells * j].lpGameObjects.end());
+                    cellLPGameObject.insert(cellLPGameObject.end(), 
+                        lpCells[i -1 + numXCells * j].lpGameObjects.begin(), 
+                        lpCells[i -1 + numXCells * j].lpGameObjects.end());
                     if (j > 0 && j > startY)
                     {
                         //Get object in objectCell topleft, top
-                        cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i  + numXCells * (j - 1)].lpGameObjects.begin(), lpCells[i + numXCells * (j - 1)].lpGameObjects.end());
-                        cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i - 1 + numXCells * (j-1)].lpGameObjects.begin(), lpCells[i - 1 + numXCells * (j - 1)].lpGameObjects.end());
+                        cellLPGameObject.insert(cellLPGameObject.end(),
+                            lpCells[i + numXCells * (j - 1)].lpGameObjects.begin(),
+                            lpCells[i + numXCells * (j - 1)].lpGameObjects.end());
+                        cellLPGameObject.insert(cellLPGameObject.end(),
+                            lpCells[i - 1 + numXCells * (j - 1)].lpGameObjects.begin(),
+                            lpCells[i - 1 + numXCells * (j - 1)].lpGameObjects.end());
                     }
                     if (j <numYCells && j <endY)
                     {
                         //Get object in objectCell bottomLeft, bottom
-                        cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i + numXCells * (j + 1)].lpGameObjects.begin(), lpCells[i + numXCells * (j + 1)].lpGameObjects.end());
-                        cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i - 1 + numXCells * (j + 1)].lpGameObjects.begin(), lpCells[i - 1 + numXCells * (j + 1)].lpGameObjects.end());
+                        cellLPGameObject.insert(cellLPGameObject.end(), 
+                            lpCells[i + numXCells * (j + 1)].lpGameObjects.begin(),
+                            lpCells[i + numXCells * (j + 1)].lpGameObjects.end());
+                        cellLPGameObject.insert(cellLPGameObject.end(),
+                            lpCells[i - 1 + numXCells * (j + 1)].lpGameObjects.begin(),
+                            lpCells[i - 1 + numXCells * (j + 1)].lpGameObjects.end());
                     }
                 }
                 if (i < numXCells && i < endX)
                 {
                     //Get object in objectCell right
-                    cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i + 1 + numXCells * j].lpGameObjects.begin(), lpCells[i + 1 + numXCells * j].lpGameObjects.end());
+                    cellLPGameObject.insert(cellLPGameObject.end(), 
+                        lpCells[i + 1 + numXCells * j].lpGameObjects.begin(), 
+                        lpCells[i + 1 + numXCells * j].lpGameObjects.end());
                     if (j > 0 && j > startY)
                     {
                         //Get object in objectCell top, righttop
                         if (flag)
-                            cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i + numXCells * (j - 1)].lpGameObjects.begin(), lpCells[i + numXCells * (j - 1)].lpGameObjects.end());
-                            cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i + 1 + numXCells * (j - 1)].lpGameObjects.begin(), lpCells[i + 1 + numXCells * (j - 1)].lpGameObjects.end());
+                            cellLPGameObject.insert(cellLPGameObject.end(),
+                                lpCells[i + numXCells * (j - 1)].lpGameObjects.begin(),
+                                lpCells[i + numXCells * (j - 1)].lpGameObjects.end());
+
+                            cellLPGameObject.insert(cellLPGameObject.end(), 
+                                lpCells[i + 1 + numXCells * (j - 1)].lpGameObjects.begin(),
+                                lpCells[i + 1 + numXCells * (j - 1)].lpGameObjects.end());
                     }
                     if (j < numYCells && j < endY)
                     {
                         //Get object in objectCell bottom, rightbottom
                         if (flag)
-                            cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i + numXCells * (j + 1)].lpGameObjects.begin(), lpCells[i + numXCells * (j + 1)].lpGameObjects.end());
-                            cellLPGameObject.insert(cellLPGameObject.end(), lpCells[i + 1 + numXCells * (j + 1)].lpGameObjects.begin(), lpCells[i + 1 + numXCells * (j + 1)].lpGameObjects.end());
+                            cellLPGameObject.insert(cellLPGameObject.end(),
+                                lpCells[i + numXCells * (j + 1)].lpGameObjects.begin(), 
+                                lpCells[i + numXCells * (j + 1)].lpGameObjects.end());
+
+                            cellLPGameObject.insert(cellLPGameObject.end(),
+                                lpCells[i + 1 + numXCells * (j + 1)].lpGameObjects.begin(), 
+                                lpCells[i + 1 + numXCells * (j + 1)].lpGameObjects.end());
                     }
                 }
 
                 gameObject->Update(dt, &cellLPGameObject);
 
-                LPCELL cell = this->GetCell(gameObject->GetPosition());
-                if (cell != gameObject->GetOwnerCell())
+                LPCELL gOCell = this->GetCell(gameObject->GetPosition());
+                if (gOCell != gameObject->GetOwnerCell())
                 {
                     RemoveGameObjectFromCell(gameObject);
-                    AddGameObject(gameObject, cell);
+                    AddGameObject(gameObject, gOCell);
                 }
             }
         }
@@ -154,24 +176,16 @@ void CGrid::PurgeDeletedObjects()
 {
     for (size_t i = 0; i < lpCells.size(); i++)
     {
-        vector<LPGAMEOBJECT>::iterator it = lpCells[i].lpGameObjects.begin();
-        if (it == lpCells[i].lpGameObjects.end())
-            continue;
-        int flag = 1;
-        while (flag)
+        for (int j = 0; j < lpCells[i].lpGameObjects.size(); j++)
         {
-            LPGAMEOBJECT o = *it;
-            it++;
-            if (it == lpCells[i].lpGameObjects.end())
-                flag = 0;
-
+            LPGAMEOBJECT o = lpCells[i].lpGameObjects[j];
             if (o->IsDeleted())
             {
                 RemoveGameObjectFromCell(o);
                 delete o;
             }
-        }
 
+        }
     }
 }
 
@@ -202,7 +216,7 @@ void CGrid::RemoveGameObjectFromCell(LPGAMEOBJECT gameObject)
     if ((size_t)gameObject->GetCellVectorIndex() < lpGameObject.size()) {
         lpGameObject[gameObject->GetCellVectorIndex()]->SetCellVectorIndex(  gameObject->GetCellVectorIndex());
     }
-    // Set the index of ball to -1
+    // Set the index of gameobject to -1
     gameObject->SetCellVectorIndex(-1);
     gameObject->SetOwnerCell(nullptr);
 
