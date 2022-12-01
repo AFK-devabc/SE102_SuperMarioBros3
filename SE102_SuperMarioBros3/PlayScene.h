@@ -14,11 +14,14 @@
 #include "RedKoopa.h"
 #include "Block.h"
 #include "CColorBox.h"
+#include "Portal.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"
 #include "Textures.h"
 #include "Sprites.h"
+
+#include "Grid.h"
 
 class CPlayScene : 
 	public CScene
@@ -27,8 +30,7 @@ protected:
 	// A play scene has to have player, right? 
 	 CPlayer* player;
 
-	vector<LPGAMEOBJECT> LPGameObject;
-
+	CGrid* grid;
 	void LoadAssets(const char* filePath);
 	void LoadGameObjects(const char* filePath);
 public:
@@ -41,7 +43,6 @@ public:
 
 	LPGAMEOBJECT GetPlayer() { return player; }
 
-	void Clear();
 	void PurgeDeletedObjects();
 
 	void AddGameObject(LPGAMEOBJECT gameObject);

@@ -249,10 +249,16 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 		{
 			if (colY->t < colX->t)	// was collision on Y first ?
 			{
-				y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-				objSrc->SetPosition(x, y);
-
-				objSrc->OnCollisionWith(colY);
+				if (!(colY->obj->IsBlocking() == 2 && colY->ny > 0 ))
+				{
+					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+					objSrc->SetPosition(x, y);
+					objSrc->OnCollisionWith(colY);
+				}
+				else
+				{
+					y += dy;
+				}
 
 				//
 				// see if after correction on Y, is there still a collision on X ? 
@@ -270,7 +276,7 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 				// re-filter on X only
 				Filter(objSrc, coEvents, colX_other, colY, /*filterBlock = */ 1, 1, /*filterY=*/0);
 
-				if (colX_other != NULL)
+				if (colX_other != NULL && colX_other->obj->IsBlocking() !=2)
 				{
 					x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
 					objSrc->OnCollisionWith(colX_other);
@@ -282,11 +288,17 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 			}
 			else // collision on X first
 			{
-				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
-				objSrc->SetPosition(x, y);
+				if (colX->obj->IsBlocking() != 2) 
+				{
+					x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+					objSrc->SetPosition(x, y);
 
-				objSrc->OnCollisionWith(colX);
-
+					objSrc->OnCollisionWith(colX);
+				}
+				else
+				{
+					x += dx;
+				}
 				//
 				// see if after correction on X, is there still a collision on Y ? 
 				//
@@ -303,10 +315,10 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 				// re-filter on Y only
 				Filter(objSrc, coEvents, colX, colY_other, /*filterBlock = */ 1, /*filterX=*/0, /*filterY=*/1);
 
-				if (colY_other != NULL)
+				if (colY_other != NULL && !(colY_other->obj->IsBlocking() == 2 && colY_other->ny > 0))
 				{
-					y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
-					objSrc->OnCollisionWith(colY_other);
+						y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
+						objSrc->OnCollisionWith(colY_other);
 				}
 				else
 				{
@@ -377,6 +389,7 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 
 
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
+	coEvents.clear();
 }
 
 bool CCollision::SweptAABBIsColliding(float sl,			// objSrc left 

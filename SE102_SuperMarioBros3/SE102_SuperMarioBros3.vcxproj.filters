@@ -40,15 +40,21 @@
     <Filter Include="GameObject\Blocking">
       <UniqueIdentifier>{4788aacc-60cc-4017-b9c8-f853f5805e8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Others">
+      <UniqueIdentifier>{c508199c-2f12-4b5f-8fac-6b8f4c0c54f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Players">
+      <UniqueIdentifier>{0ce20013-ae83-4442-9a3d-8424649e65f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spatial Partition">
+      <UniqueIdentifier>{67ff69d0-57c2-494c-89c8-8d6fe3711ea2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
@@ -69,12 +75,6 @@
     <ClCompile Include="Sprites.cpp">
       <Filter>Animations</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>PhysicsDevices</Filter>
     </ClCompile>
@@ -92,9 +92,6 @@
     </ClCompile>
     <ClCompile Include="TinyXML\tinyxmlparser.cpp">
       <Filter>TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
@@ -126,9 +123,6 @@
     <ClCompile Include="RedKoopa.cpp">
       <Filter>GameObject\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="MarioTail.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="BrickBroken.cpp">
       <Filter>GameObject\Effects</Filter>
     </ClCompile>
@@ -140,6 +134,27 @@
     </ClCompile>
     <ClCompile Include="CColorBox.cpp">
       <Filter>GameObject\Blocking</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObject\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>GameObject\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>GameObject\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="MarioTail.cpp">
+      <Filter>GameObject\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>GameObject\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Spatial Partition</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,12 +185,6 @@
     <ClInclude Include="Texture.h">
       <Filter>Animations</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayer.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>PhysicsDevices</Filter>
     </ClInclude>
@@ -190,15 +199,6 @@
     </ClInclude>
     <ClInclude Include="TinyXML\tinyxml.h">
       <Filter>TinyXML</Filter>
-    </ClInclude>
-    <ClInclude Include="ImportFromXML.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Scene</Filter>
@@ -236,9 +236,6 @@
     <ClInclude Include="RedKoopa.h">
       <Filter>GameObject\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="MarioTail.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameEffect.h">
       <Filter>GameObject\Effects</Filter>
     </ClInclude>
@@ -253,6 +250,27 @@
     </ClInclude>
     <ClInclude Include="CColorBox.h">
       <Filter>GameObject\Blocking</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObject\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>GameObject\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>GameObject\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioTail.h">
+      <Filter>GameObject\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>GameObject\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Spatial Partition</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +290,12 @@
       <Filter>Resource Files</Filter>
     </Xml>
     <Xml Include="Resources\Scenes.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene_1_2.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene_1_2_GameObjects.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>

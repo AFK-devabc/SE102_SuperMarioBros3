@@ -141,12 +141,14 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="HardCollision.cpp" />
     <ClCompile Include="Koopa.cpp" />
     <ClCompile Include="MarioTail.cpp" />
     <ClCompile Include="MushRoom.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="RedKoopa.cpp" />
     <ClCompile Include="RedLeaf.cpp" />
     <ClCompile Include="Scenes.cpp" />
@@ -178,13 +180,14 @@
     <ClInclude Include="GameEffect.h" />
     <ClInclude Include="GameObjectType.h" />
     <ClInclude Include="Goomba.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="HardCollision.h" />
-    <ClInclude Include="ImportFromXML.h" />
     <ClInclude Include="Koopa.h" />
     <ClInclude Include="MarioTail.h" />
     <ClInclude Include="MushRoom.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="RedKoopa.h" />
     <ClInclude Include="RedLeaf.h" />
     <ClInclude Include="Scene.h" />
@@ -210,6 +213,8 @@
     <Xml Include="Resources\Scenes.xml" />
     <Xml Include="Resources\Scene_1_1.xml" />
     <Xml Include="Resources\Scene_1_1_GameObjects.xml" />
+    <Xml Include="Resources\Scene_1_2.xml" />
+    <Xml Include="Resources\Scene_1_2_GameObjects.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

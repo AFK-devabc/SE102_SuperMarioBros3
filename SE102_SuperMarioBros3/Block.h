@@ -13,7 +13,7 @@ public:
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
-	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
+	virtual int IsCollidable() { return 0; };
+	virtual int IsBlocking() { return 1; }
 };
 

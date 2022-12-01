@@ -1,6 +1,5 @@
 #include "debug.h"
 #include "Game.h"
-#include "ImportFromXML.h"
 
 
 #include "Platform.h"
@@ -20,7 +19,7 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 	keyboard = CKeyBoard::GetInstance();
 	graphic = CGraphics::GetInstance();
 	camera = CCamera::GetInstance();
-	 scenes = CScenes::GetInstance();
+	scenes = CScenes::GetInstance();
 
 	keyboard->InitKeyboard(hWnd, this->hInstance);
 	graphic->InitGraphic(hWnd, this->hInstance);
@@ -43,6 +42,8 @@ void CGame::Update(DWORD dt)
 	scenes->GetCurrentScene()->Update(dt);
 
 	camera->Update(dt);
+	scenes->SwitchScene();
+
 }
 
 void CGame::Render()

@@ -9,9 +9,6 @@ class CScenes
 private:
 	static CScenes* __instance;
 
-
-
-
 	unordered_map<string, LPSCENE> scenes;
 	string currentScene = "";
 	string nextScene = "";
@@ -26,6 +23,7 @@ public:
 	void SwitchScene();
 
 	void InitiateSwitchScene(string id);
+
 
 	static CScenes* GetInstance();
 

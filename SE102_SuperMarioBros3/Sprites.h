@@ -24,5 +24,6 @@ public:
 	LPSPRITE Get(string id);
 
 	static CSprites* GetInstance();
+	void Clear();
 };
 

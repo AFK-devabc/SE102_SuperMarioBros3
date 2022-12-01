@@ -41,5 +41,9 @@ public:
 			this->LPKeyHandler.push_back(LPKeyHandler[i]);
 		}
 	}
+	void Clear()
+	{
+		LPKeyHandler.clear();
+	}
 	~CKeyBoard();
 };

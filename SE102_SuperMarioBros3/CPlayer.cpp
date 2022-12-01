@@ -5,6 +5,7 @@
 #include "RedLeaf.h"
 #include "Koopa.h"
 #include "MarioTail.h"
+#include "Portal.h"
 
 #include "GameObjectType.h"
 #include "Scenes.h"
@@ -109,6 +110,13 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 
 	}
 	CCollision::GetInstance()->Process(this, dt, coObjects);
+
+	//if (position.y >= 185)
+	//{
+	//	isOnPlatform = true;
+	//	position.y = 185;
+	//	velocity.y = 0;
+	//}
 }
 
 void CPlayer::Render()
@@ -149,8 +157,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithRedLeaf(e);
 	else if (dynamic_cast<CKoopa*>(e->obj))
 		OnCollisionWithKoopa(e);
-	//else if (dynamic_cast<CColorBox*>(e->obj))
-	//	OnCollisionWithColorBox(e);
+	else if (dynamic_cast<CPortal*>(e->obj))
+		OnCollisionWithPortal(e);
 
 
 }
@@ -253,6 +261,12 @@ void CPlayer::OnCollisionWithRedLeaf(LPCOLLISIONEVENT e)
 
 	SetMarioType(CAT_MARIO);
 
+}
+
+void CPlayer::OnCollisionWithPortal(LPCOLLISIONEVENT e)
+{
+	CPortal* portal =dynamic_cast<CPortal*>(e->obj);
+	CScenes::GetInstance()->InitiateSwitchScene(portal->GetNextScene());
 }
 
 //void CPlayer::OnCollisionWithColorBox(LPCOLLISIONEVENT e)

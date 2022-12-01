@@ -104,7 +104,6 @@ int WINAPI WinMain(
 	int done = 0;
 	ULONGLONG frameStart = GetTickCount64();
 	ULONGLONG tickPerFrame = 1000 / MAX_FRAME_RATE;
-
 	while (!done)
 	{
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -124,6 +123,8 @@ int WINAPI WinMain(
 		if (dt >= tickPerFrame)
 		{
 			frameStart = now;
+			DebugOutTitle(L"FPS : %f",1000.0 / dt);
+
 			game->Update(dt);
 			game->Render();
 		}

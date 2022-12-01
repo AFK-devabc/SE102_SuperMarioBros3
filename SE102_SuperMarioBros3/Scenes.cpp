@@ -67,8 +67,9 @@ void CScenes::SwitchScene()
 
 	if(currentScene != "")
 	scenes[currentScene]->Unload();
-	//CSprites::GetInstance()->Clear();
-	//CAnimations::GetInstance()->Clear();
+	CSprites::GetInstance()->Clear();
+	CAnimations::GetInstance()->Clear();
+	CKeyBoard::GetInstance()->Clear();
 
 	currentScene = nextScene;
 	LPSCENE s = scenes[nextScene];
