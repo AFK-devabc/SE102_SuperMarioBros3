@@ -17,20 +17,20 @@ CGameObject::CGameObject(D3DXVECTOR2 position)
 void CGameObject::RenderBoundingBox()
 {
 	D3DXVECTOR3 p(position.x, position.y, 0);
-	RECT* rect = new RECT();
+	RECT rect;
 
 	LPTEXTURE bbox = CTextures::GetInstance()->Get("BBox");
 
 	float l, t, r, b;
 
 	GetBoundingBox(l, t, r, b);
-	rect->left = 0;
-	rect->top = 0;
-	rect->right = (int)r - (int)l;
-	rect->bottom = (int)b - (int)t;
+	rect.left = 0;
+	rect.top = 0;
+	rect.right = (int)r - (int)l;
+	rect.bottom = (int)b - (int)t;
 
 	D3DXVECTOR2 campos=	CCamera::GetInstance()->GetPosition();
-	CGraphics::GetInstance()->Draw(position.x - campos.x,position.y - campos.y, bbox, rect);
+	CGraphics::GetInstance()->Draw(position.x - campos.x,position.y - campos.y, bbox, &rect);
 
 }
 

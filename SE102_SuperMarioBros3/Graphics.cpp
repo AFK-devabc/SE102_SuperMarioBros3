@@ -264,7 +264,7 @@ void CGraphics::Draw(float x, float y, LPTEXTURE tex, RECT* rect)
 }
 
 
-void CGraphics::DrawSprite(D3DXVECTOR2* position, D3DX10_SPRITE* sprite, D3DXMATRIX* matScaling, bool flipx)
+void CGraphics::DrawSprite(D3DXVECTOR2 position, D3DX10_SPRITE sprite, D3DXMATRIX matScaling, bool flipx)
 {
 
 	D3DXMATRIX matTranslation;
@@ -273,18 +273,18 @@ void CGraphics::DrawSprite(D3DXVECTOR2* position, D3DX10_SPRITE* sprite, D3DXMAT
 	{
 		D3DXMATRIX FlipTranslation;
 		D3DXMatrixScaling(&FlipTranslation, -1.0f, -1.0f, 1.0f);
-		D3DXMatrixTranslation(&matTranslation, -position->x, -(backBufferHeight - position->y), 0.1f);
-		sprite->matWorld = ((*matScaling) * matTranslation * FlipTranslation);
+		D3DXMatrixTranslation(&matTranslation, -position.x, -(backBufferHeight - position.y), 0.1f);
+		sprite.matWorld = (matScaling * matTranslation * FlipTranslation);
 
 	}
 	else
 	{
-		D3DXMatrixTranslation(&matTranslation, position->x, (backBufferHeight - position->y), 0.1f);
-		sprite->matWorld = ((*matScaling) * matTranslation);
+		D3DXMatrixTranslation(&matTranslation, position.x, (backBufferHeight - position.y), 0.1f);
+		sprite.matWorld = (matScaling * matTranslation);
 	}
 
 	
-	spriteObject->DrawSpritesImmediate(sprite, 1, 0, 0);
+	spriteObject->DrawSpritesImmediate(&sprite, 1, 0, 0);
 
 }
 

@@ -31,6 +31,6 @@ void CAnimation::Render(D3DXVECTOR2 position,bool flipX )
 
 	}
 
-	frames[currentFrame]->GetSprite()->Draw(&position, flipX);
+	frames[currentFrame]->GetSprite()->Draw(position, flipX);
 }
 
