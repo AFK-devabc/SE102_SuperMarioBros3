@@ -22,6 +22,7 @@
 #include "Sprites.h"
 
 #include "Grid.h"
+#include "TitleMap.h"
 
 class CPlayScene : 
 	public CScene
@@ -31,6 +32,7 @@ protected:
 	 CPlayer* player;
 
 	CGrid* grid;
+	CTitleMap* titleMap;
 	void LoadAssets(const char* filePath);
 	void LoadGameObjects(const char* filePath);
 public:

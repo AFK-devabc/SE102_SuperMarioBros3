@@ -68,7 +68,7 @@ void CGrid::SetCellUpdate(D3DXVECTOR2 start, D3DXVECTOR2 end)
      if (startX < 0) startX = 0;
      else if (startX >= numXCells) startX = numXCells - 1;
      if (startY < 0) startY = 0;
-     else if (startY >= numXCells) startY = numYCells - 1;
+     else if (startY >= numYCells) startY = numYCells - 1;
      //convert to upper
      endX = (int)ceil(end.x / cellSize);
      endY = (int)ceil(end.y / cellSize);
@@ -76,10 +76,10 @@ void CGrid::SetCellUpdate(D3DXVECTOR2 start, D3DXVECTOR2 end)
      if (endX < 0) endX = 0;
      else if (endX >= numXCells) endX = numXCells - 1;
      if (endY < 0) endY = 0;
-     else if (endY >= numXCells) endY = numYCells - 1;
+     else if (endY >= numYCells) endY = numYCells - 1;
 
 
-     DebugOut(L"\n Start : %d,%d,         End : %d, %d ",startX, startY, endX, endY);
+     //DebugOut(L"\n Start : %d,%d,         End : %d, %d ",startX, startY, endX, endY);
 
 }
 

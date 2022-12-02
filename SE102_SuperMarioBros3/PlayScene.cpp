@@ -230,7 +230,18 @@ void CPlayScene::Load()
 					resourcePathNode->QueryIntAttribute("height", &h);
 					resourcePathNode->QueryIntAttribute("CellSize", &cs);
 					grid = new CGrid(w, h, cs);
-					}
+				}
+				else if (strcmp(resourceType, "TitleMap") == 0)
+				{
+					int w = 0, h = 0, cs = 0;
+					resourcePathNode->QueryIntAttribute("width", &w);
+					resourcePathNode->QueryIntAttribute("height", &h);
+					resourcePathNode->QueryIntAttribute("CellSize", &cs);
+					const char* filePath = resourcePathNode->Attribute("filePath");
+
+					titleMap = new CTitleMap(w, h, cs, filePath);
+				}
+
 			}
 		}
 	}
@@ -259,7 +270,9 @@ void CPlayScene::Update(DWORD dt)
 	}
 	CCamera* camera = CCamera::GetInstance();
 
-	grid->SetCellUpdate(camera->GetPosition(), D3DXVECTOR2(303, 202));
+	titleMap->SetTitleRender(camera->GetPosition(), camera->GetPosition()+ D3DXVECTOR2(303, 202));
+
+	grid->SetCellUpdate(camera->GetPosition(), camera->GetPosition()+ D3DXVECTOR2(303, 202));
 
 	grid->Update(dt);
 	PurgeDeletedObjects();
@@ -267,6 +280,7 @@ void CPlayScene::Update(DWORD dt)
 
 void CPlayScene::Render()
 {
+	titleMap->Render();
 	grid->Render();
 }
 
@@ -296,22 +310,6 @@ bool CPlayScene::IsGameObjectDeleted(const LPGAMEOBJECT& o) { return o == NULL; 
 void CPlayScene::PurgeDeletedObjects()
 {
 	grid->PurgeDeletedObjects();
-	//vector<LPGAMEOBJECT>::iterator it;
-	//for (it = LPGameObject.begin(); it != LPGameObject.end(); it++)
-	//{
-	//	LPGAMEOBJECT o = *it;
-	//	if (o->IsDeleted())
-	//	{
-	//		delete o;
-	//		*it = NULL;
-	//	}
-	//}
-
-	//// NOTE: remove_if will swap all deleted items to the end of the vector
-	//// then simply trim the vector, this is much more efficient than deleting individual items
-	//LPGameObject.erase(
-	//	std::remove_if(LPGameObject.begin(), LPGameObject.end(), CPlayScene::IsGameObjectDeleted),
-	//	LPGameObject.end());
 }
 
 void CPlayScene::AddGameObject(LPGAMEOBJECT gameObject)
