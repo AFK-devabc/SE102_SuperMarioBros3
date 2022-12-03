@@ -233,13 +233,9 @@ void CPlayScene::Load()
 				}
 				else if (strcmp(resourceType, "TitleMap") == 0)
 				{
-					int w = 0, h = 0, cs = 0;
-					resourcePathNode->QueryIntAttribute("width", &w);
-					resourcePathNode->QueryIntAttribute("height", &h);
-					resourcePathNode->QueryIntAttribute("CellSize", &cs);
 					const char* filePath = resourcePathNode->Attribute("filePath");
 
-					titleMap = new CTitleMap(w, h, cs, filePath);
+					tileMap = new CTileMap( filePath);
 				}
 
 			}
@@ -270,7 +266,7 @@ void CPlayScene::Update(DWORD dt)
 	}
 	CCamera* camera = CCamera::GetInstance();
 
-	titleMap->SetTitleRender(camera->GetPosition(), camera->GetPosition()+ D3DXVECTOR2(303, 202));
+	tileMap->SetTileRender(camera->GetPosition(), camera->GetPosition()+ D3DXVECTOR2(303, 202));
 
 	grid->SetCellUpdate(camera->GetPosition(), camera->GetPosition()+ D3DXVECTOR2(303, 202));
 
@@ -280,7 +276,7 @@ void CPlayScene::Update(DWORD dt)
 
 void CPlayScene::Render()
 {
-	titleMap->Render();
+	tileMap->Render();
 	grid->Render();
 }
 

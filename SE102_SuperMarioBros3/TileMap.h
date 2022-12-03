@@ -10,24 +10,23 @@
 
 using namespace std;
 
-class CTitleMap
+class CTileMap
 {
 private:
-	vector<int*> lpTitle;
+	vector<int> lpTile;
 
 	unordered_map<int, LPSPRITE> lpMapSprites;
 
-	int titleSize;
-	int numXTitles, numYTitles;
-	int mapWidth;
-	int mapHeight;
+	int tileXSize;
+	int tileYSize;
+	int numXTiles, numYTiles;
 	int startX, startY, endX, endY;
 	D3DXVECTOR2 startPosi;
 public:
-	CTitleMap(int width, int height, int titleSize, const char* filePath);
-	~CTitleMap();
-	void LoadTitle(const char* filePath);
-	void SetTitleRender(D3DXVECTOR2 start, D3DXVECTOR2 end);
+	CTileMap( const char* filePath);
+	~CTileMap();
+	void LoadTile(const char* filePath);
+	void SetTileRender(D3DXVECTOR2 start, D3DXVECTOR2 end);
 
 	void Render();
 

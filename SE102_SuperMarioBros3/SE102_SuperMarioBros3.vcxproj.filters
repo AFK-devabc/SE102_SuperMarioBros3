@@ -156,7 +156,7 @@
     <ClCompile Include="Grid.cpp">
       <Filter>Spatial Partition</Filter>
     </ClCompile>
-    <ClCompile Include="TitleMap.cpp">
+    <ClCompile Include="TileMap.cpp">
       <Filter>Spatial Partition</Filter>
     </ClCompile>
   </ItemGroup>
@@ -275,7 +275,7 @@
     <ClInclude Include="Grid.h">
       <Filter>Spatial Partition</Filter>
     </ClInclude>
-    <ClInclude Include="TitleMap.h">
+    <ClInclude Include="TileMap.h">
       <Filter>Spatial Partition</Filter>
     </ClInclude>
   </ItemGroup>

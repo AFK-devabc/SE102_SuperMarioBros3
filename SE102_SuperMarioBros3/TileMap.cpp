@@ -1,0 +1,105 @@
+#include "TileMap.h"
+
+CTileMap::CTileMap( const char* filePath)
+{
+    LoadTile(filePath);
+}
+
+CTileMap::~CTileMap()
+{
+    for (auto x : lpMapSprites)
+    {
+        LPSPRITE s = x.second;
+        delete s;
+    }
+
+    lpMapSprites.clear();
+
+}
+
+void CTileMap::LoadTile(const char* filePath)
+{
+	DebugOut(L"[INFO] Start loading tiles assets from : \"%s\"\n", ToLPCWSTR(filePath));
+	TiXmlDocument doc(filePath);
+	if (doc.LoadFile())
+	{
+		TiXmlElement* Root = doc.RootElement();
+        if (Root)
+        {
+            lpTile.clear();
+            Root->QueryIntAttribute("tilewidth", &tileXSize);
+            Root->QueryIntAttribute("tileheight", &tileYSize);
+            Root->QueryIntAttribute("width", &numXTiles);
+            Root->QueryIntAttribute("height", &numYTiles);
+            lpTile.resize(numXTiles * numYTiles);
+
+            for (TiXmlElement* tileset = Root->FirstChildElement(); tileset != nullptr; tileset = tileset->NextSiblingElement())
+            {
+                const char* texID = tileset->Attribute("texID");
+                CTextures* textures = CTextures::GetInstance();
+                textures->Add(texID, ToLPCWSTR(tileset->Attribute("texturePath")));
+                LPTEXTURE texture = textures->Get(texID);
+
+                int width, height;
+                tileset->QueryIntAttribute("width", &width);
+                tileset->QueryIntAttribute("height", &height);
+
+                int numXSprite = width / tileXSize;
+                int numYSprite = height / tileYSize;
+
+                for(int i = 0; i<numXSprite; i++)
+                    for (int j = 0; j < numYSprite; j++)
+                    {
+                        LPSPRITE s = new CSprite(i* tileXSize, j * tileYSize, tileXSize -1, tileYSize -1 , texture);
+                        lpMapSprites[i +1+ numXSprite * j] = s;
+                    }
+                int num = 0;
+                for (TiXmlElement* tileNode = tileset->FirstChildElement(); tileNode != nullptr; tileNode = tileNode->NextSiblingElement())
+                {
+                    tileNode->QueryIntAttribute("gid",&lpTile[num]);
+
+                    num++;
+                }
+            }
+        }
+		
+	}
+	else
+	{
+		DebugOut(L"[ERROR] Failed to load tiles assets file \"%s\"\n", ToLPCWSTR(filePath));
+		return;
+	}
+	DebugOut(L"[INFO] Done loading tiles assets from \"%s\"\n", ToLPCWSTR(filePath));
+}
+
+
+void CTileMap::SetTileRender(D3DXVECTOR2 start, D3DXVECTOR2 end)
+{
+    startX = (int)(start.x / tileXSize);
+    startY = (int)(start.y / tileYSize);
+
+    if (startX < 0) startX = 0;
+    else if (startX >= numXTiles) startX = numXTiles - 1;
+    if (startY < 0) startY = 0;
+    else if (startY >= numYTiles) startY = numYTiles - 1;
+    //convert to upper
+    endX = (int)ceil(end.x / tileXSize);
+    endY = (int)ceil(end.y / tileYSize);
+
+    if (endX < 0) endX = 0;
+    else if (endX >= numXTiles) endX = numXTiles - 1;
+    if (endY < 0) endY = 0;
+    else if (endY >= numYTiles) endY = numYTiles - 1;
+
+}
+
+void CTileMap::Render()
+{
+    for(int i = startX; i< endX; i++)
+        for (int j = startY; j < endY; j++)
+        {
+            int pid = lpTile[ i + j * numXTiles];
+            if(pid!= 1)
+                lpMapSprites[pid]->Draw(D3DXVECTOR2(i * tileXSize, j * tileYSize));
+        }
+}

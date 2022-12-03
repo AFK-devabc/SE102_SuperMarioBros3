@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<Root name="Titles" >
-	<Textures texID="Title" texturePath="textures/tiles.png">
-		<Title ID = "1"  x="1" y="1" w="16" h="16"/>
-		<Title ID = "2"  x="18" y="1" w="16" h="16"/>
-	</Textures>	
-</Root>
