@@ -1,11 +1,10 @@
 #pragma once
 #include "GameObject.h"
-class CBlock :
+class CKoopaEdgeDetect :
     public CGameObject
 {
 public:
-		CBlock(D3DXVECTOR2 position) : CGameObject(position) {
-			velocity = D3DXVECTOR2(0, 0);
+	CKoopaEdgeDetect(D3DXVECTOR2 position) : CGameObject(position) {
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);

@@ -111,6 +111,6 @@ void CTileMap::Render()
         {
             int pid = lpTile[ i + j * numXTiles];
             if(pid!= 1)
-                lpMapSprites[pid]->Draw(D3DXVECTOR2(i * tileXSize, j * tileYSize));
+                lpMapSprites[pid]->Draw(D3DXVECTOR2(i * tileXSize +8, j * tileYSize +8));
         }
 }

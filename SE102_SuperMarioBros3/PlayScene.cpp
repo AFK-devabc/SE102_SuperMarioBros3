@@ -131,7 +131,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				}
 				case OBJECT_TYPE_RED_KOOPA:
 				{
-					LPGAMEOBJECT block = new CBlock(position);
+					LPGAMEOBJECT block = new CKoopaEdgeDetect(position);
 
 					gameObject = new CRedKoopa(position, block);
 					grid->AddGameObject(block);
@@ -162,6 +162,16 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObject = new CPlatform(x, y, w, h, num, spriteBegin, spriteMidder, spriteEnd);
 					break;
 				}
+				case OBJECT_TYPE_GROUND:
+				{
+					int w = 0, h = 0;
+					gameObjectNode->QueryIntAttribute("w", &w);
+					gameObjectNode->QueryIntAttribute("h", &h);
+
+					gameObject = new CGround(x, y, w, h);
+					break;
+				}
+
 				case OBJECT_TYPE_COLORBOX:
 				{
 					int w = 0, h = 0;
@@ -187,8 +197,6 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 
 				if (gameObject != NULL)
 					grid->AddGameObject(gameObject);
-
-				gameObject->GetOwnerCell();
 			}
 		}
 	}

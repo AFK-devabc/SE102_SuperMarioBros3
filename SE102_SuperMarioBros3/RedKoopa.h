@@ -1,6 +1,6 @@
 #pragma once
 #include "Koopa.h"
-#include "Block.h"
+#include "KoopaEdgeDetect.h"
 class CRedKoopa :
     public CKoopa
 {

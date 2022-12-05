@@ -12,9 +12,10 @@
 #include "MushRoom.h"
 #include "Koopa.h"
 #include "RedKoopa.h"
-#include "Block.h"
+#include "KoopaEdgeDetect.h"
 #include "CColorBox.h"
 #include "Portal.h"
+#include "Ground.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"

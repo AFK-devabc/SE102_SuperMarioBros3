@@ -2,18 +2,18 @@
 
 <Root name="Scene 1_1" >
 	<GameObject objType="0000" name="Mario" x="10" y ="180"/>
+
 	<!--<GameObject objType="20000" name="Goomba" x="50" y ="50"/>
 	<GameObject objType="30000" name="Koopa" x="80" y ="50"/>
 	<GameObject objType="30001" name="RedKoopa" x="300" y ="50"/>
-	<GameObject objType="30001" name="RedKoopa" x="50" y ="50"/>-->
+	<GameObject objType="30001" name="RedKoopa" x="50" y ="50"/>
 
 
-	<GameObject objType="10060" name="ColorBox" x="100" y ="160" w="100" h="20"/>
 
 	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="150"/>
-	<!--<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="166"/>
-	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="172"/>-->
-	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="184"/>-->
+	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="166"/>
+	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="172"/>
+	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="184"/>
 
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="100" y ="400"/>
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="116" y ="400"/>
@@ -21,15 +21,76 @@
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="148" y ="400"/>
 	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="164" y ="400"/>
 
-	<!--<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="200" y ="150"/>
+	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="200" y ="150"/>
 	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="200" y ="184"/>
-	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="0" y ="184"/>-->
+	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="0" y ="184"/>
 
 	<GameObject objType="90000" name="platform" x="10" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
 	<GameObject objType="90000" name="platform" x="128" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
 	<GameObject objType="90000" name="platform" x="256" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
 	<GameObject objType="90000" name="platform" x="384" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
-	<GameObject objType="90000" name="platform" x="512" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
+	<GameObject objType="90000" name="platform" x="512" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>-->
+	
+	
+	<GameObject objType="92000" name="ColorBox" x="264" y ="392" w="48" h="48"/>
+	<GameObject objType="92000" name="ColorBox" x="296" y ="376" w="48" h="80"/>
+	<GameObject objType="92000" name="ColorBox" x="440" y ="392" w="80" h="48"/>
+	<GameObject objType="92000" name="ColorBox" x="496" y ="376" w="64" h="80"/>
+	<GameObject objType="92000" name="ColorBox" x="544" y ="344" w="64" h="80"/>
+	<GameObject objType="92000" name="ColorBox" x="560" y ="400" w="96" h="32"/>
+	<GameObject objType="92000" name="ColorBox" x="1320" y ="400" w="112" h="32"/>
+	<GameObject objType="92000" name="ColorBox" x="1352" y ="368" w="112" h="32"/>
+	<GameObject objType="92000" name="ColorBox" x="1384" y ="336" w="112" h="32"/>
+	<GameObject objType="92000" name="ColorBox" x="1344" y ="160" w="64" h="32"/>
+	<GameObject objType="92000" name="ColorBox" x="2168" y ="392" w="48" h="48"/>
+	<GameObject objType="92000" name="ColorBox" x="2200" y ="296" w="48" h="48"/>
+
+
+	<GameObject objType="91000" name="WarpPipe" x="368" y ="392" w="32" h="48" />
+	<GameObject objType="91000" name="WarpPipe" x="1808" y ="400" w="32" h="32" />
+	<GameObject objType="91000" name="WarpPipe" x="1872" y ="392" w="32" h="48" />
+	<GameObject objType="91000" name="WarpPipe" x="2272" y ="216" w="32" h="208" />
+	<GameObject objType="91000" name="WarpPipe" x="2272" y ="392" w="32" h="48" />
+	<GameObject objType="91000" name="WarpPipe" x="2336" y ="400" w="32" h="32" />
+	<GameObject objType="91000" name="Block" x="1520" y ="344" w="32" h="16" />
+	<GameObject objType="91000" name="Block" x="1608" y ="376" w="16" h="16" />
+	<GameObject objType="91000" name="Block" x="1600" y ="392" w="32" h="16" />
+	<GameObject objType="91000" name="Block" x="1592" y ="408" w="48" h="16" />
+	<GameObject objType="91000" name="Block" x="1672" y ="376" w="16" h="16" />
+	<GameObject objType="91000" name="Block" x="1680" y ="392" w="32" h="16" />
+	<GameObject objType="91000" name="Block" x="1688" y ="408" w="48" h="16" />
+
+
+	<GameObject objType="91000" name="Ground" x="64" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="192" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="320" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="448" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="576" y ="424" w="128" h="16" />
+
+	<GameObject objType="91000" name="Ground" x="688" y ="416" w="128" h="32" />
+	<GameObject objType="91000" name="Ground" x="816" y ="416" w="128" h="32" />
+	<GameObject objType="91000" name="Ground" x="944" y ="416" w="128" h="32" />
+	<GameObject objType="91000" name="Ground" x="1048" y ="416" w="80" h="32" />
+
+	<GameObject objType="91000" name="Ground" x="1216" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="1344" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="1456" y ="424" w="96" h="16" />
+
+	<GameObject objType="91000" name="Ground" x="1576" y ="424" w="80" h="16" />
+
+	<GameObject objType="91000" name="Ground" x="1728" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="1856" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="1984" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="2112" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="2204" y ="424" w="64" h="16" />
+
+	<GameObject objType="91000" name="Ground" x="2320" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="2448" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="2576" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="2704" y ="424" w="128" h="16" />
+	<GameObject objType="91000" name="Ground" x="2792" y ="424" w="48" h="16" />
+
+
 
 	<GameObject objType="99999" name="Portal" nextScene="Scene_1_2"  x="300" y ="184"/>
 
