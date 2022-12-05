@@ -1,4 +1,5 @@
 #include "TileMap.h"
+#include "Graphics.h"
 
 CTileMap::CTileMap( const char* filePath)
 {
@@ -31,6 +32,16 @@ void CTileMap::LoadTile(const char* filePath)
             Root->QueryIntAttribute("tileheight", &tileYSize);
             Root->QueryIntAttribute("width", &numXTiles);
             Root->QueryIntAttribute("height", &numYTiles);
+
+
+            int r = 0, g = 0, b = 0, a = 0;
+            Root->QueryIntAttribute("r", &r);
+            Root->QueryIntAttribute("g", &g);
+            Root->QueryIntAttribute("b", &b);
+            Root->QueryIntAttribute("b", &a);
+
+            D3DXCOLOR backGroundColor = D3DXCOLOR((float)r / 255, (float)g / 255, (float)b / 255, (float)a / 255);
+            CGraphics::GetInstance()->SetBackGroundColor(backGroundColor);
             lpTile.resize(numXTiles * numYTiles);
 
             for (TiXmlElement* tileset = Root->FirstChildElement(); tileset != nullptr; tileset = tileset->NextSiblingElement())
@@ -50,7 +61,7 @@ void CTileMap::LoadTile(const char* filePath)
                 for(int i = 0; i<numXSprite; i++)
                     for (int j = 0; j < numYSprite; j++)
                     {
-                        LPSPRITE s = new CSprite(i* tileXSize, j * tileYSize, tileXSize -1, tileYSize -1 , texture);
+                        LPSPRITE s = new CSprite(i* tileXSize , j * tileYSize, tileXSize  , tileYSize  , texture);
                         lpMapSprites[i +1+ numXSprite * j] = s;
                     }
                 int num = 0;

@@ -23,6 +23,8 @@ private:
 
 	ID3DX10Sprite* spriteObject = NULL;				// Sprite handling object 
 
+	D3DXCOLOR backGroundColor = D3DXCOLOR(0.0f,0.0f,0.0f,0.0f);
+
 public:
 	void InitGraphic(HWND hWnd, HINSTANCE hInstance);
 
@@ -38,7 +40,7 @@ public:
 	{
 		return D3DXVECTOR2(backBufferWidth, backBufferHeight);
 	}
-
+	void SetBackGroundColor(D3DXCOLOR color);
 	//void Render();
 
 	static CGraphics* GetInstance();

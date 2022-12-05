@@ -25,7 +25,7 @@ public:
 	{
 		//DebugOut(L"%f,	%f", followObjects->x, followObjects->y);
 		this->position.x = followObjects->x - backBuffer.x / 2;
-		this->position.y = 0;
+		this->position.y = followObjects->y - backBuffer.y / 2;
 	}
 
 	void SetBackBuffer(D3DXVECTOR2 backBuffer)

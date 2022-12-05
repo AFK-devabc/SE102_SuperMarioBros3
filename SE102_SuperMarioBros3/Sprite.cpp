@@ -6,24 +6,26 @@ CSprite::CSprite(int left, int top, int width, int height, LPTEXTURE tex)
 {
 	this->left = left;
 	this->top = top;
-	this->width = width +1;
-	this->height = height +1;
+	this->width = width ;
+	this->height = height ;
 	// Set the sprite’s shader resource view
+
+	float texWidth = (float)tex->getWidth();
+	float texHeight = (float)tex->getHeight();
+
 	sprite.pTexture = tex->getShaderResourceView();
 
-	sprite.TexCoord.x = left / (float)tex->getWidth();
-	sprite.TexCoord.y = top / (float)tex->getHeight();
+	sprite.TexCoord.x = roundf(left / texWidth * 10000.0f) / 10000.0f;
+	sprite.TexCoord.y = roundf(top / texHeight * 10000.0f) / 10000.0f;
 
-	int spriteWidth = width +1;
-	int spriteHeight = height +1;
 
-	sprite.TexSize.x = spriteWidth / (float)tex->getWidth();
-	sprite.TexSize.y = spriteHeight / (float)tex->getHeight();
+	sprite.TexSize.x =  roundf(this->width / texWidth * 10000.0f) / 10000.0f;
+	sprite.TexSize.y =roundf(this->height / texHeight * 10000.0f) / 10000.0f;
 
 	sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	sprite.TextureIndex = 0;
 
-	D3DXMatrixScaling(&this->matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, 1.0f);
+	D3DXMatrixScaling(&this->matScaling, (FLOAT) this->width, (FLOAT) this->height, 1.0f);
 
 }
 

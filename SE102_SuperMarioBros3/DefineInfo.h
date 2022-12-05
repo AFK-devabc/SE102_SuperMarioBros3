@@ -6,7 +6,6 @@
 #define WINDOW_CLASS_NAME		L"Game Window"
 #define MAIN_WINDOW_TITLE		L"01 - Skeleton"
 #define WINDOW_ICON_PATH		L"brick.ico"
-#define BACKGROUND_COLOR		D3DXCOLOR(0.68f, 0.9f,0.9f , 0.0f)
 #define SCREEN_WIDTH			320
 #define SCREEN_HEIGHT			240
 #pragma endregion

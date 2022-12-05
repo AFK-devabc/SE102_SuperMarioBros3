@@ -269,17 +269,19 @@ void CGraphics::DrawSprite(D3DXVECTOR2 position, D3DX10_SPRITE sprite, D3DXMATRI
 
 	D3DXMATRIX matTranslation;
 
+	int x = position.x;
+	int y = backBufferHeight - position.y;
 	if (flipx)
 	{
 		D3DXMATRIX FlipTranslation;
 		D3DXMatrixScaling(&FlipTranslation, -1.0f, -1.0f, 1.0f);
-		D3DXMatrixTranslation(&matTranslation, -position.x, -(backBufferHeight - position.y), 0.1f);
+		D3DXMatrixTranslation(&matTranslation, -x, -y, 0.1f);
 		sprite.matWorld = (matScaling * matTranslation * FlipTranslation);
 
 	}
 	else
 	{
-		D3DXMatrixTranslation(&matTranslation, position.x, (backBufferHeight - position.y), 0.1f);
+		D3DXMatrixTranslation(&matTranslation, x, y, 0.1f);
 		sprite.matWorld = (matScaling * matTranslation);
 	}
 
@@ -291,7 +293,7 @@ void CGraphics::DrawSprite(D3DXVECTOR2 position, D3DX10_SPRITE sprite, D3DXMATRI
 void CGraphics::BeginRender()
 {
 	// clear the background 
-	pD3DDevice->ClearRenderTargetView(pRenderTargetView, BACKGROUND_COLOR);
+	pD3DDevice->ClearRenderTargetView(pRenderTargetView, backGroundColor);
 
 	spriteObject->Begin(D3DX10_SPRITE_SORT_TEXTURE);
 
@@ -306,6 +308,11 @@ void CGraphics::EndRender()
 	spriteObject->End();
 	pSwapChain->Present(0, 0);
 
+}
+
+void CGraphics::SetBackGroundColor(D3DXCOLOR color)
+{
+	this->backGroundColor = color;
 }
 
 CGraphics* CGraphics::GetInstance()

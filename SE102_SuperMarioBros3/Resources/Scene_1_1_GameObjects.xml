@@ -15,21 +15,21 @@
 	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="172"/>-->
 	<GameObject objType="10000" name="Yellow_Brick" behavior="10000" itemContain="0" x="50" y ="184"/>-->
 
-	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="100" y ="150"/>
-	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="116" y ="150"/>
-	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="132" y ="150"/>
-	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="148" y ="150"/>
-	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="164" y ="150"/>
+	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="100" y ="400"/>
+	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="116" y ="400"/>
+	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="132" y ="400"/>
+	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="148" y ="400"/>
+	<GameObject objType="10000" name="Question_Mark" behavior="10010" itemContain="10030" x="164" y ="400"/>
 
 	<!--<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="200" y ="150"/>
 	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="200" y ="184"/>
 	<GameObject objType="10000" name="Music_note" behavior="10020" itemContain="0" x="0" y ="184"/>-->
 
-	<GameObject objType="90000" name="platform" x="10" y ="200" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
-	<GameObject objType="90000" name="platform" x="128" y ="200" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
-	<GameObject objType="90000" name="platform" x="256" y ="200" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
-	<GameObject objType="90000" name="platform" x="384" y ="200" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
-	<GameObject objType="90000" name="platform" x="512" y ="200" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
+	<GameObject objType="90000" name="platform" x="10" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
+	<GameObject objType="90000" name="platform" x="128" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
+	<GameObject objType="90000" name="platform" x="256" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
+	<GameObject objType="90000" name="platform" x="384" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
+	<GameObject objType="90000" name="platform" x="512" y ="400" w="16" h="16" num="8" spriteBegin ="CloudBegin" spriteMidder ="CloudMidder" spriteEnd ="CloudEnd"/>
 
 	<GameObject objType="99999" name="Portal" nextScene="Scene_1_2"  x="300" y ="184"/>
 

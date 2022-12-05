@@ -93,9 +93,6 @@
     <ClCompile Include="TinyXML\tinyxmlparser.cpp">
       <Filter>TinyXML</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scenes.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -158,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="TileMap.cpp">
       <Filter>Spatial Partition</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>GameObject\Others</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,14 +269,14 @@
     <ClInclude Include="Collision.h">
       <Filter>GameObject\Others</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>Spatial Partition</Filter>
     </ClInclude>
     <ClInclude Include="TileMap.h">
       <Filter>Spatial Partition</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>GameObject\Others</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
