@@ -19,7 +19,7 @@ public:
 
 	virtual void Render() {
 		CAnimations* ani = CAnimations::GetInstance();
-		ani->Get("9901")->Render(position);
+		ani->Get(to_string(HARD_COLLISION))->Render(position);
 	};
 
 };

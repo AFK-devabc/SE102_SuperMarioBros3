@@ -5,15 +5,10 @@
 void CGoomba::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
 
-	l = position.x - 16 / 2;
-	t = position.y - 16 / 2;
-	r = l + 16;
-	b = t + 16;
-	if (state == GAME_OBJECT_STATE_DIE)
-	{
-		r = l + 16 / 2;
-		b = t + 16 / 2;
-	}
+	l = position.x - GOOMBA_WIDTH / 2;
+	t = position.y - GOOMBA_HEIGHT / 2;
+	r = l + GOOMBA_WIDTH;
+	b = t + GOOMBA_HEIGHT;
 }
 
 void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
@@ -32,7 +27,7 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	}
 	else
 	{
-		velocity.y += MARIO_GRAVITY * dt;
+		velocity.y += GRAVITY * dt;
 		isOnPlatform = false;
 		CCollision::GetInstance()->Process(this, dt, coObjects);
 
@@ -79,5 +74,5 @@ void CGoomba::SetState(int state, int islookright)
 	this->state = state;
 	if(state != GOOMBA_STATE_WALKING)
 		die_start = GetTickCount64();
-	this->position.y = position.y + 16 / 2;
+	this->position.y = position.y + GOOMBA_HEIGHT / 2;
 }

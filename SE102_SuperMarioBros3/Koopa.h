@@ -22,6 +22,7 @@ public:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 
 	virtual int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return 0; }

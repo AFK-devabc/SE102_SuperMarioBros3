@@ -14,10 +14,10 @@
 
 void CMarioTail::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
-	l = position.x - 16 / 2;
-	t = position.y - 8 / 2;
-	r = l + 16;
-	b = t + 8;
+	l = position.x - MARIO_TAIL_WIDTH / 2;
+	t = position.y - MARIO_TAIL_HEIGHT / 2;
+	r = l + MARIO_TAIL_WIDTH;
+	b = t + MARIO_TAIL_HEIGHT;
 
 }
 
@@ -46,7 +46,7 @@ void CMarioTail::IsCollidingWith(LPGAMEOBJECT e)
 void CMarioTail::OnCollisionWithGoomba(LPGAMEOBJECT e)
 {
 	e->SetState(GOOMBA_STATE_DYING);
-	e->SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
+	e->SetSpeed(0, -GOOMBA_JUMP_DEFLECT_SPEED);
 
 	LPGAMEOBJECT effect = new CHardCollision(this->position);
 
@@ -58,7 +58,7 @@ void CMarioTail::OnCollisionWithGoomba(LPGAMEOBJECT e)
 void CMarioTail::OnCollisionWithKoopa(LPGAMEOBJECT e)
 {
 	e->SetState(KOOPA_STATE_INSIDE_SHELL);
-	e->SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
+	e->SetSpeed(0, -KOOPA_JUMP_DEFLECT_SPEED);
 
 	LPGAMEOBJECT effect = new CHardCollision(this->position);
 

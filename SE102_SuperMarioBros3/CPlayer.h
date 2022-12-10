@@ -20,12 +20,17 @@ protected:
 	int isChangingform = 0;
 	int isAttacking = 0;
 	DWORD attack_start;
+
+	int isFlying;
+	DWORD flyingStart;
+
 public :
 	CPlayer(D3DXVECTOR2 position) : CGameObject(position) {
-		maxVx = 1;
+		maxVx = 0.8f;
 		Ax = 0;
-		DWORD attack_start = 0;
-		DWORD untouchable_start = 0;
+		attack_start = 0;
+		untouchable_start = 0;
+		flyingStart = 0;
 
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);

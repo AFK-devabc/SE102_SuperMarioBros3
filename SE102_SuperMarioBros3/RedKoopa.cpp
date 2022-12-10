@@ -3,15 +3,13 @@
 void CRedKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	isOnPlatform = false;
-	velocity.y += MARIO_GRAVITY * dt;
+	velocity.y += GRAVITY * dt;
 
 	if ((state == GAME_OBJECT_STATE_DIE))
 	{
 		isDeleted = true;
 		return;
 	}
-
-
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 	if (this->state == KOOPA_STATE_WALKING)
 	{
@@ -30,6 +28,4 @@ void CRedKoopa::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
 	ani->Get(to_string(state +1) )->Render(position);
-	RenderBoundingBox();
-
 }

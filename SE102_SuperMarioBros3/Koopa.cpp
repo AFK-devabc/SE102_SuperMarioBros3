@@ -7,39 +7,42 @@
 void CKoopa::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
 
-	l = position.x - 16 / 2;
-	t = position.y - 16 / 2;
-	r = l + 16;
-	b = t + 16;
+	l = position.x - KOOPA_SHEILD_WIDTH / 2;
+	t = position.y - KOOPA_SHEILD_HEIGHT / 2;
+	r = l + KOOPA_SHEILD_WIDTH;
+	b = t + KOOPA_SHEILD_HEIGHT;
 	if (state == KOOPA_STATE_WALKING || state == KOOPA_STATE_WING)
 	{
-		t = position.y - 26 / 2;
-		b = t + 26 ;
+		t = position.y - KOOPA_NORMAL_HEIGHT / 2;
+		b = t + KOOPA_NORMAL_HEIGHT ;
 	}
 
 }
 
 void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
+
 	isOnPlatform = false;
-	velocity.y += MARIO_GRAVITY * dt;
+	velocity.y += GRAVITY * dt;
+
+	if (state == KOOPA_STATE_WING && isOnPlatform)
+	{
+		velocity.y = -KOOPA_JUMP_DEFLECT_SPEED;
+
+	}
 
 	if ((state == GAME_OBJECT_STATE_DIE))
 	{
 		isDeleted = true;
 		return;
 	}
-
-
 	CCollision::GetInstance()->Process(this, dt, coObjects);
-
 }
 
 void CKoopa::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
 	ani->Get(to_string(state))->Render(position);
-	RenderBoundingBox();
 }
 
 void CKoopa::OnNoCollision(DWORD dt)
@@ -54,18 +57,9 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 		velocity.y = 0;
 		if (e->ny < 0) isOnPlatform = true;
 
-		if (dynamic_cast<CBrick*>(e->obj) )
-		{
-			CBrick* brick = dynamic_cast<CBrick*>(e->obj); 
-			if (brick->isHitted())
-			{
-				SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
-				SetState(KOOPA_STATE_INSIDE_SHELL);
-			}
-		}
-
-
 	}
+
+
 
 	if (e->nx != 0 && e->obj->IsBlocking())
 	{
@@ -79,15 +73,15 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 			OnCollisionWithGoomba(e);
 		else if (dynamic_cast<CKoopa*>(e->obj))
 			OnCollisionWithKoopa(e);
-
-
+		else if (dynamic_cast<CBrick*>(e->obj))
+			OnCollisionWithBrick(e);
 	}
 }
 
 void CKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 {
 	CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
-	goomba->SetSpeed(goomba->GetVelocity().x, -MARIO_JUMP_DEFLECT_SPEED);
+	goomba->SetSpeed(goomba->GetVelocity().x, -GOOMBA_JUMP_DEFLECT_SPEED);
 	goomba->SetState(GAME_OBJECT_STATE_DIE);
 }
 
@@ -100,9 +94,15 @@ void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 	}
 	else if(koopa->GetState() != KOOPA_STATE_ROLLING)
 	{
-		koopa->SetSpeed(0, -MARIO_JUMP_DEFLECT_SPEED);
+		koopa->SetSpeed(0, -KOOPA_JUMP_DEFLECT_SPEED);
 		koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
 	}
+}
+
+void CKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
+{
+	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
+		brick->Hit(2);
 }
 
 void CKoopa::SetState(int state, int isGoingRight)
@@ -112,11 +112,11 @@ void CKoopa::SetState(int state, int isGoingRight)
 	switch (state)
 	{
 	case KOOPA_STATE_WALKING:
-		this->velocity.x = Goomba_Walking_Speed * (isGoingRight ? 1 : -1);
+		this->velocity.x = KOOPA_WALKING_SPEED * (isGoingRight ? 1 : -1);
 		break;
 
 	case KOOPA_STATE_ROLLING:
-		this->velocity.x = 0.2f * (isGoingRight ? 1 : -1);
+		this->velocity.x = KOOPA_ROLLING_SPEED * (isGoingRight ? 1 : -1);
 		break;
 	case KOOPA_STATE_INSIDE_SHELL :
 		this->velocity.x = 0;

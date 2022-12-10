@@ -6,8 +6,12 @@
 			<Sprites spriteID = "CloudBegin"	x="390" y="117" w="16" h="16"/>
 			<Sprites spriteID = "CloudMidder"	x="409" y="117" w="16" h="16"/>
 			<Sprites spriteID = "CloudEnd"		x="427" y="117" w="16" h="16"/>
-		
 		</Animations>
+		<Animations  aniID="none" frameTime ="9999">
+			<Sprites spriteID = "WhiteTeeth"	x="354" y="243" w="16" h="16"/>
+		</Animations>
+
+
 		<Animations  aniID="10000" frameTime ="200">
 			<Sprites spriteID = "Brick_0" x="300" y="135" w="16" h="16"/>
 			<Sprites spriteID = "Brick_1" x="318" y="135" w="16" h="16"/>

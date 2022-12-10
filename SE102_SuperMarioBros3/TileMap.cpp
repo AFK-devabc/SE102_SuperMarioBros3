@@ -94,8 +94,8 @@ void CTileMap::SetTileRender(D3DXVECTOR2 start, D3DXVECTOR2 end)
     if (startY < 0) startY = 0;
     else if (startY >= numYTiles) startY = numYTiles - 1;
     //convert to upper
-    endX = (int)ceil(end.x / tileXSize);
-    endY = (int)ceil(end.y / tileYSize);
+    endX = ceil(end.x / tileXSize);
+    endY = ceil(end.y / tileYSize);
 
     if (endX < 0) endX = 0;
     else if (endX >= numXTiles) endX = numXTiles - 1;
@@ -106,8 +106,8 @@ void CTileMap::SetTileRender(D3DXVECTOR2 start, D3DXVECTOR2 end)
 
 void CTileMap::Render()
 {
-    for(int i = startX; i< endX; i++)
-        for (int j = startY; j < endY; j++)
+    for(int i = startX; i<= endX; i++)
+        for (int j = startY; j <= endY; j++)
         {
             int pid = lpTile[ i + j * numXTiles];
             if(pid!= 1)

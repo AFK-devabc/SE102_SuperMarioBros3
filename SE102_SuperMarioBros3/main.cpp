@@ -123,7 +123,7 @@ int WINAPI WinMain(
 		if (dt >= tickPerFrame)
 		{
 			frameStart = now;
-			DebugOutTitle(L"FPS : %f",1000.0 / dt);
+			DebugOutTitle(L"%d", dt);
 
 			game->Update(dt);
 			game->Render();

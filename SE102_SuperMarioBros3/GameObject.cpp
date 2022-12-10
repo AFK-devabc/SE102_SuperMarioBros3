@@ -36,7 +36,7 @@ void CGameObject::RenderBoundingBox()
 
 void CGameObject::Render()
 {
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 CGameObject::~CGameObject()

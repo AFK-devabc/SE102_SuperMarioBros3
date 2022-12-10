@@ -7,8 +7,3 @@ void CColorBox::GetBoundingBox(float& l, float& t, float& r, float& b)
 		r = l + size.x;
 		b = t + size.y;
 }
-
-void CColorBox::Render()
-{
-	RenderBoundingBox();
-}

@@ -3,16 +3,16 @@
 
 void CKoopaEdgeDetect::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
-	l = position.x - 16 / 2;
-	t = position.y - 16 / 2;
-	r = l + 16;
-	b = t + 16;
+	l = position.x - BRICK_WIDTH / 2;
+	t = position.y - BRICK_HEIGHT / 2;
+	r = l + BRICK_WIDTH;
+	b = t + BRICK_HEIGHT;
 
 }
 
 void CKoopaEdgeDetect::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	velocity.y += MARIO_GRAVITY * dt;
+	velocity.y += GRAVITY * dt;
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 
 }
@@ -30,11 +30,4 @@ void CKoopaEdgeDetect::OnCollisionWith(LPCOLLISIONEVENT e)
 		velocity.y = 0;
 
 	}
-
-	if (e->nx != 0 && e->obj->IsBlocking())
-	{
-		velocity.x = -velocity.x;
-	}
-	RenderBoundingBox();
-
 }

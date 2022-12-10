@@ -39,7 +39,6 @@ void CMushRoom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 void CMushRoom::Render()
 {
 		CAnimations::GetInstance()->Get(to_string(OBJECT_TYPE_MUSHROOM))->Render(position);
-		RenderBoundingBox();
 }
 
 void CMushRoom::OnNoCollision(DWORD dt)

@@ -8,10 +8,10 @@
 
 void CBrick::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
-	l = position.x - 16 / 2;
-	t = position.y - 16 / 2;
-	r = l + 16;
-	b = t + 16;
+	l = position.x - BRICK_WIDTH / 2;
+	t = position.y - BRICK_HEIGHT / 2;
+	r = l + BRICK_WIDTH;
+	b = t + BRICK_WIDTH;
 }
 
 void CBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
@@ -22,7 +22,7 @@ void CBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		this->Delete();
 	if (hitted == 1)
 	{
-		velocity.y = velocity.y + 2*MARIO_GRAVITY*dt;
+		velocity.y = velocity.y + 2*BRICK_DEFLECT_SPEED*dt;
 
 		position = position + velocity * dt;
 
@@ -35,7 +35,7 @@ void CBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	}
 	if (hitted == 2)
 	{
-		velocity.y = velocity.y - 2 * MARIO_GRAVITY * dt;
+		velocity.y = velocity.y - 2 * BRICK_DEFLECT_SPEED * dt;
 
 		position = position + velocity * dt;
 
@@ -97,7 +97,7 @@ void CBrick::Hit(int type)
 		case OBJECT_TYPE_BRICK:
 		{
 			velocity = D3DXVECTOR2(0, -BRICK_DEFLECT_SPEED);
-			if (marioType != SMALL_MARIO)
+			if (marioType != SMALL_MARIO || type == 2)
 			{
 				isDeleteNextFrame = 1;
 				LPGAMEOBJECT effect = new CBrickBroken(this->position);

@@ -24,8 +24,9 @@ public:
 	void Update(DWORD dt)
 	{
 		//DebugOut(L"%f,	%f", followObjects->x, followObjects->y);
-		this->position.x = followObjects->x - backBuffer.x / 2;
-		this->position.y = followObjects->y - backBuffer.y / 2;
+		this->position.x =  ( followObjects->x - backBuffer.x / 2);
+		this->position.y = (int)(followObjects->y - backBuffer.y / 2);
+		//this->position.y = 236;
 	}
 
 	void SetBackBuffer(D3DXVECTOR2 backBuffer)

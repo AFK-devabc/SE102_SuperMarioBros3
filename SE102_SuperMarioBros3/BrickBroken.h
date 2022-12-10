@@ -20,10 +20,10 @@ public:
 	}
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL) {
 
-		vtl.y += 0.002f * dt;
-		vhtl.y += 0.002f * dt;
-		vtr.y += 0.002f * dt;
-		vhtr.y += 0.002f * dt;
+		vtl.y += GRAVITY * dt;
+		vhtl.y += GRAVITY * dt;
+		vtr.y += GRAVITY * dt;
+		vhtr.y += GRAVITY * dt;
 
 		tl += vtl * dt;
 		htl += vhtl * dt;
@@ -46,10 +46,10 @@ public:
 	void Render()
 	{
 		CAnimations* ani = CAnimations::GetInstance();
-		ani->Get("9900")->Render(tl);
-		ani->Get("9900")->Render(tr);
-		ani->Get("9900")->Render(htr);
-		ani->Get("9900")->Render(htl);
+		ani->Get(to_string(BRICK_BROKEN))->Render(tl);
+		ani->Get(to_string(BRICK_BROKEN))->Render(tr);
+		ani->Get(to_string(BRICK_BROKEN))->Render(htr);
+		ani->Get(to_string(BRICK_BROKEN))->Render(htl);
 
 	}
 

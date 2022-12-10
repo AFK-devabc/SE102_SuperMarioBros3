@@ -27,6 +27,9 @@
 			aniID = MARIO_STATE_JUMP;
 			if (abs( velocity.x) >  MARIO_WALKING_SPEED)
 				aniID = MARIO_STATE_Run_Jump;
+			if(isFlying)
+				aniID = MARIO_STATE_FLYING_DROPDOWN;
+
 	}
 	else
 		if (isSitting)
@@ -90,16 +93,32 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 {
 
 	velocity.x += Ax * dt;
-	velocity.y += MARIO_GRAVITY * dt;
-	isOnPlatform = false;
+	if(!isFlying)
+		velocity.y += MARIO_GRAVITY * dt;
+	isOnPlatform = 0;
 
 	if (abs(velocity.x) > abs(maxVx))
 		velocity.x = maxVx;
+	if (velocity.y  <=-2*MARIO_FLYING_DROPDOWN_SPEED)
+		velocity.y = -2*MARIO_FLYING_DROPDOWN_SPEED;
 
-	if (GetTickCount64() - untouchable_start > MARIO_UNTOUCHABLE_TIME)
+	if (GetTickCount64() - untouchable_start > MARIO_UNTOUCHABLE_TIME && untouchable)
 	{
 		untouchable_start = 0;
 		untouchable = 0;
+	}
+
+
+	if (isFlying)
+	{
+		if (velocity.y >= MARIO_FLYING_DROPDOWN_SPEED)
+			velocity.y = MARIO_FLYING_DROPDOWN_SPEED;
+
+		if (GetTickCount64() - flyingStart > MARIO_FLYING_TIME)
+		{
+			flyingStart = 0;
+			isFlying = 0;
+		}
 	}
 	if (GetTickCount64() - attack_start > MARIO_DAMATE_TIME_START && isAttacking)
 	{
@@ -110,13 +129,6 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 
 	}
 	CCollision::GetInstance()->Process(this, dt, coObjects);
-
-	//if (position.y >= 185)
-	//{
-	//	isOnPlatform = true;
-	//	position.y = 185;
-	//	velocity.y = 0;
-	//}
 }
 
 void CPlayer::Render()
@@ -139,7 +151,10 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 	if (e->ny != 0 && e->obj->IsBlocking() )
 	{
 		velocity.y = 0;
-		if (e->ny < 0) isOnPlatform = true;
+		if (e->ny < 0) {
+			isOnPlatform = 1;
+			isFlying = 0;
+		}
 	}
 
 	if (e->nx != 0 && e->obj->IsBlocking())
@@ -269,19 +284,6 @@ void CPlayer::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 	CScenes::GetInstance()->InitiateSwitchScene(portal->GetNextScene());
 }
 
-//void CPlayer::OnCollisionWithColorBox(LPCOLLISIONEVENT e)
-//{
-//	if (e->ny < 0) 
-//	{
-//		position.x += velocity.x;
-//		//position.y += e->t * velocity.y + e->ny * BLOCK_PUSH_FACTOR;
-//		velocity.y = 0;
-//		isOnPlatform = true;
-//
-//	}
-//}
-
-
 void CPlayer::Attacked()
 {
 	if (marioType == 100000)
@@ -339,6 +341,11 @@ void CPlayer::OnKeyDown(int KeyCode)
 	switch (KeyCode)
 	{
 	case DIK_K:
+		if ( !isOnPlatform && marioType == CAT_MARIO)
+		{
+			SetState(MARIO_STATE_FLYING_DROPDOWN);
+			break;
+		}
 		SetState(MARIO_STATE_JUMP);
 		break;
 	case DIK_J:
@@ -369,6 +376,8 @@ void CPlayer::OnKeyUp(int KeyCode)
 		SetState(MARIO_STATE_RELEASE_JUMP);
 		break;
 	case DIK_S:
+		if(marioType == SMALL_MARIO)
+			return;
 		SetState(MARIO_STATE_SIT_RELEASE);
 		position = position + D3DXVECTOR2(0, (-Big_Mario_Height + Small_Mario_Height) / 2);
 		break;
@@ -380,7 +389,6 @@ void CPlayer::SetState(int state, int islookright)
 {
 	if (this->state == GAME_OBJECT_STATE_DIE) return;
 	
-	this->state = state;
 
 
 	if (islookright > 0)
@@ -410,14 +418,25 @@ void CPlayer::SetState(int state, int islookright)
 				velocity.y = -MARIO_JUMP_SPEED_Y;
 		}
 		break;
-
+	case MARIO_STATE_FLYING_DROPDOWN:
+		{
+		if (abs(velocity.x) == abs(MARIO_RUNNING_SPEED))
+			velocity.y = -MARIO_FLY_DROPDOWN_SPEED;
+		else 		if (velocity.y > 0)
+			velocity.y = MARIO_FLY_DROPDOWN_SPEED;
+			
+			flyingStart = GetTickCount64();
+			isFlying = 1;
+			break;
+		}
 	case MARIO_STATE_RELEASE_JUMP:
-		if (velocity.y < 0) 
-			velocity.y += MARIO_JUMP_SPEED_Y / 2;
+
+		if (velocity.y < 0 && !isFlying) 
+			velocity.y += MARIO_JUMP_RUN_SPEED_Y / 2;
 		break;
 
 	case MARIO_STATE_SIT:
-		if (isOnPlatform)
+		if (isOnPlatform && marioType != SMALL_MARIO)
 		{
 			state = MARIO_STATE_IDLE;
 			isSitting = true;
@@ -443,6 +462,7 @@ void CPlayer::SetState(int state, int islookright)
 		break;
 	
 	}
+	this->state = state;
 
 }
 
