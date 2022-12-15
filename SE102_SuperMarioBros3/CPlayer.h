@@ -24,6 +24,14 @@ protected:
 	int isFlying;
 	DWORD flyingStart;
 
+	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
+	void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
+	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
+	void OnCollisionWithMushroom(LPCOLLISIONEVENT e);
+	void OnCollisionWithRedLeaf(LPCOLLISIONEVENT e);
+	void OnCollisionWithPortal(LPCOLLISIONEVENT e);
+	void OnCollisionWithCoin(LPCOLLISIONEVENT e);
+
 public :
 	CPlayer(D3DXVECTOR2 position) : CGameObject(position) {
 		maxVx = 0.8f;
@@ -40,12 +48,6 @@ public :
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
-	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
-	void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
-	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
-	void OnCollisionWithMushroom(LPCOLLISIONEVENT e);
-	void OnCollisionWithRedLeaf(LPCOLLISIONEVENT e);
-	void OnCollisionWithPortal(LPCOLLISIONEVENT e);
 
 	int IsCollidable()
 	{

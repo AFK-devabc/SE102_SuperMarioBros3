@@ -179,7 +179,13 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObjectNode->QueryIntAttribute("h", &h);
 					gameObject = new CColorBox(x, y, w, h);
 					break;
+				}				
+				case  OBJECT_TYPE_COIN:
+				{
+					gameObject = new CCoin(position);
+					break;
 				}
+
 				case OBJECT_TYPE_PORTAL:
 				{
 					string nextScene = gameObjectNode->Attribute("nextScene");

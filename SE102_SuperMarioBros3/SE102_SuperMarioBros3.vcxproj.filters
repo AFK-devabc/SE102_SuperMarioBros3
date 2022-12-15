@@ -159,6 +159,12 @@
     <ClCompile Include="KoopaEdgeDetect.cpp">
       <Filter>GameObject\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>GameObject\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinDrop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -280,6 +286,12 @@
     </ClInclude>
     <ClInclude Include="KoopaEdgeDetect.h">
       <Filter>GameObject\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>GameObject\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinDrop.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

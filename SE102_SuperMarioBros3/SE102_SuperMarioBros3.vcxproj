@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="CoinDrop.cpp" />
     <ClCompile Include="KoopaEdgeDetect.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="BrickBroken.cpp" />
@@ -171,6 +173,8 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="Animations.h" />
+    <ClInclude Include="Coin.h" />
+    <ClInclude Include="CoinDrop.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="KoopaEdgeDetect.h" />
     <ClInclude Include="Brick.h" />

@@ -116,4 +116,5 @@
 #pragma region GAME_VFX
 #define BRICK_BROKEN 9900
 #define HARD_COLLISION 9901
+#define COIN_DROP		9902
 #pragma endregion

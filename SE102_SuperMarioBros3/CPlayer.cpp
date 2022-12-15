@@ -6,6 +6,7 @@
 #include "Koopa.h"
 #include "MarioTail.h"
 #include "Portal.h"
+#include "Coin.h"
 
 #include "GameObjectType.h"
 #include "Scenes.h"
@@ -174,6 +175,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithKoopa(e);
 	else if (dynamic_cast<CPortal*>(e->obj))
 		OnCollisionWithPortal(e);
+	else if (dynamic_cast<CCoin*>(e->obj))
+		OnCollisionWithCoin(e);
 
 
 }
@@ -282,6 +285,11 @@ void CPlayer::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
 	CPortal* portal =dynamic_cast<CPortal*>(e->obj);
 	CScenes::GetInstance()->InitiateSwitchScene(portal->GetNextScene());
+}
+
+void CPlayer::OnCollisionWithCoin(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
 }
 
 void CPlayer::Attacked()

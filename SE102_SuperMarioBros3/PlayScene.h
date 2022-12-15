@@ -10,6 +10,7 @@
 #include "Platform.h"
 #include "Brick.h"
 #include "MushRoom.h"
+#include "Coin.h"
 #include "Koopa.h"
 #include "RedKoopa.h"
 #include "KoopaEdgeDetect.h"

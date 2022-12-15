@@ -5,6 +5,7 @@
 #include "PlayScene.h"
 #include "RedLeaf.h"
 #include "BrickBroken.h"
+#include "CoinDrop.h"
 
 void CBrick::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
@@ -141,11 +142,16 @@ void CBrick::DropItems()
 		else
 		{
 			LPGAMEOBJECT redLeaf = new CRedLeaf(this->GetPosition());
-			CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
 			playscene->AddGameObject(redLeaf);
 
 		}
 		break;
+	}
+	case COIN_DROP:
+	{
+		LPGAMEOBJECT effect = new CCoinDrop(this->GetPosition());
+		playscene->AddGameEffect(effect);
+
 	}
 	}
 }
