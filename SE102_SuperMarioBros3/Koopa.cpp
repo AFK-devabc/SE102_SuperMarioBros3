@@ -24,6 +24,12 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	isOnPlatform = false;
 	velocity.y += GRAVITY * dt;
+	if ((state == GAME_OBJECT_STATE_DIE))
+	{
+		isDeleted = true;
+		return;
+	}
+	CCollision::GetInstance()->Process(this, dt, coObjects);
 
 	if (state == KOOPA_STATE_WING && isOnPlatform)
 	{
@@ -31,12 +37,7 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	}
 
-	if ((state == GAME_OBJECT_STATE_DIE))
-	{
-		isDeleted = true;
-		return;
-	}
-	CCollision::GetInstance()->Process(this, dt, coObjects);
+
 }
 
 void CKoopa::Render()
@@ -88,15 +89,24 @@ void CKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 {
 	CKoopa* koopa = dynamic_cast<CKoopa*>(e->obj);
+	this->velocity.x = -this->velocity.x;
 	if (koopa->GetState() == KOOPA_STATE_INSIDE_SHELL)
 	{
 		koopa->SetState(KOOPA_STATE_ROLLING);
+
 	}
 	else if(koopa->GetState() != KOOPA_STATE_ROLLING)
 	{
 		koopa->SetSpeed(0, -KOOPA_JUMP_DEFLECT_SPEED);
 		koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
 	}
+	//else if (koopa->GetState() == KOOPA_STATE_ROLLING)
+	//{
+	//	float vx, vy;
+	//	koopa->GetSpeed(vx, vy);
+	//	koopa->SetSpeed(-vx, vy);
+
+	//}
 }
 
 void CKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)

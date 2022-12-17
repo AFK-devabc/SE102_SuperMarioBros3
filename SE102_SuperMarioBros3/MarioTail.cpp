@@ -11,6 +11,7 @@
 #include "BrickBroken.h"
 #include "HardCollision.h"
 #include "GameEffect.h"
+#include "Plant.h"
 
 void CMarioTail::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
@@ -40,6 +41,8 @@ void CMarioTail::IsCollidingWith(LPGAMEOBJECT e)
 		OnCollisionWithBrick(e);
 	else if (dynamic_cast<CKoopa*>(e))
 		OnCollisionWithKoopa(e);
+	else if (dynamic_cast<CPlant*>(e))
+		OnCollisionWithPlant(e);
 
 }
 
@@ -51,7 +54,7 @@ void CMarioTail::OnCollisionWithGoomba(LPGAMEOBJECT e)
 	LPGAMEOBJECT effect = new CHardCollision(this->position);
 
 	LPPLAYSCENE p = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
-	p->AddGameEffect(effect);
+	p->AddGameObject(effect);
 
 }
 
@@ -63,7 +66,7 @@ void CMarioTail::OnCollisionWithKoopa(LPGAMEOBJECT e)
 	LPGAMEOBJECT effect = new CHardCollision(this->position);
 
 	LPPLAYSCENE p = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
-	p->AddGameEffect(effect);
+	p->AddGameObject(effect);
 
 
 }
@@ -71,5 +74,10 @@ void CMarioTail::OnCollisionWithKoopa(LPGAMEOBJECT e)
 void CMarioTail::OnCollisionWithBrick(LPGAMEOBJECT e)
 {
 	dynamic_cast<CBrick*>(e)->Hit(1);
+}
+
+void CMarioTail::OnCollisionWithPlant(LPGAMEOBJECT e)
+{
+	e->Delete();
 }
 

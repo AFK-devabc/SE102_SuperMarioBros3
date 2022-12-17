@@ -55,5 +55,21 @@
 
 		</Animations>
 
+		<Animations  aniID="41000" frameTime ="9999">
+			<Sprites spriteID = "Plant_Down" x="6" y="166" w="16" h="24"/>
+		</Animations>
+		<Animations  aniID="42000" frameTime ="9999">
+			<Sprites spriteID = "Plant_Up" x="6" y="195" w="16" h="24"/>
+		</Animations>
+
+		<Animations  aniID="43000" frameTime ="200">
+			<Sprites spriteID = "Plant_Bite_0" x="7" y="108" w="16" h="24"/>
+			<Sprites spriteID = "Plant_Bite_1" x="7" y="137" w="16" h="24"/>
+		</Animations>
+		<Animations  aniID="44000" frameTime ="9999">
+			<Sprites spriteID = "Green_Pipe" x="195" y="9" w="32" h="24"/>
+		</Animations>
+
+
 	</Textures>
 </Root>

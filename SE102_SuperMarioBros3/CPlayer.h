@@ -31,6 +31,8 @@ protected:
 	void OnCollisionWithRedLeaf(LPCOLLISIONEVENT e);
 	void OnCollisionWithPortal(LPCOLLISIONEVENT e);
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e);
+	void OnCollisionWithPlant(LPCOLLISIONEVENT e);
+	void OnCollisionWithPlantBullet(LPCOLLISIONEVENT e);
 
 public :
 	CPlayer(D3DXVECTOR2 position) : CGameObject(position) {

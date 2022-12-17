@@ -17,7 +17,7 @@
 #include "CColorBox.h"
 #include "Portal.h"
 #include "Ground.h"
-
+#include "Plant.h"
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"
 #include "Textures.h"
@@ -50,7 +50,6 @@ public:
 	void PurgeDeletedObjects();
 
 	void AddGameObject(LPGAMEOBJECT gameObject);
-	void AddGameEffect(LPGAMEOBJECT gameObject);
 
 	static bool IsGameObjectDeleted(const LPGAMEOBJECT& o);
 };

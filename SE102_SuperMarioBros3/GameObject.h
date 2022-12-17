@@ -60,6 +60,7 @@ public:
 	// When no collision has been detected (triggered by CCollision::Process)
 	virtual void OnNoCollision(DWORD dt) {};
 
+	virtual int IsLateRender() { return 0; }
 	// When collision with an object has been detected (triggered by CCollision::Process)
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e) {};
 	virtual void IsCollidingWith(LPGAMEOBJECT e) {};

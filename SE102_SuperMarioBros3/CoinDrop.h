@@ -4,7 +4,7 @@ class CCoinDrop :
     public CGameEffect
 {
 public:
-	CCoinDrop(D3DXVECTOR2 position) : CGameEffect(position, 210) {
+	CCoinDrop(D3DXVECTOR2 position) : CGameEffect(position, 300) {
 		this->velocity = D3DXVECTOR2(0, -BRICK_DEFLECT_SPEED);
 
 	}
@@ -20,10 +20,6 @@ public:
 		CAnimations* ani = CAnimations::GetInstance();
 		ani->Get(to_string(COIN_DROP))->Render(position);
 	};
-	//virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL)
-	//{
-	//	position += velocity * dt;
-	//}
 
 };
 

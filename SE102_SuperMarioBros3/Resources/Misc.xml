@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Root name="MICS" >
-	<Textures texID="Mics" texturePath="textures/misc_transparent.png">
+	<Textures texID="Mics" texturePath="textures/misc.png">
 		<Animations  aniID="none" frameTime ="9999">
 			<Sprites spriteID = "CloudBegin"	x="390" y="117" w="16" h="16"/>
 			<Sprites spriteID = "CloudMidder"	x="409" y="117" w="16" h="16"/>
@@ -41,7 +41,17 @@
 		<Animations  aniID="10040" frameTime ="9999">
 			<Sprites spriteID = "RedLeaf_0" x="300" y="208" w="16" h="14"/>
 		</Animations>
-		
+		<Animations  aniID="10060" frameTime ="9999">
+			<Sprites spriteID = "Coin_0" x="300" y="99" w="16" h="16"/>
+		</Animations>
+
+		<Animations  aniID="10070" frameTime ="100">
+			<Sprites spriteID = "Bullet_0" x="569" y="119" w="10" h="10"/>
+			<Sprites spriteID = "Bullet_1" x="580" y="119" w="10" h="10"/>
+			<Sprites spriteID = "Bullet_2" x="607" y="118" w="10" h="10"/>
+			<Sprites spriteID = "Bullet_3" x="619" y="118" w="10" h="10"/>
+		</Animations>
+
 		<Animations  aniID="9900" frameTime ="9999">
 			<Sprites spriteID = "Brick_Effects_0" x="484" y="120" w="7" h="7"/>
 		</Animations>
@@ -52,15 +62,13 @@
 			<Sprites spriteID = "Attack_Effects_2" x="623" y="48" w="4" h="4"/>
 		</Animations>
 
-		<Animations  aniID="10060" frameTime ="9999">
-			<Sprites spriteID = "Coin_0" x="300" y="99" w="16" h="16"/>
-		</Animations>
 		<Animations  aniID="9902" frameTime ="100">
 			<Sprites spriteID = "Coin_0" x="300" y="99" w="16" h="16"/>
 			<Sprites spriteID = "Coin_1" x="318" y="99" w="16" h="16"/>
 			<Sprites spriteID = "Coin_2" x="336" y="99" w="16" h="16"/>
 			<Sprites spriteID = "Coin_1" x="318" y="99" w="16" h="16"/>
 		</Animations>
+
 	</Textures>
 	<Textures texID="BBox" texturePath="textures/bbox.png">
 	</Textures>

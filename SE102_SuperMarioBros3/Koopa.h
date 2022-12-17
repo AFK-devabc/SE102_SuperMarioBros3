@@ -25,7 +25,6 @@ public:
 	virtual void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
 	virtual void SetState(int state, int isGoingRight = 0);
 
 

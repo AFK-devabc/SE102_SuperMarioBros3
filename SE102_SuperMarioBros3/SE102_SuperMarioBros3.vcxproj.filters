@@ -162,7 +162,13 @@
     <ClCompile Include="Coin.cpp">
       <Filter>GameObject\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Plant.cpp">
+      <Filter>GameObject\Enemies</Filter>
+    </ClCompile>
     <ClCompile Include="CoinDrop.cpp">
+      <Filter>GameObject\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantBullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -290,7 +296,13 @@
     <ClInclude Include="Coin.h">
       <Filter>GameObject\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Plant.h">
+      <Filter>GameObject\Enemies</Filter>
+    </ClInclude>
     <ClInclude Include="CoinDrop.h">
+      <Filter>GameObject\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

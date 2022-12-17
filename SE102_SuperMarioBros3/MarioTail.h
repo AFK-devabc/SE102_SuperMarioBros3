@@ -19,5 +19,7 @@ public:
 	void OnCollisionWithGoomba(LPGAMEOBJECT e);
 	void OnCollisionWithKoopa(LPGAMEOBJECT e);
 	void OnCollisionWithBrick(LPGAMEOBJECT e);
+	void OnCollisionWithPlant(LPGAMEOBJECT e);
+
 };
 

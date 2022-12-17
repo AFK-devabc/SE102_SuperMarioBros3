@@ -103,7 +103,7 @@ void CBrick::Hit(int type)
 				isDeleteNextFrame = 1;
 				LPGAMEOBJECT effect = new CBrickBroken(this->position);
 				LPPLAYSCENE p = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
-				p->AddGameEffect(effect);
+				p->AddGameObject(effect);
 			}
 			break;
 
@@ -150,7 +150,7 @@ void CBrick::DropItems()
 	case COIN_DROP:
 	{
 		LPGAMEOBJECT effect = new CCoinDrop(this->GetPosition());
-		playscene->AddGameEffect(effect);
+		playscene->AddGameObject(effect);
 
 	}
 	}

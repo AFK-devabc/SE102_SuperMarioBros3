@@ -12,7 +12,8 @@
 #include "Scenes.h"
 #include "PlayScene.h"
 #include "CColorBox.h"
-
+#include "Plant.h"
+#include "PlantBullet.h"
 
  int CPlayer::GetAniID()
 {
@@ -26,7 +27,7 @@
 	if (!isOnPlatform)
 	{
 			aniID = MARIO_STATE_JUMP;
-			if (abs( velocity.x) >  MARIO_WALKING_SPEED)
+			if (abs( velocity.x) > 0.9f * MARIO_RUNNING_SPEED)
 				aniID = MARIO_STATE_Run_Jump;
 			if(isFlying)
 				aniID = MARIO_STATE_FLYING_DROPDOWN;
@@ -47,9 +48,9 @@
 			{
 				if (velocity.x * Ax < 0)
 					aniID = MARIO_STATE_BRAKE;
-				else if (abs(Ax) == MARIO_ACCEL_RUN_X)
+				else if (abs(velocity.x) > 0.9f* MARIO_RUNNING_SPEED)
 					aniID = MARIO_STATE_RUNNING;
-				else if (abs(Ax) == MARIO_ACCEL_WALK_X)
+				else if (abs(Ax) != 0)
 					aniID = MARIO_STATE_WALKING;
 					
 			}
@@ -123,7 +124,7 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 	}
 	if (GetTickCount64() - attack_start > MARIO_DAMATE_TIME_START && isAttacking)
 	{
-		LPGAMEOBJECT marioTail = new CMarioTail(this->GetPosition()  + D3DXVECTOR2(isLookingRight? 16.0f: -16.0f,0));
+		LPGAMEOBJECT marioTail = new CMarioTail(this->GetPosition()  + D3DXVECTOR2(isLookingRight? MARIO_TAIL_WIDTH: -MARIO_TAIL_WIDTH,4.0f));
 		CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
 		playscene->AddGameObject(marioTail);
 		isAttacking = 0;
@@ -177,6 +178,10 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithPortal(e);
 	else if (dynamic_cast<CCoin*>(e->obj))
 		OnCollisionWithCoin(e);
+	else if (dynamic_cast<CPlant*>(e->obj))
+		OnCollisionWithPlant(e);
+	else if (dynamic_cast<CPlantBullet*>(e->obj))
+		OnCollisionWithPlantBullet(e);
 
 
 }
@@ -290,6 +295,17 @@ void CPlayer::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 void CPlayer::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 {
 	e->obj->Delete();
+}
+
+void CPlayer::OnCollisionWithPlant(LPCOLLISIONEVENT e)
+{
+	if(dynamic_cast<CPlant*>(e->obj)->IsDamage())
+	this->Attacked();
+}
+
+void CPlayer::OnCollisionWithPlantBullet(LPCOLLISIONEVENT e)
+{
+	this->Attacked();
 }
 
 void CPlayer::Attacked()
@@ -409,19 +425,31 @@ void CPlayer::SetState(int state, int islookright)
 	case MARIO_STATE_RUNNING:
 		if (isSitting) break;
 		maxVx = MARIO_RUNNING_SPEED * (islookright ? 1 : -1);
-		Ax = MARIO_ACCEL_RUN_X * (islookright? 1:-1);
-		break;
+		if (abs(velocity.x) > MARIO_WALKING_SPEED ) {
+			Ax = MARIO_ACCEL_RUN_X * (islookright ? 1 : -1);
+			if (Ax * velocity.x < 0 ||abs(velocity.x) < 0.5f * MARIO_WALKING_SPEED)
+				Ax = 4 * Ax;
+
+		}
+		else {
+			Ax = MARIO_ACCEL_WALK_X * (islookright ? 1 : -1);
+			if (Ax * velocity.x < 0) Ax = 2 * Ax;
+		}
+			break;
 	case MARIO_STATE_WALKING:
 		if (isSitting) break;
 		maxVx = MARIO_WALKING_SPEED * (islookright ? 1 : -1);
 		Ax = MARIO_ACCEL_WALK_X * (islookright ? 1 : -1);
+		
+		if (Ax * velocity.x < 0 || abs(velocity.x) < 0.5f * MARIO_WALKING_SPEED)
+			Ax = 2 * Ax;
 		break;
 	case MARIO_STATE_JUMP:
 		if (isSitting) break;
 		if (isOnPlatform)
 		{
-			if (abs(this->velocity.x) == MARIO_RUNNING_SPEED)
-				velocity.y = -MARIO_JUMP_RUN_SPEED_Y;
+			if (abs(this->velocity.x) >= MARIO_WALKING_SPEED)
+				velocity.y = -MARIO_JUMP_RUN_SPEED_Y *(  abs(velocity.x) - MARIO_WALKING_SPEED)  - MARIO_JUMP_SPEED_Y;
 			else
 				velocity.y = -MARIO_JUMP_SPEED_Y;
 		}
@@ -429,7 +457,7 @@ void CPlayer::SetState(int state, int islookright)
 	case MARIO_STATE_FLYING_DROPDOWN:
 		{
 		if (abs(velocity.x) == abs(MARIO_RUNNING_SPEED))
-			velocity.y = -MARIO_FLY_DROPDOWN_SPEED;
+			velocity.y = -2*MARIO_FLY_DROPDOWN_SPEED;
 		else 		if (velocity.y > 0)
 			velocity.y = MARIO_FLY_DROPDOWN_SPEED;
 			
@@ -440,7 +468,7 @@ void CPlayer::SetState(int state, int islookright)
 	case MARIO_STATE_RELEASE_JUMP:
 
 		if (velocity.y < 0 && !isFlying) 
-			velocity.y += MARIO_JUMP_RUN_SPEED_Y / 2;
+			velocity.y += MARIO_JUMP_SPEED_Y /2;
 		break;
 
 	case MARIO_STATE_SIT:

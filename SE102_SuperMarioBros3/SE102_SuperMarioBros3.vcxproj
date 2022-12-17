@@ -148,6 +148,8 @@
     <ClCompile Include="Koopa.cpp" />
     <ClCompile Include="MarioTail.cpp" />
     <ClCompile Include="MushRoom.cpp" />
+    <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="PlantBullet.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Portal.cpp" />
@@ -191,6 +193,8 @@
     <ClInclude Include="Koopa.h" />
     <ClInclude Include="MarioTail.h" />
     <ClInclude Include="MushRoom.h" />
+    <ClInclude Include="Plant.h" />
+    <ClInclude Include="PlantBullet.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Portal.h" />

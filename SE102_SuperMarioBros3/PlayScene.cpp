@@ -185,6 +185,14 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObject = new CCoin(position);
 					break;
 				}
+				case  OBJECT_TYPE_PLANT:
+				{				
+					int plantType = PLANT_STATE_BITE;
+					gameObjectNode->QueryIntAttribute("Type", &plantType);
+
+					gameObject = new CPlant(position, plantType);
+					break;
+				}
 
 				case OBJECT_TYPE_PORTAL:
 				{
@@ -325,11 +333,5 @@ void CPlayScene::PurgeDeletedObjects()
 void CPlayScene::AddGameObject(LPGAMEOBJECT gameObject)
 {
 	grid->AddGameObject(gameObject);
-	//LPGameObject.insert(LPGameObject.begin(), gameObject);
 }
 
-void CPlayScene::AddGameEffect(LPGAMEOBJECT gameObject)
-{
-	grid->AddGameObject(gameObject);
-	//LPGameObject.push_back(gameObject);
-}

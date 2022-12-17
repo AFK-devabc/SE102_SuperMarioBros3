@@ -28,6 +28,7 @@ public:
 	void Hit(int type = 1);
 	int isHitted() { return hitted; }
 
+	virtual int IsLateRender() { return 1; }
 	virtual int IsCollidable() { return 0; };
 	virtual int IsBlocking() { return 1; }
 
