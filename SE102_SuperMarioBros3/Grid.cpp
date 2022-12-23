@@ -44,9 +44,9 @@ void CGrid::AddGameObject(LPGAMEOBJECT gameObject, LPCELL cell)
 LPCELL CGrid::GetCell(int x, int y)
 {
     if (x < 0) x = 0;
-    if (x >= numXCells) x = numXCells - 1;
+    if (x > numXCells -1) x = numXCells - 1;
     if (y < 0) y = 0;
-    if (y >= numYCells) y = numYCells - 1;
+    if (y > numYCells -1) y = numYCells - 1;
 
     return &lpCells[y * numXCells + x];
 }
@@ -66,17 +66,17 @@ void CGrid::SetCellUpdate(D3DXVECTOR2 start, D3DXVECTOR2 end)
      startY = (int)(start.y / cellSize);
 
      if (startX < 0) startX = 0;
-     else if (startX >= numXCells) startX = numXCells - 1;
+     else if (startX > numXCells - 1) startX = numXCells - 1;
      if (startY < 0) startY = 0;
-     else if (startY >= numYCells) startY = numYCells - 1;
+     else if (startY > numYCells -1) startY = numYCells - 1;
      //convert to upper
      endX = (int)ceil(end.x / cellSize);
      endY = (int)ceil(end.y / cellSize);
 
      if (endX < 0) endX = 0;
-     else if (endX >= numXCells) endX = numXCells - 1;
+     else if (endX > numXCells -1 ) endX = numXCells -1;
      if (endY < 0) endY = 0;
-     else if (endY >= numYCells) endY = numYCells - 1;
+     else if (endY > numYCells -1) endY = numYCells - 1;
 
 
      //DebugOut(L"\n Start : %d,%d,         End : %d, %d ",startX, startY, endX, endY);
@@ -85,12 +85,12 @@ void CGrid::SetCellUpdate(D3DXVECTOR2 start, D3DXVECTOR2 end)
 
 void CGrid::Update(DWORD dt)
 {
-    DebugOut(L"\n");
+    //DebugOut(L"\n");
     for(int i = startX; i<=endX; i++)
         for (int j = startY; j < endY;j++)
         {
             cell cell = lpCells[i + numXCells * j];
-            DebugOut(L"%d, %d \t", i, j);
+            //DebugOut(L"%d, %d \t", i, j);
             for (int k = 0; k < cell.lpGameObjects.size(); k++)  //Updating gameobject
             {
               
@@ -119,7 +119,7 @@ void CGrid::Update(DWORD dt)
                             lpCells[i - 1 + numXCells * (j - 1)].lpGameObjects.begin(),
                             lpCells[i - 1 + numXCells * (j - 1)].lpGameObjects.end());
                     }
-                    if (j <numYCells)
+                    if (j <numYCells -1)
                     {
                         //Get object in objectCell bottomLeft, bottom
                         cellLPGameObject.insert(cellLPGameObject.end(), 
@@ -130,7 +130,7 @@ void CGrid::Update(DWORD dt)
                             lpCells[i - 1 + numXCells * (j + 1)].lpGameObjects.end());
                     }
                 }
-                if (i < numXCells )
+                if (i < numXCells -1 )
                 {
                     //Get object in objectCell right
                     cellLPGameObject.insert(cellLPGameObject.end(), 
@@ -148,7 +148,7 @@ void CGrid::Update(DWORD dt)
                                 lpCells[i + 1 + numXCells * (j - 1)].lpGameObjects.begin(),
                                 lpCells[i + 1 + numXCells * (j - 1)].lpGameObjects.end());
                     }
-                    if (j < numYCells )
+                    if (j < numYCells -1 )
                     {
                         //Get object in objectCell bottom, rightbottom
                         if (flag)

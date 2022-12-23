@@ -24,7 +24,7 @@
 
 #pragma region Mario
 
-#define Small_Mario_Height		16.0f
+#define Small_Mario_Height		14.0f
 #define Big_Mario_Height		28.0f
 #define Small_Mario_Width		14.0f
 
@@ -70,14 +70,17 @@
 #pragma endregion
 
 #pragma region Goomba
-#define Goomba_Walking_Speed		0.05f
+#define Goomba_Walking_Speed		0.02f
 #define GOOMBA_JUMP_DEFLECT_SPEED	0.2f
 #define GOOMBA_WIDTH				16
 #define GOOMBA_HEIGHT				16
 #define GOOMBA_DIE_TIMEOUT			1000
 #define GOOMBA_STATE_WALKING		20000
+#define GOOMBA_STATE_WING			22000
 #define GOOMBA_STATE_DYING			21000
 #define PLANT_BULLET_SIZE			8.0f
+#define GOOMBA_JUMP_DELAY			2000
+
 #pragma endregion
 
 #pragma region Plant
@@ -115,7 +118,7 @@
 #define KOOPA_NORMAL_WIDTH			26
 #define KOOPA_NORMAL_HEIGHT			26
 #define KOOPA_SHEILD_WIDTH			16
-#define KOOPA_SHEILD_HEIGHT			16
+#define KOOPA_SHEILD_HEIGHT			14
 
 #define KOOPA_WALKING_SPEED			0.05f
 #define KOOPA_JUMP_DEFLECT_SPEED	0.2f

@@ -10,6 +10,7 @@ protected:
 	D3DXVECTOR2 position;
 	D3DXVECTOR2 backBuffer;
 	D3DXVECTOR2* followObjects;
+	D3DXVECTOR2 worldSize;
 public:
 
 
@@ -20,12 +21,22 @@ public:
 	{
 		followObjects = position;
 	}
-
+	void SetWorldSize(D3DXVECTOR2 worldSize) { this->worldSize = worldSize; }
 	void Update(DWORD dt)
 	{
 		//DebugOut(L"%f,	%f", followObjects->x, followObjects->y);
+
+	
 		this->position.x =  ( followObjects->x - backBuffer.x / 2);
 		this->position.y = (int)(followObjects->y - backBuffer.y / 2);
+
+		if (position.x < 0) position.x = 0;
+		if (position.x + backBuffer.x > worldSize.x) position.x = worldSize.x - backBuffer.x;
+
+
+		if (position.y < 0) position.y = 0;
+		if (position.y + backBuffer.y > 432) position.y = 432 - backBuffer.y;
+
 		//this->position.y = 236;
 	}
 

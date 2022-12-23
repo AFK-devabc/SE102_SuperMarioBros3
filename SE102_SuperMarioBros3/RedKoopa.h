@@ -9,7 +9,6 @@ protected:
    
 public :
     CRedKoopa(D3DXVECTOR2 position,LPGAMEOBJECT edgeDetect) : CKoopa(position) {
-        velocity = D3DXVECTOR2(Goomba_Walking_Speed, 0);
         state = KOOPA_STATE_WALKING;
         this->edgeDetect = edgeDetect;
     };

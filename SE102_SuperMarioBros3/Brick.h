@@ -20,7 +20,7 @@ public:
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
-	void Render();
+	virtual void Render();
 	int GetBehavior() { return behavior; }
 
 	void SetState(int state, int islookright = 0);

@@ -28,7 +28,7 @@ public:
     LPCELL GetCell(int x, int y);
     /// Gets cell based on window coordinates
     LPCELL GetCell(D3DXVECTOR2 pos);
-
+    D3DXVECTOR2 GetWorldSize() { return D3DXVECTOR2(mapWidth, mapHeight); }
     void SetCellUpdate( D3DXVECTOR2 start, D3DXVECTOR2 end);
 
     void Update(DWORD dt);

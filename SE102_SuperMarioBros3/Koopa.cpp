@@ -16,7 +16,6 @@ void CKoopa::GetBoundingBox(float& l, float& t, float& r, float& b)
 		t = position.y - KOOPA_NORMAL_HEIGHT / 2;
 		b = t + KOOPA_NORMAL_HEIGHT ;
 	}
-
 }
 
 void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)

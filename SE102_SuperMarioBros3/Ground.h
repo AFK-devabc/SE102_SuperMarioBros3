@@ -17,7 +17,10 @@ public:
         b = t + +size.y;
 
     };
-
+    //virtual void Render()
+    //{
+    //    RenderBoundingBox();
+    //}
 
     virtual int IsCollidable() { return 0; };
     virtual int IsBlocking() { return 1; }

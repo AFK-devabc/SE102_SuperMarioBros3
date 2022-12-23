@@ -108,21 +108,30 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				case OBJECT_TYPE_MARIO:
 				{
 					if (player != NULL)
-				{
-					DebugOut(L"[Error] Player was already loaded");
-					return;
-				}
-				player = new CPlayer(position);
-				CCamera::GetInstance()->SetCamFollow(player->GetPPosition());
+					{
+						DebugOut(L"[Error] Player was already loaded\n");
+						return;
+					}
+					player = new CPlayer(position);
+					CCamera::GetInstance()->SetCamFollow(player->GetPPosition());
 
-				LPKeyHandler.push_back(player);
-				gameObject = player;
-				break;
+					LPKeyHandler.push_back(player);
+					gameObject = player;
+					break;
 				}
 				case OBJECT_TYPE_GOOMBA:
-				{	
-					gameObject = new CGoomba(position);
-				break;
+				{
+					int type = 0, state = 0;
+					gameObjectNode->QueryIntAttribute("type", &type);
+					gameObjectNode->QueryIntAttribute("state", &state);
+
+					gameObject = new CGoomba(position, type);
+
+					if (state != 0)
+					{
+						gameObject->SetState(state);
+					}
+					break;
 				}
 				case OBJECT_TYPE_KOOPA:
 				{
@@ -179,14 +188,14 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObjectNode->QueryIntAttribute("h", &h);
 					gameObject = new CColorBox(x, y, w, h);
 					break;
-				}				
+				}
 				case  OBJECT_TYPE_COIN:
 				{
 					gameObject = new CCoin(position);
 					break;
 				}
 				case  OBJECT_TYPE_PLANT:
-				{				
+				{
 					int plantType = PLANT_STATE_BITE;
 					gameObjectNode->QueryIntAttribute("Type", &plantType);
 
@@ -214,6 +223,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 			}
 		}
 	}
+
 	else
 	{
 		DebugOut(L"[ERROR] Failed to load GameObjects file \"%s\"\n", ToLPCWSTR(filePath));
@@ -252,12 +262,16 @@ void CPlayScene::Load()
 					resourcePathNode->QueryIntAttribute("height", &h);
 					resourcePathNode->QueryIntAttribute("CellSize", &cs);
 					grid = new CGrid(w, h, cs);
+
+					CCamera::GetInstance()->SetWorldSize(D3DXVECTOR2(w, h));
 				}
 				else if (strcmp(resourceType, "TitleMap") == 0)
 				{
 					const char* filePath = resourcePathNode->Attribute("filePath");
 
 					tileMap = new CTileMap( filePath);
+
+					
 				}
 
 			}
@@ -314,16 +328,13 @@ void CPlayScene::Render()
 */
 void CPlayScene::Unload()
 {
-	//for (int i = 0; i < LPGameObject.size(); i++)
-	//	delete LPGameObject[i];
-
-	//LPGameObject.clear();
-	//player = NULL;
-
-	//DebugOut(L"[INFO] Scene %d unloaded! \n", id);
+	player = NULL;
+	delete tileMap;
+	tileMap = NULL;
+	delete grid;
+	grid = NULL;
 }
 
-bool CPlayScene::IsGameObjectDeleted(const LPGAMEOBJECT& o) { return o == NULL; }
 
 void CPlayScene::PurgeDeletedObjects()
 {
@@ -334,4 +345,6 @@ void CPlayScene::AddGameObject(LPGAMEOBJECT gameObject)
 {
 	grid->AddGameObject(gameObject);
 }
+
+
 

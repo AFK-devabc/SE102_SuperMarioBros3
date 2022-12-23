@@ -98,7 +98,6 @@ void CPlant::Render()
 	}
 
 	CAnimations::GetInstance()->Get(to_string(GREEN_PIPE))->Render(pinePosition);
-	RenderBoundingBox();
 }
 
 

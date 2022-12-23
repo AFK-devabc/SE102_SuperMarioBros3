@@ -168,8 +168,11 @@
     <ClCompile Include="CoinDrop.cpp">
       <Filter>GameObject\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>GameObject\Blocking</Filter>
+    </ClCompile>
     <ClCompile Include="PlantBullet.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameObject\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -302,8 +305,11 @@
     <ClInclude Include="CoinDrop.h">
       <Filter>GameObject\Effects</Filter>
     </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>GameObject\Blocking</Filter>
+    </ClInclude>
     <ClInclude Include="PlantBullet.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameObject\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

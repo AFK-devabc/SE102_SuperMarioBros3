@@ -8,11 +8,13 @@ class CGoomba :
 protected:
 	BOOLEAN isOnPlatform;
 
-	ULONGLONG die_start;
-
+	DWORD die_start;
+	int type;
+	DWORD jumpstart;
 public:
-	CGoomba(D3DXVECTOR2 position) : CGameObject(position) {
-		this->velocity = D3DXVECTOR2(Goomba_Walking_Speed,0);
+	CGoomba(D3DXVECTOR2 position, int type = 0) : CGameObject(position) {
+		this->type = type;
+		this->velocity = D3DXVECTOR2(Goomba_Walking_Speed * (isLookingRight ? 1 : -1), 0);
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 
@@ -23,9 +25,6 @@ public:
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
-	void SetState(int state, int islookright = 0);
-
-
+	virtual void SetState(int state, int isGoingRight = 0);
 };
 

@@ -3,8 +3,9 @@
 <Root name="Scene 1_1" >
 	<GameObject objType="0000" name="Mario" x="200" y ="200"/>
 
-	<GameObject objType="20000" name="Goomba" x="500" y ="400"/>
-	<GameObject objType="30000" name="Koopa" x="500" y ="400"/>
+	<GameObject objType="20000" name="Goomba" type ="1" state="22000" x="500" y ="400"/>
+	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="450" y ="400"/>
+	<!--<GameObject objType="30000" name="Koopa" x="500" y ="400"/>-->
 	<GameObject objType="30001" name="RedKoopa" x="550" y ="350"/>
 	<GameObject objType="30001" name="RedKoopa" x="2100" y ="350"/>
 	<GameObject objType="40000" name="Plant" Type =" 40000" x="368" y ="380"/>
@@ -126,6 +127,7 @@
 	<GameObject objType="91000" name="Block" x="1688" y ="408" w="48" h="16" />
 
 
+	<GameObject objType="91000" name="Ground" x="1" y ="360" w="1" h="128" />
 	<GameObject objType="91000" name="Ground" x="64" y ="424" w="128" h="16" />
 	<GameObject objType="91000" name="Ground" x="192" y ="424" w="128" h="16" />
 	<GameObject objType="91000" name="Ground" x="320" y ="424" w="128" h="16" />
@@ -154,9 +156,10 @@
 	<GameObject objType="91000" name="Ground" x="2576" y ="424" w="128" h="16" />
 	<GameObject objType="91000" name="Ground" x="2704" y ="424" w="128" h="16" />
 	<GameObject objType="91000" name="Ground" x="2792" y ="424" w="48" h="16" />
+	<GameObject objType="91000" name="Ground" x="2815" y ="360" w="1" h="128" />
 
 
+	<!--<GameObject objType="99999" name="Portal" nextScene="Scene_1_2"  x="10" y ="416"/>-->
 
-	<GameObject objType="99999" name="Portal" nextScene="Scene_1_2"  x="300" y ="184"/>
-
+	
 </Root>

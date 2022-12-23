@@ -23,7 +23,8 @@
 	{
 		return isChangingform;
 	}
-
+	if (GetTickCount64() - attack_start <= 200)
+		return 127000;
 	if (!isOnPlatform)
 	{
 			aniID = MARIO_STATE_JUMP;
@@ -122,7 +123,7 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects )
 			isFlying = 0;
 		}
 	}
-	if (GetTickCount64() - attack_start > MARIO_DAMATE_TIME_START && isAttacking)
+	else if (GetTickCount64() - attack_start > MARIO_DAMATE_TIME_START && isAttacking)
 	{
 		LPGAMEOBJECT marioTail = new CMarioTail(this->GetPosition()  + D3DXVECTOR2(isLookingRight? MARIO_TAIL_WIDTH: -MARIO_TAIL_WIDTH,4.0f));
 		CPlayScene* playscene = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
@@ -139,8 +140,6 @@ void CPlayer::Render()
 	CAnimations* ani = CAnimations::GetInstance();
 
 	ani->Get(aniId)->Render(position, !isLookingRight);
-
-	RenderBoundingBox();
 }
 
 void CPlayer::OnNoCollision(DWORD dt)
@@ -195,7 +194,16 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 	{
 		if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
 		{
-			goomba->SetState(GAME_OBJECT_STATE_DIE);
+			int goombastate = goomba->GetState();
+			switch (goombastate)
+			{
+			case GOOMBA_STATE_WING:
+				goomba->SetState(GOOMBA_STATE_WALKING);
+				break;
+			case GOOMBA_STATE_WALKING:
+				goomba->SetState(GOOMBA_STATE_DYING);
+				break;
+			}
 			velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
 		}
 	}
@@ -215,10 +223,10 @@ void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 	CKoopa* koopa = dynamic_cast<CKoopa*>(e->obj);
 	if (koopa->GetState() == KOOPA_STATE_INSIDE_SHELL)
 	{
-		int isGoingRight = 0;
+		int isGoingRight = 1;
 		if (position.x > koopa->GetPPosition()->x)
-			isGoingRight = 1;
-		koopa->SetState(KOOPA_STATE_ROLLING);
+			isGoingRight = 0;
+		koopa->SetState(KOOPA_STATE_ROLLING, isGoingRight);
 		
 		return;
 	}
@@ -306,6 +314,7 @@ void CPlayer::OnCollisionWithPlant(LPCOLLISIONEVENT e)
 void CPlayer::OnCollisionWithPlantBullet(LPCOLLISIONEVENT e)
 {
 	this->Attacked();
+	e->obj->Delete();
 }
 
 void CPlayer::Attacked()
