@@ -21,6 +21,9 @@ void CKoopa::GetBoundingBox(float& l, float& t, float& r, float& b)
 void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 
+	if (state == KOOPA_STATE_HOLDED)
+		return;
+
 	isOnPlatform = false;
 	velocity.y += GRAVITY * dt;
 	if ((state == GAME_OBJECT_STATE_DIE))

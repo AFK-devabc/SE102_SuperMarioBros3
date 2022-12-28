@@ -140,7 +140,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				}
 				case OBJECT_TYPE_RED_KOOPA:
 				{
-					LPGAMEOBJECT block = new CKoopaEdgeDetect(position);
+					LPGAMEOBJECT block = new CKoopaEdgeDetect(position + D3DXVECTOR2(0,14.0f));
 
 					gameObject = new CRedKoopa(position, block);
 					grid->AddGameObject(block);

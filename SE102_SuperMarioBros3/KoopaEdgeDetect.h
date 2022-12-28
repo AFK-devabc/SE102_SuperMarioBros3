@@ -12,7 +12,7 @@ public:
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
+	void Render() { RenderBoundingBox(); }
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
 };
 

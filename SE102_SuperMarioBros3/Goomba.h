@@ -14,7 +14,7 @@ protected:
 public:
 	CGoomba(D3DXVECTOR2 position, int type = 0) : CGameObject(position) {
 		this->type = type;
-		this->velocity = D3DXVECTOR2(Goomba_Walking_Speed * (isLookingRight ? 1 : -1), 0);
+		this->velocity = D3DXVECTOR2( - Goomba_Walking_Speed, 0);
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 
@@ -24,7 +24,7 @@ public:
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
-	virtual int IsCollidable() { return 1; };
+	virtual int IsCollidable() { return state != GAME_OBJECT_STATE_DIE; };
 	virtual void SetState(int state, int isGoingRight = 0);
 };
 

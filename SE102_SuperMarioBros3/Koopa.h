@@ -11,7 +11,7 @@ protected :
 
 public:
 	CKoopa(D3DXVECTOR2 position) : CGameObject(position) {
-		velocity = D3DXVECTOR2(KOOPA_WALKING_SPEED, 0);
+		velocity = D3DXVECTOR2(-KOOPA_WALKING_SPEED, 0);
 		state = KOOPA_STATE_WING;
 	};
 	virtual void GetBoundingBox(float& l, float& t, float& r, float& b);

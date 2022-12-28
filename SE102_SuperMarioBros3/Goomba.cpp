@@ -26,12 +26,6 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		if(GetTickCount64() - die_start > GOOMBA_DIE_TIMEOUT)
 				isDeleted = true;
 	}
-	else if (state == GAME_OBJECT_STATE_HITTED)
-	{
-		if (GetTickCount64() - die_start > GOOMBA_DIE_TIMEOUT)
-			isDeleted = true;
-		OnNoCollision(dt);
-	}
 	else
 	{
 		velocity.y += GRAVITY * dt;
@@ -39,8 +33,11 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 		if (type == 1)
 		{
-			velocity.x = position.x < dynamic_cast<CPlayScene*>(CScenes::GetInstance()
-				->GetCurrentScene())->GetPlayer()->GetPosition().x ? Goomba_Walking_Speed : -Goomba_Walking_Speed;
+			D3DXVECTOR2 playerPosition = dynamic_cast<CPlayScene*>(CScenes::GetInstance()
+				->GetCurrentScene())->GetPlayer()->GetPosition();
+
+			if(abs(playerPosition.x - position.x) >50.0f)
+				velocity.x = position.x < playerPosition.x ? Goomba_Walking_Speed : -Goomba_Walking_Speed;
 		}
 		CCollision::GetInstance()->Process(this, dt, coObjects);
 		if (state == GOOMBA_STATE_WING && isOnPlatform)
@@ -60,17 +57,15 @@ void CGoomba::Render()
 	if (state == GAME_OBJECT_STATE_DIE)
 	{
 		ani->Get(to_string(GOOMBA_STATE_DYING + type))->Render(position);
-		return;
 	}
-	ani->Get(to_string(state + type))->Render(position);
+	else
+		ani->Get(to_string(state + type))->Render(position);
 
 }
 
 void CGoomba::OnNoCollision(DWORD dt)
 {
 	position += velocity * dt;
-	DebugOut(L"%f\n", position.x);
-
 }
 
 void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
@@ -91,15 +86,17 @@ void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 void CGoomba::SetState(int state, int islookright)
 {
 	this->state = state;
+	this->isLookingRight = islookright;
 	switch (state)
 	{
 	case GOOMBA_STATE_WING:
 	case GOOMBA_STATE_WALKING:
-		this->velocity = D3DXVECTOR2(Goomba_Walking_Speed * islookright ? 1:-1, 0);
+		this->velocity = D3DXVECTOR2(Goomba_Walking_Speed * (islookright ? 1:-1), 0);
 		break;
-	case GOOMBA_STATE_DYING:
+	case GAME_OBJECT_STATE_DIE:
 		die_start = GetTickCount64();
-		this->position.y = position.y + GOOMBA_HEIGHT / 2;
+		//this->position.y = position.y + GOOMBA_HEIGHT / 2;
+		this->velocity = D3DXVECTOR2(0, 0);
 		break;
 	default:
 		break;

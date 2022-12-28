@@ -3,10 +3,10 @@
 
 void CKoopaEdgeDetect::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
-	l = position.x - BRICK_WIDTH / 2;
-	t = position.y - BRICK_HEIGHT / 2;
-	r = l + BRICK_WIDTH;
-	b = t + BRICK_HEIGHT;
+	l = position.x - 2 / 2;
+	t = position.y - 2 / 2;
+	r = l + 2;
+	b = t + 2;
 
 }
 

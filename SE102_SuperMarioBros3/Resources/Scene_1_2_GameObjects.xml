@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Root name="Scene 1_1" >
-	<GameObject objType="0000" name="Mario" x="200" y ="200"/>
+	<GameObject objType="0000" name="Mario" x="20" y ="350"/>
+	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="250" y ="400"/>
+	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="450" y ="400"/>
 
-	<GameObject objType="20000" name="Goomba" x="500" y ="400"/>
-	<GameObject objType="30000" name="Koopa" x="500" y ="400"/>
-	<GameObject objType="30001" name="RedKoopa" x="550" y ="350"/>
+	<GameObject objType="20000" name="Goomba" type ="1" state="22000" x="1000" y ="350"/>
+	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="900" y ="350"/>
+	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="800" y ="350"/>
+
+	<!--<GameObject objType="30000" name="Koopa" x="500" y ="400"/>-->
+	<GameObject objType="30001" name="RedKoopa" x="550" y ="340"/>
 	<GameObject objType="30001" name="RedKoopa" x="2100" y ="350"/>
 	<GameObject objType="40000" name="Plant" Type =" 40000" x="368" y ="380"/>
 	<GameObject objType="40000" name="Plant" Type =" 43000" x="1808" y ="396"/>

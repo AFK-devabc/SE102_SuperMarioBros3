@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Root name="Scene 1_1" >
-	<GameObject objType="0000" name="Mario" x="200" y ="200"/>
-
-	<GameObject objType="20000" name="Goomba" type ="1" state="22000" x="500" y ="400"/>
+	<GameObject objType="0000" name="Mario" x="20" y ="350"/>
+	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="250" y ="400"/>
 	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="450" y ="400"/>
+
+	<GameObject objType="20000" name="Goomba" type ="1" state="22000" x="1000" y ="350"/>
+	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="900" y ="350"/>
+	<GameObject objType="20000" name="Goomba" type ="0" state="20000" x="800" y ="350"/>
+
 	<!--<GameObject objType="30000" name="Koopa" x="500" y ="400"/>-->
-	<GameObject objType="30001" name="RedKoopa" x="550" y ="350"/>
+	<GameObject objType="30001" name="RedKoopa" x="550" y ="340"/>
 	<GameObject objType="30001" name="RedKoopa" x="2100" y ="350"/>
 	<GameObject objType="40000" name="Plant" Type =" 40000" x="368" y ="380"/>
 	<GameObject objType="40000" name="Plant" Type =" 43000" x="1808" y ="396"/>
@@ -127,7 +131,40 @@
 	<GameObject objType="91000" name="Block" x="1688" y ="408" w="48" h="16" />
 
 
-	<GameObject objType="91000" name="Ground" x="1" y ="360" w="1" h="128" />
+	<GameObject objType="91000" name="Ground" x="1" y ="64" w="1" h="128" />
+	<GameObject objType="91000" name="Ground" x="1" y ="192" w="1" h="128" />
+	<GameObject objType="91000" name="Ground" x="1" y ="320" w="1" h="128" />
+	<GameObject objType="91000" name="Ground" x="1" y ="448" w="1" h="128" />y ="1" w="1" h="128"
+	
+	<GameObject objType="91000" name="Ground" x="2815" y ="64" w="1" h="128" />
+	<GameObject objType="91000" name="Ground" x="2815" y ="192" w="1" h="128" />
+	<GameObject objType="91000" name="Ground" x="2815" y ="320" w="1" h="128" />
+	<GameObject objType="91000" name="Ground" x="2815" y ="448" w="1" h="128" />
+	
+	<GameObject objType="91000" name="Ground" x="64" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="192" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="320" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="448" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="576" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="704" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="832" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="960" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="1088" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="1216" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="1344" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="1472" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="1600" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="1728" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="1856" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="1984" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="2112" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="2240" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="2368" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="2496" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="2624" y ="1" w="128" h="1" />
+	<GameObject objType="91000" name="Ground" x="2752" y ="1" w="128" h="1" />
+
+
 	<GameObject objType="91000" name="Ground" x="64" y ="424" w="128" h="16" />
 	<GameObject objType="91000" name="Ground" x="192" y ="424" w="128" h="16" />
 	<GameObject objType="91000" name="Ground" x="320" y ="424" w="128" h="16" />

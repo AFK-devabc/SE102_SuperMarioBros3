@@ -48,8 +48,9 @@ void CMarioTail::IsCollidingWith(LPGAMEOBJECT e)
 
 void CMarioTail::OnCollisionWithGoomba(LPGAMEOBJECT e)
 {
-	e->SetState(GOOMBA_STATE_DYING);
-	e->SetSpeed(0, -GOOMBA_JUMP_DEFLECT_SPEED);
+	CGoomba* goomba = dynamic_cast<CGoomba*>(e);
+	goomba->SetState(GAME_OBJECT_STATE_DIE);
+	goomba->SetSpeed(0, -GOOMBA_JUMP_DEFLECT_SPEED);
 
 	LPGAMEOBJECT effect = new CHardCollision(this->position);
 
@@ -60,8 +61,10 @@ void CMarioTail::OnCollisionWithGoomba(LPGAMEOBJECT e)
 
 void CMarioTail::OnCollisionWithKoopa(LPGAMEOBJECT e)
 {
-	e->SetState(KOOPA_STATE_INSIDE_SHELL);
-	e->SetSpeed(0, -KOOPA_JUMP_DEFLECT_SPEED);
+	CKoopa* koopa = dynamic_cast<CKoopa*>(e);
+
+	koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
+	koopa->SetSpeed(0, -KOOPA_JUMP_DEFLECT_SPEED);
 
 	LPGAMEOBJECT effect = new CHardCollision(this->position);
 

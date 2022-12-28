@@ -24,6 +24,12 @@ protected:
 	int isFlying;
 	DWORD flyingStart;
 
+	int CanFlyUp;
+	DWORD FlyUpStart;
+
+	int CanHoldKoopa;
+	LPGAMEOBJECT koopaHolding;
+
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
 	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
@@ -41,7 +47,8 @@ public :
 		attack_start = 0;
 		untouchable_start = 0;
 		flyingStart = 0;
-
+		CanHoldKoopa = 0;
+		koopaHolding = NULL;
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 
