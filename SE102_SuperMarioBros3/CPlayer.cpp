@@ -364,18 +364,18 @@ void CPlayer::KeyState(BYTE* state)
 	if (isChangingform)
 		return;
 
-	if (IsKeyDown(DIK_D))
+	if (IsKeyDown(DIK_RIGHT))
 	{
 		isLookingRight = true;
-		if (IsKeyDown(DIK_J))
+		if (IsKeyDown(DIK_A))
 			SetState(MARIO_STATE_RUNNING, 1);
 		else
 			SetState(MARIO_STATE_WALKING,1);
 	}
-	else if (IsKeyDown(DIK_A))
+	else if (IsKeyDown(DIK_LEFT))
 	{
 		isLookingRight = false;
-		if (IsKeyDown(DIK_J))
+		if (IsKeyDown(DIK_A))
 			SetState(MARIO_STATE_RUNNING,-1);
 		else
 			SetState(MARIO_STATE_WALKING,-1);
@@ -384,7 +384,7 @@ void CPlayer::KeyState(BYTE* state)
 		SetState(MARIO_STATE_IDLE);
 
 	// Sitting state has higher priority 
-	if (IsKeyDown(DIK_S))
+	if (IsKeyDown(DIK_DOWN))
 	{
 		SetState(MARIO_STATE_SIT);
 	}
@@ -395,7 +395,7 @@ void CPlayer::OnKeyDown(int KeyCode)
 {
 	switch (KeyCode)
 	{
-	case DIK_K:
+	case DIK_S:
 		if ( !isOnPlatform && marioType == CAT_MARIO)
 		{
 			SetState(MARIO_STATE_FLYING_DROPDOWN);
@@ -403,7 +403,7 @@ void CPlayer::OnKeyDown(int KeyCode)
 		}
 		SetState(MARIO_STATE_JUMP);
 		break;
-	case DIK_J:
+	case DIK_A:
 		CanHoldKoopa = 1;
 		if (marioType == CAT_MARIO)
 		{
@@ -428,16 +428,16 @@ void CPlayer::OnKeyUp(int KeyCode)
 {
 	switch (KeyCode)
 	{
-	case DIK_K:
+	case DIK_S:
 		SetState(MARIO_STATE_RELEASE_JUMP);
 		break;
-	case DIK_S:
+	case DIK_DOWN:
 		if(marioType == SMALL_MARIO)
 			return;
 		SetState(MARIO_STATE_SIT_RELEASE);
 		position = position + D3DXVECTOR2(0, (-Big_Mario_Height + Small_Mario_Height) / 2);
 		break;
-	case  DIK_J:
+	case  DIK_A:
 		CanHoldKoopa = 0;
 		if (koopaHolding != NULL)
 		{
