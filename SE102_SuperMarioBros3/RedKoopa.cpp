@@ -31,7 +31,7 @@ void CRedKoopa::Render()
 {
 	string aniId = to_string(state + 1);
 
-	if (!is	LookingRight)
+	if (!isLookingRight)
 		aniId += "FlipX";
 	CAnimations* ani = CAnimations::GetInstance();
 	ani->Get(aniId)->Render(position);
