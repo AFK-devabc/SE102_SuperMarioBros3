@@ -2,7 +2,8 @@
 
 <Root name="Mario_Animaion" >
 	<!--SmallMario-->
-	<Textures texID="Mario" texturePath="textures/mario_transparent.png">
+	<Textures texID="Mario" texturePath="textures/Mario.png"
+			  texFlipXID="Mario_FlipX" texturePathFlipX ="textures/Mario_FlipX.png">
 		<Animations  aniID="-210000" frameTime ="100">
 			<Sprites spriteID = "Small_Mario_IDLE_0" x="245" y="0" w="16" h="16"/>
 			<Sprites spriteID = "Big_Mario_IDLE_0" x="245" y="154" w="16" h="28"/>

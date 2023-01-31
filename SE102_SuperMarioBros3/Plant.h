@@ -26,7 +26,9 @@ public:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
 	void Render();
 	int IsDamage() { return isDamage; }
-	virtual int IsCollidable() { return 1; };
+
+	int GetAniID();
+		virtual int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return 0; }
 	void SetState(int state, int islookright = 0);
 

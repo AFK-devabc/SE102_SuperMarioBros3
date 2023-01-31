@@ -31,7 +31,7 @@ public:
 	LPTEXTURE LoadTexture(LPCWSTR texturePath);
 
 	void Draw(float x, float y, LPTEXTURE tex, RECT* rect = NULL);
-	void DrawSprite(D3DXVECTOR2 position, D3DX10_SPRITE sprite, D3DXMATRIX matScaling, bool flipx = false);
+	void DrawSprite(D3DXVECTOR2 position, D3DX10_SPRITE sprite, D3DXMATRIX matScaling);
 
 	void BeginRender();
 	void EndRender();

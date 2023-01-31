@@ -20,30 +20,117 @@ void CPlayScene::LoadAssets(const char* filePath)
 			//Load texture first
 			for (TiXmlElement* textureNode = Root->FirstChildElement(); textureNode != nullptr; textureNode = textureNode->NextSiblingElement())
 			{
-				const char* texID = textureNode->Attribute("texID");
 				CTextures* textures = CTextures::GetInstance();
+				CAnimations* animations = CAnimations::GetInstance();
+				CSprites* sprites = CSprites::GetInstance();
+
+				const char* texID = textureNode->Attribute("texID");
 				textures->Add(texID, ToLPCWSTR(textureNode->Attribute("texturePath")));
 				LPTEXTURE texture = textures->Get(texID);
 
-				//Load animaion node 
-				for (TiXmlElement* aniNode = textureNode->FirstChildElement(); aniNode != nullptr; aniNode = aniNode->NextSiblingElement())
+				const char* texFlipXID = "";
+				texFlipXID = textureNode->Attribute("texFlipXID");
+
+				if (texFlipXID != NULL) 					//Load animaion node when there a flipX
 				{
-					string aniID = aniNode->Attribute("aniID");
-					if (aniID != "none")
+					textures->Add(texFlipXID, ToLPCWSTR(textureNode->Attribute("texturePathFlipX")));
+
+					LPTEXTURE textureFlipX = textures->Get(texFlipXID);
+					int textureWidth = textureFlipX->getWidth();
+
+					for (TiXmlElement* aniNode = textureNode->FirstChildElement(); aniNode != nullptr; aniNode = aniNode->NextSiblingElement())
 					{
+						string aniID = aniNode->Attribute("aniID");
 
-						CAnimations* animations = CAnimations::GetInstance();
-						CSprites* sprites = CSprites::GetInstance();
-
-						int frameTime = 100;
-						aniNode->QueryIntAttribute("frameTime", &frameTime);
-						CAnimation* ani = new CAnimation(frameTime);
-
-						for (TiXmlElement* spriteNode = aniNode->FirstChildElement(); spriteNode != nullptr; spriteNode = spriteNode->NextSiblingElement())
+						if (aniID != "none")
 						{
-							string spriteID = spriteNode->Attribute("spriteID");
-							if (sprites->Get(spriteID) == NULL)
+							string aniFlipXID = aniID + "FlipX";
+
+							int frameTime = 100;
+							aniNode->QueryIntAttribute("frameTime", &frameTime);
+							CAnimation* ani = new CAnimation(frameTime);
+
+							CAnimation* aniFlipX = new CAnimation(frameTime);
+
+
+							for (TiXmlElement* spriteNode = aniNode->FirstChildElement(); spriteNode != nullptr; spriteNode = spriteNode->NextSiblingElement())
 							{
+								string spriteID = spriteNode->Attribute("spriteID");
+								string spriteFlipXID = spriteID + "FlipX";
+
+								if (sprites->Get(spriteID) == NULL)
+								{
+									int left = 0, top = 0, width = 0, height = 0;
+									spriteNode->QueryIntAttribute("x", &left);
+									spriteNode->QueryIntAttribute("y", &top);
+									spriteNode->QueryIntAttribute("w", &width);
+									spriteNode->QueryIntAttribute("h", &height);
+									sprites->Add(spriteID, left, top, width, height, texture);
+
+									sprites->Add(spriteFlipXID, textureWidth - left - width, top, width, height, textureFlipX);
+								}
+								ani->Add(spriteID);	
+								aniFlipX->Add(spriteFlipXID);
+
+							}
+							animations->Add(aniID, ani);
+							animations->Add(aniFlipXID, aniFlipX);
+
+						}
+						else
+						{
+							for (TiXmlElement* spriteNode = aniNode->FirstChildElement(); spriteNode != nullptr; spriteNode = spriteNode->NextSiblingElement())
+							{
+								string spriteID = spriteNode->Attribute("spriteID");
+								string spriteFlipXID = spriteID + "FlipX";
+
+								int left = 0, top = 0, width = 0, height = 0;
+								spriteNode->QueryIntAttribute("x", &left);
+								spriteNode->QueryIntAttribute("y", &top);
+								spriteNode->QueryIntAttribute("w", &width);
+								spriteNode->QueryIntAttribute("h", &height);
+								sprites->Add(spriteID, left, top, width, height, texture);
+								sprites->Add(spriteFlipXID, textureWidth - left - width, top, width, height, texture);
+
+							}
+						}
+					}
+
+				}
+				else 					//Load animaion node when there no flipX
+				{
+					for (TiXmlElement* aniNode = textureNode->FirstChildElement(); aniNode != nullptr; aniNode = aniNode->NextSiblingElement())
+					{
+						string aniID = aniNode->Attribute("aniID");
+						if (aniID != "none")
+						{
+
+							int frameTime = 100;
+							aniNode->QueryIntAttribute("frameTime", &frameTime);
+							CAnimation* ani = new CAnimation(frameTime);
+
+							for (TiXmlElement* spriteNode = aniNode->FirstChildElement(); spriteNode != nullptr; spriteNode = spriteNode->NextSiblingElement())
+							{
+								string spriteID = spriteNode->Attribute("spriteID");
+								if (sprites->Get(spriteID) == NULL)
+								{
+									int left = 0, top = 0, width = 0, height = 0;
+									spriteNode->QueryIntAttribute("x", &left);
+									spriteNode->QueryIntAttribute("y", &top);
+									spriteNode->QueryIntAttribute("w", &width);
+									spriteNode->QueryIntAttribute("h", &height);
+									sprites->Add(spriteID, left, top, width, height, texture);
+								}
+								ani->Add(spriteID);
+							}
+							animations->Add(aniID, ani);
+						}
+						else
+						{
+							for (TiXmlElement* spriteNode = aniNode->FirstChildElement(); spriteNode != nullptr; spriteNode = spriteNode->NextSiblingElement())
+							{
+								string spriteID = spriteNode->Attribute("spriteID");
+
 								int left = 0, top = 0, width = 0, height = 0;
 								spriteNode->QueryIntAttribute("x", &left);
 								spriteNode->QueryIntAttribute("y", &top);
@@ -51,23 +138,6 @@ void CPlayScene::LoadAssets(const char* filePath)
 								spriteNode->QueryIntAttribute("h", &height);
 								sprites->Add(spriteID, left, top, width, height, texture);
 							}
-							ani->Add(spriteID);
-						}
-						animations->Add(aniID, ani);
-					}
-					else
-					{
-						CSprites* sprites = CSprites::GetInstance();
-						for (TiXmlElement* spriteNode = aniNode->FirstChildElement(); spriteNode != nullptr; spriteNode = spriteNode->NextSiblingElement())
-						{
-							string spriteID = spriteNode->Attribute("spriteID");
-
-							int left = 0, top = 0, width = 0, height = 0;
-							spriteNode->QueryIntAttribute("x", &left);
-							spriteNode->QueryIntAttribute("y", &top);
-							spriteNode->QueryIntAttribute("w", &width);
-							spriteNode->QueryIntAttribute("h", &height);
-							sprites->Add(spriteID, left, top, width, height, texture);
 						}
 					}
 				}

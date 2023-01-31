@@ -29,9 +29,9 @@ CSprite::CSprite(int left, int top, int width, int height, LPTEXTURE tex)
 
 }
 
-void CSprite::Draw(D3DXVECTOR2 position, bool flipX)
+void CSprite::Draw(D3DXVECTOR2 position)
 {
 	D3DXVECTOR2 worldToCam = CCamera::GetInstance()->WorldToCam(position);
-	CGraphics::GetInstance()->DrawSprite(worldToCam, sprite, matScaling, flipX);
+	CGraphics::GetInstance()->DrawSprite(worldToCam, sprite, matScaling);
 }
 

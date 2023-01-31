@@ -38,7 +38,7 @@ void CRedLeaf::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CRedLeaf::Render()
 {
-	CAnimations::GetInstance()->Get(to_string(REDLEAF_STATE_IDLE))->Render(position, isLookingRight);
+	CAnimations::GetInstance()->Get(to_string(REDLEAF_STATE_IDLE))->Render(position);
 }
 
 

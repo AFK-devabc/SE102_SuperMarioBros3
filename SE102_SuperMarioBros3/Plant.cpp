@@ -87,17 +87,24 @@ void CPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CPlant::Render()
 {
-	if(plantType == PLANT_STATE_BITE)
-		CAnimations::GetInstance()->Get(to_string(PLANT_STATE_BITE))->Render(position);
-	else
-	{
-		if(isLookingTop)
-			CAnimations::GetInstance()->Get(to_string(PLANT_STATE_LOOKINGBOT))->Render(position, isLookingRight);
-		else 
-			CAnimations::GetInstance()->Get(to_string(PLANT_STATE_LOOKINGTOP))->Render(position, isLookingRight);
-	}
+	string aniId = to_string(this->GetAniID());
 
+	if(isLookingRight)
+		aniId += "FlipX";
+
+	CAnimations::GetInstance()->Get(aniId)->Render(position);
 	CAnimations::GetInstance()->Get(to_string(GREEN_PIPE))->Render(pinePosition);
 }
 
-
+int CPlant::GetAniID()
+{
+	if (plantType == PLANT_STATE_BITE)
+		return PLANT_STATE_BITE;
+	else
+	{
+		if (isLookingTop)
+			return PLANT_STATE_LOOKINGBOT;
+		else
+			return PLANT_STATE_LOOKINGTOP;
+	}
+}

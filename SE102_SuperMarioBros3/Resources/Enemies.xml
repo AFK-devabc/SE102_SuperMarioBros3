@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Root name="Enemies_Animation" >
-	<Textures texID="Enemies" texturePath="textures/Enemy.png">
+	<Textures	texID="Enemies" texturePath="textures/Enemies.png"
+				texFlipXID="Enemies_FlipX" texturePathFlipX ="textures/Enemies_FlipX.png">
 		<Animations  aniID="20000" frameTime ="100">
 			<Sprites spriteID = "Goomba_walk_0" x="9" y="11" w="16" h="16"/>
 			<Sprites spriteID = "Goomba_walk_1" x="32" y="11" w="16" h="16"/>

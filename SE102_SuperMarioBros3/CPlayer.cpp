@@ -154,8 +154,9 @@ void CPlayer::Render()
 {
 	string aniId = to_string(this->GetAniID());
 	CAnimations* ani = CAnimations::GetInstance();
-
-	ani->Get(aniId)->Render(position, !isLookingRight);
+	if (!isLookingRight)
+		aniId += "FlipX";
+	ani->Get(aniId)->Render(position);
 }
 
 void CPlayer::OnNoCollision(DWORD dt)

@@ -44,8 +44,14 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CKoopa::Render()
 {
+	string aniId = to_string(state);
+
+	if (!isLookingRight)
+		aniId += "FlipX";
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get(to_string(state))->Render(position);
+	ani->Get(aniId)->Render(position);
+
+
 }
 
 void CKoopa::OnNoCollision(DWORD dt)

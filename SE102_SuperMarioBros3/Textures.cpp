@@ -17,8 +17,6 @@ CTextures* CTextures::GetInstance()
 	return __instance;
 }
 
-
-
 void CTextures::Add(string id, LPCWSTR filePath)
 {
 	textures[id] = CGraphics::GetInstance()->LoadTexture(filePath);

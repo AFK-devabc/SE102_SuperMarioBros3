@@ -18,7 +18,7 @@ class CAnimation
 public:
 	CAnimation(int defaultTime) { this->defaultTime = defaultTime; lastFrameTime = -1; currentFrame = -1; }
 	void Add(string spriteId, DWORD time = 0);
-	void Render(D3DXVECTOR2 position, bool flipX = false);
+	void Render(D3DXVECTOR2 position);
 	~CAnimation()
 	{
 		frames.clear();

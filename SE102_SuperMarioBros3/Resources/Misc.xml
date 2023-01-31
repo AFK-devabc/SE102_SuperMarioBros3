@@ -7,6 +7,7 @@
 			<Sprites spriteID = "CloudMidder"	x="409" y="117" w="16" h="16"/>
 			<Sprites spriteID = "CloudEnd"		x="427" y="117" w="16" h="16"/>
 		</Animations>
+		
 		<Animations  aniID="none" frameTime ="9999">
 			<Sprites spriteID = "WhiteTeeth"	x="354" y="243" w="16" h="16"/>
 		</Animations>

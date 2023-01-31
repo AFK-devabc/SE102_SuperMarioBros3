@@ -29,6 +29,11 @@ void CRedKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CRedKoopa::Render()
 {
+	string aniId = to_string(state + 1);
+
+	if (!is	LookingRight)
+		aniId += "FlipX";
 	CAnimations* ani = CAnimations::GetInstance();
-	ani->Get(to_string(state +1) )->Render(position);
+	ani->Get(aniId)->Render(position);
+
 }
