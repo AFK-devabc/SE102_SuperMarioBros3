@@ -35,3 +35,7 @@ void CSprite::Draw(D3DXVECTOR2 position)
 	CGraphics::GetInstance()->DrawSprite(worldToCam, sprite, matScaling);
 }
 
+void CSprite::DrawHub(D3DXVECTOR2 position)
+{
+	CGraphics::GetInstance()->DrawSprite(position, sprite, matScaling);
+}

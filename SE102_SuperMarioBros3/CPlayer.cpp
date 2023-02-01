@@ -157,6 +157,7 @@ void CPlayer::Render()
 	if (!isLookingRight)
 		aniId += "FlipX";
 	ani->Get(aniId)->Render(position);
+
 }
 
 void CPlayer::OnNoCollision(DWORD dt)

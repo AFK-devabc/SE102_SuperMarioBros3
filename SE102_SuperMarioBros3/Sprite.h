@@ -18,6 +18,8 @@ public:
 	CSprite(int left, int top, int width, int height, LPTEXTURE tex);
 
 	void Draw(D3DXVECTOR2 position);
+	void DrawHub(D3DXVECTOR2 position);
+
 };
 
 typedef CSprite* LPSPRITE;

@@ -136,6 +136,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CoinDrop.cpp" />
+    <ClCompile Include="Hub.cpp" />
     <ClCompile Include="KoopaEdgeDetect.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="BrickBroken.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Coin.h" />
     <ClInclude Include="CoinDrop.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="Hub.h" />
     <ClInclude Include="KoopaEdgeDetect.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="BrickBroken.h" />
@@ -221,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\Enemies.xml" />
+    <Xml Include="Resources\Hub.xml" />
     <Xml Include="Resources\Mario.xml" />
     <Xml Include="Resources\Misc.xml" />
     <Xml Include="Resources\Scenes.xml" />

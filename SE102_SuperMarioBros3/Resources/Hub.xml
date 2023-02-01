@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root name="MICS" >
+	<Textures texID="Hub" texturePath="textures/Hub.png">
+		<Animations  aniID="none" frameTime ="9999">
+			<Sprites spriteID = "InfoBar"		x="12" y="128" w="232" h="28"/>
+			<Sprites spriteID = "Black"			x="5" y="242" w="252" h="36"/>
+			<Sprites spriteID = "M_Info"		x="16" y="161" w="16" h="8"/>
+			<Sprites spriteID = "L_Info"		x="16" y="171" w="16" h="8"/>
+			<Sprites spriteID = "White_Power"	x="64" y="162" w="8" h="8"/>
+			<Sprites spriteID = "Black_Power"	x="91" y="162" w="8" h="8"/>
+			<Sprites spriteID = "White_P"		x="73" y="162" w="16" h="8"/>
+			<Sprites spriteID = "Black_P"		x="100" y="162" w="16" h="8"/>
+
+			<Sprites spriteID = "Mushroom"		x="184" y="159" w="24" h="28"/>
+			<Sprites spriteID = "Flower"		x="208" y="159" w="24" h="28"/>
+			<Sprites spriteID = "Star"			x="232" y="159" w="24" h="28"/>
+
+
+			<Sprites spriteID = "Char_0"		x="77" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_1"		x="87" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_2"		x="97" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_3"		x="107" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_4"		x="117" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_5"		x="127" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_6"		x="137" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_7"		x="147" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_8"		x="157" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_9"		x="167" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_A"		x="177" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_B"		x="187" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_C"		x="77" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_D"		x="87" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_E"		x="97" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_F"		x="107" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_G"		x="117" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_H"		x="127" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_I"		x="137" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_J"		x="147" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_K"		x="157" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_L"		x="167" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_M"		x="177" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_N"		x="187" y="41" w="8" h="8"/>
+			<Sprites spriteID = "Char_O"		x="77" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_P"		x="87" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_Q"		x="97" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_R"		x="107" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_S"		x="117" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_T"		x="127" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_U"		x="137" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_V"		x="147" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_W"		x="157" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_X"		x="167" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_Y"		x="177" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_Z"		x="187" y="31" w="8" h="8"/>
+
+		</Animations>
+
+	</Textures>
+
+</Root>

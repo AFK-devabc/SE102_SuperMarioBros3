@@ -113,4 +113,5 @@ void CTileMap::Render()
             if(pid!= 1)
                 lpMapSprites[pid]->Draw(D3DXVECTOR2(i * tileXSize +8, j * tileYSize +8));
         }
+
 }

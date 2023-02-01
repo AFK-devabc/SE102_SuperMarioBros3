@@ -7,7 +7,6 @@
 #include "Graphics.h"
 #include "Camera.h"
 #include "Scenes.h"
-
 #include "DefineInfo.h"
 
 /*
@@ -34,9 +33,6 @@ public:
 	void Update(DWORD dt);
 	// Render gameobject sprite
 	void Render();
-
-
-
 	static CGame* GetInstance();
 
 	~CGame();

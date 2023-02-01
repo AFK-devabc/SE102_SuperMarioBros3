@@ -370,11 +370,11 @@ void CPlayScene::Update(DWORD dt)
 		}
 		return;
 	}
-	CCamera* camera = CCamera::GetInstance();
+	D3DXVECTOR2 camPosition = CCamera::GetInstance()->GetPosition();
 
-	tileMap->SetTileRender(camera->GetPosition(), camera->GetPosition()+ D3DXVECTOR2(303, 202));
+	tileMap->SetTileRender(camPosition, camPosition + D3DXVECTOR2(303, 202));
 
-	grid->SetCellUpdate(camera->GetPosition(), camera->GetPosition()+ D3DXVECTOR2(303, 202));
+	grid->SetCellUpdate(camPosition, camPosition + D3DXVECTOR2(303, 202));
 
 	grid->Update(dt);
 	PurgeDeletedObjects();
@@ -384,6 +384,7 @@ void CPlayScene::Render()
 {
 	tileMap->Render();
 	grid->Render();
+	Hub->Render();
 }
 
 /*

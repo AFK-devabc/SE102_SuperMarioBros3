@@ -23,6 +23,7 @@
 #include "Textures.h"
 #include "Sprites.h"
 
+#include "Hub.h"
 #include "Grid.h"
 #include "TileMap.h"
 
@@ -35,6 +36,8 @@ protected:
 
 	CGrid* grid;
 	CTileMap* tileMap;
+	CHub* Hub;
+
 	void LoadAssets(const char* filePath);
 	void LoadGameObjects(const char* filePath);
 public:

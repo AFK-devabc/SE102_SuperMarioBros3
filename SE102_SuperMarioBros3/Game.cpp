@@ -25,7 +25,7 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 	graphic->InitGraphic(hWnd, this->hInstance);
 
 	camera->SetBackBuffer(graphic->GetBackBuffer());
-
+	camera->SetGamePlayZone(D3DXVECTOR2(GAMEPLAY_SCREEN_WIDTH, GAMEPLAY_SCREEN_HEIGHT));
 	scenes->InitScenes();
 	scenes->SwitchScene();
 

@@ -5,7 +5,9 @@
 #define MAIN_WINDOW_TITLE		L"01 - Skeleton"
 #define WINDOW_ICON_PATH		L"brick.ico"
 #define SCREEN_WIDTH			320
-#define SCREEN_HEIGHT			240
+#define SCREEN_HEIGHT			275
+#define GAMEPLAY_SCREEN_WIDTH	305
+#define GAMEPLAY_SCREEN_HEIGHT	202
 #pragma endregion
 
 #pragma region GameFpsRate
