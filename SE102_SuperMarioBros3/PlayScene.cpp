@@ -5,6 +5,8 @@ CPlayScene::CPlayScene(string id, string filePath) :
 	CScene(id, filePath)
 {
 	player = NULL;
+	Hub = CHub::GetInstance();
+	Hub->SetGameTime(400);
 }
 
 void CPlayScene::LoadAssets(const char* filePath)
@@ -280,6 +282,11 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 					gameObject = new CPortal(x, y, nextScene);
 					break;
 				}
+				case OBJECT_TYPE_CHECKPOINT:
+				{
+					gameObject = new CCheckPoint(position);
+					break;
+				}
 
 				default:
 				{
@@ -377,6 +384,7 @@ void CPlayScene::Update(DWORD dt)
 	grid->SetCellUpdate(camPosition, camPosition + D3DXVECTOR2(303, 202));
 
 	grid->Update(dt);
+	Hub->Update(dt, player);
 	PurgeDeletedObjects();
 }
 

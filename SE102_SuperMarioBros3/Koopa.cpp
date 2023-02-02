@@ -3,6 +3,8 @@
 #include "GameObjectType.h"
 #include "Goomba.h"
 #include "Brick.h"
+#include "AddPoint.h"
+#include "PlayScene.h"
 
 void CKoopa::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
@@ -84,6 +86,9 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 			OnCollisionWithKoopa(e);
 		else if (dynamic_cast<CBrick*>(e->obj))
 			OnCollisionWithBrick(e);
+		else if (dynamic_cast<CPlant*>(e->obj))
+			OnCollisionWithPlant(e);
+
 	}
 }
 
@@ -92,6 +97,9 @@ void CKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 	CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
 	goomba->SetSpeed(goomba->GetVelocity().x, -GOOMBA_JUMP_DEFLECT_SPEED);
 	goomba->SetState(GAME_OBJECT_STATE_DIE);
+	LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
+	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
+
 }
 
 void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
@@ -107,6 +115,8 @@ void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 	{
 		koopa->SetSpeed(0, -KOOPA_JUMP_DEFLECT_SPEED);
 		koopa->SetState(KOOPA_STATE_INSIDE_SHELL);
+		LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
+		dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
 	}
 	//else if (koopa->GetState() == KOOPA_STATE_ROLLING)
 	//{
@@ -121,6 +131,14 @@ void CKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
 	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
 		brick->Hit(2);
+}
+
+void CKoopa::OnCollisionWithPlant(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
+	LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
+	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
+
 }
 
 void CKoopa::SetState(int state, int isGoingRight)

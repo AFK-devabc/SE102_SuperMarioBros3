@@ -56,6 +56,12 @@
 
 		</Animations>
 
+
+		<Animations  aniID="Max_Power" frameTime ="200">
+			<Sprites spriteID = "White_P"		x="73" y="162" w="16" h="8"/>
+			<Sprites spriteID = "Black_P"		x="100" y="162" w="16" h="8"/>
+		</Animations>
+
 	</Textures>
 
 </Root>

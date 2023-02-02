@@ -35,6 +35,8 @@
 
 #define MARIO_WALKING_SPEED		0.1f
 #define MARIO_RUNNING_SPEED		0.2f
+#define SPEED_PER_POW			0.015f
+
 
 #define MARIO_ACCEL_WALK_X		0.0001f
 #define MARIO_ACCEL_RUN_X		0.00005f
@@ -118,6 +120,11 @@
 #define REDLEAF_STATE_DROPPING		10041
 #define REDLEAF_STATE_IDLE			10040
 #define PLANT_BULLET				10070
+#define CHECKPOINT_FLOWER			10080
+#define CHECKPOINT_MUSHROOM			10081
+#define CHECKPOINT_STAR				10082
+#define CHECKPOINT_SWAPTIME			100
+
 #pragma endregion
 
 #pragma region Koopa
@@ -140,7 +147,13 @@
 #pragma endregion
 
 #pragma region GAME_VFX
-#define BRICK_BROKEN 9900
-#define HARD_COLLISION 9901
-#define COIN_DROP		9902
+
+#define COINT_START_SPEEDY			0.5f
+#define COIN_AY						0.0016f
+#define POINT_START_SPEEDY			0.08f
+
+#define BRICK_BROKEN				9900
+#define HARD_COLLISION				9901
+#define COIN_DROP					9902
 #pragma endregion
+

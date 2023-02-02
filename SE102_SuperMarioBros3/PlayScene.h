@@ -18,6 +18,8 @@
 #include "Portal.h"
 #include "Ground.h"
 #include "Plant.h"
+#include "CheckPoint.h"
+
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"
 #include "Textures.h"

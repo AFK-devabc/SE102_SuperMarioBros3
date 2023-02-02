@@ -8,6 +8,10 @@ protected :
 	BOOLEAN isOnPlatform;
 
 	ULONGLONG die_start;
+	virtual void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithBrick(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithPlant(LPCOLLISIONEVENT e);
 
 public:
 	CKoopa(D3DXVECTOR2 position) : CGameObject(position) {
@@ -20,9 +24,6 @@ public:
 
 	virtual void OnNoCollision(DWORD dt);
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
-	virtual void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
-	virtual void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
-	virtual void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 
 	virtual int IsCollidable() { return 1; };
 	virtual void SetState(int state, int isGoingRight = 0);

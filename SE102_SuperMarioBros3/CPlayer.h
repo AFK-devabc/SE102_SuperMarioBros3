@@ -26,7 +26,6 @@ protected:
 
 	int CanFlyUp;
 	DWORD FlyUpStart;
-
 	int CanHoldKoopa;
 	LPGAMEOBJECT koopaHolding;
 
@@ -39,6 +38,7 @@ protected:
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e);
 	void OnCollisionWithPlant(LPCOLLISIONEVENT e);
 	void OnCollisionWithPlantBullet(LPCOLLISIONEVENT e);
+	void OnCollisionWithCheckPoint(LPCOLLISIONEVENT e);
 
 public :
 	CPlayer(D3DXVECTOR2 position) : CGameObject(position) {

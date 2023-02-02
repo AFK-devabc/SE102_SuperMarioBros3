@@ -7,6 +7,7 @@
 #include "MarioTail.h"
 #include "Portal.h"
 #include "Coin.h"
+#include "CheckPoint.h"
 
 #include "GameObjectType.h"
 #include "Scenes.h"
@@ -14,6 +15,7 @@
 #include "CColorBox.h"
 #include "Plant.h"
 #include "PlantBullet.h"
+#include "AddPoint.h"
 
  int CPlayer::GetAniID()
 {
@@ -201,6 +203,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithPlant(e);
 	else if (dynamic_cast<CPlantBullet*>(e->obj))
 		OnCollisionWithPlantBullet(e);
+	else if (dynamic_cast<CCheckPoint*>(e->obj))
+		OnCollisionWithCheckPoint(e);
 
 
 }
@@ -215,10 +219,14 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 		if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
 		{
 			int goombastate = goomba->GetState();
+			LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
+			dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
+
 			switch (goombastate)
 			{
 			case GOOMBA_STATE_WING:
 				goomba->SetState(GOOMBA_STATE_WALKING);
+
 				break;
 			case GOOMBA_STATE_WALKING:
 				goomba->SetState(GAME_OBJECT_STATE_DIE);
@@ -262,6 +270,8 @@ void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 		if (koopa->GetState() != GAME_OBJECT_STATE_DIE)
 		{
 			velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
+			LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
+			dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
 
 			switch (koopa->GetState())
 			{
@@ -308,11 +318,20 @@ void CPlayer::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 	{
 		SetMarioType(BIG_MARIO);
 	}
+	else
+	{
+		CHub::GetInstance()->AddLife(1);
+	}
+	LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 1000);
+	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
+
 }
 
 void CPlayer::OnCollisionWithRedLeaf(LPCOLLISIONEVENT e)
 {
 	e->obj->Delete();
+	LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 1000);
+	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
 
 	SetMarioType(CAT_MARIO);
 
@@ -326,7 +345,11 @@ void CPlayer::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 
 void CPlayer::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 {
+	LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 50);
+	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
+
 	e->obj->Delete();
+
 }
 
 void CPlayer::OnCollisionWithPlant(LPCOLLISIONEVENT e)
@@ -341,12 +364,22 @@ void CPlayer::OnCollisionWithPlantBullet(LPCOLLISIONEVENT e)
 	e->obj->Delete();
 }
 
+void CPlayer::OnCollisionWithCheckPoint(LPCOLLISIONEVENT e)
+{
+	CKeyBoard::GetInstance()->Clear();
+	SetState(MARIO_STATE_WALKING, 1);
+	e->obj->Delete();
+	CHub::GetInstance()->AddItems(e->obj->GetState());
+
+}
+
 void CPlayer::Attacked()
 {
 	if (marioType == 100000)
 	{
 
 		SetState(GAME_OBJECT_STATE_DIE);
+		CHub::GetInstance()->AddLife(-1);
 		return;
 	}
 	else

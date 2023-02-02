@@ -120,12 +120,6 @@
     <ClCompile Include="RedKoopa.cpp">
       <Filter>GameObject\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="BrickBroken.cpp">
-      <Filter>GameObject\Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="HardCollision.cpp">
-      <Filter>GameObject\Effects</Filter>
-    </ClCompile>
     <ClCompile Include="CColorBox.cpp">
       <Filter>GameObject\Blocking</Filter>
     </ClCompile>
@@ -165,9 +159,6 @@
     <ClCompile Include="Plant.cpp">
       <Filter>GameObject\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="CoinDrop.cpp">
-      <Filter>GameObject\Effects</Filter>
-    </ClCompile>
     <ClCompile Include="Block.cpp">
       <Filter>GameObject\Blocking</Filter>
     </ClCompile>
@@ -176,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="Hub.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckPoint.cpp">
+      <Filter>GameObject\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +310,12 @@
     </ClInclude>
     <ClInclude Include="Hub.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddPoint.h">
+      <Filter>GameObject\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckPoint.h">
+      <Filter>GameObject\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -69,6 +69,15 @@
 			<Sprites spriteID = "Coin_2" x="336" y="99" w="16" h="16"/>
 			<Sprites spriteID = "Coin_1" x="318" y="99" w="16" h="16"/>
 		</Animations>
+		<Animations  aniID="10081" frameTime ="9999">
+			<Sprites spriteID = "MushRoom_0" x="300" y="189" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="10082" frameTime ="9999">
+			<Sprites spriteID = "Star_0" x="354" y="207" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="10080" frameTime ="9999">
+			<Sprites spriteID = "Flower_0" x="336" y="189" w="16" h="16"/>
+		</Animations>
 
 	</Textures>
 	<Textures texID="BBox" texturePath="textures/bbox.png">

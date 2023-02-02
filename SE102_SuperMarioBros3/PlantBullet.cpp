@@ -14,6 +14,10 @@ void CPlantBullet::GetBoundingBox(float& l, float& t, float& r, float& b)
 void CPlantBullet::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	position += velocity * dt;
+	lifeTime -= dt;
+	DebugOut(L"%d\n", lifeTime);
+	if (lifeTime <= 0)
+		this->Delete();
 }
 
 void CPlantBullet::Render()
