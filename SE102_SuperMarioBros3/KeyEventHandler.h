@@ -13,9 +13,9 @@ class CKeyEventHandler
 protected:
 	BYTE*  keyStates;									// DirectInput keyboard state buffer 
 public:
-	virtual void KeyState(BYTE* state) = 0;
-	virtual void OnKeyDown(int KeyCode) = 0;
-	virtual void OnKeyUp(int KeyCode) = 0;
+	virtual void KeyState(BYTE* state) {}
+	virtual void OnKeyDown(int KeyCode) {}
+	virtual void OnKeyUp(int KeyCode) {}
 
 	int IsKeyDown(int KeyCode)
 	{

@@ -19,7 +19,10 @@
 		</Animations>
 		
 <!--SMALL_MARIO_ANIMATION_________________________________________________________________________-->
-		
+		<Animations  aniID="-109999" frameTime ="9999">
+			<Sprites spriteID = "Small_Mario_Dead_0" x="215" y="120" w="16" h="16"/>
+		</Animations>
+
 		<Animations  aniID="100000" frameTime ="9999">
 			<Sprites spriteID = "Small_Mario_IDLE_0" x="245" y="0" w="16" h="16"/>
 		</Animations>

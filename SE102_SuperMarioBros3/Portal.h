@@ -19,7 +19,10 @@ public:
 		r = l + 16;
 		b = t + 16;
 	}
-
+	virtual void Render()
+	{
+		RenderBoundingBox();
+	}
 	string GetNextScene()
 	{
 		return nextScene;

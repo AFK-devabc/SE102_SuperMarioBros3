@@ -75,7 +75,7 @@ public :
 	void OnKeyDown(int KeyCode);
 	void OnKeyUp(int KeyCode);
 
-	void SetMarioType( int type);
+	void SetMarioType(int type, bool isPause = true);
 	int GetMarioType() { return marioType; }
 
 };

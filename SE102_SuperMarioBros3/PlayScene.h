@@ -50,7 +50,7 @@ public:
 	virtual void Render();
 	virtual void Unload();
 
-	LPGAMEOBJECT GetPlayer() { return player; }
+	CPlayer* GetPlayer() { return player; }
 
 	void PurgeDeletedObjects();
 

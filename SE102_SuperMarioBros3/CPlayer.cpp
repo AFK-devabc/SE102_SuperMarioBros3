@@ -8,6 +8,7 @@
 #include "Portal.h"
 #include "Coin.h"
 #include "CheckPoint.h"
+#include "WorldMap.h"
 
 #include "GameObjectType.h"
 #include "Scenes.h"
@@ -21,6 +22,10 @@
 {
 	unsigned int aniID = 0;
 
+	if (state == GAME_OBJECT_STATE_DIE)
+	{
+		return SMALL_MARIO_DEAD;
+	}
 	if (isChangingform)
 	{
 		return isChangingform;
@@ -33,7 +38,7 @@
 	}
 	else if (GetTickCount64() - attack_start <= 200)
 	{
-		return 127000;
+		return CAT_MARIO_ATTACK;
 	}
 	else if (!isOnPlatform)
 	{
@@ -368,9 +373,10 @@ void CPlayer::OnCollisionWithCheckPoint(LPCOLLISIONEVENT e)
 {
 	CKeyBoard::GetInstance()->Clear();
 	SetState(MARIO_STATE_WALKING, 1);
+	
 	e->obj->Delete();
 	CHub::GetInstance()->AddItems(e->obj->GetState());
-
+	CWorldMap::GetInstance()->SetNodeComplete();
 }
 
 void CPlayer::Attacked()
@@ -572,7 +578,7 @@ void CPlayer::SetState(int state, int islookright)
 		velocity.x = 0.0f;
 		break;
 	case GAME_OBJECT_STATE_DIE:
-		velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
+		velocity.y = -MARIO_JUMP_DEFLECT_SPEED*2;
 		velocity.x = 0;
 		Ax = 0;
 		break;
@@ -582,11 +588,12 @@ void CPlayer::SetState(int state, int islookright)
 
 }
 
-void CPlayer::SetMarioType( int type)
+void CPlayer::SetMarioType(int type, bool isPause )
 {
-	isChangingform = -(type) - marioType;
-	CScenes::GetInstance()->GetCurrentScene()->SetPause(1000);
-
+	if (isPause) {
+		CScenes::GetInstance()->GetCurrentScene()->SetPause(1000);
+		isChangingform = -(type)-marioType;
+	}
 	switch (type)
 	{
 	case BIG_MARIO:

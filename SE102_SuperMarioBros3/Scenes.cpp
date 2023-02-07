@@ -3,7 +3,7 @@
 #include "Sprites.h"
 
 #include "PlayScene.h"
-
+#include "WorldMapsScene.h"
 #include "TinyXML/tinyxml.h"
 
 CScenes* CScenes::__instance = NULL;
@@ -32,10 +32,17 @@ void CScenes::InitScenes()
 				scene->QueryIntAttribute("type", &type);
 				switch (type)
 				{
-				case 1:
+				case 2:
+				{
+					CScene* temp = new CWorldMapsScene(id, filePath);
+					scenes[id] = temp;
+					break;
+				}
+				case 3:
 				{
 					CScene* temp = new CPlayScene(id, filePath);
 					scenes[id] = temp;
+					break;
 				}
 				default:
 				{
@@ -67,6 +74,7 @@ void CScenes::SwitchScene()
 
 	if(currentScene != "")
 	scenes[currentScene]->Unload();
+	CTextures::GetInstance()->Clear();
 	CSprites::GetInstance()->Clear();
 	CAnimations::GetInstance()->Clear();
 	CKeyBoard::GetInstance()->Clear();

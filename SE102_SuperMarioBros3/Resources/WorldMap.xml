@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root name="World Map" >
+	<ResourceFile Type="Assets" name="HubAssets" filePath="Resources/Hub.xml"/>
+	<ResourceFile Type="Assets" name="WorldMapAssets" filePath="Resources/WorldMapAssets.xml"/>
+	<ResourceFile Type="MapNodes" name="WorldmapNodes" filePath="Resources/MapNodes.xml"/>
+
+</Root>

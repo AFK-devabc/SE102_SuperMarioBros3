@@ -126,9 +126,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObject\Others</Filter>
     </ClCompile>
-    <ClCompile Include="Portal.cpp">
-      <Filter>GameObject\Others</Filter>
-    </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>GameObject\Players</Filter>
     </ClCompile>
@@ -170,6 +167,18 @@
     </ClCompile>
     <ClCompile Include="CheckPoint.cpp">
       <Filter>GameObject\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapsScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapMario.cpp">
+      <Filter>GameObject\Players</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -317,6 +326,18 @@
     <ClInclude Include="CheckPoint.h">
       <Filter>GameObject\Items</Filter>
     </ClInclude>
+    <ClInclude Include="WorldMapsScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMapMario.h">
+      <Filter>GameObject\Players</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\Enemies.xml">
@@ -337,13 +358,16 @@
     <Xml Include="Resources\Scenes.xml">
       <Filter>Resource Files</Filter>
     </Xml>
-    <Xml Include="Resources\Scene_1_2.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
-    <Xml Include="Resources\Scene_1_2_GameObjects.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
     <Xml Include="Resources\Hub.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\WorldMap.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\WorldMapAssets.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\MapNodes.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>

@@ -15,9 +15,6 @@ public:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
 	void Render();
 
-	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
-
 
 };
 

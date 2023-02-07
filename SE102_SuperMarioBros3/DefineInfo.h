@@ -12,6 +12,8 @@
 
 #pragma region GameFpsRate
 #define MAX_FRAME_RATE			50
+#define GAME_PLAY_TIME			300
+
 #pragma endregion
 
 #pragma region DirectInput
@@ -61,6 +63,9 @@
 #define SMALL_MARIO					100000
 #define BIG_MARIO					110000
 #define CAT_MARIO					120000
+#define SMALL_MARIO_DEAD		   -109999
+
+#define CAT_MARIO_ATTACK			127000
 
 #define MARIO_STATE_IDLE			0000
 #define MARIO_STATE_WALKING			1000

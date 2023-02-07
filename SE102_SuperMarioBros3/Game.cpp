@@ -37,12 +37,11 @@ void CGame::LoadResource()
 
 void CGame::Update(DWORD dt)
 {
+	scenes->SwitchScene();
 
 	keyboard->ProcessKeyboard();
 	scenes->GetCurrentScene()->Update(dt);
-
 	camera->Update(dt);
-	scenes->SwitchScene();
 
 }
 

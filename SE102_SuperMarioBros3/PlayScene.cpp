@@ -1,12 +1,12 @@
 #include "PlayScene.h"
 #include "GameObjectType.h"
+#include "WorldMap.h"
 
 CPlayScene::CPlayScene(string id, string filePath) :
 	CScene(id, filePath)
 {
 	player = NULL;
 	Hub = CHub::GetInstance();
-	Hub->SetGameTime(400);
 }
 
 void CPlayScene::LoadAssets(const char* filePath)
@@ -180,7 +180,7 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				case OBJECT_TYPE_MARIO:
 				{
 					if (player != NULL)
-					{
+					{ 
 						DebugOut(L"[Error] Player was already loaded\n");
 						return;
 					}
@@ -189,6 +189,9 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 
 					LPKeyHandler.push_back(player);
 					gameObject = player;
+
+					player->SetMarioType(CWorldMap::GetInstance()->GetMarioType(), false);
+
 					break;
 				}
 				case OBJECT_TYPE_GOOMBA:
@@ -284,7 +287,13 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				}
 				case OBJECT_TYPE_CHECKPOINT:
 				{
-					gameObject = new CCheckPoint(position);
+					int blockX, blockY;
+					gameObjectNode->QueryIntAttribute("blockX", &blockX);
+					gameObjectNode->QueryIntAttribute("blockY", &blockY);
+					LPGAMEOBJECT checkpointBlock = new CGround(blockX, blockY, 1, 128);
+					grid->AddGameObject(checkpointBlock);
+					gameObject = new CCheckPoint(position, checkpointBlock);
+
 					break;
 				}
 
@@ -314,6 +323,9 @@ void CPlayScene::Load()
 	DebugOut(L"[INFO] Start loading scene from : \"%s\"\n", ToLPCWSTR(sceneFilePath));
 	LPKeyHandler.clear();
 	TiXmlDocument doc(sceneFilePath.c_str());
+
+	CHub::GetInstance()->ReloadHub(GAME_PLAY_TIME);
+
 	if (doc.LoadFile())
 	{
 		TiXmlElement* Root = doc.RootElement();
@@ -407,6 +419,8 @@ void CPlayScene::Render()
 */
 void CPlayScene::Unload()
 {
+	CWorldMap::GetInstance()->SetMarioType(player->GetMarioType());
+
 	player = NULL;
 	delete tileMap;
 	tileMap = NULL;

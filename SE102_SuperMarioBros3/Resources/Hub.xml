@@ -41,23 +41,23 @@
 			<Sprites spriteID = "Char_L"		x="167" y="41" w="8" h="8"/>
 			<Sprites spriteID = "Char_M"		x="177" y="41" w="8" h="8"/>
 			<Sprites spriteID = "Char_N"		x="187" y="41" w="8" h="8"/>
-			<Sprites spriteID = "Char_O"		x="77" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_P"		x="87" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_Q"		x="97" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_R"		x="107" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_S"		x="117" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_T"		x="127" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_U"		x="137" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_V"		x="147" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_W"		x="157" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_X"		x="167" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_Y"		x="177" y="31" w="8" h="8"/>
-			<Sprites spriteID = "Char_Z"		x="187" y="31" w="8" h="8"/>
+			<Sprites spriteID = "Char_O"		x="77" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_P"		x="87" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_Q"		x="97" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_R"		x="107" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_S"		x="117" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_T"		x="127" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_U"		x="137" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_V"		x="147" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_W"		x="157" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_X"		x="167" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_Y"		x="177" y="51" w="8" h="8"/>
+			<Sprites spriteID = "Char_Z"		x="187" y="51" w="8" h="8"/>
 
 		</Animations>
 
 
-		<Animations  aniID="Max_Power" frameTime ="200">
+		<Animations  aniID="Max_Power" frameTime ="100">
 			<Sprites spriteID = "White_P"		x="73" y="162" w="16" h="8"/>
 			<Sprites spriteID = "Black_P"		x="100" y="162" w="16" h="8"/>
 		</Animations>
