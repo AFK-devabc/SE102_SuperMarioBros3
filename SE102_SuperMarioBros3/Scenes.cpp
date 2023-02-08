@@ -4,6 +4,7 @@
 
 #include "PlayScene.h"
 #include "WorldMapsScene.h"
+#include "IntroScene.h"
 #include "TinyXML/tinyxml.h"
 
 CScenes* CScenes::__instance = NULL;
@@ -32,6 +33,12 @@ void CScenes::InitScenes()
 				scene->QueryIntAttribute("type", &type);
 				switch (type)
 				{
+				case 1:
+				{
+					CScene* temp = new CIntroScene(id, filePath);
+					scenes[id] = temp;
+					break;
+				}
 				case 2:
 				{
 					CScene* temp = new CWorldMapsScene(id, filePath);

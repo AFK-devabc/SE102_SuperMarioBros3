@@ -41,7 +41,6 @@ public:
 			if (position.y < 0) position.y = 0;
 			if (position.y + gamePlayZone.y > 432) position.y = 432 - gamePlayZone.y;
 		}
-		//this->position.y = 236;
 	}
 	void SetGamePlayZone(D3DXVECTOR2 gamePlayZone)
 	{

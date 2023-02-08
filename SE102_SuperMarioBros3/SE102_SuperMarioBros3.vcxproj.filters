@@ -180,6 +180,9 @@
     <ClCompile Include="WorldMapMario.cpp">
       <Filter>GameObject\Players</Filter>
     </ClCompile>
+    <ClCompile Include="IntroArrow.cpp">
+      <Filter>GameObject\Players</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -338,15 +341,30 @@
     <ClInclude Include="WorldMapMario.h">
       <Filter>GameObject\Players</Filter>
     </ClInclude>
+    <ClInclude Include="IntroArrow.h">
+      <Filter>GameObject\Players</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Resources\Enemies.xml">
+    <Xml Include="Resources\EnemiesAssets.xml">
       <Filter>Resource Files</Filter>
     </Xml>
-    <Xml Include="Resources\Mario.xml">
+    <Xml Include="Resources\HubAssets.xml">
       <Filter>Resource Files</Filter>
     </Xml>
-    <Xml Include="Resources\Misc.xml">
+    <Xml Include="Resources\Intro.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\IntroScenesAssets.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\MapNodes.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\MarioAssets.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\MiscAssets.xml">
       <Filter>Resource Files</Filter>
     </Xml>
     <Xml Include="Resources\Scene_1_1.xml">
@@ -358,16 +376,16 @@
     <Xml Include="Resources\Scenes.xml">
       <Filter>Resource Files</Filter>
     </Xml>
-    <Xml Include="Resources\Hub.xml">
+    <Xml Include="Resources\TileMap_1_1.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\TileMap_1_1_temp.xml">
       <Filter>Resource Files</Filter>
     </Xml>
     <Xml Include="Resources\WorldMap.xml">
       <Filter>Resource Files</Filter>
     </Xml>
     <Xml Include="Resources\WorldMapAssets.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
-    <Xml Include="Resources\MapNodes.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>

@@ -87,7 +87,7 @@ void CGrid::Update(DWORD dt)
 {
     //DebugOut(L"\n");
     for(int i = startX; i<=endX; i++)
-        for (int j = startY; j < endY;j++)
+        for (int j = startY; j <= endY;j++)
         {
             cell cell = lpCells[i + numXCells * j];
             //DebugOut(L"%d, %d \t", i, j);
@@ -196,7 +196,7 @@ void CGrid::Render()
     vector<LPGAMEOBJECT> lateRender;
     lateRender.clear();
     for (int i = startX; i <= endX; i++)
-        for (int j = startY; j < endY;j++)
+        for (int j = startY; j <= endY;j++)
         {
             LPCELL cell = &lpCells[i + numXCells * j];
             for (int k = 0; k < cell->lpGameObjects.size(); k++)

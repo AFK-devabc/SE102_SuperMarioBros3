@@ -137,6 +137,7 @@
     <ClCompile Include="CheckPoint.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Hub.cpp" />
+    <ClCompile Include="IntroArrow.cpp" />
     <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="KoopaEdgeDetect.cpp" />
     <ClCompile Include="Brick.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="CoinDrop.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Hub.h" />
+    <ClInclude Include="IntroArrow.h" />
     <ClInclude Include="IntroScene.h" />
     <ClInclude Include="KoopaEdgeDetect.h" />
     <ClInclude Include="Brick.h" />
@@ -229,14 +231,18 @@
     <ClInclude Include="WorldMapsScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Resources\Enemies.xml" />
-    <Xml Include="Resources\Hub.xml" />
+    <Xml Include="Resources\EnemiesAssets.xml" />
+    <Xml Include="Resources\HubAssets.xml" />
+    <Xml Include="Resources\Intro.xml" />
+    <Xml Include="Resources\IntroScenesAssets.xml" />
     <Xml Include="Resources\MapNodes.xml" />
-    <Xml Include="Resources\Mario.xml" />
-    <Xml Include="Resources\Misc.xml" />
+    <Xml Include="Resources\MarioAssets.xml" />
+    <Xml Include="Resources\MiscAssets.xml" />
     <Xml Include="Resources\Scenes.xml" />
     <Xml Include="Resources\Scene_1_1.xml" />
     <Xml Include="Resources\Scene_1_1_GameObjects.xml" />
+    <Xml Include="Resources\TileMap_1_1.xml" />
+    <Xml Include="Resources\TileMap_1_1_temp.xml" />
     <Xml Include="Resources\WorldMap.xml" />
     <Xml Include="Resources\WorldMapAssets.xml" />
   </ItemGroup>

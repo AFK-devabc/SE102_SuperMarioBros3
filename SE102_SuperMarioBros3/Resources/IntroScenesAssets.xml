@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root name="IntroScenesAssets" >
+	<Textures texID="IntroScenes" texturePath="textures/IntroScenes.png">
+		<Animations  aniID="none" frameTime ="9999">
+			<Sprites spriteID = "Intro_BackGround"		x="516" y="226" w="256" h="224"/>
+		</Animations>
+
+
+		<!--<Animations  aniID="100000" frameTime ="200">
+			<Sprites spriteID = "Small_Mario_0"		x="252" y="116" w="14" h="16"/>
+			<Sprites spriteID = "Small_Mario_1"		x="272" y="116" w="14" h="16"/>
+		</Animations>
+		<Animations  aniID="110000" frameTime ="200">
+			<Sprites spriteID = "Big_Mario_0"		x="292" y="116" w="16" h="22"/>
+			<Sprites spriteID = "Big_Mario_1"		x="312" y="116" w="16" h="22"/>
+		</Animations>
+		<Animations  aniID="120000" frameTime ="200">
+			<Sprites spriteID = "Cat_Mario_0"		x="333" y="113" w="16" h="24"/>
+			<Sprites spriteID = "Cat_Mario_1"		x="354" y="113" w="16" h="24"/>
+		</Animations>
+		<Animations  aniID="1000" frameTime ="300">
+			<Sprites spriteID = "Enemy_Left_0"		x="333" y="74" w="16" h="16"/>
+			<Sprites spriteID = "Enemy_Left_1"		x="354" y="74" w="16" h="16"/>
+		</Animations>
+		<Animations  aniID="1001" frameTime ="300">
+			<Sprites spriteID = "Enemy_Right_0"		x="515" y="74" w="16" h="16"/>
+			<Sprites spriteID = "Enemy_Right_1"		x="536" y="74" w="16" h="16"/>
+		</Animations>-->
+
+	</Textures>
+
+</Root>

@@ -25,6 +25,7 @@ protected:
 	DWORD flyingStart;
 
 	int CanFlyUp;
+	int isFlyingUp;
 	DWORD FlyUpStart;
 	int CanHoldKoopa;
 	LPGAMEOBJECT koopaHolding;
@@ -49,6 +50,7 @@ public :
 		flyingStart = 0;
 		CanHoldKoopa = 0;
 		koopaHolding = NULL;
+		isFlyingUp = false;
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 
@@ -57,7 +59,7 @@ public :
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
-
+	int IsOnPlatform() { return isOnPlatform; }
 	int IsCollidable()
 	{
 		return (state != GAME_OBJECT_STATE_DIE);

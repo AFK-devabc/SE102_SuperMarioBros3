@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Root name="MICS" >
+<Root name="HubAssets" >
 	<Textures texID="Hub" texturePath="textures/Hub.png">
 		<Animations  aniID="none" frameTime ="9999">
 			<Sprites spriteID = "InfoBar"		x="12" y="128" w="232" h="28"/>

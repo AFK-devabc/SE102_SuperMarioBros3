@@ -38,6 +38,8 @@ void CHub::Update(DWORD dt, LPGAMEOBJECT player)
 	{
 		power = (abs(player->GetVelocity().x) - MARIO_WALKING_SPEED) / SPEED_PER_POW;
 	}
+	if (!dynamic_cast<CPlayer*>(player)->IsOnPlatform())
+		power = 0;
 }
 
 void CHub::Render()

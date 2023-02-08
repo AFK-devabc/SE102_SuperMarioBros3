@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Root name="Scene_FilePath" >
+	<Scenes ID="IntroScene" type="1" scenePath="Resources/Intro.xml"/>
 	<Scenes ID="WorldMapScene" type="2" scenePath="Resources/WorldMap.xml"/>
 	<Scenes ID="Scene_1_1" type="3" scenePath="Resources/Scene_1_1.xml"/>
 </Root>
