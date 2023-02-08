@@ -296,6 +296,19 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 
 					break;
 				}
+				case OBJECT_TYPE_PINEPORTAL:
+				{
+					int desx,desy,camx,camy, type;
+					gameObjectNode->QueryIntAttribute("desx", &desx);
+					gameObjectNode->QueryIntAttribute("desy", &desy);
+					gameObjectNode->QueryIntAttribute("camx", &camx);
+					gameObjectNode->QueryIntAttribute("camy", &camy);
+					gameObjectNode->QueryIntAttribute("type", &type);
+
+					gameObject = new CPinePortal(position, D3DXVECTOR2(desx,desy), D3DXVECTOR2(camx,camy), type);
+
+					break;
+				}
 
 				default:
 				{

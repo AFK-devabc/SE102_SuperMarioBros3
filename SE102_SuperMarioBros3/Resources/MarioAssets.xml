@@ -55,6 +55,9 @@
 			<Sprites spriteID = "Small_Mario_Holding_1" x="275" y="120" w="16" h="16"/>
 		</Animations>
 
+		<Animations  aniID="100100" frameTime ="9999">
+			<Sprites spriteID = "Small_Mario_Front" x="216" y="0" w="14" h="16"/>
+		</Animations>
 
 		<!--BIG_MARIO_ANIMATION_________________________________________________________________________-->
 		
@@ -98,6 +101,10 @@
 			<Sprites spriteID = "Big_Mario_Holding_0" x="275" y="314" w="16" h="28"/>
 			<Sprites spriteID = "Big_Mario_Holding_1" x="305" y="314" w="16" h="28"/>
 		</Animations>
+		<Animations  aniID="110100" frameTime ="9999">
+			<Sprites spriteID = "big_Mario_Front" x="215" y="154" w="16" h="26"/>
+		</Animations>
+
 
 		<!--TAIL_MARIO_ANIMATION_________________________________________________________________________-->
 
@@ -149,6 +156,9 @@
 			<Sprites spriteID = "Tail_Mario_Holding_0" x="242" y="794" w="24" h="28"/>
 			<Sprites spriteID = "Tail_Mario_Holding_1" x="272" y="794" w="24" h="28"/>
 			<Sprites spriteID = "Tail_Mario_Holding_1" x="302d" y="794" w="24" h="28"/>
+		</Animations>
+		<Animations  aniID="120100" frameTime ="9999">
+			<Sprites spriteID = "Cat_Mario_Front" x="215" y="633" w="16" h="29"/>
 		</Animations>
 
 	</Textures>

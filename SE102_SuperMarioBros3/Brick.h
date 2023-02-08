@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "GameObjectType.h"
+
 class CBrick :
     public CGameObject
 {

@@ -50,9 +50,10 @@
 #define MARIO_GRAVITY				0.001f
 #define MARIO_JUMP_DEFLECT_SPEED	0.2f
 #define MARIO_FLYING_DROPDOWN_SPEED	0.08f
+#define MARIO_TELE_VELOCITY			0.03f
 #define MARIO_SIT_HEIGHT_ADJUST ((Big_Mario_Height-Small_Mario_Height)/2)
 
-
+#define MARIO_TELETIME_TIME			2000
 #define MARIO_UNTOUCHABLE_TIME		2000
 #define MARIO_FLYUP_TIME			5000
 
@@ -79,6 +80,7 @@
 #define MARIO_STATE_FLYING_DROPDOWN 6000
 #define MARIO_STATE_IDLE_HOLDING	8000
 #define MARIO_STATE_WALKING_HOLDING	9000
+#define MARIO_STATE_Front			100
 
 #pragma endregion
 
@@ -109,6 +111,7 @@
 #define PLANT_STATE_LOOKINGBOT		42000
 #define PLANT_STATE_BITE			43000
 #define GREEN_PIPE					44000
+#define BLACK_PINE					45000
 
 #pragma endregion
 

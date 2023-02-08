@@ -95,6 +95,9 @@
 			<Sprites spriteID = "Green_Pipe" x="195" y="9" w="32" h="24"/>
 		</Animations>
 
+		<Animations  aniID="45000" frameTime ="9999">
+			<Sprites spriteID = "Black_Pine" x="236" y="15" w="32" h="24"/>
+		</Animations>
 
 	</Textures>
 </Root>

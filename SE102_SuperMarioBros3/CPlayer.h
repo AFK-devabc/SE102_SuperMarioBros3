@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "KeyEventHandler.h"
+
 class CPlayer :
     public CGameObject,
     public  CKeyEventHandler
@@ -27,8 +28,14 @@ protected:
 	int CanFlyUp;
 	int isFlyingUp;
 	DWORD FlyUpStart;
+
 	int CanHoldKoopa;
 	LPGAMEOBJECT koopaHolding;
+
+	DWORD teleTimeStart;
+	D3DXVECTOR2 desPosition;
+	D3DXVECTOR2 camLockPosition;
+	D3DXVECTOR2 teleVelocity;
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
@@ -40,6 +47,7 @@ protected:
 	void OnCollisionWithPlant(LPCOLLISIONEVENT e);
 	void OnCollisionWithPlantBullet(LPCOLLISIONEVENT e);
 	void OnCollisionWithCheckPoint(LPCOLLISIONEVENT e);
+	void OnCollisionWithPinePortal(LPCOLLISIONEVENT e);
 
 public :
 	CPlayer(D3DXVECTOR2 position) : CGameObject(position) {

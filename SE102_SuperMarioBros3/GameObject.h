@@ -8,6 +8,9 @@
 #include "Collision.h"
 #include "Camera.h"
 
+#include "DefineInfo.h"
+#include "GameObjectType.h"
+
 class CGameObject
 {
 protected:

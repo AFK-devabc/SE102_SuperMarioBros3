@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "DefineInfo.h"
+
 class CPlant :
 	public CGameObject
 {

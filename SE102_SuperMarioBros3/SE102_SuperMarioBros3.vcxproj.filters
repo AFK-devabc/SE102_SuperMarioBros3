@@ -120,9 +120,6 @@
     <ClCompile Include="RedKoopa.cpp">
       <Filter>GameObject\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="CColorBox.cpp">
-      <Filter>GameObject\Blocking</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObject\Others</Filter>
     </ClCompile>
@@ -343,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="IntroArrow.h">
       <Filter>GameObject\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="PinePortal.h">
+      <Filter>GameObject\Others</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

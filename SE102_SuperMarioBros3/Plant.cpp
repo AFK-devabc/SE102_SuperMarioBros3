@@ -1,5 +1,4 @@
 #include "Plant.h"
-#include "GameObjectType.h"
 #include "PlayScene.h"
 #include "Scenes.h"
 #include "PlantBullet.h"

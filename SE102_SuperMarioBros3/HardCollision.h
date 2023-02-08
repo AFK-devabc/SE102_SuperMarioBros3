@@ -1,5 +1,6 @@
 #pragma once
 #include "GameEffect.h"
+
 class CHardCollision :
     public CGameEffect
 {

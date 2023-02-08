@@ -6,12 +6,13 @@
 #include "RedLeaf.h"
 #include "Koopa.h"
 #include "MushRoom.h"
-#include "Scenes.h"
-#include "PlayScene.h"
 #include "BrickBroken.h"
 #include "HardCollision.h"
 #include "GameEffect.h"
 #include "Plant.h"
+
+#include "Scenes.h"
+#include "PlayScene.h"
 
 void CMarioTail::GetBoundingBox(float& l, float& t, float& r, float& b)
 {

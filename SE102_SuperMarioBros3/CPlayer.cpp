@@ -1,4 +1,5 @@
 #include "CPlayer.h"
+
 #include "Goomba.h"
 #include "Brick.h"
 #include "MushRoom.h"
@@ -9,18 +10,19 @@
 #include "Coin.h"
 #include "CheckPoint.h"
 #include "WorldMap.h"
-
-#include "GameObjectType.h"
-#include "Scenes.h"
-#include "PlayScene.h"
 #include "CColorBox.h"
 #include "Plant.h"
 #include "PlantBullet.h"
 #include "AddPoint.h"
 
+#include "Scenes.h"
+#include "PlayScene.h"
+
 int CPlayer::GetAniID()
 {
 	unsigned int aniID = 0;
+
+	
 
 	if (state == GAME_OBJECT_STATE_DIE)
 	{
@@ -30,7 +32,11 @@ int CPlayer::GetAniID()
 	{
 		return isChangingform;
 	}
-	if (koopaHolding != NULL)
+	if (teleTimeStart > GetTickCount64() - MARIO_TELETIME_TIME)
+	{
+		aniID = MARIO_STATE_Front;
+	}
+	else if (koopaHolding != NULL)
 	{
 		aniID = MARIO_STATE_IDLE_HOLDING;
 		if (velocity.x != NULL)
@@ -106,6 +112,8 @@ void CPlayer::GetBoundingBox(float& l, float& t, float& r, float& b)
 
 void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
+
+
 	if(!(!isOnPlatform && abs(velocity.x) >= MARIO_WALKING_SPEED && velocity.x * Ax > 0 )|| abs(velocity.x) >= 0.8 * MARIO_RUNNING_SPEED )
 		velocity.x += Ax * dt;
 
@@ -121,6 +129,17 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	{
 		untouchable_start = 0;
 		untouchable = 0;
+	}
+	if (teleTimeStart > GetTickCount64() - MARIO_TELETIME_TIME)
+	{
+		position = position + teleVelocity * dt;
+		if (teleTimeStart < GetTickCount64() - MARIO_TELETIME_TIME/2 && desPosition.x != -1)
+		{
+			this->position = desPosition;
+			desPosition.x = -1;
+			CCamera::GetInstance()->SetCamLock(camLockPosition);
+		}
+		this->velocity = D3DXVECTOR2(0, 0);
 	}
 
 	if (CanFlyUp)
@@ -214,6 +233,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithPlantBullet(e);
 	else if (dynamic_cast<CCheckPoint*>(e->obj))
 		OnCollisionWithCheckPoint(e);
+	else if (dynamic_cast<CPinePortal*>(e->obj))
+		OnCollisionWithPinePortal(e);
 
 
 }
@@ -381,6 +402,15 @@ void CPlayer::OnCollisionWithCheckPoint(LPCOLLISIONEVENT e)
 	e->obj->Delete();
 	CHub::GetInstance()->AddItems(e->obj->GetState());
 	CWorldMap::GetInstance()->SetNodeComplete();
+}
+
+void CPlayer::OnCollisionWithPinePortal(LPCOLLISIONEVENT e)
+{
+	CPinePortal* pinePortal = dynamic_cast<CPinePortal*>(e->obj);
+	teleTimeStart = GetTickCount64();
+	camLockPosition =  pinePortal->GetCamLockPosition();
+	desPosition = pinePortal->GetDesPosition();
+	teleVelocity = D3DXVECTOR2(0, (pinePortal->GetType() ? MARIO_TELE_VELOCITY : -MARIO_TELE_VELOCITY));
 }
 
 void CPlayer::Attacked()

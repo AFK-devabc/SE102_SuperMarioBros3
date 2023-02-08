@@ -1,6 +1,5 @@
 #pragma once
 #include "GameObject.h"
-#include "DefineInfo.h"
 class CMushRoom :
     public CGameObject
 

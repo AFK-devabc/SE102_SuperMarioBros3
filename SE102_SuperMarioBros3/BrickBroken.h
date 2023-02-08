@@ -1,6 +1,6 @@
 #pragma once
 #include "GameEffect.h"
-#include "DefineInfo.h"
+
 class CBrickBroken :
     public CGameEffect
 {

@@ -1,7 +1,4 @@
 #include "RedLeaf.h"
-#include "Animations.h"
-#include "DefineInfo.h"
-#include "GameObjectType.h"
 
 void CRedLeaf::GetBoundingBox(float& l, float& t, float& r, float& b)
 {

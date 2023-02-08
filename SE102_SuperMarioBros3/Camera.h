@@ -21,6 +21,7 @@ public:
 
 	void SetCamFollow(D3DXVECTOR2* position)
 	{
+		if(position != NULL)
 		followObjects = position;
 		isCamLock = false;
 	}
@@ -39,7 +40,7 @@ public:
 
 
 			if (position.y < 0) position.y = 0;
-			if (position.y + gamePlayZone.y > 432) position.y = 432 - gamePlayZone.y;
+			if (position.y + gamePlayZone.y > worldSize.y) position.y = worldSize.y - gamePlayZone.y;
 		}
 	}
 	void SetGamePlayZone(D3DXVECTOR2 gamePlayZone)
@@ -55,7 +56,15 @@ public:
 	{
 		return objPosition - position;
 	}
-	void SetCamLock(D3DXVECTOR2 position) { this->position = position; isCamLock = true; }
+	void SetCamLock(D3DXVECTOR2 position) {
+		if (position.x < 0 && position.y < 0)
+		{
+			isCamLock = false; 
+			return;
+		}
+		this->position = position; 
+		isCamLock = true;
+	}
 	static CCamera* GetInstance();
 
 };

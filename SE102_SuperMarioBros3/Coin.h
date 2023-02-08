@@ -1,7 +1,5 @@
 #pragma once
 #include "GameObject.h"
-#include "DefineInfo.h"
-#include "GameObjectType.h"
 class CCoin :
     public CGameObject
 {

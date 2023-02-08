@@ -19,6 +19,7 @@
 #include "Ground.h"
 #include "Plant.h"
 #include "CheckPoint.h"
+#include "PinePortal.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"

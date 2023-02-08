@@ -1,7 +1,5 @@
 #include "Brick.h"
 #include "Animations.h"
-#include "DefineInfo.h"
-#include "GameObjectType.h"
 #include "PlayScene.h"
 #include "RedLeaf.h"
 #include "BrickBroken.h"

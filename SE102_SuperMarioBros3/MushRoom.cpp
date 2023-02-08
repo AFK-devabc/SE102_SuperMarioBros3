@@ -1,8 +1,4 @@
 #include "MushRoom.h"
-#include "Animations.h"
-#include "DefineInfo.h"
-#include "GameObjectType.h"
-
 void CMushRoom::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
 	l = position.x - 16 / 2;

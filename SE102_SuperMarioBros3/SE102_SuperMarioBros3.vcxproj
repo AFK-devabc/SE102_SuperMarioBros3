@@ -142,7 +142,6 @@
     <ClCompile Include="KoopaEdgeDetect.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CColorBox.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="Goomba.cpp" />
@@ -203,6 +202,7 @@
     <ClInclude Include="Koopa.h" />
     <ClInclude Include="MarioTail.h" />
     <ClInclude Include="MushRoom.h" />
+    <ClInclude Include="PinePortal.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantBullet.h" />
     <ClInclude Include="Platform.h" />

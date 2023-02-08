@@ -1,7 +1,7 @@
 #pragma once
 #include "GameEffect.h"
 #include "Hub.h"
-#include "Sprites.h"
+
 class CAddPoint :
     public CGameEffect
 {

@@ -1,6 +1,4 @@
 #include "Koopa.h"
-#include "DefineInfo.h"
-#include "GameObjectType.h"
 #include "Goomba.h"
 #include "Brick.h"
 #include "AddPoint.h"

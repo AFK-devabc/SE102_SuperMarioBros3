@@ -1,6 +1,4 @@
 #include "Goomba.h"
-#include "DefineInfo.h"
-#include "GameObjectType.h"
 #include "Scenes.h"
 #include "PlayScene.h"
 

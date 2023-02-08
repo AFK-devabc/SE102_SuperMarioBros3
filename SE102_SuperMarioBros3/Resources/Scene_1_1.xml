@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Root name="Scene 1_1" >
-	<Infomation Type="Grid" name="Scene_1_1_Grid" width="2816" height ="576"  CellSize ="128"/>
-	<Infomation Type="TitleMap" name="Scene_1_1_Grid" filePath="Resources/TileMap_1_1.xml"/>
+	<Infomation Type="Grid" name="Scene_1_1_Grid" width="2816" height ="432"  CellSize ="128"/>
+	<Infomation Type="TitleMap" name="Scene_1_1_TileMap" filePath="Resources/TileMap_1_1.xml"/>
 
 	<ResourceFile Type="Assets" name="MarioAssets" filePath="Resources/MarioAssets.xml"/>
 	<ResourceFile Type="Assets" name="MicsAssets" filePath="Resources/MiscAssets.xml"/>

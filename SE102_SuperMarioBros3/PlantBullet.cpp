@@ -1,6 +1,4 @@
 #include "PlantBullet.h"
-#include "DefineInfo.h"
-#include "GameObjectType.h"
 
 void CPlantBullet::GetBoundingBox(float& l, float& t, float& r, float& b)
 {

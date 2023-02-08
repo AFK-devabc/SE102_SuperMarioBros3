@@ -1,7 +1,6 @@
 #pragma once
-#include "Collision.h"
 #include "GameObject.h"
-#include "DefineInfo.h"
+
 class CGoomba :
     public CGameObject
 {

@@ -3,6 +3,7 @@
 #include "AddPoint.h"
 #include "PlayScene.h"
 #include "Hub.h"
+
 class CCoinDrop :
     public CGameEffect
 {
