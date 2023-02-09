@@ -14,9 +14,11 @@
 #include "Plant.h"
 #include "PlantBullet.h"
 #include "AddPoint.h"
+#include "ItemContainer.h"
 
 #include "Scenes.h"
 #include "PlayScene.h"
+#include "PAlarm.h"
 
 int CPlayer::GetAniID()
 {
@@ -235,6 +237,10 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithCheckPoint(e);
 	else if (dynamic_cast<CPinePortal*>(e->obj))
 		OnCollisionWithPinePortal(e);
+	else if (dynamic_cast<CItemContainer*>(e->obj))
+		OnCollisionWithItemContainer(e);
+	else if (dynamic_cast<CPAlarm*>(e->obj))
+		OnCollisionWithPAlarm(e);
 
 
 }
@@ -330,17 +336,32 @@ void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 void CPlayer::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
 	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
-	if (e->ny > 0)
+	if (brick->GetState() == BRICK_STATE_CHANGED_INTO_COIN)
 	{
-		brick->Hit(1);
+		LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 50);
+		dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
+
+		e->obj->Delete();
+		return;
 	}
-	else if (e->ny < 0 && brick->GetBehavior() == OBJECT_TYPE_MUSIC_NOTE)
+	if (e->ny > 0 )
 	{
-		velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
-		brick->Hit(2);
+		if (marioType != SMALL_MARIO)
+			brick->Delete();
+		else
+		{
+			brick->SetState(BRICK_STATE_PUSHED);
+		}
 	}
 }
 
+void CPlayer::OnCollisionWithItemContainer(LPCOLLISIONEVENT e)
+{
+	if (e->ny > 0)
+	{
+		e->obj->SetState(OBJECT_TYPE_EMPTY_BLOCK);
+	}
+}
 void CPlayer::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 {
 	e->obj->Delete();
@@ -411,6 +432,12 @@ void CPlayer::OnCollisionWithPinePortal(LPCOLLISIONEVENT e)
 	camLockPosition =  pinePortal->GetCamLockPosition();
 	desPosition = pinePortal->GetDesPosition();
 	teleVelocity = D3DXVECTOR2(0, (pinePortal->GetType() ? MARIO_TELE_VELOCITY : -MARIO_TELE_VELOCITY));
+}
+
+void CPlayer::OnCollisionWithPAlarm(LPCOLLISIONEVENT e)
+{
+	if (e->ny < 0)
+		e->obj->SetState(ALARM_STATE_TOUCHED);
 }
 
 void CPlayer::Attacked()

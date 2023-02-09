@@ -12,6 +12,7 @@ protected :
 	virtual void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithPlant(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithItemContainer(LPCOLLISIONEVENT e);
 
 public:
 	CKoopa(D3DXVECTOR2 position) : CGameObject(position) {

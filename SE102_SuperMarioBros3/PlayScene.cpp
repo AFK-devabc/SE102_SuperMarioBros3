@@ -158,12 +158,14 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 {
 	DebugOut(L"[INFO] Start loading GameObjects from : \"%s\"\n", ToLPCWSTR(filePath));
 	TiXmlDocument doc(filePath);
+	LPBrick.clear();
 	if (doc.LoadFile())
 	{
 		TiXmlElement* Root = doc.RootElement();
 
 		if (Root)
 		{
+
 			for (TiXmlElement* gameObjectNode = Root->FirstChildElement(); gameObjectNode != nullptr; gameObjectNode = gameObjectNode->NextSiblingElement())
 			{
 				LPGAMEOBJECT gameObject;
@@ -224,14 +226,28 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 
 				case OBJECT_TYPE_BRICK:
 				{
-					int behavior = 0, itemContain = 0;
-
-					gameObjectNode->QueryIntAttribute("behavior", &behavior);
-					gameObjectNode->QueryIntAttribute("itemContain", &itemContain);
-
-					gameObject = new CBrick(position, behavior, itemContain);
+					gameObject = new CBrick(position);
+					LPBrick.push_back(gameObject);
 					break;
 				}
+				case OBJECT_TYPE_QUESTION_MARK:
+				{
+					int itemContain = 0;
+					gameObjectNode->QueryIntAttribute("itemContain", &itemContain);
+
+					gameObject = new CItemContainer(position, itemContain, OBJECT_TYPE_QUESTION_MARK);
+
+					break;
+				}
+				case OBJECT_TYPE_FAKE_BRICK:
+				{
+					int itemContain = 0;
+					gameObjectNode->QueryIntAttribute("itemContain", &itemContain);
+
+					gameObject = new CItemContainer(position, itemContain, OBJECT_TYPE_BRICK);
+					break;
+				}
+
 				case OBJECT_TYPE_CLOUD_PLATFORM:
 				{
 					int w = 0, h = 0, num = 0;
@@ -410,6 +426,9 @@ void CPlayScene::Update(DWORD dt)
 
 	grid->Update(dt);
 	Hub->Update(dt, player);
+	for (int i = 0; i < LPBrick.size();i++)
+		if (LPBrick[i]->IsDeleted())
+			LPBrick.erase(LPBrick.begin() + i);
 	PurgeDeletedObjects();
 }
 

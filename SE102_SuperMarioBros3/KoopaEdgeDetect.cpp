@@ -13,13 +13,11 @@ void CKoopaEdgeDetect::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	velocity.y += GRAVITY * dt;
 	CCollision::GetInstance()->Process(this, dt, coObjects);
-
 }
 
 void CKoopaEdgeDetect::OnNoCollision(DWORD dt)
 {
 	position += velocity * dt;
-
 }
 
 void CKoopaEdgeDetect::OnCollisionWith(LPCOLLISIONEVENT e)

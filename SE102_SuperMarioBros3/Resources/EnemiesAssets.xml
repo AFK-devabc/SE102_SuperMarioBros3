@@ -99,5 +99,16 @@
 			<Sprites spriteID = "Black_Pine" x="236" y="15" w="32" h="24"/>
 		</Animations>
 
+		<Animations  aniID="10090" frameTime ="200">
+			<Sprites spriteID = "P_Alarm_0" x="196" y="55" w="16" h="16"/>
+			<Sprites spriteID = "P_Alarm_1" x="213" y="55" w="16" h="16"/>
+			<Sprites spriteID = "P_Alarm_2" x="230" y="55" w="16" h="16"/>
+		</Animations>
+
+
+		<Animations  aniID="10091" frameTime ="9999">
+			<Sprites spriteID = "P_Alarm_Touched_0" x="247" y="55" w="16" h="16"/>
+		</Animations>
+
 	</Textures>
 </Root>

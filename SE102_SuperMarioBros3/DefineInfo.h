@@ -1,3 +1,4 @@
+#define ALARM_STATE_IDLE			10090
 #pragma once
 // GameDefine info go here
 #pragma region WindowInfo
@@ -20,10 +21,11 @@
 #define KEYBOARD_BUFFER_SIZE	1024
 #pragma endregion
 
-#define GAME_OBJECT_STATE_DIE	-9999
+#define GAME_OBJECT_STATE_DIE		-9999
 #define GAME_OBJECT_STATE_HITTED	-8888
-#define BLOCK_PUSH_FACTOR 0.4f
-#define GRAVITY				0.0008f
+#define BLOCK_PUSH_FACTOR		0.4f
+#define GRAVITY					0.0008f
+#define PIECE_BRICK_GRAVITY		0.0006f
 
 
 #pragma region Mario
@@ -116,9 +118,14 @@
 #pragma endregion
 
 #pragma region Brick
-#define BRICK_DEFLECT_SPEED			0.2f
+#define BRICK_DEFLECT_SPEED			0.1f
 #define BRICK_WIDTH					16
 #define BRICK_HEIGHT				16
+#define BRICK_STATE_IDLE			10000
+#define BRICK_STATE_PUSHED			10001
+#define BRICK_STATE_CHANGED_INTO_COIN			10002
+#define BRICK_COIN_TIME_LAST		10000
+
 #pragma endregion
 
 #pragma region MISC
@@ -132,6 +139,8 @@
 #define CHECKPOINT_MUSHROOM			10081
 #define CHECKPOINT_STAR				10082
 #define CHECKPOINT_SWAPTIME			100
+#define ALARM_STATE_IDLE			10090
+#define ALARM_STATE_TOUCHED			10091
 
 #pragma endregion
 

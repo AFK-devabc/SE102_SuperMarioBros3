@@ -80,9 +80,8 @@ void CWorldMapMario::OnKeyDown(int KeyCode)
 			CScenes::GetInstance()->InitiateSwitchScene(sceneID);
 			CWorldMap::GetInstance()->SetCurrentNode(currentX, currentY);
 			SetState(WMMARIO_STATE_IDLE);
-			velocity.x = 0;
+			velocity = D3DXVECTOR2(0,0);
 			position = NextPosition;
-
 		}
 		return;
 	}

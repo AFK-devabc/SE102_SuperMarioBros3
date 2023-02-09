@@ -44,6 +44,8 @@ void CMarioTail::IsCollidingWith(LPGAMEOBJECT e)
 		OnCollisionWithKoopa(e);
 	else if (dynamic_cast<CPlant*>(e))
 		OnCollisionWithPlant(e);
+	else if (dynamic_cast<CItemContainer*>(e))
+		OnCollisionWithItemContainer(e);
 
 }
 
@@ -77,11 +79,16 @@ void CMarioTail::OnCollisionWithKoopa(LPGAMEOBJECT e)
 
 void CMarioTail::OnCollisionWithBrick(LPGAMEOBJECT e)
 {
-	dynamic_cast<CBrick*>(e)->Hit(1);
+	e->Delete();
 }
 
 void CMarioTail::OnCollisionWithPlant(LPGAMEOBJECT e)
 {
 	e->Delete();
+}
+
+void CMarioTail::OnCollisionWithItemContainer(LPGAMEOBJECT e)
+{
+	e->SetState(OBJECT_TYPE_EMPTY_BLOCK);
 }
 

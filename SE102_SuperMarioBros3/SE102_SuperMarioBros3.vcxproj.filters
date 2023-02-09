@@ -180,6 +180,9 @@
     <ClCompile Include="IntroArrow.cpp">
       <Filter>GameObject\Players</Filter>
     </ClCompile>
+    <ClCompile Include="ItemContainer.cpp">
+      <Filter>GameObject\Blocking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -332,9 +335,6 @@
     <ClInclude Include="IntroScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="WorldMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="WorldMapMario.h">
       <Filter>GameObject\Players</Filter>
     </ClInclude>
@@ -343,6 +343,15 @@
     </ClInclude>
     <ClInclude Include="PinePortal.h">
       <Filter>GameObject\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="PAlarm.h">
+      <Filter>GameObject\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemContainer.h">
+      <Filter>GameObject\Blocking</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>PhysicsDevices</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

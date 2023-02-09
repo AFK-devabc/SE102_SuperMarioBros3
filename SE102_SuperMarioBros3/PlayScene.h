@@ -20,6 +20,7 @@
 #include "Plant.h"
 #include "CheckPoint.h"
 #include "PinePortal.h"
+#include "ItemContainer.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"
@@ -37,12 +38,15 @@ protected:
 	// A play scene has to have player, right? 
 	 CPlayer* player;
 
+	 vector<LPGAMEOBJECT> LPBrick;
 	CGrid* grid;
 	CTileMap* tileMap;
 	CHub* Hub;
 
 	void LoadAssets(const char* filePath);
 	void LoadGameObjects(const char* filePath);
+
+
 public:
 	CPlayScene(string id, string filePath);
 
@@ -50,6 +54,7 @@ public:
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	virtual void Unload();
+	vector<LPGAMEOBJECT> GetBrick() { return LPBrick; }
 
 	CPlayer* GetPlayer() { return player; }
 

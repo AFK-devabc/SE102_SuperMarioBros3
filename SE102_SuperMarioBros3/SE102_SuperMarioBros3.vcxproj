@@ -139,6 +139,7 @@
     <ClCompile Include="Hub.cpp" />
     <ClCompile Include="IntroArrow.cpp" />
     <ClCompile Include="IntroScene.cpp" />
+    <ClCompile Include="ItemContainer.cpp" />
     <ClCompile Include="KoopaEdgeDetect.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Hub.h" />
     <ClInclude Include="IntroArrow.h" />
     <ClInclude Include="IntroScene.h" />
+    <ClInclude Include="ItemContainer.h" />
     <ClInclude Include="KoopaEdgeDetect.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="BrickBroken.h" />
@@ -202,6 +204,7 @@
     <ClInclude Include="Koopa.h" />
     <ClInclude Include="MarioTail.h" />
     <ClInclude Include="MushRoom.h" />
+    <ClInclude Include="PAlarm.h" />
     <ClInclude Include="PinePortal.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantBullet.h" />

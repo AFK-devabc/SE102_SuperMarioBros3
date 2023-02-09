@@ -40,6 +40,3 @@ void CRedLeaf::Render()
 
 
 
-void CRedLeaf::Hit(int type)
-{
-}

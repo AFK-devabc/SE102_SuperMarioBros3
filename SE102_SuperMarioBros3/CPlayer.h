@@ -40,6 +40,7 @@ protected:
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
 	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
+	void OnCollisionWithItemContainer(LPCOLLISIONEVENT e);
 	void OnCollisionWithMushroom(LPCOLLISIONEVENT e);
 	void OnCollisionWithRedLeaf(LPCOLLISIONEVENT e);
 	void OnCollisionWithPortal(LPCOLLISIONEVENT e);
@@ -48,7 +49,9 @@ protected:
 	void OnCollisionWithPlantBullet(LPCOLLISIONEVENT e);
 	void OnCollisionWithCheckPoint(LPCOLLISIONEVENT e);
 	void OnCollisionWithPinePortal(LPCOLLISIONEVENT e);
+	void OnCollisionWithPAlarm(LPCOLLISIONEVENT e);
 
+	
 public :
 	CPlayer(D3DXVECTOR2 position) : CGameObject(position) {
 		maxVx = 0.8f;

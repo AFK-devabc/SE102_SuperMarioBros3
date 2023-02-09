@@ -86,6 +86,8 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 			OnCollisionWithBrick(e);
 		else if (dynamic_cast<CPlant*>(e->obj))
 			OnCollisionWithPlant(e);
+		else if (dynamic_cast<CItemContainer*>(e->obj))
+			OnCollisionWithItemContainer(e);
 
 	}
 }
@@ -127,8 +129,7 @@ void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 
 void CKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
-	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
-		brick->Hit(2);
+	e->obj->Delete();
 }
 
 void CKoopa::OnCollisionWithPlant(LPCOLLISIONEVENT e)
@@ -137,6 +138,11 @@ void CKoopa::OnCollisionWithPlant(LPCOLLISIONEVENT e)
 	LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
 	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
 
+}
+
+void CKoopa::OnCollisionWithItemContainer(LPCOLLISIONEVENT e)
+{
+	e->obj->SetState(OBJECT_TYPE_EMPTY_BLOCK);
 }
 
 void CKoopa::SetState(int state, int isGoingRight)

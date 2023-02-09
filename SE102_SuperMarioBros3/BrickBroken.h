@@ -9,21 +9,21 @@ private:
 	D3DXVECTOR2 vtl, vhtl, vtr, vhtr;
 
 public:
-	CBrickBroken(D3DXVECTOR2 position) : CGameEffect(position, 200) {
+	CBrickBroken(D3DXVECTOR2 position) : CGameEffect(position, 500) {
 		tl = htl = tr=htr = position;
 
-		 vtl = D3DXVECTOR2(0.1, -0.2) ;
-		 vhtl = D3DXVECTOR2(0.2, -0.4) ;
-		 vtr = D3DXVECTOR2(-0.1, -0.2) ;
-		 vhtr = D3DXVECTOR2(-0.2, -0.4);
+		 vtl = D3DXVECTOR2(0.04, -0.1) ;
+		 vhtl = D3DXVECTOR2(0.1, -0.2) ;
+		 vtr = D3DXVECTOR2(-0.04, -0.1) ;
+		 vhtr = D3DXVECTOR2(-0.1, -0.2);
 
 	}
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL) {
 
-		vtl.y += GRAVITY * dt;
-		vhtl.y += GRAVITY * dt;
-		vtr.y += GRAVITY * dt;
-		vhtr.y += GRAVITY * dt;
+		vtl.y += PIECE_BRICK_GRAVITY * dt;
+		vhtl.y += PIECE_BRICK_GRAVITY * dt;
+		vtr.y += PIECE_BRICK_GRAVITY * dt;
+		vhtr.y += PIECE_BRICK_GRAVITY * dt;
 
 		tl += vtl * dt;
 		htl += vhtl * dt;

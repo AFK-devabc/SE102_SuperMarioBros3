@@ -20,6 +20,7 @@ public:
 	void OnCollisionWithKoopa(LPGAMEOBJECT e);
 	void OnCollisionWithBrick(LPGAMEOBJECT e);
 	void OnCollisionWithPlant(LPGAMEOBJECT e);
+	void OnCollisionWithItemContainer(LPGAMEOBJECT e);
 
 };
 
