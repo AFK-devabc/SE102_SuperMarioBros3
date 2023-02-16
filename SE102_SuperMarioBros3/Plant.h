@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-
+#include "Smoke.h"
 class CPlant :
 	public CGameObject
 {
@@ -28,9 +28,7 @@ public:
 	int IsDamage() { return isDamage; }
 
 	int GetAniID();
-		virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
-	void SetState(int state, int islookright = 0);
-
+	virtual int IsCollidable() { return 1; };
+	virtual void Delete();
 };
 

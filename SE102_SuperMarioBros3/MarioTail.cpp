@@ -52,8 +52,7 @@ void CMarioTail::IsCollidingWith(LPGAMEOBJECT e)
 void CMarioTail::OnCollisionWithGoomba(LPGAMEOBJECT e)
 {
 	CGoomba* goomba = dynamic_cast<CGoomba*>(e);
-	goomba->SetState(GAME_OBJECT_STATE_DIE);
-	goomba->SetSpeed(0, -GOOMBA_JUMP_DEFLECT_SPEED);
+	goomba->SetState(GOOMBA_STATE_ATTACKED);
 
 	LPGAMEOBJECT effect = new CHardCollision(this->position);
 
@@ -84,6 +83,10 @@ void CMarioTail::OnCollisionWithBrick(LPGAMEOBJECT e)
 
 void CMarioTail::OnCollisionWithPlant(LPGAMEOBJECT e)
 {
+	LPGAMEOBJECT effect = new CHardCollision(this->position);
+
+	LPPLAYSCENE p = dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene());
+	p->AddGameObject(effect);
 	e->Delete();
 }
 

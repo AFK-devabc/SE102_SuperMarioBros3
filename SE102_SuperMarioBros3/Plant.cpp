@@ -107,3 +107,10 @@ int CPlant::GetAniID()
 			return PLANT_STATE_LOOKINGTOP;
 	}
 }
+
+void CPlant::Delete()
+{
+	LPGAMEOBJECT smoke = new CSmoke(this->position);
+	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(smoke);
+	this->isDeleted = true;
+}

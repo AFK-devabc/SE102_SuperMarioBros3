@@ -42,6 +42,7 @@ protected:
 	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 	void OnCollisionWithItemContainer(LPCOLLISIONEVENT e);
 	void OnCollisionWithMushroom(LPCOLLISIONEVENT e);
+	void OnCollisionWithGreenMushroom(LPCOLLISIONEVENT e);
 	void OnCollisionWithRedLeaf(LPCOLLISIONEVENT e);
 	void OnCollisionWithPortal(LPCOLLISIONEVENT e);
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e);

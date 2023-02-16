@@ -7,7 +7,8 @@ class CKoopa :
 protected : 
 	BOOLEAN isOnPlatform;
 
-	ULONGLONG die_start;
+	DWORD insideShellStart;
+	DWORD escapeShellStart;
 	virtual void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithBrick(LPCOLLISIONEVENT e);
@@ -17,7 +18,6 @@ protected :
 public:
 	CKoopa(D3DXVECTOR2 position) : CGameObject(position) {
 		velocity = D3DXVECTOR2(-KOOPA_WALKING_SPEED, 0);
-		state = KOOPA_STATE_WING;
 	};
 	virtual void GetBoundingBox(float& l, float& t, float& r, float& b);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);

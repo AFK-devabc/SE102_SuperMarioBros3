@@ -15,6 +15,8 @@
 #include "PlantBullet.h"
 #include "AddPoint.h"
 #include "ItemContainer.h"
+#include "GreenMushroom.h"
+#include "AddLife.h"
 
 #include "Scenes.h"
 #include "PlayScene.h"
@@ -119,13 +121,11 @@ void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	if(!(!isOnPlatform && abs(velocity.x) >= MARIO_WALKING_SPEED && velocity.x * Ax > 0 )|| abs(velocity.x) >= 0.8 * MARIO_RUNNING_SPEED )
 		velocity.x += Ax * dt;
 
-	if (!(isFlying && velocity.y <= -1.4 * MARIO_FLY_DROPDOWN_SPEED))
+	if (!(isFlying && velocity.y <= -1.4 * MARIO_FLY_DROPDOWN_SPEED && CanFlyUp))
 		velocity.y += MARIO_GRAVITY * dt;
 	isOnPlatform = 0;
 	if (abs(velocity.x) > abs(maxVx))
 		velocity.x = maxVx;
-	//if (velocity.y  <=-2*MARIO_FLYING_DROPDOWN_SPEED)
-	//	velocity.y = -2*MARIO_FLYING_DROPDOWN_SPEED;
 
 	if (GetTickCount64() - untouchable_start > MARIO_UNTOUCHABLE_TIME && untouchable)
 	{
@@ -219,6 +219,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithGoomba(e);
 	else if (dynamic_cast<CBrick*>(e->obj))
 		OnCollisionWithBrick(e);
+	else if (dynamic_cast<CGreenMushroom*>(e->obj))
+		OnCollisionWithGreenMushroom(e);
 	else if (dynamic_cast<CMushRoom*>(e->obj))
 		OnCollisionWithMushroom(e);
 	else if (dynamic_cast<CRedLeaf*>(e->obj))
@@ -252,7 +254,7 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 	// jump on top >> kill Goomba and deflect a bit 
 	if (e->ny < 0)
 	{
-		if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
+		if (goomba->GetState() != GOOMBA_STATE_DYING&& goomba->GetState() != GOOMBA_STATE_ATTACKED)
 		{
 			int goombastate = goomba->GetState();
 			LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
@@ -265,17 +267,18 @@ void CPlayer::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 
 				break;
 			case GOOMBA_STATE_WALKING:
-				goomba->SetState(GAME_OBJECT_STATE_DIE);
+				goomba->SetState(GOOMBA_STATE_DYING);
 				break;
 			}
 			velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
+			CanFlyUp = false;
 		}
 	}
 	else // hit by Goomba
 	{
 		if (untouchable == 0)
 		{
-			if (goomba->GetState() != GAME_OBJECT_STATE_DIE)
+			if (goomba->GetState() != GOOMBA_STATE_DYING && goomba->GetState() != GOOMBA_STATE_ATTACKED)
 				Attacked();
 		}
 	}
@@ -306,6 +309,8 @@ void CPlayer::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 		if (koopa->GetState() != GAME_OBJECT_STATE_DIE)
 		{
 			velocity.y = -MARIO_JUMP_DEFLECT_SPEED;
+			CanFlyUp = false;
+
 			LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
 			dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
 
@@ -373,8 +378,14 @@ void CPlayer::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 	{
 		CHub::GetInstance()->AddLife(1);
 	}
-	LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 1000);
-	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
+	CHub::GetInstance()->AddPoint(1000);
+}
+
+void CPlayer::OnCollisionWithGreenMushroom(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
+	LPGAMEOBJECT addLife = new CAddLife(e->obj->GetPosition(), 1);
+	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addLife);
 
 }
 

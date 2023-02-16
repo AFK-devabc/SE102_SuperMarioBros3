@@ -350,8 +350,20 @@
     <ClInclude Include="ItemContainer.h">
       <Filter>GameObject\Blocking</Filter>
     </ClInclude>
+    <ClInclude Include="GreenMushroom.h">
+      <Filter>GameObject\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="AddLife.h">
+      <Filter>GameObject\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Smoke.h">
+      <Filter>GameObject\Effects</Filter>
+    </ClInclude>
     <ClInclude Include="WorldMap.h">
-      <Filter>PhysicsDevices</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptySpace.h">
+      <Filter>GameObject\Blocking</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

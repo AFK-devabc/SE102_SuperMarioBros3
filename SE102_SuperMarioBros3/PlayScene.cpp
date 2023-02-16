@@ -212,14 +212,24 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 				}
 				case OBJECT_TYPE_KOOPA:
 				{
+					int  state = 0;
+					gameObjectNode->QueryIntAttribute("state", &state);
+
 					gameObject = new CKoopa(position);
+					gameObject->SetState(state);
 					break;
 				}
 				case OBJECT_TYPE_RED_KOOPA:
 				{
+					int  state = 0;
+					gameObjectNode->QueryIntAttribute("state", &state);
+
+
 					LPGAMEOBJECT block = new CKoopaEdgeDetect(position + D3DXVECTOR2(0,14.0f));
 
 					gameObject = new CRedKoopa(position, block);
+					gameObject->SetState(state);
+
 					grid->AddGameObject(block);
 					break;
 				}

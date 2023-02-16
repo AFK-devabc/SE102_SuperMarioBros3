@@ -23,7 +23,8 @@ public:
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
-	virtual int IsCollidable() { return state != GAME_OBJECT_STATE_DIE; };
+	virtual int IsCollidable() { return state != GOOMBA_STATE_ATTACKED && state != GOOMBA_STATE_DYING; };
+
 	virtual void SetState(int state, int isGoingRight = 0);
 };
 

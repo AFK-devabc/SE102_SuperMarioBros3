@@ -19,7 +19,7 @@ void CGoomba::GetBoundingBox(float& l, float& t, float& r, float& b)
 
 void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	if (state == GAME_OBJECT_STATE_DIE) 
+	if (state == GOOMBA_STATE_DYING)
 	{
 		if(GetTickCount64() - die_start > GOOMBA_DIE_TIMEOUT)
 				isDeleted = true;
@@ -28,6 +28,13 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	{
 		velocity.y += GRAVITY * dt;
 		isOnPlatform = false;
+
+		if (state == GOOMBA_STATE_ATTACKED)
+		{
+			if (GetTickCount64() - die_start > GOOMBA_DIE_TIMEOUT)
+				isDeleted = true;
+			position += velocity * dt;
+		}
 
 		if (type == 1)
 		{
@@ -52,11 +59,6 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 void CGoomba::Render()
 {
 	CAnimations* ani = CAnimations::GetInstance();
-	if (state == GAME_OBJECT_STATE_DIE)
-	{
-		ani->Get(to_string(GOOMBA_STATE_DYING + type))->Render(position);
-	}
-	else
 		ani->Get(to_string(state + type))->Render(position);
 
 }
@@ -91,9 +93,12 @@ void CGoomba::SetState(int state, int islookright)
 	case GOOMBA_STATE_WALKING:
 		this->velocity = D3DXVECTOR2(Goomba_Walking_Speed * (islookright ? 1:-1), 0);
 		break;
-	case GAME_OBJECT_STATE_DIE:
+	case GOOMBA_STATE_ATTACKED:
 		die_start = GetTickCount64();
-		//this->position.y = position.y + GOOMBA_HEIGHT / 2;
+		this->velocity = D3DXVECTOR2(0, -GOOMBA_JUMP_DEFLECT_SPEED);
+		break;
+	case GOOMBA_STATE_DYING:
+		die_start = GetTickCount64();
 		this->velocity = D3DXVECTOR2(0, 0);
 		break;
 	default:

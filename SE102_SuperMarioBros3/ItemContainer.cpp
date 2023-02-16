@@ -3,7 +3,7 @@
 #include "RedLeaf.h"
 #include "CoinDrop.h"
 #include "PAlarm.h"
-
+#include "GreenMushroom.h"
 void CItemContainer::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
 	l = position.x - BRICK_WIDTH / 2;
@@ -86,6 +86,15 @@ void CItemContainer::DropItems()
 
 		LPGAMEOBJECT effect = new CCoinDrop(this->GetPosition());
 		playscene->AddGameObject(effect);
+		break;
+	}
+	case OBJECT_TYPE_GREEN_MUSHROOM:
+	{
+		this->hitted = true;
+		velocity = D3DXVECTOR2(D3DXVECTOR2(0, -BRICK_DEFLECT_SPEED));
+
+			LPGAMEOBJECT mushroom = new CGreenMushroom(this->position);
+			playscene->AddGameObject(mushroom);
 		break;
 	}
 	}

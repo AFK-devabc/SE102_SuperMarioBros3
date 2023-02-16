@@ -24,8 +24,21 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	if (state == KOOPA_STATE_HOLDED)
 		return;
 
+	if (state == KOOPA_STATE_INSIDE_SHELL)
+		if (GetTickCount64() - insideShellStart > KOOPA_TOTAL_INSDE_SHELLTIME)
+			SetState(KOOPA_STATE_ESCAPE_SHELL, !isLookingRight);
+
+	if (state == KOOPA_STATE_ESCAPE_SHELL)
+		if (GetTickCount64() - escapeShellStart > KOOPA_TOTAL_INSDE_SHELLTIME)
+		{
+			SetState(KOOPA_STATE_WALKING, !isLookingRight);
+			this->position.y -= KOOPA_NORMAL_HEIGHT - KOOPA_SHEILD_HEIGHT;
+		}
+
 	isOnPlatform = false;
 	velocity.y += GRAVITY * dt;
+	if (velocity.y <= -KOOPA_JUMP_DEFLECT_SPEED)
+		velocity.y = -KOOPA_JUMP_DEFLECT_SPEED;
 	if ((state == GAME_OBJECT_STATE_DIE))
 	{
 		isDeleted = true;
@@ -95,8 +108,7 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 void CKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 {
 	CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
-	goomba->SetSpeed(goomba->GetVelocity().x, -GOOMBA_JUMP_DEFLECT_SPEED);
-	goomba->SetState(GAME_OBJECT_STATE_DIE);
+	goomba->SetState(GOOMBA_STATE_ATTACKED);
 	LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
 	dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
 
@@ -105,11 +117,10 @@ void CKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 {
 	CKoopa* koopa = dynamic_cast<CKoopa*>(e->obj);
-	this->velocity.x = -this->velocity.x;
 	if (koopa->GetState() == KOOPA_STATE_INSIDE_SHELL)
 	{
+		this->velocity.x = -this->velocity.x;
 		koopa->SetState(KOOPA_STATE_ROLLING);
-
 	}
 	else if(koopa->GetState() != KOOPA_STATE_ROLLING)
 	{
@@ -118,13 +129,6 @@ void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 		LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 100);
 		dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
 	}
-	//else if (koopa->GetState() == KOOPA_STATE_ROLLING)
-	//{
-	//	float vx, vy;
-	//	koopa->GetSpeed(vx, vy);
-	//	koopa->SetSpeed(-vx, vy);
-
-	//}
 }
 
 void CKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
@@ -151,14 +155,18 @@ void CKoopa::SetState(int state, int isGoingRight)
 	this->position.y += -1.0f;
 	switch (state)
 	{
+	case KOOPA_STATE_WING:
 	case KOOPA_STATE_WALKING:
 		this->velocity.x = KOOPA_WALKING_SPEED * (isGoingRight ? 1 : -1);
 		break;
-
+	case KOOPA_STATE_ESCAPE_SHELL:
+		escapeShellStart = GetTickCount64();
+		break;
 	case KOOPA_STATE_ROLLING:
 		this->velocity.x = KOOPA_ROLLING_SPEED * (isGoingRight ? 1 : -1);
 		break;
 	case KOOPA_STATE_INSIDE_SHELL :
+		insideShellStart = GetTickCount64();
 		this->velocity.x = 0;
 		break;
 	default:

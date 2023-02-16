@@ -5,6 +5,16 @@ void CRedKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	if (state == KOOPA_STATE_HOLDED)
 		return;
 
+	if (state == KOOPA_STATE_INSIDE_SHELL)
+		if (GetTickCount64() - insideShellStart > KOOPA_TOTAL_INSDE_SHELLTIME)
+			SetState(KOOPA_STATE_ESCAPE_SHELL, !isLookingRight);
+
+	if (state == KOOPA_STATE_ESCAPE_SHELL)
+		if (GetTickCount64() - escapeShellStart > KOOPA_TOTAL_INSDE_SHELLTIME)
+		{
+			SetState(KOOPA_STATE_WALKING, !isLookingRight);
+			this->position.y -= KOOPA_NORMAL_HEIGHT - KOOPA_SHEILD_HEIGHT;
+		}
 	isOnPlatform = false;
 	velocity.y += GRAVITY * dt;
 

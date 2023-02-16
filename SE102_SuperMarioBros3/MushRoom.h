@@ -6,6 +6,7 @@ class CMushRoom :
 {
 public:
 	int startY;
+	D3DXVECTOR2 startPosition;
 public:
 	CMushRoom(D3DXVECTOR2 position) : CGameObject(position) {
 		velocity = D3DXVECTOR2(0, -0.02f);
