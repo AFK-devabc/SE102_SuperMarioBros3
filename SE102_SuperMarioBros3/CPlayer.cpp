@@ -449,9 +449,8 @@ void CPlayer::OnCollisionWithCheckPoint(LPCOLLISIONEVENT e)
 {
 	if (dynamic_cast<CCheckPoint*>(e->obj)->IsChecked())
 		return;
-	CKeyBoard::GetInstance()->Clear();
 	SetState(MARIO_STATE_WALKING, 1);
-
+	CScenes::GetInstance()->GetCurrentScene()->SetState(SCENE_STATE_SWITCHSCENE_DELAY);
 	dynamic_cast<CCheckPoint*>(e->obj)->Check();
 	CHub::GetInstance()->AddItems(e->obj->GetState());
 	CWorldMap::GetInstance()->SetNodeComplete();
@@ -475,7 +474,7 @@ void CPlayer::OnCollisionWithPAlarm(LPCOLLISIONEVENT e)
 void CPlayer::OnCollisionWithEmptySpace(LPCOLLISIONEVENT e)
 {
 	CEmptySpace* portal = dynamic_cast<CEmptySpace*>(e->obj);
-	CKeyBoard::GetInstance()->Clear();
+	CScenes::GetInstance()->GetCurrentScene()->SetState(SCENE_STATE_SWITCHSCENE_DELAY);
 	this->velocity = D3DXVECTOR2(0,MARIO_JUMP_DEFLECT_SPEED);
 	nextScene = portal->GetNextScene();
 	changingSceneStart = GetTickCount64();
@@ -487,7 +486,7 @@ void CPlayer::Attacked()
 	{
 
 		SetState(GAME_OBJECT_STATE_DIE);
-		CKeyBoard::GetInstance()->Clear();
+		CScenes::GetInstance()->GetCurrentScene()->SetState(SCENE_STATE_SWITCHSCENE_DELAY);
 		nextScene = WORLDMAP_SCENE_ID;
 		changingSceneStart = GetTickCount64();
 

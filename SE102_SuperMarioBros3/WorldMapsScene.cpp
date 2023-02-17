@@ -7,6 +7,31 @@
 
 
 
+void CWorldMapsScene::LoadGameObject()
+{
+
+	mario->SetMario(worldMap->GetMarioType());
+	CCamera::GetInstance()->SetCamLock(D3DXVECTOR2(0, 0));
+	Hub->ReloadHub(0);
+
+	LPKeyHandler.clear();
+
+	if (Hub->IsGameOver())
+	{
+		gameOverArrow = new CGameOverArrow();
+		LPKeyHandler.push_back(gameOverArrow);
+
+	}
+	else
+	{
+		LPKeyHandler.push_back(mario);
+	}
+
+	D3DXCOLOR backGroundColor = D3DXCOLOR(0, 0, 0, 0);
+	CGraphics::GetInstance()->SetBackGroundColor(backGroundColor);
+
+}
+
 CWorldMapsScene::CWorldMapsScene(string id, string filePath) :
 	CScene(id, filePath)
 {
@@ -14,6 +39,11 @@ CWorldMapsScene::CWorldMapsScene(string id, string filePath) :
 	mario = new CWorldMapMario();
 	Hub = CHub::GetInstance();
 	enemyPosition = D3DXVECTOR2(95, 128);
+	this->state = SCENE_STATE_IDLE;
+
+	startStateTime = GetTickCount64();
+
+	totalStateTime = WorldMapScene_IDLE_START_TIME;
 }
 
 void CWorldMapsScene::LoadAssets(const char* filePath)
@@ -164,16 +194,6 @@ void CWorldMapsScene::LoadAssets(const char* filePath)
 void CWorldMapsScene::Load()
 {
 	DebugOut(L"[INFO] Start loading scene from : \"%s\"\n", ToLPCWSTR(sceneFilePath));
-	LPKeyHandler.clear();
-
-	CCamera::GetInstance()->SetCamLock(D3DXVECTOR2(0, 0));
-	Hub->ReloadHub(0);
-	LPKeyHandler.push_back(mario);
-
-	D3DXCOLOR backGroundColor = D3DXCOLOR(0,0,0,0);
-	CGraphics::GetInstance()->SetBackGroundColor(backGroundColor);
-
-	mario->SetMarioType(worldMap->GetMarioType());
 
 	TiXmlDocument doc(sceneFilePath.c_str());
 	if (doc.LoadFile())
@@ -203,24 +223,51 @@ void CWorldMapsScene::Load()
 		DebugOut(L"[ERROR] Failed to load scene from file \"%s\"\n", ToLPCWSTR(sceneFilePath));
 		return;
 	}
+
+	LoadGameObject();
+
 	DebugOut(L"[INFO] Done loading scene  \"%s\"\n", ToLPCWSTR(sceneFilePath));
 }
 
 void CWorldMapsScene::Update(DWORD dt)
 {
-	enemyPosition.x += enemyVx * dt;
-	if (enemyPosition.x <= 87)
+	switch (state)
 	{
-		enemyVx = -enemyVx;
-		enemyPosition.x = 87;
+	case SCENE_STATE_PLAYING:
+	{
+		enemyPosition.x += enemyVx * dt;
+		if (enemyPosition.x <= 87)
+		{
+			enemyVx = -enemyVx;
+			enemyPosition.x = 87;
+		}
+		else if (enemyPosition.x >= 103)
+		{
+			enemyVx = -enemyVx;
+			enemyPosition.x = 103;
+		}
+
+		mario->Update(dt);
+		break;
 	}
-	else if (enemyPosition.x >= 103)
+	case SCENE_STATE_SWITCHSCENE_DELAY:
 	{
-		enemyVx = -enemyVx;
-		enemyPosition.x = 103;
+		break;
+	}
+	case SCENE_STATE_IDLE:
+	{
+		if (GetTickCount64() - startStateTime > totalStateTime)
+			state = SCENE_STATE_PLAYING;
+		break;
+	}
+	case SCENE_STATE_PAUSING:
+	{
+		break;
+	}
+	default:
+		break;
 	}
 
-	mario->Update(dt);
 }
 
 void CWorldMapsScene::Render()
@@ -229,14 +276,29 @@ void CWorldMapsScene::Render()
 	worldMap->Render();
 	Hub->Render();
 	CAnimations::GetInstance()->Get(to_string(1000 + (enemyVx > 0 ? 1 : 0)))->Render(enemyPosition);
+	if (state == SCENE_STATE_IDLE)
+		CSprites::GetInstance()->Get("World_1_Title")->DrawHub(D3DXVECTOR2(151, 100));
 
 
 	mario->Render();
-
+	if(Hub->IsGameOver())
+	gameOverArrow->Render();
 }
 
 void CWorldMapsScene::Unload()
 {
+}
+
+void CWorldMapsScene::ResetGame()
+{
+	Hub->ResetHub();
+	CWorldMap::GetInstance()->ResetWorldMap();
+
+	this->LoadGameObject();
+	this->Load();
+
+	CKeyBoard::GetInstance()->Clear();
+	CKeyBoard::GetInstance()->SetKeyHandler(LPKeyHandler);
 
 }
 

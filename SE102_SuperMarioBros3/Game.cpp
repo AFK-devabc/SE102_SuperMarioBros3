@@ -38,11 +38,33 @@ void CGame::LoadResource()
 void CGame::Update(DWORD dt)
 {
 	scenes->SwitchScene();
-
-	keyboard->ProcessKeyboard();
 	scenes->GetCurrentScene()->Update(dt);
-	camera->Update(dt);
 
+	int state = scenes->GetCurrentScene()->GetState();
+	switch (state)
+	{
+	case SCENE_STATE_PLAYING:
+	{
+		keyboard->ProcessKeyboard();
+		camera->Update(dt);
+		break;
+	}
+	case SCENE_STATE_SWITCHSCENE_DELAY:
+	{
+		break;
+	}
+	case SCENE_STATE_IDLE:
+	{
+		break;
+	}
+	case SCENE_STATE_PAUSING:
+	{
+		break;
+	}
+	default:
+		keyboard->ProcessKeyboard();
+		break;
+	}
 }
 
 void CGame::Render()

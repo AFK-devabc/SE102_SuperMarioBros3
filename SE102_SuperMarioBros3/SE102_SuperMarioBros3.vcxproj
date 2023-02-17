@@ -136,6 +136,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="CheckPoint.cpp" />
     <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="GameOverArrow.cpp" />
     <ClCompile Include="Hub.cpp" />
     <ClCompile Include="IntroArrow.cpp" />
     <ClCompile Include="IntroScene.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="WorldMap.cpp" />
     <ClCompile Include="WorldMapMario.cpp" />
+    <ClCompile Include="SceneDefineInfo.h" />
     <ClCompile Include="WorldMapsScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +185,7 @@
     <ClInclude Include="Animations.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="EmptySpace.h" />
+    <ClInclude Include="GameOverArrow.h" />
     <ClInclude Include="GreenMushroom.h" />
     <ClInclude Include="CheckPoint.h" />
     <ClInclude Include="Coin.h" />
@@ -216,6 +219,7 @@
     <ClInclude Include="Portal.h" />
     <ClInclude Include="RedKoopa.h" />
     <ClInclude Include="RedLeaf.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scenes.h" />
     <ClInclude Include="Smoke.h" />

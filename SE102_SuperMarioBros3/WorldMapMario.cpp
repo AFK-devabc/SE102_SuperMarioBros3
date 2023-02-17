@@ -12,56 +12,61 @@
 
 CWorldMapMario::CWorldMapMario()
 {
-	velocity = D3DXVECTOR2(0, 0);
-	position = D3DXVECTOR2(63, 64);
-	NextPosition = position;
-	currentY = 1;
-	currentX = 0;
 	state = WMMARIO_STATE_IDLE;
+}
+
+void CWorldMapMario::SetMario(int type)
+{
+	this->marioType = type;
+	CWorldMap::GetInstance()->GetCurrentNodePosition(currentX, currentY);
+	NextPosition = CWorldMap::GetInstance()->GetNode(currentX, currentY)->position;
+
+	int nextX, nextY;
+	CWorldMap::GetInstance()->GetCurrentMarioPosition(nextX,nextY);
+	position = CWorldMap::GetInstance()->GetNode(nextX, nextY)->position;
+
 }
 
 void CWorldMapMario::Update(DWORD dt)
 {
-	position += velocity * dt;
-	switch (state)
+
+	if (position.x > NextPosition.x)
 	{
-	case WMMARIO_STATE_LEFT:
+		position.x -= WMMARIO_WALKING_SPEED * dt;
 		if (position.x <= NextPosition.x)
 		{
-			SetState(WMMARIO_STATE_IDLE);
-			velocity.x = 0;
-			position = NextPosition;
+			position.x = NextPosition.x;
 		}
-		break;
-	case WMMARIO_STATE_RIGHT:
+	}
+	else if (position.x < NextPosition.x)
+	{
+		position.x += WMMARIO_WALKING_SPEED * dt;
 		if (position.x >= NextPosition.x)
 		{
-			SetState(WMMARIO_STATE_IDLE);
-			velocity.x = 0;
-			position = NextPosition;
+			position.x = NextPosition.x;
 		}
-		break;
-	case WMMARIO_STATE_TOP:
+	}
+
+	if (position.y > NextPosition.y)
+	{
+		position.y -= WMMARIO_WALKING_SPEED * dt;
 		if (position.y <= NextPosition.y)
 		{
-			SetState(WMMARIO_STATE_IDLE);
-			velocity.y = 0;
-			position = NextPosition;
+			position.y = NextPosition.y;
 		}
-		break;
-	case WMMARIO_STATE_BOTTOM:
+	}
+	else 		if (position.y < NextPosition.y)
+	{
+		position.y += WMMARIO_WALKING_SPEED * dt;
 		if (position.y >= NextPosition.y)
 		{
-			SetState(WMMARIO_STATE_IDLE);
-			velocity.y = 0;
-			position = NextPosition;
+			position.y = NextPosition.y;
 		}
-		break;
-
-	default:
-		break;
 	}
+
 }
+
+
 
 void CWorldMapMario::Render()
 {
@@ -71,62 +76,59 @@ void CWorldMapMario::Render()
 
 void CWorldMapMario::OnKeyDown(int KeyCode)
 {
+	if (position != NextPosition)
+		return;
 
 	if (KeyCode == DIK_S)
 	{
-		string sceneID = CWorldMap::GetInstance()->GetNode(currentX, currentY)->sceneID;
-		if (sceneID != "none")
+		MapNode* currentNode= CWorldMap::GetInstance()->GetNode(currentX, currentY);
+		if (currentNode->sceneID != "none" && !currentNode->isCompleted)
 		{
-			CScenes::GetInstance()->InitiateSwitchScene(sceneID);
+			CScenes::GetInstance()->InitiateSwitchScene(currentNode->sceneID);
 			CWorldMap::GetInstance()->SetCurrentNode(currentX, currentY);
 			SetState(WMMARIO_STATE_IDLE);
-			velocity = D3DXVECTOR2(0,0);
 			position = NextPosition;
 		}
 		return;
 	}
-	if (state != WMMARIO_STATE_IDLE)
-		return;
 	switch (KeyCode)
 	{
 	case DIK_UP:
 
 		if (CWorldMap::GetInstance()->GetNode(currentX, currentY)->top)
 		{
-			NextPosition.y = position.y - 32;
-			SetState(WMMARIO_STATE_TOP);
-			velocity.y = -WMMARIO_WORLDMAP_SPEED;
-
 			currentY--;
+			SetState(WMMARIO_STATE_TOP);
+
+			NextPosition = CWorldMap::GetInstance()->GetNode(currentX, currentY)->position;
 		}
 		break;
 	case DIK_DOWN:
 		if (CWorldMap::GetInstance()->GetNode(currentX, currentY)->bottom)
 		{
-			NextPosition.y = position.y + 32;
-			SetState(WMMARIO_STATE_BOTTOM);
-			velocity.y = WMMARIO_WORLDMAP_SPEED;
 			currentY++;
+			SetState(WMMARIO_STATE_BOTTOM);
+			NextPosition = CWorldMap::GetInstance()->GetNode(currentX, currentY)->position;
 		}
 		break;
 	case DIK_LEFT:
 		if (CWorldMap::GetInstance()->GetNode(currentX, currentY)->left)
 		{
-			NextPosition.x = position.x - 32;
-			SetState(WMMARIO_STATE_LEFT);
-			velocity.x = -WMMARIO_WORLDMAP_SPEED;
-
 			currentX--;
+			SetState(WMMARIO_STATE_LEFT);
+
+			NextPosition = CWorldMap::GetInstance()->GetNode(currentX, currentY)->position;
 		}
 		break;
 	case DIK_RIGHT:
 		if (CWorldMap::GetInstance()->GetNode(currentX, currentY)->right)
 		{
-			NextPosition.x = position.x + 32;
-			SetState(WMMARIO_STATE_RIGHT);
-			velocity.x = WMMARIO_WORLDMAP_SPEED;
-
 			currentX++;
+
+			SetState(WMMARIO_STATE_RIGHT);
+
+			NextPosition = CWorldMap::GetInstance()->GetNode(currentX, currentY)->position;
+
 		}
 		break;
 	default:

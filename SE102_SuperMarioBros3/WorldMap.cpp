@@ -6,63 +6,64 @@ CWorldMap::CWorldMap()
 {
 	isLoaded = false;
 	__instance == this;
-	marioType = SMALL_MARIO;
 }
 
 void CWorldMap::Load(const char* filePath)
 {
-	if (isLoaded)
-		return;
-	DebugOut(L"[INFO] Start loading Maps from : \"%s\"\n", ToLPCWSTR(filePath));
-	TiXmlDocument doc(filePath);
-	if (doc.LoadFile())
+	if (!isLoaded)
 	{
-		isLoaded = true;
-		TiXmlElement* Root = doc.RootElement();
-		if (Root)
+		DebugOut(L"[INFO] Start loading Maps from : \"%s\"\n", ToLPCWSTR(filePath));
+		TiXmlDocument doc(filePath);
+		if (doc.LoadFile())
 		{
-			LPMapNodes.clear();
-			Root->QueryIntAttribute("numXNodes", &numXNodes);
-			Root->QueryIntAttribute("numYNodes", &numYNodes);
-
-			LPMapNodes.clear();
-
-			for (TiXmlElement* mapNode = Root->FirstChildElement(); mapNode != nullptr; mapNode = mapNode->NextSiblingElement())
+			isLoaded = true;
+			TiXmlElement* Root = doc.RootElement();
+			if (Root)
 			{
-				bool left, top, right, bottom;
-				int x=0, y=0;
-				D3DXVECTOR2 position;
-				string sceneID;
+				Root->QueryIntAttribute("numXNodes", &numXNodes);
+				Root->QueryIntAttribute("numYNodes", &numYNodes);
 
-				sceneID = mapNode->Attribute("sceneID");
+				LPMapNodes.clear();
 
-				mapNode->QueryIntAttribute("x", &x);
-				mapNode->QueryIntAttribute("y", &y);
-				position = D3DXVECTOR2(x, y);
+				for (TiXmlElement* mapNode = Root->FirstChildElement(); mapNode != nullptr; mapNode = mapNode->NextSiblingElement())
+				{
+					bool left, top, right, bottom;
+					int x = 0, y = 0;
+					D3DXVECTOR2 position;
+					string sceneID;
 
-				mapNode->QueryBoolAttribute("left", &left);
-				mapNode->QueryBoolAttribute("top", &top);
-				mapNode->QueryBoolAttribute("right", &right);
-				mapNode->QueryBoolAttribute("bottom", &bottom);
-				MapNode* p = new MapNode(sceneID, position, left, top, right, bottom);
-				LPMapNodes.push_back(p);
+					sceneID = mapNode->Attribute("sceneID");
+
+					mapNode->QueryIntAttribute("x", &x);
+					mapNode->QueryIntAttribute("y", &y);
+					position = D3DXVECTOR2(x, y);
+
+					mapNode->QueryBoolAttribute("left", &left);
+					mapNode->QueryBoolAttribute("top", &top);
+					mapNode->QueryBoolAttribute("right", &right);
+					mapNode->QueryBoolAttribute("bottom", &bottom);
+					MapNode* p = new MapNode(sceneID, position, left, top, right, bottom);
+					LPMapNodes.push_back(p);
+				}
 			}
+			preNode =currentNode = numXNodes;
+			marioType = SMALL_MARIO;
+
 		}
-
+		else
+		{
+			DebugOut(L"[ERROR] Failed to load Maps file \"%s\"\n", ToLPCWSTR(filePath));
+			return;
+		}
+		DebugOut(L"[INFO] Done loading Maps from \"%s\"\n", ToLPCWSTR(filePath));
 	}
-	else
-	{
-		DebugOut(L"[ERROR] Failed to load Maps file \"%s\"\n", ToLPCWSTR(filePath));
-		return;
-	}
-	DebugOut(L"[INFO] Done loading Maps from \"%s\"\n", ToLPCWSTR(filePath));
-
 }
 
 MapNode* CWorldMap::GetNode(int x, int y)
 {
 	return LPMapNodes[x + y * numXNodes];
 }
+
 
 CWorldMap* CWorldMap::GetInstance()
 {
@@ -78,4 +79,9 @@ void CWorldMap::Render()
 		if (LPMapNodes[i]->isCompleted)
 			CSprites::GetInstance()->Get("M_Complete")->DrawHub(LPMapNodes[i]->position);
 	}
+}
+
+void CWorldMap::ResetWorldMap()
+{
+	isLoaded = false;
 }

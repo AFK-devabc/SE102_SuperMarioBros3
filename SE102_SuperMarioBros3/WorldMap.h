@@ -35,6 +35,7 @@ private:
 
 	int marioType;
 	int currentNode;
+	int preNode;
 	static CWorldMap* __instance;
 public:
 
@@ -42,6 +43,8 @@ public:
 
 	void Load(const char* filePath);
 	MapNode* GetNode(int x, int y);
+	void GetCurrentNodePosition(int& x, int& y) { x = preNode % numXNodes; y = preNode / numXNodes; }
+	void GetCurrentMarioPosition(int& x, int& y) { x = currentNode % numXNodes; y = currentNode / numXNodes; }
 
 	int GetMarioType() { return marioType; }
 	void SetMarioType(int type) { this->marioType = type; }
@@ -49,9 +52,12 @@ public:
 		this->currentNode = x + y * numXNodes;
 	}
 
+	void ResetWorldMap();
+
 	void Render();
 	
-	void SetNodeComplete() { LPMapNodes[currentNode]->isCompleted = true; }
-
+	void SetNodeComplete() { LPMapNodes[currentNode]->isCompleted = true;
+	preNode = currentNode;
+	}
 	static CWorldMap* GetInstance();
 };

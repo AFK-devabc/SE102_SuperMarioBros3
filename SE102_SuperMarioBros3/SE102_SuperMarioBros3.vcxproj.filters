@@ -49,6 +49,9 @@
     <Filter Include="Spatial Partition">
       <UniqueIdentifier>{67ff69d0-57c2-494c-89c8-8d6fe3711ea2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KeyEventHandler">
+      <UniqueIdentifier>{a20cab9f-3f01-4b70-81d1-87dcf3db6a96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -177,11 +180,17 @@
     <ClCompile Include="WorldMapMario.cpp">
       <Filter>GameObject\Players</Filter>
     </ClCompile>
-    <ClCompile Include="IntroArrow.cpp">
-      <Filter>GameObject\Players</Filter>
-    </ClCompile>
     <ClCompile Include="ItemContainer.cpp">
       <Filter>GameObject\Blocking</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDefineInfo.h">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroArrow.cpp">
+      <Filter>KeyEventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverArrow.cpp">
+      <Filter>KeyEventHandler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,9 +244,6 @@
     </ClInclude>
     <ClInclude Include="PlayScene.h">
       <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyEventHandler.h">
-      <Filter>PhysicsDevices</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectType.h">
       <Filter>Resource Files</Filter>
@@ -338,9 +344,6 @@
     <ClInclude Include="WorldMapMario.h">
       <Filter>GameObject\Players</Filter>
     </ClInclude>
-    <ClInclude Include="IntroArrow.h">
-      <Filter>GameObject\Players</Filter>
-    </ClInclude>
     <ClInclude Include="PinePortal.h">
       <Filter>GameObject\Others</Filter>
     </ClInclude>
@@ -364,6 +367,18 @@
     </ClInclude>
     <ClInclude Include="Smoke.h">
       <Filter>GameObject\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyEventHandler.h">
+      <Filter>KeyEventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroArrow.h">
+      <Filter>KeyEventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverArrow.h">
+      <Filter>KeyEventHandler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

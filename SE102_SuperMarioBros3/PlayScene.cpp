@@ -371,7 +371,9 @@ void CPlayScene::Load()
 	LPKeyHandler.clear();
 	TiXmlDocument doc(sceneFilePath.c_str());
 
-	CHub::GetInstance()->ReloadHub(GAME_PLAY_TIME);
+	SetState(SCENE_STATE_PLAYING);
+
+	Hub->ReloadHub(GAME_PLAY_TIME);
 
 	if (doc.LoadFile())
 	{
@@ -425,30 +427,50 @@ void CPlayScene::Update(DWORD dt)
 {
 
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
-	if (player == NULL) return;
 
-	if (isPausing)
+	switch (state)
 	{
-		if (GetTickCount64() > startPauseTime + pauseTime)
-		{
-			isPausing = 0;
-			player->EndChangingForm();
-		}
-		return;
+	case SCENE_STATE_PLAYING:
+	{
+		D3DXVECTOR2 camPosition = CCamera::GetInstance()->GetPosition();
+
+		tileMap->SetTileRender(camPosition, camPosition + D3DXVECTOR2(303, 202));
+
+		grid->SetCellUpdate(camPosition, camPosition + D3DXVECTOR2(303, 202));
+
+		grid->Update(dt);
+		Hub->Update(dt, player);
+		for (int i = 0; i < LPBrick.size();i++)
+			if (LPBrick[i]->IsDeleted())
+				LPBrick.erase(LPBrick.begin() + i);
+		PurgeDeletedObjects();
+		break;
 	}
-	D3DXVECTOR2 camPosition = CCamera::GetInstance()->GetPosition();
-
-	tileMap->SetTileRender(camPosition, camPosition + D3DXVECTOR2(303, 202));
-
-	grid->SetCellUpdate(camPosition, camPosition + D3DXVECTOR2(303, 202));
-
-	grid->Update(dt);
-	Hub->Update(dt, player);
-	for (int i = 0; i < LPBrick.size();i++)
-		if (LPBrick[i]->IsDeleted())
-			LPBrick.erase(LPBrick.begin() + i);
-	PurgeDeletedObjects();
+	case SCENE_STATE_SWITCHSCENE_DELAY:
+	{
+		Hub->Update(dt, player);
+		grid->Update(dt);
+		break;
+	}
+	case SCENE_STATE_IDLE:
+	{
+		break;
+	}
+	case SCENE_STATE_PAUSING:
+	{
+		if (GetTickCount64() - startStateTime >  totalStateTime)
+		{
+			player->EndChangingForm();
+			state = SCENE_STATE_PLAYING;
+		}
+		break;
+	}
+	default:
+		break;
+	}
 }
+
+
 
 void CPlayScene::Render()
 {
@@ -477,7 +499,6 @@ void CPlayScene::Unload()
 	delete grid;
 	grid = NULL;
 }
-
 
 void CPlayScene::PurgeDeletedObjects()
 {

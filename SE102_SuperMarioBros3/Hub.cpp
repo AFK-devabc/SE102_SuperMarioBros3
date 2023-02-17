@@ -5,12 +5,14 @@
 #include "PlayScene.h"
 CHub* CHub::__instance = NULL;
 
-
-
 CHub* CHub::GetInstance()
 {
 	if (__instance == NULL) __instance = new CHub();
 	return __instance;
+}
+
+void CHub::OnKeyDown(int KeyCode)
+{
 }
 
 
@@ -74,7 +76,6 @@ void CHub::Render()
 		temp = temp / 10;
 		sprites->Get(GetNumberID(number))->DrawHub(D3DXVECTOR2(75 - i * 8, 225));
 	}
-
 
 	temp = point;
 	for (int i = 0; i < 7;i++)

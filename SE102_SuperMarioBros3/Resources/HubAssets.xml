@@ -4,7 +4,6 @@
 	<Textures texID="Hub" texturePath="textures/Hub.png">
 		<Animations  aniID="none" frameTime ="9999">
 			<Sprites spriteID = "InfoBar"		x="12" y="128" w="232" h="28"/>
-			<Sprites spriteID = "Black"			x="5" y="242" w="252" h="36"/>
 			<Sprites spriteID = "M_Info"		x="16" y="161" w="16" h="8"/>
 			<Sprites spriteID = "L_Info"		x="16" y="171" w="16" h="8"/>
 			<Sprites spriteID = "White_Power"	x="64" y="162" w="8" h="8"/>
@@ -15,6 +14,10 @@
 			<Sprites spriteID = "Mushroom"		x="184" y="159" w="24" h="28"/>
 			<Sprites spriteID = "Flower"		x="208" y="159" w="24" h="28"/>
 			<Sprites spriteID = "Star"			x="232" y="159" w="24" h="28"/>
+
+			<Sprites spriteID = "World_1_Title"		x="134" y="192" w="128" h="64"/>
+			<Sprites spriteID = "Gameover_Title"		x="3" y="192" w="128" h="64"/>
+			<Sprites spriteID = "Arrow"		x="9" y="267" w="8" h="8"/>
 
 
 			<Sprites spriteID = "Char_0"		x="77" y="31" w="8" h="8"/>
@@ -74,6 +77,11 @@
 			<Sprites spriteID = "none"		x="0" y="0" w="1" h="1"/>
 		</Animations>
 
+	</Textures>
+	<Textures texID="Black" texturePath="textures/Black.png">
+		<Animations  aniID="none" frameTime ="9999">
+			<Sprites spriteID = "Black"			x="5" y="0" w="252" h="36"/>
+		</Animations>
 	</Textures>
 
 </Root>

@@ -18,14 +18,19 @@ protected:
 	CWorldMapMario* mario;
 	D3DXVECTOR2 enemyPosition;
 	float enemyVx = 0.01f;
+
+	CGameOverArrow* gameOverArrow;
+
+	void LoadGameObject();
+
 public:
 	CWorldMapsScene(string id, string filePath);
-
-
 
 	virtual void Load();
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	virtual void Unload();
+
+	void ResetGame();
 };
 

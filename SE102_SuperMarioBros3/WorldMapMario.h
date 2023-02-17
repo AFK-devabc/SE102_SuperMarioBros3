@@ -2,12 +2,11 @@
 #include "KeyEventHandler.h"
 #include "D3DX10.h"
 
-
+#define WMMARIO_WALKING_SPEED 0.1f
 class CWorldMapMario :
 	public  CKeyEventHandler
 {
 private :
-	D3DXVECTOR2 velocity;
 	D3DXVECTOR2 position;
 	D3DXVECTOR2 NextPosition;
 	int currentX, currentY;
@@ -17,7 +16,7 @@ private :
 public :
 	CWorldMapMario();
 
-	void SetMarioType(int type) { this->marioType = type; }
+	void SetMario(int type);
 
 	void Update(DWORD dt);
 	void Render();
