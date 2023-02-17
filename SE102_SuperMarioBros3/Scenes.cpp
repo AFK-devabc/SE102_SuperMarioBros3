@@ -87,10 +87,9 @@ void CScenes::SwitchScene()
 	CKeyBoard::GetInstance()->Clear();
 
 	currentScene = nextScene;
-	LPSCENE s = scenes[nextScene];
-	s->Load();
+	scenes[nextScene]->Load();
 	
-	CKeyBoard::GetInstance()->SetKeyHandler(s->GetKeyEventHandler());
+	CKeyBoard::GetInstance()->SetKeyHandler(scenes[nextScene]->GetKeyEventHandler());
 
 }
 

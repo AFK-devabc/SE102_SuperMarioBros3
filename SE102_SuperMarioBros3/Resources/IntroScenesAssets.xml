@@ -4,29 +4,28 @@
 	<Textures texID="IntroScenes" texturePath="textures/IntroScenes.png">
 		<Animations  aniID="none" frameTime ="9999">
 			<Sprites spriteID = "Intro_BackGround"		x="516" y="226" w="256" h="224"/>
+			<Sprites spriteID = "Tree_Left"		x="2" y="384" w="64" h="64"/>
+			<Sprites spriteID = "Tree_Right"		x="68" y="352" w="64" h="96"/>
+			<Sprites spriteID = "GameTitle_1"		x="324" y="313" w="180" h="40"/>
+			<Sprites spriteID = "GameTitle_0"		x="373" y="281" w="88" h="32"/>
+
+			<Sprites spriteID = "BigCloud"		x="159" y="422" w="32" h="16"/>
+			<Sprites spriteID = "SmallCloud"		x="194" y="426" w="16" h="8"/>
+			<Sprites spriteID = "1_Player_Title"		x="38" y="307" w="108" h="8"/>
+			<Sprites spriteID = "2_Player_Title"		x="38" y="323" w="108" h="8"/>
+			<Sprites spriteID = "Arrow"		x="30" y="307" w="8" h="8"/>
+			<Sprites spriteID = "ground"		x="274" y="414" w="128" h="32"/>
+			<Sprites spriteID = "roof_3"		x="146" y="260" w="128" h="16"/>
+			<Sprites spriteID = "roof_1"		x="162" y="226" w="128" h="16"/>
+			<Sprites spriteID = "roof_2"		x="146" y="243" w="128" h="16"/>
+		</Animations>
+		<Animations  aniID="Number_3" frameTime ="100">
+			<Sprites spriteID = "Number_3_0"		x="134" y="352" w="42" h="42"/>
+			<Sprites spriteID = "Number_3_1"		x="180" y="352" w="42" h="42"/>
+			<Sprites spriteID = "Number_3_2"		x="227" y="352" w="42" h="42"/>
+			<Sprites spriteID = "Number_3_3"		x="273" y="352" w="42" h="42"/>
 		</Animations>
 
-
-		<!--<Animations  aniID="100000" frameTime ="200">
-			<Sprites spriteID = "Small_Mario_0"		x="252" y="116" w="14" h="16"/>
-			<Sprites spriteID = "Small_Mario_1"		x="272" y="116" w="14" h="16"/>
-		</Animations>
-		<Animations  aniID="110000" frameTime ="200">
-			<Sprites spriteID = "Big_Mario_0"		x="292" y="116" w="16" h="22"/>
-			<Sprites spriteID = "Big_Mario_1"		x="312" y="116" w="16" h="22"/>
-		</Animations>
-		<Animations  aniID="120000" frameTime ="200">
-			<Sprites spriteID = "Cat_Mario_0"		x="333" y="113" w="16" h="24"/>
-			<Sprites spriteID = "Cat_Mario_1"		x="354" y="113" w="16" h="24"/>
-		</Animations>
-		<Animations  aniID="1000" frameTime ="300">
-			<Sprites spriteID = "Enemy_Left_0"		x="333" y="74" w="16" h="16"/>
-			<Sprites spriteID = "Enemy_Left_1"		x="354" y="74" w="16" h="16"/>
-		</Animations>
-		<Animations  aniID="1001" frameTime ="300">
-			<Sprites spriteID = "Enemy_Right_0"		x="515" y="74" w="16" h="16"/>
-			<Sprites spriteID = "Enemy_Right_1"		x="536" y="74" w="16" h="16"/>
-		</Animations>-->
 
 	</Textures>
 

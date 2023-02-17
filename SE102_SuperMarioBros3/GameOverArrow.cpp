@@ -33,13 +33,12 @@ void CGameOverArrow::OnKeyDown(int KeyCode)
 			break;
 	}
 	case DIK_DOWN:
+	{
 		arrow += 1;
 		if (arrow > arrowPosition.size() - 1)
 			arrow = 0;
 		break;
-
-		break;
-
+	}
 	default:
 		break;
 	}
