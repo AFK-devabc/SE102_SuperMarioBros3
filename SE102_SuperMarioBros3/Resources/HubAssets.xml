@@ -61,6 +61,18 @@
 			<Sprites spriteID = "White_P"		x="73" y="162" w="16" h="8"/>
 			<Sprites spriteID = "Black_P"		x="100" y="162" w="16" h="8"/>
 		</Animations>
+		<Animations  aniID="10181" frameTime ="200">
+			<Sprites spriteID = "Mushroom"		x="184" y="159" w="24" h="28"/>
+			<Sprites spriteID = "none"		x="0" y="0" w="1" h="1"/>
+		</Animations>
+		<Animations  aniID="10180" frameTime ="200">
+			<Sprites spriteID = "Flower"		x="208" y="159" w="24" h="28"/>
+			<Sprites spriteID = "none"		x="0" y="0" w="1" h="1"/>
+		</Animations>
+		<Animations  aniID="10182" frameTime ="200">
+			<Sprites spriteID = "Star"			x="232" y="159" w="24" h="28"/>
+			<Sprites spriteID = "none"		x="0" y="0" w="1" h="1"/>
+		</Animations>
 
 	</Textures>
 

@@ -2,7 +2,7 @@
 
 <Root name="Scene 1_1" >
 	<!--<GameObject objType="0000" name="Mario" x="20" y ="350"/>-->
-	<GameObject objType="0000" name="Mario" x="20" y ="285"/>
+	<GameObject objType="0000" name="Mario" x="2600" y ="285"/>
 
 	<GameObject objType="10080" name="CheckPoint" x="2696" y ="344" blockX ="2815" blockY ="360"/>
 
@@ -211,7 +211,11 @@
 	<GameObject objType="10060" name="Coin"  x="2215" y ="473"/>
 	<GameObject objType="10060" name="Coin"  x="2199" y ="473"/>
 	<GameObject objType="10060" name="Coin"  x="2183" y ="489"/>
-
-
+	
+	<GameObject objType="99999" name="Portal" nextScene="WorldMapScene"  x="3152" y ="408"/>
+	<GameObject objType="94000" name="EmptySpace" nextScene="WorldMapScene" length="64" x="1120" y ="428"/>
+	<GameObject objType="94000" name="EmptySpace" nextScene="WorldMapScene" length="32" x="1520" y ="428"/>
+	<GameObject objType="94000" name="EmptySpace" nextScene="WorldMapScene" length="48" x="1640" y ="428"/>
+	<GameObject objType="94000" name="EmptySpace" nextScene="WorldMapScene" length="16" x="2248" y ="428"/>
 
 </Root>

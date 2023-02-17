@@ -32,6 +32,10 @@ protected:
 	int CanHoldKoopa;
 	LPGAMEOBJECT koopaHolding;
 
+	string nextScene;
+	DWORD changingSceneStart;
+
+
 	DWORD teleTimeStart;
 	D3DXVECTOR2 desPosition;
 	D3DXVECTOR2 camLockPosition;
@@ -52,7 +56,8 @@ protected:
 	void OnCollisionWithPinePortal(LPCOLLISIONEVENT e);
 	void OnCollisionWithPAlarm(LPCOLLISIONEVENT e);
 
-	
+	void OnCollisionWithEmptySpace(LPCOLLISIONEVENT e);
+
 public :
 	CPlayer(D3DXVECTOR2 position) : CGameObject(position) {
 		maxVx = 0.8f;
@@ -63,6 +68,7 @@ public :
 		CanHoldKoopa = 0;
 		koopaHolding = NULL;
 		isFlyingUp = false;
+		nextScene = "";
 	};
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 

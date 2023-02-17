@@ -27,6 +27,12 @@
 #define GRAVITY					0.0008f
 #define PIECE_BRICK_GRAVITY		0.0006f
 
+#pragma region WorlmapScene
+
+#define TOTAL_CHANGING_SCENE_DELAY	4000
+#define WORLDMAP_SCENE_ID		"WorldMapScene"
+#define TITLE_1_ENDING_START_TIME	1000
+#define TITLE_2_ENDING_START_TIME	2000
 
 #pragma region Mario
 

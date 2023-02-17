@@ -23,6 +23,8 @@ private:
 	bool isGameEnding;
 	int newItem;
 
+	DWORD startEndingTime;
+
 	D3DXVECTOR2 titlePosition;
 public:
 	CHub()
@@ -56,6 +58,7 @@ public:
 	int GetLife() { return life; }
 	void AddItems(int item) { if(checkpointItems.size() <3)  this->checkpointItems.push_back(item);
 		isGameEnding = true;
+		startEndingTime = GetTickCount64();
 		titlePosition = D3DXVECTOR2(100, 60);
 		newItem = item;
 	}

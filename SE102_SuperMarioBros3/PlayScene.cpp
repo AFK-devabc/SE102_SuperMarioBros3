@@ -335,7 +335,15 @@ void CPlayScene::LoadGameObjects(const char* filePath)
 
 					break;
 				}
+				case OBJECT_TYPE_EMPTY_SPACE:
+				{
+					int length;
+					gameObjectNode->QueryIntAttribute("length", &length);
+					string nextScene = gameObjectNode->Attribute("nextScene");
 
+					gameObject = new CEmptySpace(position, length, nextScene);
+					break;
+				}
 				default:
 				{
 					gameObject = NULL;

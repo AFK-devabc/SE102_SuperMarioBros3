@@ -21,6 +21,7 @@
 #include "Scenes.h"
 #include "PlayScene.h"
 #include "PAlarm.h"
+#include "EmptySpace.h"
 
 int CPlayer::GetAniID()
 {
@@ -117,6 +118,20 @@ void CPlayer::GetBoundingBox(float& l, float& t, float& r, float& b)
 void CPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 
+	if (nextScene != "")
+	{
+		velocity.y += MARIO_GRAVITY * dt;
+
+		position += velocity * dt;
+
+		if (GetTickCount64() - changingSceneStart > TOTAL_CHANGING_SCENE_DELAY)
+		{
+			this->marioType = SMALL_MARIO;
+			CHub::GetInstance()->AddLife(-1);
+			CScenes::GetInstance()->InitiateSwitchScene(nextScene);
+		}
+		return;
+	}
 
 	if(!(!isOnPlatform && abs(velocity.x) >= MARIO_WALKING_SPEED && velocity.x * Ax > 0 )|| abs(velocity.x) >= 0.8 * MARIO_RUNNING_SPEED )
 		velocity.x += Ax * dt;
@@ -243,7 +258,8 @@ void CPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithItemContainer(e);
 	else if (dynamic_cast<CPAlarm*>(e->obj))
 		OnCollisionWithPAlarm(e);
-
+	else if (dynamic_cast<CEmptySpace*>(e->obj))
+		OnCollisionWithEmptySpace(e);
 
 }
 
@@ -402,6 +418,9 @@ void CPlayer::OnCollisionWithRedLeaf(LPCOLLISIONEVENT e)
 void CPlayer::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
 	CPortal* portal = dynamic_cast<CPortal*>(e->obj);
+
+	
+
 	CScenes::GetInstance()->InitiateSwitchScene(portal->GetNextScene());
 }
 
@@ -428,10 +447,12 @@ void CPlayer::OnCollisionWithPlantBullet(LPCOLLISIONEVENT e)
 
 void CPlayer::OnCollisionWithCheckPoint(LPCOLLISIONEVENT e)
 {
+	if (dynamic_cast<CCheckPoint*>(e->obj)->IsChecked())
+		return;
 	CKeyBoard::GetInstance()->Clear();
 	SetState(MARIO_STATE_WALKING, 1);
 
-	e->obj->Delete();
+	dynamic_cast<CCheckPoint*>(e->obj)->Check();
 	CHub::GetInstance()->AddItems(e->obj->GetState());
 	CWorldMap::GetInstance()->SetNodeComplete();
 }
@@ -451,13 +472,25 @@ void CPlayer::OnCollisionWithPAlarm(LPCOLLISIONEVENT e)
 		e->obj->SetState(ALARM_STATE_TOUCHED);
 }
 
+void CPlayer::OnCollisionWithEmptySpace(LPCOLLISIONEVENT e)
+{
+	CEmptySpace* portal = dynamic_cast<CEmptySpace*>(e->obj);
+	CKeyBoard::GetInstance()->Clear();
+	this->velocity = D3DXVECTOR2(0,MARIO_JUMP_DEFLECT_SPEED);
+	nextScene = portal->GetNextScene();
+	changingSceneStart = GetTickCount64();
+}
+
 void CPlayer::Attacked()
 {
 	if (marioType == 100000)
 	{
 
 		SetState(GAME_OBJECT_STATE_DIE);
-		CHub::GetInstance()->AddLife(-1);
+		CKeyBoard::GetInstance()->Clear();
+		nextScene = WORLDMAP_SCENE_ID;
+		changingSceneStart = GetTickCount64();
+
 		return;
 	}
 	else

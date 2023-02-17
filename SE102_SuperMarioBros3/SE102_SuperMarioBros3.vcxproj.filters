@@ -356,14 +356,14 @@
     <ClInclude Include="AddLife.h">
       <Filter>GameObject\Effects</Filter>
     </ClInclude>
-    <ClInclude Include="Smoke.h">
-      <Filter>GameObject\Effects</Filter>
-    </ClInclude>
     <ClInclude Include="WorldMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EmptySpace.h">
       <Filter>GameObject\Blocking</Filter>
+    </ClInclude>
+    <ClInclude Include="Smoke.h">
+      <Filter>GameObject\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

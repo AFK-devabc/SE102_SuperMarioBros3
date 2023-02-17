@@ -5,6 +5,8 @@
 #include "PlayScene.h"
 CHub* CHub::__instance = NULL;
 
+
+
 CHub* CHub::GetInstance()
 {
 	if (__instance == NULL) __instance = new CHub();
@@ -14,32 +16,44 @@ CHub* CHub::GetInstance()
 
 void CHub::Update(DWORD dt, LPGAMEOBJECT player)
 {
-	if (isGameEnding)
-		return;
-	timeTickCount += dt;
-	powerTickCount += dt;
-
-	if (timeTickCount >= 1000)
+	if (!isGameEnding)
 	{
-		timeTickCount -=1000;
-		countDown -= 1;
+		timeTickCount += dt;
+		powerTickCount += dt;
 
-		if(countDown <=0)
-			 (dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene()))->GetPlayer()->SetState(GAME_OBJECT_STATE_DIE);
+		if (timeTickCount >= 1000)
+		{
+			timeTickCount -= 1000;
+			countDown -= 1;
 
+			if (countDown <= 0)
+				(dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene()))->GetPlayer()->SetState(GAME_OBJECT_STATE_DIE);
+
+		}
+		if (powerTickCount >= 500)
+		{
+			powerTickCount -= 500;
+			if (power > 0) power -= 1;
+			whiteP = !whiteP;
+		}
+		if (player->GetState() == MARIO_STATE_RUNNING)
+		{
+			power = (abs(player->GetVelocity().x) - MARIO_WALKING_SPEED) / SPEED_PER_POW;
+		}
+		if (!dynamic_cast<CPlayer*>(player)->IsOnPlatform())
+			power = 0;
 	}
-	if (powerTickCount >= 500)
+	else
 	{
-		powerTickCount -= 500;
-		if (power > 0) power -= 1;
-		whiteP = !whiteP;
+		if (countDown > 0)
+		{
+			int v2 = rand() % 20;
+			if (v2 > countDown)
+				v2 = countDown;
+			countDown -= v2;
+			point += v2* 50;
+		}
 	}
-	if(player->GetState() == MARIO_STATE_RUNNING )
-	{
-		power = (abs(player->GetVelocity().x) - MARIO_WALKING_SPEED) / SPEED_PER_POW;
-	}
-	if (!dynamic_cast<CPlayer*>(player)->IsOnPlatform())
-		power = 0;
 }
 
 void CHub::Render()
@@ -127,39 +141,45 @@ void CHub::Render()
 		if (isGameEnding)
 		{
 			string a ;
-			a="Course";
-			for (int i = 0; i < a.length(); i++ )
-				sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8*i,0));
-			a = "Clear";
-			for (int i = 0; i < a.length(); i++)
-				sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (7+i) , 0));
-			a = "You";
-			for (int i = 0; i < a.length(); i++)
-				sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * ( i-2), 16));
-
-			a = "got";
-			for (int i = 0; i < a.length(); i++)
-				sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (i + 2), 16));
-			a = "a";
-			for (int i = 0; i < a.length(); i++)
-				sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (i + 6), 16));
-			a = "card";
-			for (int i = 0; i < a.length(); i++)
-				sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (i + 8), 16));
-			switch (newItem)
+			if (GetTickCount64() - startEndingTime > TITLE_1_ENDING_START_TIME)
 			{
-			case CHECKPOINT_FLOWER:
-				sprites->Get("Flower")->DrawHub(titlePosition + D3DXVECTOR2(8 * 15, 16));
-				break;
-			case CHECKPOINT_MUSHROOM:
-				sprites->Get("Mushroom")->DrawHub(titlePosition + D3DXVECTOR2(8 * 15, 16));
-				break;
-			case CHECKPOINT_STAR:
-				sprites->Get("Star")->DrawHub(titlePosition + D3DXVECTOR2(8 * 15, 16));
-				break;
+				a = "Course";
+				for (int i = 0; i < a.length(); i++)
+					sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * i, 0));
+				a = "Clear";
+				for (int i = 0; i < a.length(); i++)
+					sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (7 + i), 0));
+			}
+			if (GetTickCount64() - startEndingTime > TITLE_2_ENDING_START_TIME)
+			{
+				a = "You";
+				for (int i = 0; i < a.length(); i++)
+					sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (i - 2), 16));
 
-			default:
-				break;
+				a = "got";
+				for (int i = 0; i < a.length(); i++)
+					sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (i + 2), 16));
+				a = "a";
+				for (int i = 0; i < a.length(); i++)
+					sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (i + 6), 16));
+				a = "card";
+				for (int i = 0; i < a.length(); i++)
+					sprites->Get(GetCharID(a[i]))->DrawHub(titlePosition + D3DXVECTOR2(8 * (i + 8), 16));
+				switch (newItem)
+				{
+				case CHECKPOINT_FLOWER:
+					sprites->Get("Flower")->DrawHub(titlePosition + D3DXVECTOR2(8 * 15, 16));
+					break;
+				case CHECKPOINT_MUSHROOM:
+					sprites->Get("Mushroom")->DrawHub(titlePosition + D3DXVECTOR2(8 * 15, 16));
+					break;
+				case CHECKPOINT_STAR:
+					sprites->Get("Star")->DrawHub(titlePosition + D3DXVECTOR2(8 * 15, 16));
+					break;
+
+				default:
+					break;
+				}
 			}
 
 		}
@@ -209,7 +229,5 @@ string GetCharID(char character)
 {
 	string a = "Char_";
 	a.push_back(toupper(character));
-
-
 	return a;
 }

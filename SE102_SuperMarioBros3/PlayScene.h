@@ -21,6 +21,7 @@
 #include "CheckPoint.h"
 #include "PinePortal.h"
 #include "ItemContainer.h"
+#include "EmptySpace.h"
 
 #include "TinyXML/tinyxml.h"
 #include "Animations.h"

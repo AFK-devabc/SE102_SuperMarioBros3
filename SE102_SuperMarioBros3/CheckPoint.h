@@ -5,6 +5,8 @@ class CCheckPoint :
 {
 	int tickCount;
 	LPGAMEOBJECT checkpointBlock;
+
+	bool isChecked;
 public :
 	CCheckPoint(D3DXVECTOR2 position, LPGAMEOBJECT block) : CGameObject(position) {
 		state = CHECKPOINT_FLOWER;
@@ -17,7 +19,9 @@ public :
 	void Render();
 
 	virtual int IsCollidable() { return 1; };
-	virtual void Delete() { isDeleted = true; checkpointBlock->Delete(); }
+	virtual void Delete() { isDeleted = true;  }
 
+	virtual void Check();
+	bool IsChecked() { return isChecked; }
 };
 
