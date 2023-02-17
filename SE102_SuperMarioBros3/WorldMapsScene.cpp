@@ -39,11 +39,6 @@ CWorldMapsScene::CWorldMapsScene(string id, string filePath) :
 	mario = new CWorldMapMario();
 	Hub = CHub::GetInstance();
 	enemyPosition = D3DXVECTOR2(95, 128);
-	this->state = SCENE_STATE_IDLE;
-
-	startStateTime = GetTickCount64();
-
-	totalStateTime = WorldMapScene_IDLE_START_TIME;
 }
 
 void CWorldMapsScene::LoadAssets(const char* filePath)
@@ -293,8 +288,12 @@ void CWorldMapsScene::ResetGame()
 {
 	Hub->ResetHub();
 	CWorldMap::GetInstance()->ResetWorldMap();
+	this->state = SCENE_STATE_IDLE;
 
-	this->LoadGameObject();
+	startStateTime = GetTickCount64();
+
+	totalStateTime = WorldMapScene_IDLE_START_TIME;
+
 	this->Load();
 
 	CKeyBoard::GetInstance()->Clear();
