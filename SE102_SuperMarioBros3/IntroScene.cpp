@@ -1,5 +1,5 @@
 #include "IntroScene.h"
-
+#define Title_Vy 0.1f
 CIntroScene::CIntroScene(string id, string filePath) :
 	CScene(id, filePath)
 {
@@ -153,13 +153,14 @@ void CIntroScene::LoadAssets(const char* filePath)
 
 void CIntroScene::LoadGameObject()
 {
-	titlePosition = D3DXVECTOR2(151, 64);
-	roofPosition = D3DXVECTOR2(151, 8);
-	leftTreePosition = D3DXVECTOR2(32, 176);
-	rightTreePosition = D3DXVECTOR2(276, 160);
+	//titlePosition = D3DXVECTOR2(151, 64);
+	//roofPosition = D3DXVECTOR2(151, 8);
+	//leftTreePosition = D3DXVECTOR2(32, 176);
+	//rightTreePosition = D3DXVECTOR2(276, 160);
 
 	groundPosition = D3DXVECTOR2(151, 224);
 	introArrow = new CIntroArrow();
+
 }
 
 
@@ -167,12 +168,12 @@ void CIntroScene::LoadGameObject()
 void CIntroScene::Load()
 {
 	DebugOut(L"[INFO] Start loading scene from : \"%s\"\n", ToLPCWSTR(sceneFilePath));
+
+	this->SetState(SCENE_STATE_IDLE);
 	LPKeyHandler.clear();
 	CCamera::GetInstance()->SetCamLock(D3DXVECTOR2(0, 0));
 
-	//D3DXCOLOR backGroundColor = D3DXCOLOR(0, 0, 0, 0);
-	D3DXCOLOR backGroundColor = D3DXCOLOR(1, 0.86, 0.63, 1);
-
+	D3DXCOLOR backGroundColor = D3DXCOLOR(0, 0, 0, 0);
 	
 	CGraphics::GetInstance()->SetBackGroundColor(backGroundColor);
 
@@ -180,6 +181,7 @@ void CIntroScene::Load()
 
 	LPKeyHandler.push_back(introArrow);
 	introTime = 0;	
+	eventCount = 0;
 
 	TiXmlDocument doc(sceneFilePath.c_str());
 	if (doc.LoadFile())
@@ -208,78 +210,123 @@ void CIntroScene::Load()
 
 void CIntroScene::Update(DWORD dt)
 {
-	DebugOut(L"%f\n", titlePosition.x);
 	introTime += dt;
-	if (introTime < 1000)
+	if (introTime < 2500 || eventCount < 1)
 	{
-		if (eventCount == 0)
+		if (eventCount < 1)
 		{
-
 			eventCount++;
+
+			roofPosition = D3DXVECTOR2(151, 216);
 		}
 
+		roofPosition.y -= Title_Vy * dt;
 
 	}
-	else if (introTime < 2000)
+	else if (introTime < 5000 || eventCount < 2)
 	{
-		if (eventCount == 1)
+		if (eventCount < 2)
 		{
-
 			eventCount++;
+			
+			titlePosition = D3DXVECTOR2(151, -64);
+			roofPosition = D3DXVECTOR2(151, -120);
+		}
+		if (titlePosition.y < 64)
+		{
+			titlePosition.y += Title_Vy * dt;
+			roofPosition.y += Title_Vy * dt;
 		}
 
-
 	}
-	else if (introTime < 3000)
+	else 
 	{
-		if (eventCount == 2)
+		if (eventCount < 3)
 		{
-		}
-
-
-	}
-	else if (introTime < 4000)
-	{
-		if (eventCount == 3)
-		{
-
 			eventCount++;
+			this->SetState(SCENE_STATE_PLAYING);
+			D3DXCOLOR backGroundColor = D3DXCOLOR(1, 0.86, 0.63, 1);
+			CGraphics::GetInstance()->SetBackGroundColor(backGroundColor);
+
+			titlePosition = D3DXVECTOR2(151, 64);
+			roofPosition = D3DXVECTOR2(151, 8);
+			leftTreePosition = D3DXVECTOR2(32, 176);
+			rightTreePosition = D3DXVECTOR2(276, 160);
 		}
-
-
 	}
+
 
 }
 void CIntroScene::Render()
 {
 	CSprites* sprites = CSprites::GetInstance();
 	CAnimations* ani = CAnimations::GetInstance();
+
 	sprites->Get("ground")->DrawHub(groundPosition + D3DXVECTOR2(128, 0));
 	sprites->Get("ground")->DrawHub(groundPosition + D3DXVECTOR2(0, 0));
 	sprites->Get("ground")->DrawHub(groundPosition + D3DXVECTOR2(-128, 0));
+	switch (eventCount)
+	{
 
-	sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(128, 0));
-	sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(0, 0));
-	sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(-128, 0));
+	case 1:
+	{
+		sprites->Get("roof_2")->DrawHub(roofPosition + D3DXVECTOR2(128, 0));
+		sprites->Get("roof_2")->DrawHub(roofPosition + D3DXVECTOR2(0, 0));
+		sprites->Get("roof_2")->DrawHub(roofPosition + D3DXVECTOR2(-128, 0));
+		int i = 1;
+		while (roofPosition.y - i * 16 > 0)
+		{
+			sprites->Get("roof_1")->DrawHub(roofPosition + D3DXVECTOR2(128, -16 * i));
+			sprites->Get("roof_1")->DrawHub(roofPosition + D3DXVECTOR2(0, -16 * i));
+			sprites->Get("roof_1")->DrawHub(roofPosition + D3DXVECTOR2(-128, -16 * i));
+			i++;
+		}
 
-	sprites->Get("GameTitle_0")->DrawHub(titlePosition + D3DXVECTOR2(0,-16));
-	sprites->Get("GameTitle_1")->DrawHub(titlePosition + D3DXVECTOR2(0, 20));
+		break;
+	}
+	case 2:
+	{
+		sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(128, 0));
+		sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(0, 0));
+		sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(-128, 0));
 
-	ani->Get("Number_3")->Render(titlePosition + D3DXVECTOR2(0,64));
+		sprites->Get("GameTitle_0")->DrawHub(titlePosition + D3DXVECTOR2(0, -16));
+		sprites->Get("GameTitle_1")->DrawHub(titlePosition + D3DXVECTOR2(0, 20));
 
-	sprites->Get("BigCloud")->DrawHub(titlePosition + D3DXVECTOR2(-112,-16));
-	sprites->Get("BigCloud")->DrawHub(titlePosition + D3DXVECTOR2(96, -32));
-	sprites->Get("SmallCloud")->DrawHub(titlePosition + D3DXVECTOR2(-128, 16));
+		sprites->Get("Number_3_0")->DrawHub(titlePosition + D3DXVECTOR2(0, 64));
 
-	sprites->Get("Tree_Left")->DrawHub(leftTreePosition);
-	sprites->Get("Tree_Right")->DrawHub(rightTreePosition);
+		sprites->Get("BigCloud")->DrawHub(titlePosition + D3DXVECTOR2(-112, -16));
+		sprites->Get("BigCloud")->DrawHub(titlePosition + D3DXVECTOR2(96, -32));
+		sprites->Get("SmallCloud")->DrawHub(titlePosition + D3DXVECTOR2(-128, 16));
 
+		break;
+	}
+	default:
+	{
+		sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(128, 0));
+		sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(0, 0));
+		sprites->Get("roof_3")->DrawHub(roofPosition + D3DXVECTOR2(-128, 0));
 
+		sprites->Get("GameTitle_0")->DrawHub(titlePosition + D3DXVECTOR2(0, -16));
+		sprites->Get("GameTitle_1")->DrawHub(titlePosition + D3DXVECTOR2(0, 20));
 
+		ani->Get("Number_3")->Render(titlePosition + D3DXVECTOR2(0, 64));
 
-	introArrow->Render();
+		sprites->Get("BigCloud")->DrawHub(titlePosition + D3DXVECTOR2(-112, -16));
+		sprites->Get("BigCloud")->DrawHub(titlePosition + D3DXVECTOR2(96, -32));
+		sprites->Get("SmallCloud")->DrawHub(titlePosition + D3DXVECTOR2(-128, 16));
+
+		sprites->Get("Tree_Left")->DrawHub(leftTreePosition);
+		sprites->Get("Tree_Right")->DrawHub(rightTreePosition);
+		introArrow->Render();
+
+		break;
+	}
+	}
+
 }
 
 void CIntroScene::Unload()
 {
+	delete introArrow;
 }

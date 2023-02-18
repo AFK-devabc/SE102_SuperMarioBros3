@@ -11,9 +11,11 @@
 #define GAMEPLAY_SCREEN_HEIGHT	202
 #pragma endregion
 
-#pragma region GameFpsRate
+#pragma region GamePlay
 #define MAX_FRAME_RATE			50
 #define GAME_PLAY_TIME			300
+#define START_WORLD				1
+#define START_LIFE				4
 
 #pragma endregion
 

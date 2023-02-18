@@ -28,7 +28,7 @@ public:
 	CKeyBoard();
 	//define keyboard
 	void InitKeyboard(HWND hWnd, HINSTANCE hInstance);
-	void ProcessKeyboard();
+	void ProcessKeyboard(bool isCall = true);
 
 	//return keyboard states through KeyData and dwElements
 	int GetKeyboardEvents(DIDEVICEOBJECTDATA keyEvents[], DWORD  &dwElements);

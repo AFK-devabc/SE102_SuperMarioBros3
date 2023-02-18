@@ -50,18 +50,20 @@ void CGame::Update(DWORD dt)
 	}
 	case SCENE_STATE_SWITCHSCENE_DELAY:
 	{
+		keyboard->ProcessKeyboard(false);
 		break;
 	}
 	case SCENE_STATE_IDLE:
 	{
+		keyboard->ProcessKeyboard(false);
 		break;
 	}
 	case SCENE_STATE_PAUSING:
 	{
+		keyboard->ProcessKeyboard(false);
 		break;
 	}
 	default:
-		keyboard->ProcessKeyboard();
 		break;
 	}
 }

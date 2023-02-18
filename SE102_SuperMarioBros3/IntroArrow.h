@@ -18,8 +18,8 @@ public:
          sceneID = "WorldMapScene";
 
         arrowPosition.clear();
-        arrowPosition.push_back(D3DXVECTOR2(menuPosition + D3DXVECTOR2(-64, 8)));
         arrowPosition.push_back(D3DXVECTOR2(menuPosition + D3DXVECTOR2(-64, -8)));
+        arrowPosition.push_back(D3DXVECTOR2(menuPosition + D3DXVECTOR2(-64, 8)));
         
 
     }

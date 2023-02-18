@@ -59,8 +59,8 @@ public:
 
 	void ResetHub()
 	{
-		world = 1;
-		life = 0;
+		world = START_WORLD;
+		life = START_LIFE;
 		power = 0;
 		countDown = 0;
 		point = 0;

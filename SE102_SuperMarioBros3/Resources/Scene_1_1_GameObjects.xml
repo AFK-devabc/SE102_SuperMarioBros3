@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Root name="Scene 1_1" >
-	<!--<GameObject objType="0000" name="Mario" x="20" y ="350"/>-->
-	<GameObject objType="0000" name="Mario" x="2600" y ="285"/>
+	<GameObject objType="0000" name="Mario" x="20" y ="350"/>
+	<!--<GameObject objType="0000" name="Mario" x="2600" y ="285"/>-->
 
 	<GameObject objType="10080" name="CheckPoint" x="2696" y ="344" blockX ="2815" blockY ="360"/>
 

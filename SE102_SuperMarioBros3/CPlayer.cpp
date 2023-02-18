@@ -389,12 +389,15 @@ void CPlayer::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 	if (marioType == SMALL_MARIO)
 	{
 		SetMarioType(BIG_MARIO);
+		CHub::GetInstance()->AddPoint(1000);
+
 	}
 	else
 	{
-		CHub::GetInstance()->AddLife(1);
+		LPGAMEOBJECT addPoint = new CAddPoint(e->obj->GetPosition(), 1000);
+		dynamic_cast<CPlayScene*>(CScenes::GetInstance()->GetCurrentScene())->AddGameObject(addPoint);
+
 	}
-	CHub::GetInstance()->AddPoint(1000);
 }
 
 void CPlayer::OnCollisionWithGreenMushroom(LPCOLLISIONEVENT e)
